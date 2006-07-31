@@ -1,0 +1,264 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{41BCC868-380C-4BC1-B834-687C32E829CC}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>Data</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>GmatClubTest.Data</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AnswerSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>AnswerSet.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="PassageToQuestionSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PassageToQuestionSet.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="QuestionAnswerSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QuestionAnswerSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="QuestionSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QuestionSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="QuestionSetSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QuestionSetSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="QuestionSetsResultDetailsSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QuestionSetsResultDetailsSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ResultResultDetailSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ResultResultDetailSet.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="ResultSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ResultSet.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="TestSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TestSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="UserSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>UserSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <Compile Include="AnswerSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AnswerSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PassageToQuestionSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PassageToQuestionSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Question.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="QuestionAnswerSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuestionAnswerSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QuestionSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuestionSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QuestionSetSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuestionSetSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QuestionSetsResultDetailsSet.cs">
+      <DependentUpon>QuestionSetsResultDetailsSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QuestionSetsResultDetailsSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuestionSetsResultDetailsSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ResultResultDetailSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResultResultDetailSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ResultSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResultSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="TestSet.cs">
+      <DependentUpon>TestSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="TestSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TestSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="UserSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UserSet.xsd</DependentUpon>
+    </Compile>
+    <None Include="AnswerSet.xsx">
+      <DependentUpon>AnswerSet.xsd</DependentUpon>
+    </None>
+    <None Include="PassageToQuestionSet.xsx">
+      <DependentUpon>PassageToQuestionSet.xsd</DependentUpon>
+    </None>
+    <None Include="QuestionAnswerSet.xsc">
+      <DependentUpon>QuestionAnswerSet.xsd</DependentUpon>
+    </None>
+    <None Include="QuestionAnswerSet.xss">
+      <DependentUpon>QuestionAnswerSet.xsd</DependentUpon>
+    </None>
+    <None Include="QuestionAnswerSet.xsx">
+      <DependentUpon>QuestionAnswerSet.xsd</DependentUpon>
+    </None>
+    <None Include="QuestionSet.xsc">
+      <DependentUpon>QuestionSet.xsd</DependentUpon>
+    </None>
+    <None Include="QuestionSet.xss">
+      <DependentUpon>QuestionSet.xsd</DependentUpon>
+    </None>
+    <None Include="QuestionSet.xsx">
+      <DependentUpon>QuestionSet.xsd</DependentUpon>
+    </None>
+    <None Include="QuestionSetSet.xsx">
+      <DependentUpon>QuestionSetSet.xsd</DependentUpon>
+    </None>
+    <None Include="QuestionSetsResultDetailsSet.xsc">
+      <DependentUpon>QuestionSetsResultDetailsSet.xsd</DependentUpon>
+    </None>
+    <None Include="QuestionSetsResultDetailsSet.xss">
+      <DependentUpon>QuestionSetsResultDetailsSet.xsd</DependentUpon>
+    </None>
+    <None Include="QuestionSetsResultDetailsSet.xsx">
+      <DependentUpon>QuestionSetsResultDetailsSet.xsd</DependentUpon>
+    </None>
+    <None Include="ResultResultDetailSet.xsx">
+      <DependentUpon>ResultResultDetailSet.xsd</DependentUpon>
+    </None>
+    <None Include="ResultSet.xsx">
+      <DependentUpon>ResultSet.xsd</DependentUpon>
+    </None>
+    <None Include="TestSet.xsc">
+      <DependentUpon>TestSet.xsd</DependentUpon>
+    </None>
+    <None Include="TestSet.xss">
+      <DependentUpon>TestSet.xsd</DependentUpon>
+    </None>
+    <None Include="TestSet.xsx">
+      <DependentUpon>TestSet.xsd</DependentUpon>
+    </None>
+    <None Include="UserSet.xsc">
+      <DependentUpon>UserSet.xsd</DependentUpon>
+    </None>
+    <None Include="UserSet.xss">
+      <DependentUpon>UserSet.xsd</DependentUpon>
+    </None>
+    <None Include="UserSet.xsx">
+      <DependentUpon>UserSet.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>
