@@ -1,0 +1,258 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0376B418-C9C5-45DD-9E66-03CC1F1F074C}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>App.ico</ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>Practice</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>GmatClubTest.Practice</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MagicLibrary">
+      <Name>MagicLibrary</Name>
+      <HintPath>..\..\..\..\Program Files\Crownwood Consulting Ltd\Magic Library 1.7.4\Bin\MagicLibrary.dll</HintPath>
+      <AssemblyFolderKey>hklm\dn\magic library</AssemblyFolderKey>
+    </Reference>
+    <Reference Include="MathML">
+      <Name>MathML</Name>
+      <HintPath>..\..\Thirdparty\bin\MathML.dll</HintPath>
+    </Reference>
+    <Reference Include="MathML.Rendering">
+      <Name>MathML.Rendering</Name>
+      <HintPath>..\..\Thirdparty\bin\MathML.Rendering.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Design">
+      <Name>System.Design</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
+      <Name>BusinessLogic</Name>
+      <Project>{A97069E2-8E61-4279-8056-793432FA023A}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\Data\Data.csproj">
+      <Name>Data</Name>
+      <Project>{41BCC868-380C-4BC1-B834-687C32E829CC}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\ImportExport\ImportExport.csproj">
+      <Project>{14808C81-08E2-4118-8442-BE25F7D16CC4}</Project>
+      <Name>ImportExport</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\License\License.csproj">
+      <Name>License</Name>
+      <Project>{86BFDECC-6782-4163-BEA0-A430AC39806C}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\QuestionRenderer\QuestionRenderer.csproj">
+      <Name>QuestionRenderer</Name>
+      <Project>{9AB869C1-D70C-48BE-9D63-F3566DB773D2}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\UnexpectedExceptionDialog\UnexpectedExceptionDialog.csproj">
+      <Name>UnexpectedExceptionDialog</Name>
+      <Project>{0B1E203A-568E-4D0D-960E-DF3D42F3D06B}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DescriptionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GeneralQuestionPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HelpForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ITestForm.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LicenseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewUserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PracticeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReadingComprehensionPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ResultDetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ResultsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReviewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <EmbeddedResource Include="AboutForm.resx">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DescriptionForm.resx">
+      <DependentUpon>DescriptionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GeneralQuestionPanel.resx">
+      <DependentUpon>GeneralQuestionPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HelpForm.resx">
+      <DependentUpon>HelpForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LicenseForm.resx">
+      <DependentUpon>LicenseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewUserForm.resx">
+      <DependentUpon>NewUserForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PracticeForm.resx">
+      <DependentUpon>PracticeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReadingComprehensionPanel.resx">
+      <DependentUpon>ReadingComprehensionPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResultDetailsForm.resx">
+      <DependentUpon>ResultDetailsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResultsForm.resx">
+      <DependentUpon>ResultsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReviewForm.resx">
+      <DependentUpon>ReviewForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TestForm.resx">
+      <DependentUpon>TestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="App.config" />
+    <None Include="Practice.exe.manifest">
+      <SubType>Form</SubType>
+    </None>
+    <Content Include="App.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>rem md "%25APPDATA%25\GmatClubTest - Practice"
+
+copy /Y "$(ProjectDir)\Practice.exe.manifest" "$(TargetDir)\Practice.exe.manifest"
+copy /Y "$(ProjectDir)\..\RenderingConfiguration\*.xml" "$(TargetDir)\*.*"
+copy /Y "$(ProjectDir)\..\rtf\*.rtf" "$(TargetDir)\*.*"
+
+rem copy /Y "$(ProjectDir)\..\db\GmatClubTest.mdb" "%25APPDATA%25\GmatClubTest - Practice\*.*"
+rem copy /Y "$(ProjectDir)\..\db\GmatClubTest.mdb" "$(TargetDir)\*.*"
+
+
+copy /Y "$(ProjectDir)\..\Keys\DefaultGmatClubPublicKey.gck" "$(TargetDir)\*.*"</PostBuildEvent>
+  </PropertyGroup>
+</Project>

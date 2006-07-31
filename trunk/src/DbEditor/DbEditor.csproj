@@ -1,0 +1,499 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D77B0A50-09A2-4DB6-AA51-4221F1871841}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>App.ico</ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>DbEditor</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>GmatClubTest.DbEditor</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>GmatClubTest.DbEditor.MainForm</StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MagicLibrary">
+      <Name>MagicLibrary</Name>
+      <HintPath>..\..\..\..\Program Files\Crownwood Consulting Ltd\Magic Library 1.7.4\Bin\MagicLibrary.DLL</HintPath>
+      <AssemblyFolderKey>hklm\dn\magic library</AssemblyFolderKey>
+    </Reference>
+    <Reference Include="MathML">
+      <Name>MathML</Name>
+      <HintPath>..\..\Thirdparty\bin\MathML.dll</HintPath>
+    </Reference>
+    <Reference Include="MathML.Rendering">
+      <Name>MathML.Rendering</Name>
+      <HintPath>..\..\Thirdparty\bin\MathML.Rendering.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap">
+      <Name>System.Runtime.Serialization.Formatters.Soap</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <ProjectReference Include="..\ImportExport\ImportExport.csproj">
+      <Project>{14808C81-08E2-4118-8442-BE25F7D16CC4}</Project>
+      <Name>ImportExport</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QuestionRenderer\QuestionRenderer.csproj">
+      <Name>QuestionRenderer</Name>
+      <Project>{9AB869C1-D70C-48BE-9D63-F3566DB773D2}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\UnexpectedExceptionDialog\UnexpectedExceptionDialog.csproj">
+      <Name>UnexpectedExceptionDialog</Name>
+      <Project>{0B1E203A-568E-4D0D-960E-DF3D42F3D06B}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App.ico" />
+    <Content Include="Data\Dataset.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Dataset.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="Data\TestQuestionSetSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TestQuestionSetSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="GmatClubTest%28UEdition%29.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GmatClubTestCopy.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Compile Include="AboutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutForm.Designer.cs">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AnswersEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AnswersEditorForm.Designer.cs">
+      <DependentUpon>AnswersEditorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ApplicationController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BusinessObjects\AdaptiveTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BusinessObjects\Connection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BusinessObjects\DbObject.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BusinessObjects\FolderWithSets.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BusinessObjects\FolderWithTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BusinessObjects\MixedAdaptiveTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BusinessObjects\MixedPractices.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BusinessObjects\MixedSets.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BusinessObjects\PassageQuestion.cs" />
+    <Compile Include="BusinessObjects\PassageQuestions.cs" />
+    <Compile Include="BusinessObjects\Practices.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BusinessObjects\QuantitativeAdaptiveTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BusinessObjects\QuantitativePractices.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BusinessObjects\QuantitativeSets.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BusinessObjects\Question.cs" />
+    <Compile Include="BusinessObjects\Questions.cs" />
+    <Compile Include="BusinessObjects\QuestionSet.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BusinessObjects\QuestionSets.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BusinessObjects\QuestionType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BusinessObjects\Test.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BusinessObjects\Tests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BusinessObjects\VerbalAdaptiveTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BusinessObjects\VerbalPractices.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BusinessObjects\VerbalSets.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CreateNewQuestionSetForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateNewQuestionSetForm.Designer.cs">
+      <DependentUpon>CreateNewQuestionSetForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CreateNewTestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateNewTestForm.Designer.cs">
+      <DependentUpon>CreateNewTestForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HelpForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PassageQuestionEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="QuestionEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SelectAnswerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectAnswerForm.Designer.cs">
+      <DependentUpon>SelectAnswerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SelectPassageQuestionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectPassageQuestionForm.Designer.cs">
+      <DependentUpon>SelectPassageQuestionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CreateNewQuestionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateNewQuestionForm.Designer.cs">
+      <DependentUpon>CreateNewQuestionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Dataset.cs">
+      <DependentUpon>Dataset.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Dataset.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Dataset.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Provider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Data\TestQuestionSetSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TestQuestionSetSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="EditConnectionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditingDatabase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Editor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ExportTestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExportTestForm.Designer.cs">
+      <DependentUpon>ExportTestForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImportTestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImportTestForm.Designer.cs">
+      <DependentUpon>ImportTestForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InputPasswordForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProcessingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="QuestionSetEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SelectQuestionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectQuestionForm.Designer.cs">
+      <DependentUpon>SelectQuestionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SelectSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectSet.Designer.cs">
+      <DependentUpon>SelectSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TestEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Tree\Clipboard.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Tree\ContextMenuBuilder.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Tree\ContextMenuHandlers.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Tree\Entity.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Tree\EntityRenderer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Tree\StaticFolder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Tree\Tree.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TypeSelectionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="ClassDiagram1.cd" />
+    <None Include="Data\Dataset.xsc">
+      <DependentUpon>Dataset.xsd</DependentUpon>
+    </None>
+    <None Include="Data\Dataset.xss">
+      <DependentUpon>Dataset.xsd</DependentUpon>
+    </None>
+    <None Include="Data\Dataset.xsx">
+      <DependentUpon>Dataset.xsd</DependentUpon>
+    </None>
+    <None Include="Data\TestQuestionSetSet.xsc">
+      <DependentUpon>TestQuestionSetSet.xsd</DependentUpon>
+    </None>
+    <None Include="Data\TestQuestionSetSet.xss">
+      <DependentUpon>TestQuestionSetSet.xsd</DependentUpon>
+    </None>
+    <None Include="Data\TestQuestionSetSet.xsx">
+      <DependentUpon>TestQuestionSetSet.xsd</DependentUpon>
+    </None>
+    <None Include="DbEditor.exe.manifest">
+      <SubType>Form</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <EmbeddedResource Include="AboutForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AnswersEditorForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>AnswersEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateNewQuestionSetForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>CreateNewQuestionSetForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateNewTestForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>CreateNewTestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HelpForm.resx">
+      <DependentUpon>HelpForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PassageQuestionEditor.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>PassageQuestionEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QuestionEditor.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>QuestionEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectAnswerForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SelectAnswerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectPassageQuestionForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SelectPassageQuestionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateNewQuestionForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>CreateNewQuestionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Data\Provider.resx">
+      <DependentUpon>Provider.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditConnectionForm.resx">
+      <DependentUpon>EditConnectionForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.resx">
+      <DependentUpon>Editor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExportTestForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ExportTestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImportTestForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ImportTestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputPasswordForm.resx">
+      <DependentUpon>InputPasswordForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProcessingForm.resx">
+      <DependentUpon>ProcessingForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QuestionSetEditor.resx">
+      <DependentUpon>QuestionSetEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectQuestionForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SelectQuestionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectSet.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SelectSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TestEditor.resx">
+      <DependentUpon>TestEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tree\ContextMenuBuilder.resx">
+      <DependentUpon>ContextMenuBuilder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tree\Tree.resx">
+      <DependentUpon>Tree.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TypeSelectionForm.resx">
+      <DependentUpon>TypeSelectionForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Help\" />
+    <Folder Include="templates\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>copy /Y "$(ProjectDir)\..\rtf\*.rtf" "$(TargetDir)\*.*"
+md  "$(TargetDir)templates"
+copy /Y "$(ProjectDir)\templates\*.*"  "$(TargetDir)\templates\*.*"</PreBuildEvent>
+    <PostBuildEvent>copy /Y "$(ProjectDir)\*.manifest" "$(TargetDir)\*.*"</PostBuildEvent>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema id="TestQuestionSetSet" targetNamespace="http://tempuri.org/TestQuestionSetSet.xsd"
+	elementFormDefault="qualified" attributeFormDefault="qualified" xmlns="http://tempuri.org/TestQuestionSetSet.xsd"
+	xmlns:mstns="http://tempuri.org/TestQuestionSetSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+	<xs:element name="TestQuestionSetSet" msdata:IsDataSet="true">
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element name="Tests">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" type="xs:int" />
+							<xs:element name="Name" type="xs:string" />
+							<xs:element name="IsPractice" type="xs:boolean" />
+							<xs:element name="Description" type="xs:string" />
+							<xs:element name="QuestionTypeId" type="xs:int" minOccurs="0" />
+							<xs:element name="QuestionSubtypeId" type="xs:int" minOccurs="0" />
+							<xs:element name="GUID" type="xs:string" />
+							<xs:element name="Version" type="xs:int" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="QuestionSets">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" type="xs:int" />
+							<xs:element name="Name" type="xs:string" />
+							<xs:element name="Description" type="xs:string" />
+							<xs:element name="NumberOfQuestionsToPick" type="xs:int" />
+							<xs:element name="TimeLimit" type="xs:int" minOccurs="0" />
+							<xs:element name="QuestionTypeId" type="xs:int" minOccurs="0" />
+							<xs:element name="QuestionSubtypeId" type="xs:int" minOccurs="0" />
+							<xs:element name="NumberOfQuestionsInZone1" type="xs:int" />
+							<xs:element name="NumberOfQuestionsInZone2" type="xs:int" />
+							<xs:element name="NumberOfQuestionsInZone3" type="xs:int" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="TestContents">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="TestId" type="xs:int" />
+							<xs:element name="QuestionSetId" type="xs:int" />
+							<xs:element name="QuestionSetOrder" type="xs:unsignedByte" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+		<xs:key name="KeyOfTests" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//mstns:Tests" />
+			<xs:field xpath="mstns:Id" />
+		</xs:key>
+		<xs:key name="KeyOfQuestionSets" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//mstns:QuestionSets" />
+			<xs:field xpath="mstns:Id" />
+		</xs:key>
+		<xs:key name="KeyOfTestContents" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//mstns:TestContents" />
+			<xs:field xpath="mstns:TestId" />
+			<xs:field xpath="mstns:QuestionSetId" />
+		</xs:key>
+		<xs:keyref name="TestsTestContents" refer="KeyOfTests">
+			<xs:selector xpath=".//mstns:TestContents" />
+			<xs:field xpath="mstns:TestId" />
+		</xs:keyref>
+		<xs:keyref name="QuestionSetsTestContents" refer="KeyOfQuestionSets">
+			<xs:selector xpath=".//mstns:TestContents" />
+			<xs:field xpath="mstns:QuestionSetId" />
+		</xs:keyref>
+	</xs:element>
+</xs:schema>

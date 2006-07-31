@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema id="QuestionAnswerSet" targetNamespace="http://tempuri.org/QuestionAnswerSet.xsd"
+	elementFormDefault="qualified" attributeFormDefault="qualified" xmlns="http://tempuri.org/QuestionAnswerSet.xsd"
+	xmlns:mstns="http://tempuri.org/QuestionAnswerSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+	<xs:element name="QuestionAnswerSet" msdata:IsDataSet="true">
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element name="Answers">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" type="xs:int" />
+							<xs:element name="QuestionId" type="xs:int" />
+							<xs:element name="Text" type="xs:string" />
+							<xs:element name="IsCorrect" type="xs:boolean" />
+							<xs:element name="Order" type="xs:unsignedByte" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Questions">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" type="xs:int" />
+							<xs:element name="TypeId" type="xs:int" />
+							<xs:element name="SubtypeId" type="xs:int" />
+							<xs:element name="DifficultyLevelId" type="xs:int" />
+							<xs:element name="Text" type="xs:string" />
+							<xs:element name="Picture" type="xs:base64Binary" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+		<xs:unique name="QuestionAnswerSetKey2" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//mstns:Answers" />
+			<xs:field xpath="mstns:Id" />
+		</xs:unique>
+		<xs:keyref name="QuestionsAnswers" refer="QuestionAnswerSetKey1">
+			<xs:selector xpath=".//mstns:Answers" />
+			<xs:field xpath="mstns:QuestionId" />
+		</xs:keyref>
+		<xs:unique name="QuestionAnswerSetKey1" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//mstns:Questions" />
+			<xs:field xpath="mstns:Id" />
+		</xs:unique>
+	</xs:element>
+</xs:schema>
