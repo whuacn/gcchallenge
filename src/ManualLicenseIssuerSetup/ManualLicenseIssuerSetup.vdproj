@@ -15,13 +15,19 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_660F9411C2584F5BB98CD73B3C9F2DA4"
+        "MsmKey" = "8:_181397D34E795EA97FFE3A48605F095E"
+        "OwnerKey" = "8:_660F9411C2584F5BB98CD73B3C9F2DA4"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_42C74290698F461BBED048F87B331785"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_66DCAC856220494C8F68E5D6981DF9A8"
+        "MsmKey" = "8:_660F9411C2584F5BB98CD73B3C9F2DA4"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -33,32 +39,50 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_888BCF335771426CA4A472D2A6D6FAC3"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_9119B5364698BBF6CCE945E2AF0555FD"
         "OwnerKey" = "8:_660F9411C2584F5BB98CD73B3C9F2DA4"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_9B5A8B359D14476299104C9529F901A5"
+        "MsmKey" = "8:_A24401097E6A41C99B47C497FB663413"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_CF15DCD051F60086D5525DC1CCE1B295"
+        "OwnerKey" = "8:_660F9411C2584F5BB98CD73B3C9F2DA4"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E935B4EE847C44F2BF0DCDA700034D29"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_9119B5364698BBF6CCE945E2AF0555FD"
+        "OwnerKey" = "8:_660F9411C2584F5BB98CD73B3C9F2DA4"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_660F9411C2584F5BB98CD73B3C9F2DA4"
+        "OwnerKey" = "8:_181397D34E795EA97FFE3A48605F095E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_CF15DCD051F60086D5525DC1CCE1B295"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_9119B5364698BBF6CCE945E2AF0555FD"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -115,6 +139,11 @@
             "ComponentsUrl" = "8:"
                 "Items"
                 {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Net.Framework.2.0"
+                    {
+                    "Name" = "8:.NET Framework 2.0"
+                    "ProductCode" = "8:Microsoft.Net.Framework.2.0"
+                    }
                 }
             }
         }
@@ -147,10 +176,41 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_66DCAC856220494C8F68E5D6981DF9A8"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_181397D34E795EA97FFE3A48605F095E"
             {
-            "SourcePath" = "8:..\\Keys\\DefaultGmatClubPublicKey.gck.hash"
-            "TargetName" = "8:DefaultGmatClubPublicKey.gck.hash"
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:UnexpectedExceptionDialog, Version=1.0.2410.18411, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_181397D34E795EA97FFE3A48605F095E"
+                    {
+                    "Name" = "8:UnexpectedExceptionDialog.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:UnexpectedExceptionDialog.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_AAEE52B46397476CA980BCA715548FC5"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_42C74290698F461BBED048F87B331785"
+            {
+            "SourcePath" = "8:..\\..\\Data\\Keys\\DefaultGmatClubKeyPair.gck"
+            "TargetName" = "8:DefaultGmatClubKeyPair.gck"
             "Tag" = "8:"
             "Folder" = "8:_AAEE52B46397476CA980BCA715548FC5"
             "Condition" = "8:"
@@ -171,26 +231,6 @@
             {
             "SourcePath" = "8:..\\ManualLicenseIssuer\\Key.ico"
             "TargetName" = "8:Key.ico"
-            "Tag" = "8:"
-            "Folder" = "8:_AAEE52B46397476CA980BCA715548FC5"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_888BCF335771426CA4A472D2A6D6FAC3"
-            {
-            "SourcePath" = "8:..\\Keys\\DefaultGmatClubPublicKey.gck"
-            "TargetName" = "8:DefaultGmatClubPublicKey.gck"
             "Tag" = "8:"
             "Folder" = "8:_AAEE52B46397476CA980BCA715548FC5"
             "Condition" = "8:"
@@ -238,10 +278,61 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9B5A8B359D14476299104C9529F901A5"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A24401097E6A41C99B47C497FB663413"
             {
-            "SourcePath" = "8:..\\Keys\\DefaultGmatClubKeyPair.gck"
-            "TargetName" = "8:DefaultGmatClubKeyPair.gck"
+            "SourcePath" = "8:..\\..\\Data\\Keys\\DefaultGmatClubPublicKey.gck"
+            "TargetName" = "8:DefaultGmatClubPublicKey.gck"
+            "Tag" = "8:"
+            "Folder" = "8:_AAEE52B46397476CA980BCA715548FC5"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_CF15DCD051F60086D5525DC1CCE1B295"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:License, Version=1.0.2410.18410, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_CF15DCD051F60086D5525DC1CCE1B295"
+                    {
+                    "Name" = "8:License.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:License.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_AAEE52B46397476CA980BCA715548FC5"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E935B4EE847C44F2BF0DCDA700034D29"
+            {
+            "SourcePath" = "8:..\\..\\Data\\Keys\\DefaultGmatClubPublicKey.gck.hash"
+            "TargetName" = "8:DefaultGmatClubPublicKey.gck.hash"
             "Tag" = "8:"
             "Folder" = "8:_AAEE52B46397476CA980BCA715548FC5"
             "Condition" = "8:"
@@ -371,7 +462,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:GMAT Club Test - Manual License Issuer"
         "ProductCode" = "8:{4BBE7478-1BAF-41CF-99B6-528DD9CA9357}"
-        "PackageCode" = "8:{A069C557-6CC6-402E-900A-6D989FC6DCDC}"
+        "PackageCode" = "8:{9A7BC535-6193-4FD3-9703-6E34C148E9EE}"
         "UpgradeCode" = "8:{861D291E-BF38-4140-99E1-07BDD142F9CE}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
@@ -863,7 +954,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_660F9411C2584F5BB98CD73B3C9F2DA4"
             {
-            "SourcePath" = "8:..\\ManualLicenseIssuer\\obj\\Debug\\ManualLicenseIssuer.exe"
+            "SourcePath" = "8:..\\ManualLicenseIssuer\\obj\\Release\\ManualLicenseIssuer.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_AAEE52B46397476CA980BCA715548FC5"
@@ -889,9 +980,6 @@
                 {
                 }
             }
-        }
-        "VJSharpPlugin"
-        {
         }
     }
 }

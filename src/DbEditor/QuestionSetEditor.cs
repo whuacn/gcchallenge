@@ -36,7 +36,6 @@ namespace GmatClubTest.DbEditor
         private Label inZone3;
         private Label inZone2;
         private Label inZone1;
-        private DataGridViewTextBoxColumn textDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn typeIdDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn subtypeIdDataGridViewTextBoxColumn;
