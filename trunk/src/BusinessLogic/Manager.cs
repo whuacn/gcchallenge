@@ -16,10 +16,12 @@ namespace GmatClubTest.BusinessLogic
 		private SHA1 sha = new SHA1CryptoServiceProvider();
 		private int userId = -1;
 
-		public static Manager CreareManagerUseSql(string dataSource)
+		public static Manager CreareManagerUseSql(string dataSource, string userName, string password)
 		{
             DataProvider.SqlDataProvider p = new DataProvider.SqlDataProvider();
 			p.DataSource = dataSource;
+		    p.UserName = userName;
+		    p.Password = password;
 			return new Manager(p);
 		}
 
