@@ -350,7 +350,6 @@
       <SubType>Form</SubType>
     </Compile>
     <None Include="app.config" />
-    <None Include="ClassDiagram1.cd" />
     <None Include="Data\Dataset.xsc">
       <DependentUpon>Dataset.xsd</DependentUpon>
     </None>
