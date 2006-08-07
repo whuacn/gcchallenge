@@ -130,12 +130,6 @@
       <LastGenOutput>TestQuestionSetSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="GmatClubTest%28UEdition%29.mdb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="GmatClubTestCopy.mdb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Compile Include="AboutForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -491,9 +485,10 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>copy /Y "$(ProjectDir)\..\rtf\*.rtf" "$(TargetDir)\*.*"
-md  "$(TargetDir)templates"
-copy /Y "$(ProjectDir)\templates\*.*"  "$(TargetDir)\templates\*.*"</PreBuildEvent>
-    <PostBuildEvent>copy /Y "$(ProjectDir)\*.manifest" "$(TargetDir)\*.*"</PostBuildEvent>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>md  "$(TargetDir)\Templates"
+copy /Y "$(ProjectDir)\..\..\Data\Templates\*.*"  $(TargetDir)\Templates\*.*"
+copy /Y "$(ProjectDir)\*.manifest" "$(TargetDir)\*.*"</PostBuildEvent>
   </PropertyGroup>
 </Project>

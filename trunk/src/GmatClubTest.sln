@@ -26,27 +26,27 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbEditor", "DbEditor\DbEdit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImportExport", "ImportExport\ImportExport.csproj", "{14808C81-08E2-4118-8442-BE25F7D16CC4}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "http://localhost/GMATClubChallenge.com/", "http://localhost/GMATClubChallenge.com", "{346AA6DE-89A0-40AE-9860-394F626744A3}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "DbEditorSetup", "DbEditorSetup\DbEditorSetup.vdproj", "{3D73C2BA-0AD3-440C-91C3-C41741BFFF47}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "C:\...\GMATClubChallenge.com\", "GMATClubChallenge.com\", "{1CDB4AFA-9C0E-44BA-8758-2BA02BA005EA}"
 	ProjectSection(WebsiteProperties) = preProject
-		ProjectReferences = "{A97069E2-8E61-4279-8056-793432FA023A}|BusinessLogic.dll;{9AB869C1-D70C-48BE-9D63-F3566DB773D2}|QuestionRenderer.dll;{41BCC868-380C-4BC1-B834-687C32E829CC}|Data.dll;"
+		ProjectReferences = "{A97069E2-8E61-4279-8056-793432FA023A}|BusinessLogic.dll;{9AB869C1-D70C-48BE-9D63-F3566DB773D2}|QuestionRenderer.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/GMATClubChallenge.com"
-		Debug.AspNetCompiler.PhysicalPath = "..\..\..\..\inetpub\wwwroot\GMATClubChallenge.com\"
+		Debug.AspNetCompiler.PhysicalPath = "GMATClubChallenge.com\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\GMATClubChallenge.com\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.ForceOverwrite = "true"
 		Debug.AspNetCompiler.FixedNames = "false"
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.VirtualPath = "/GMATClubChallenge.com"
-		Release.AspNetCompiler.PhysicalPath = "..\..\..\..\inetpub\wwwroot\GMATClubChallenge.com\"
+		Release.AspNetCompiler.PhysicalPath = "GMATClubChallenge.com\"
 		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\GMATClubChallenge.com\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		SlnRelativePath = "..\..\..\..\inetpub\wwwroot\GMATClubChallenge.com\"
+		VWDPort = "1125"
 	EndProjectSection
-EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "DbEditorSetup", "DbEditorSetup\DbEditorSetup.vdproj", "{3D73C2BA-0AD3-440C-91C3-C41741BFFF47}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -97,7 +97,6 @@ Global
 		{F9A17CC0-FF77-4C11-9616-E9ADD1D36A8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9A17CC0-FF77-4C11-9616-E9ADD1D36A8F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F9A17CC0-FF77-4C11-9616-E9ADD1D36A8F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{F9A17CC0-FF77-4C11-9616-E9ADD1D36A8F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{41BCC868-380C-4BC1-B834-687C32E829CC}.Debug|.NET.ActiveCfg = Debug|Any CPU
 		{41BCC868-380C-4BC1-B834-687C32E829CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{41BCC868-380C-4BC1-B834-687C32E829CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
@@ -122,7 +121,6 @@ Global
 		{D197CDA6-C3FD-4603-9256-BA38D6DBB008}.Debug|.NET.Build.0 = Debug
 		{D197CDA6-C3FD-4603-9256-BA38D6DBB008}.Debug|Any CPU.ActiveCfg = Debug
 		{D197CDA6-C3FD-4603-9256-BA38D6DBB008}.Debug|Mixed Platforms.ActiveCfg = Debug
-		{D197CDA6-C3FD-4603-9256-BA38D6DBB008}.Debug|Mixed Platforms.Build.0 = Debug
 		{D197CDA6-C3FD-4603-9256-BA38D6DBB008}.Release|.NET.ActiveCfg = Release
 		{D197CDA6-C3FD-4603-9256-BA38D6DBB008}.Release|.NET.Build.0 = Release
 		{D197CDA6-C3FD-4603-9256-BA38D6DBB008}.Release|Any CPU.ActiveCfg = Release
@@ -162,7 +160,6 @@ Global
 		{1D2B97C8-0CCD-4291-924D-ABDD97132DC9}.Debug|.NET.Build.0 = Debug
 		{1D2B97C8-0CCD-4291-924D-ABDD97132DC9}.Debug|Any CPU.ActiveCfg = Debug
 		{1D2B97C8-0CCD-4291-924D-ABDD97132DC9}.Debug|Mixed Platforms.ActiveCfg = Debug
-		{1D2B97C8-0CCD-4291-924D-ABDD97132DC9}.Debug|Mixed Platforms.Build.0 = Debug
 		{1D2B97C8-0CCD-4291-924D-ABDD97132DC9}.Release|.NET.ActiveCfg = Release
 		{1D2B97C8-0CCD-4291-924D-ABDD97132DC9}.Release|.NET.Build.0 = Release
 		{1D2B97C8-0CCD-4291-924D-ABDD97132DC9}.Release|Any CPU.ActiveCfg = Release
@@ -188,22 +185,23 @@ Global
 		{14808C81-08E2-4118-8442-BE25F7D16CC4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{14808C81-08E2-4118-8442-BE25F7D16CC4}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{14808C81-08E2-4118-8442-BE25F7D16CC4}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{346AA6DE-89A0-40AE-9860-394F626744A3}.Debug|.NET.ActiveCfg = Debug|.NET
-		{346AA6DE-89A0-40AE-9860-394F626744A3}.Debug|.NET.Build.0 = Debug|.NET
-		{346AA6DE-89A0-40AE-9860-394F626744A3}.Debug|Any CPU.ActiveCfg = Debug|.NET
-		{346AA6DE-89A0-40AE-9860-394F626744A3}.Debug|Mixed Platforms.ActiveCfg = Debug|.NET
-		{346AA6DE-89A0-40AE-9860-394F626744A3}.Debug|Mixed Platforms.Build.0 = Debug|.NET
-		{346AA6DE-89A0-40AE-9860-394F626744A3}.Release|.NET.ActiveCfg = Debug|.NET
-		{346AA6DE-89A0-40AE-9860-394F626744A3}.Release|.NET.Build.0 = Debug|.NET
-		{346AA6DE-89A0-40AE-9860-394F626744A3}.Release|Any CPU.ActiveCfg = Debug|.NET
-		{346AA6DE-89A0-40AE-9860-394F626744A3}.Release|Mixed Platforms.ActiveCfg = Debug|.NET
-		{346AA6DE-89A0-40AE-9860-394F626744A3}.Release|Mixed Platforms.Build.0 = Debug|.NET
 		{3D73C2BA-0AD3-440C-91C3-C41741BFFF47}.Debug|.NET.ActiveCfg = Debug
 		{3D73C2BA-0AD3-440C-91C3-C41741BFFF47}.Debug|Any CPU.ActiveCfg = Debug
 		{3D73C2BA-0AD3-440C-91C3-C41741BFFF47}.Debug|Mixed Platforms.ActiveCfg = Debug
 		{3D73C2BA-0AD3-440C-91C3-C41741BFFF47}.Release|.NET.ActiveCfg = Release
 		{3D73C2BA-0AD3-440C-91C3-C41741BFFF47}.Release|Any CPU.ActiveCfg = Release
 		{3D73C2BA-0AD3-440C-91C3-C41741BFFF47}.Release|Mixed Platforms.ActiveCfg = Release
+		{3D73C2BA-0AD3-440C-91C3-C41741BFFF47}.Release|Mixed Platforms.Build.0 = Release
+		{1CDB4AFA-9C0E-44BA-8758-2BA02BA005EA}.Debug|.NET.ActiveCfg = Debug|.NET
+		{1CDB4AFA-9C0E-44BA-8758-2BA02BA005EA}.Debug|.NET.Build.0 = Debug|.NET
+		{1CDB4AFA-9C0E-44BA-8758-2BA02BA005EA}.Debug|Any CPU.ActiveCfg = Debug|.NET
+		{1CDB4AFA-9C0E-44BA-8758-2BA02BA005EA}.Debug|Mixed Platforms.ActiveCfg = Debug|.NET
+		{1CDB4AFA-9C0E-44BA-8758-2BA02BA005EA}.Debug|Mixed Platforms.Build.0 = Debug|.NET
+		{1CDB4AFA-9C0E-44BA-8758-2BA02BA005EA}.Release|.NET.ActiveCfg = Debug|.NET
+		{1CDB4AFA-9C0E-44BA-8758-2BA02BA005EA}.Release|.NET.Build.0 = Debug|.NET
+		{1CDB4AFA-9C0E-44BA-8758-2BA02BA005EA}.Release|Any CPU.ActiveCfg = Debug|.NET
+		{1CDB4AFA-9C0E-44BA-8758-2BA02BA005EA}.Release|Mixed Platforms.ActiveCfg = Debug|.NET
+		{1CDB4AFA-9C0E-44BA-8758-2BA02BA005EA}.Release|Mixed Platforms.Build.0 = Debug|.NET
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

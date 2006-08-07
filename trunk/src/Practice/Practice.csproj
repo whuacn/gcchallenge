@@ -247,12 +247,12 @@
 
 copy /Y "$(ProjectDir)\Practice.exe.manifest" "$(TargetDir)\Practice.exe.manifest"
 copy /Y "$(ProjectDir)\..\RenderingConfiguration\*.xml" "$(TargetDir)\*.*"
-copy /Y "$(ProjectDir)\..\rtf\*.rtf" "$(TargetDir)\*.*"
+copy /Y "$(ProjectDir)\..\..\Data\rtf\*.rtf" "$(TargetDir)\*.*"
 
-rem copy /Y "$(ProjectDir)\..\db\GmatClubTest.mdb" "%25APPDATA%25\GmatClubTest - Practice\*.*"
-rem copy /Y "$(ProjectDir)\..\db\GmatClubTest.mdb" "$(TargetDir)\*.*"
+rem copy /Y "$(ProjectDir)\..\..\Data\db\GmatClubTest.mdb" "%25APPDATA%25\GmatClubTest - Practice\*.*"
+rem copy /Y "$(ProjectDir)\..\..\Data\db\GmatClubTest.mdb" "$(TargetDir)\*.*"
 
 
-copy /Y "$(ProjectDir)\..\Keys\DefaultGmatClubPublicKey.gck" "$(TargetDir)\*.*"</PostBuildEvent>
+copy /Y "$(ProjectDir)\..\..\Data\Keys\DefaultGmatClubPublicKey.gck" "$(TargetDir)\*.*"</PostBuildEvent>
   </PropertyGroup>
 </Project>

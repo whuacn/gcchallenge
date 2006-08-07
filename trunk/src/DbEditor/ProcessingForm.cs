@@ -125,7 +125,6 @@ namespace GmatClubTest.DbEditor
 		}
         DateTime startDT;
         bool first;
-        bool isUp;
         int i = 0;
 	    public void ReDrowProgress()
 	    {
@@ -150,7 +149,6 @@ namespace GmatClubTest.DbEditor
             startDT = DateTime.Now;
             progressBar.Style = ProgressBarStyle.Marquee;
             first = true;
-            isUp = true;
         }
 
 	}

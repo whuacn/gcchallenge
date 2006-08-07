@@ -351,8 +351,6 @@ namespace GmatClubTest.DbEditor
         private System.Windows.Forms.ComboBox connectionComboBox;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView baseDataGridView;
-        private System.Windows.Forms.BindingSource DatasetBindingSource;
-        private GmatClubTest.DbEditor.Data.Dataset Dataset;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button import;

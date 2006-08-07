@@ -227,22 +227,24 @@ namespace GmatClubTest.DbEditor
 
 		public void OpenConnection(Connection connection)
 		{
-			bool resetPasswordOnFail = false;
 #if !DEBUG
+bool resetPasswordOnFail = false;
 			try
 			{
 #endif
 
 #if DEBUG
-			connection.Password = connection.DbType == Connection.Type.Access ? "q&b3pz>#_24" : "w&b3pz>#_25";
+            connection.Password = connection.DbType == Connection.Type.Access ? "q&b3pz>#_24" : "w&b3pz>#_25";
 #endif
 			if (connection.Password.Length == 0)
 			{
 				InputPasswordForm f = new InputPasswordForm();
 				if (DialogResult.OK != f.ShowDialog()) return;
 				connection.Password = f.Password;
+#if !DEBUG
 				resetPasswordOnFail = true;
-			}
+#endif
+            }
 
 			connection.Open();
 #if !DEBUG
