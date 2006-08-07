@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using System.Configuration;
 using System.Web;
 using GmatClubTest.BusinessLogic;
 using GmatClubTest.Web;
@@ -18,7 +19,6 @@ namespace GMATClubTest.Web
 		/// </summary>
 		private IContainer components = null;
 
-
 		public Global()
 		{
 			InitializeComponent();
@@ -32,7 +32,8 @@ namespace GMATClubTest.Web
 		protected void Session_Start(Object sender, EventArgs e)
 		{
 			Manager manager;
-			manager = Manager.CreareManagerUseSql("127.0.0.1");
+            manager = Manager.CreareManagerUseSql(ConfigurationManager.AppSettings["DataSourceHost"], ConfigurationManager.AppSettings["DataSourceUserName"], ConfigurationManager.AppSettings["DataSourcePassword"]);
+		    
 			Session.Add("Manager", manager);
 		}
 
@@ -53,7 +54,6 @@ namespace GMATClubTest.Web
 
 		protected void Application_Error(Object sender, EventArgs e)
 		{
-		    //Response.Redirect("errorWebForm.aspx");
 		}
 
 		protected void Session_End(Object sender, EventArgs e)

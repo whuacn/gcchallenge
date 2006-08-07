@@ -9,6 +9,9 @@ namespace GmatClubTest.DataProvider
 	public class SqlDataProvider : BaseDataProvider
 	{
 		private string dataSource = "localhost";
+        private string userName = "";
+        private string password = "";
+	    
 		private SqlDataAdapter adapterUsers;
 		private SqlDataAdapter adapterTests;
 		private SqlCommand sqlSelectAll;
@@ -141,13 +144,34 @@ namespace GmatClubTest.DataProvider
 			set
 			{
 				dataSource = value;
-                sqlConnection.ConnectionString = String.Format("packet size=4096;integrated security=SSPI;data source={0};persist security info=False;initial catalog=GmatClubTest", dataSource);
-				//sqlConnection.ConnectionString = String.Format("packet size=4096;integrated security=SSPI;data source={0};persist security info=False;initial catalog=GmatClubChallenge", dataSource);
-                //sqlConnection.ConnectionString = String.Format("Data Source=sql2.reinventinc.com;Persist Security Info=True;User ID=re2085;Password=sys1157;initial catalog=GmatClubChallenge", dataSource);
+			    BuildConnectionString();
 			}
 		}
 
-		protected override DbDataAdapter AdapterUsers
+	    public string UserName
+	    {
+	        get { return userName; }
+            set { userName = value; BuildConnectionString(); }
+	    }
+
+	    public string Password
+	    {
+	        get { return password; }
+            set { password = value; BuildConnectionString(); }
+	    }
+
+	    private void BuildConnectionString()
+	    {
+            sqlConnection.ConnectionString = String.Format("packet size=4096;integrated security=SSPI;data source={0};initial catalog=GmatClubChallenge", dataSource);
+	        
+	        if (userName.Length != 0)
+	            sqlConnection.ConnectionString = sqlConnection.ConnectionString + ";User ID=" + userName;
+
+            if (password.Length != 0)
+                sqlConnection.ConnectionString = sqlConnection.ConnectionString + ";Password=" + password;
+	    }
+
+	    protected override DbDataAdapter AdapterUsers
 		{
 			get {return adapterUsers;}
 		}
