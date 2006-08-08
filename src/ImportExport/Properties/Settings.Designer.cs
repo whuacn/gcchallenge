@@ -22,36 +22,5 @@ namespace ImportExport.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Provider=SQLNCLI.1;Data Source=YUVE;Integrated Security=SSPI;Initial Catalog=GMAT" +
-            "ClubTest")]
-        public string ConnectionString {
-            get {
-                return ((string)(this["ConnectionString"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=YUVE;Initial Catalog=GMATClubTest;Integrated Security=True")]
-        public string GMATClubTestConnectionString {
-            get {
-                return ((string)(this["GMATClubTestConnectionString"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Dsn=База данных MS Access")]
-        public string ConnectionString1 {
-            get {
-                return ((string)(this["ConnectionString1"]));
-            }
-        }
     }
 }

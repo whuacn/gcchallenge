@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Text;
@@ -9,219 +10,247 @@ using Crownwood.Magic.Menus;
 using GmatClubTest.BusinessLogic;
 using GmatClubTest.Data;
 using GmatClubTest.ImportExport;
-using GmatClubTest.Practice;
+using GmatClubTest.License;
 using GmatClubTest.UnexpectedExceptionDialog;
 using Microsoft.Win32;
-
-
+using Manager=GmatClubTest.BusinessLogic.Manager;
 
 namespace GmatClubTest.Practice
 {
-	/// <summary>
-	/// Main Form
-	/// </summary>
-	/// 	
-	public class MainForm : Form
-	{
-		internal static License.XmlLicense license;
-		public static RegistryKey registryKey;
-		private MenuControl menuControl;
-		private MenuCommand menuCmdFile;
-		private MenuCommand menuCmdPrctice;
-		private MenuCommand menuCmdExit;
-		private MenuCommand menuCommandSep;
-		private MenuCommand menuCommandImport;
-		private MenuCommand menuCommandDownload;
-		private MenuCommand menuCommandAbout;
-		private GroupBox groupBoxPractice;
-		private Panel panelPractice;
-		private GroupBox groupBoxTests;
-		private Panel panelTests;
-		private PictureBox pictureBox1;
-		private PictureBox pictureBox2;
-		private LinkLabel linkImportPractice;
-		private LinkLabel linkDownloadPractice;
-		private LinkLabel linkDownloadTest;
-		private LinkLabel linkImportTest;
-		private StatusBar statusBar;
-		private ImageList imageList;
-		private IContainer components;
-		private Font stringFont = new Font("Tahoma", 8, FontStyle.Underline | FontStyle.Bold);
-		
-		private static Manager manager;
-		private MenuCommand menuPrcticeVerbal;
-		private MenuCommand menuPrcticeQuantitative;
-		private MenuCommand menuTestsVerbal;
-		private MenuCommand menuTestsQuantitative;
-		private MenuCommand menuCmdTests;
-		private TestSet testSet = new TestSet();
-		private static HelpForm helpForm = new HelpForm();
+    /// <summary>
+    /// Main Form
+    /// </summary>
+    ///    
+    public class MainForm : Form
+    {
+        internal static XmlLicense license;
+        public static RegistryKey registryKey;
+        private MenuControl menuControl;
+        private MenuCommand menuCmdFile;
+        private MenuCommand menuCmdPrctice;
+        private MenuCommand menuCmdExit;
+        private MenuCommand menuCommandSep;
+        private MenuCommand menuCommandImport;
+        private MenuCommand menuCommandDownload;
+        private MenuCommand menuCommandAbout;
+        private GroupBox groupBoxPractice;
+        private Panel panelPractice;
+        private GroupBox groupBoxTests;
+        private Panel panelTests;
+        private PictureBox pictureBox1;
+        private PictureBox pictureBox2;
+        private LinkLabel linkImportPractice;
+        private LinkLabel linkDownloadPractice;
+        private LinkLabel linkDownloadTest;
+        private LinkLabel linkImportTest;
+        private StatusBar statusBar;
+        private ImageList imageList;
+        private IContainer components;
+        private Font stringFont = new Font("Tahoma", 8, FontStyle.Underline | FontStyle.Bold);
 
-		private static string DB_FILE_NAME = "GmatClubTest.mdb";
-		private static string PUBLIC_KEY_FILE_NAME =  Application.StartupPath + "\\DefaultGmatClubPublicKey.gck";
-		public static string APP_CAPTION = "GMAT Club Test - Practice";
-		private Crownwood.Magic.Menus.MenuCommand menuCommandResults;
-		private Crownwood.Magic.Menus.MenuCommand menuCommandSep2;
-		private Crownwood.Magic.Menus.MenuCommand menuCommandHelp;
-		private Crownwood.Magic.Menus.MenuCommand menuHelp;
-		private Crownwood.Magic.Menus.MenuCommand menuCommandAddLicense;
-		private Crownwood.Magic.Menus.MenuCommand menuCommandSep3;
+        private static Manager manager;
+        private MenuCommand menuPrcticeVerbal;
+        private MenuCommand menuPrcticeQuantitative;
+        private MenuCommand menuTestsVerbal;
+        private MenuCommand menuTestsQuantitative;
+        private MenuCommand menuCmdTests;
+        private TestSet testSet = new TestSet();
+        private static HelpForm helpForm = new HelpForm();
+
+        private static string DB_FILE_NAME = "GmatClubTest.mdb";
+        private static string PUBLIC_KEY_FILE_NAME = Application.StartupPath + "\\DefaultGmatClubPublicKey.gck";
+        public static string APP_CAPTION = "GMAT Club Test - Practice";
+        private MenuCommand menuCommandResults;
+        private MenuCommand menuCommandSep2;
+        private MenuCommand menuCommandHelp;
+        private MenuCommand menuHelp;
+        private MenuCommand menuCommandAddLicense;
+        private MenuCommand menuCommandSep3;
         private LinkLabel linkLabel1;
 
-		private TestController activeTestController = null;
+        private TestController activeTestController = null;
 
-		public MainForm()
-		{
-			InitializeComponent();
-			InitLinksAndMenu();
-		}
+        public MainForm()
+        {
+            InitializeComponent();
+            InitLinksAndMenu();
+        }
 
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
-		protected override void Dispose( bool disposing )
-		{
-			if( disposing )
-			{
-				if (components != null) 
-				{
-					components.Dispose();
-				}
-			}
-			base.Dispose( disposing );
-		}
-
-
-		private void InitLinksAndMenu()
-		{	
-			//create tests muny, Link
-			manager.GetTests(testSet);
-			int num = testSet.Tests.Count;
-			int i = 0;
-			int pracTest = 0;
-			string textLink;
-			string textMenu;
-			for (i = 0, textLink = "" , textMenu = ""; i < num; i++) 
-			{
-				textLink += testSet.Tests[i].Name.ToString();
-				textMenu += testSet.Tests[i].Name.ToString();
-				if (!(testSet.Tests[i].IsQuestionTypeIdNull()))
-				{
-					textLink += ((textLink != "")?(", "):("")) + Question.Type.GetName(typeof(GmatClubTest.Data.Question.Type),testSet.Tests[i].QuestionTypeId);
-				}
-				if (!(testSet.Tests[i].IsQuestionSubtypeIdNull()))
-				{
-					textLink +=	((textLink != "")?(", "):("")) + Question.Subtype.GetName(typeof(GmatClubTest.Data.Question.Subtype), testSet.Tests[i].QuestionSubtypeId).ToString();
-					textMenu += ((textLink != "")?(", "):("")) + Question.Subtype.GetName(typeof(GmatClubTest.Data.Question.Subtype), testSet.Tests[i].QuestionSubtypeId).ToString();
-				}
-				CreateLinkLabel(textLink, ((testSet.Tests[i].IsPractice)?(pracTest):(i-pracTest)), testSet.Tests[i], i+4, testSet.Tests[i].IsPractice);
-				CreateMenuItem(textMenu, ((testSet.Tests[i].IsQuestionTypeIdNull())?(-1):(testSet.Tests[i].QuestionTypeId)), testSet.Tests[i], testSet.Tests[i].IsPractice);
-				if (testSet.Tests[i].IsPractice){pracTest++;}
-				textLink = "";
-				textMenu = "";
-			}
-			//end create tests Link
-
-		}
-
-		private void CreateMenuItem(string text, int type, TestSet.TestsRow row, bool isPractice)
-		{
-			Crownwood.Magic.Menus.MenuCommand menu = new Crownwood.Magic.Menus.MenuCommand();
-			if (isPractice)
-			{
-				if (!menuCmdPrctice.Enabled) {menuCmdPrctice.Enabled = true;}
-				switch  (type)
-				{
-					case -1:
-						menuCmdPrctice.MenuCommands.AddRange(new Crownwood.Magic.Menus.MenuCommand[] {menu});
-						break;
-					case 1:
-						if (!menuPrcticeQuantitative.Enabled) {menuPrcticeQuantitative.Enabled = true;}
-						menuPrcticeQuantitative.MenuCommands.AddRange(new Crownwood.Magic.Menus.MenuCommand[] {menu});
-						break;
-					case 2:
-						if (!menuPrcticeVerbal.Enabled) {menuPrcticeVerbal.Enabled= true;}
-						menuPrcticeVerbal.MenuCommands.AddRange(new Crownwood.Magic.Menus.MenuCommand[] {menu});
-						break;
-				}
-			}
-			else
-			{
-				if (!menuCmdTests.Enabled) {menuCmdTests.Enabled = true;}
-				switch  (type)
-				{
-					case -1:
-						menuCmdTests.MenuCommands.AddRange(new Crownwood.Magic.Menus.MenuCommand[] {menu});
-						break;
-					case 1:
-						if (!menuTestsQuantitative.Enabled) {menuTestsQuantitative.Enabled = true;}
-						menuTestsQuantitative.MenuCommands.AddRange(new Crownwood.Magic.Menus.MenuCommand[] {menu});
-						break;
-					case 2:
-						if (!menuTestsVerbal.Enabled) {menuTestsVerbal.Enabled = true;}
-						menuTestsVerbal.MenuCommands.AddRange(new Crownwood.Magic.Menus.MenuCommand[] {menu});
-						break;
-				}
-				
-			}
-			//menu.Description = "Description";
-			menu.ImageList = imageList;
-			menu.ImageIndex = 0;
-			menu.Tag = row;
-			menu.Text = text;
-			//menu. MouseEnter += new System.EventHandler(linkLabel_MouseEnter);
-			//menu.MouseLeave += new System.EventHandler(linkLabel_MouseLeave);
-			menu.Click += new System.EventHandler(menu_Click);
-		}
-
-		private void CreateLinkLabel(string text, int number, TestSet.TestsRow row, int tabIndex, bool isPractice)
-		{
-			System.Windows.Forms.LinkLabel linkLabel = new System.Windows.Forms.LinkLabel();
-			if (isPractice)
-			{
-				panelPractice.Controls.Add(linkLabel);
-			}
-			else
-			{
-				panelTests.Controls.Add(linkLabel);
-			}
-			linkLabel.Tag = row;
-			
-			Graphics e = linkLabel.CreateGraphics();
-			System.Drawing.SizeF textSize = e.MeasureString(text, stringFont);
-			linkLabel.Font = stringFont;
-			linkLabel.Text = text;
-			linkLabel.TabStop = true;
-			linkLabel.TabIndex = tabIndex;
-			linkLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			linkLabel.ImageIndex = 0;
-			linkLabel.ImageList = imageList;
-			linkLabel.Location = new System.Drawing.Point(8, number*(((int)textSize.Height < 23)?(23):((int)textSize.Height))+105);
-			int linkWidth = (int) Math.Ceiling(textSize.Width) + 20;
-			int linkHeight = ((int)textSize.Height < 23)?(23):((int)textSize.Height);
-			linkLabel.Size = new System.Drawing.Size(linkWidth, linkHeight);
-			linkLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-
-			linkLabel.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			linkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(linkLabel_LinkClicked);
-			linkLabel.Enter += new System.EventHandler(linkLabel_MouseEnter);
-			linkLabel.Leave += new System.EventHandler(linkLabel_MouseLeave);
-			linkLabel.MouseEnter += new System.EventHandler(linkLabel_MouseEnter);
-			linkLabel.MouseLeave += new System.EventHandler(linkLabel_MouseLeave);
-			e.Dispose();
-		}
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (components != null)
+                {
+                    components.Dispose();
+                }
+            }
+            base.Dispose(disposing);
+        }
 
 
-		#region Windows Form Designer generated code
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
-		/// 
-		private void InitializeComponent()
-		{
+        private void InitLinksAndMenu()
+        {
+            //create tests muny, Link
+            manager.GetTests(testSet);
+            int num = testSet.Tests.Count;
+            int i = 0;
+            int pracTest = 0;
+            string textLink;
+            string textMenu;
+            for (i = 0, textLink = "" , textMenu = ""; i < num; i++)
+            {
+                textLink += testSet.Tests[i].Name.ToString();
+                textMenu += testSet.Tests[i].Name.ToString();
+                if (!(testSet.Tests[i].IsQuestionTypeIdNull()))
+                {
+                    textLink += ((textLink != "") ? (", ") : ("")) +
+                                Question.Type.GetName(typeof (Question.Type), testSet.Tests[i].QuestionTypeId);
+                }
+                if (!(testSet.Tests[i].IsQuestionSubtypeIdNull()))
+                {
+                    textLink += ((textLink != "") ? (", ") : ("")) +
+                                Question.Subtype.GetName(typeof (Question.Subtype), testSet.Tests[i].QuestionSubtypeId).
+                                    ToString();
+                    textMenu += ((textLink != "") ? (", ") : ("")) +
+                                Question.Subtype.GetName(typeof (Question.Subtype), testSet.Tests[i].QuestionSubtypeId).
+                                    ToString();
+                }
+                CreateLinkLabel(textLink, ((testSet.Tests[i].IsPractice) ? (pracTest) : (i - pracTest)),
+                                testSet.Tests[i], i + 4, testSet.Tests[i].IsPractice);
+                CreateMenuItem(textMenu,
+                               ((testSet.Tests[i].IsQuestionTypeIdNull()) ? (-1) : (testSet.Tests[i].QuestionTypeId)),
+                               testSet.Tests[i], testSet.Tests[i].IsPractice);
+                if (testSet.Tests[i].IsPractice)
+                {
+                    pracTest++;
+                }
+                textLink = "";
+                textMenu = "";
+            }
+            //end create tests Link
+        }
+
+        private void CreateMenuItem(string text, int type, TestSet.TestsRow row, bool isPractice)
+        {
+            MenuCommand menu = new MenuCommand();
+            if (isPractice)
+            {
+                if (!menuCmdPrctice.Enabled)
+                {
+                    menuCmdPrctice.Enabled = true;
+                }
+                switch (type)
+                {
+                    case -1:
+                        menuCmdPrctice.MenuCommands.AddRange(new MenuCommand[] {menu});
+                        break;
+                    case 1:
+                        if (!menuPrcticeQuantitative.Enabled)
+                        {
+                            menuPrcticeQuantitative.Enabled = true;
+                        }
+                        menuPrcticeQuantitative.MenuCommands.AddRange(new MenuCommand[] {menu});
+                        break;
+                    case 2:
+                        if (!menuPrcticeVerbal.Enabled)
+                        {
+                            menuPrcticeVerbal.Enabled = true;
+                        }
+                        menuPrcticeVerbal.MenuCommands.AddRange(new MenuCommand[] {menu});
+                        break;
+                }
+            }
+            else
+            {
+                if (!menuCmdTests.Enabled)
+                {
+                    menuCmdTests.Enabled = true;
+                }
+                switch (type)
+                {
+                    case -1:
+                        menuCmdTests.MenuCommands.AddRange(new MenuCommand[] {menu});
+                        break;
+                    case 1:
+                        if (!menuTestsQuantitative.Enabled)
+                        {
+                            menuTestsQuantitative.Enabled = true;
+                        }
+                        menuTestsQuantitative.MenuCommands.AddRange(new MenuCommand[] {menu});
+                        break;
+                    case 2:
+                        if (!menuTestsVerbal.Enabled)
+                        {
+                            menuTestsVerbal.Enabled = true;
+                        }
+                        menuTestsVerbal.MenuCommands.AddRange(new MenuCommand[] {menu});
+                        break;
+                }
+            }
+            //menu.Description = "Description";
+            menu.ImageList = imageList;
+            menu.ImageIndex = 0;
+            menu.Tag = row;
+            menu.Text = text;
+            //menu. MouseEnter += new System.EventHandler(linkLabel_MouseEnter);
+            //menu.MouseLeave += new System.EventHandler(linkLabel_MouseLeave);
+            menu.Click += new EventHandler(menu_Click);
+        }
+
+        private void CreateLinkLabel(string text, int number, TestSet.TestsRow row, int tabIndex, bool isPractice)
+        {
+            LinkLabel linkLabel = new LinkLabel();
+            if (isPractice)
+            {
+                panelPractice.Controls.Add(linkLabel);
+            }
+            else
+            {
+                panelTests.Controls.Add(linkLabel);
+            }
+            linkLabel.Tag = row;
+
+            Graphics e = linkLabel.CreateGraphics();
+            SizeF textSize = e.MeasureString(text, stringFont);
+            linkLabel.Font = stringFont;
+            linkLabel.Text = text;
+            linkLabel.TabStop = true;
+            linkLabel.TabIndex = tabIndex;
+            linkLabel.ImageAlign = ContentAlignment.MiddleLeft;
+            linkLabel.ImageIndex = 0;
+            linkLabel.ImageList = imageList;
+            linkLabel.Location =
+                new Point(8, number*(((int) textSize.Height < 23) ? (23) : ((int) textSize.Height)) + 105);
+            int linkWidth = (int) Math.Ceiling(textSize.Width) + 20;
+            int linkHeight = ((int) textSize.Height < 23) ? (23) : ((int) textSize.Height);
+            linkLabel.Size = new Size(linkWidth, linkHeight);
+            linkLabel.TextAlign = ContentAlignment.MiddleRight;
+
+            linkLabel.FlatStyle = FlatStyle.System;
+            linkLabel.LinkClicked += new LinkLabelLinkClickedEventHandler(linkLabel_LinkClicked);
+            linkLabel.Enter += new EventHandler(linkLabel_MouseEnter);
+            linkLabel.Leave += new EventHandler(linkLabel_MouseLeave);
+            linkLabel.MouseEnter += new EventHandler(linkLabel_MouseEnter);
+            linkLabel.MouseLeave += new EventHandler(linkLabel_MouseLeave);
+            e.Dispose();
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        /// 
+        private void InitializeComponent()
+        {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            System.ComponentModel.ComponentResourceManager resources =
+                new System.ComponentModel.ComponentResourceManager(typeof (MainForm));
             this.menuControl = new Crownwood.Magic.Menus.MenuControl();
             this.menuCmdFile = new Crownwood.Magic.Menus.MenuCommand();
             this.menuCommandResults = new Crownwood.Magic.Menus.MenuCommand();
@@ -256,10 +285,10 @@ namespace GmatClubTest.Practice
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.groupBoxPractice.SuspendLayout();
             this.panelPractice.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.pictureBox1)).BeginInit();
             this.groupBoxTests.SuspendLayout();
             this.panelTests.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // menuControl
@@ -269,14 +298,18 @@ namespace GmatClubTest.Practice
             this.menuControl.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.menuControl.Direction = Crownwood.Magic.Common.Direction.Horizontal;
             this.menuControl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.menuControl.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World);
+            this.menuControl.Font =
+                new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Regular,
+                                        System.Drawing.GraphicsUnit.World);
             this.menuControl.HighlightTextColor = System.Drawing.SystemColors.MenuText;
             this.menuControl.Location = new System.Drawing.Point(0, 0);
-            this.menuControl.MenuCommands.AddRange(new Crownwood.Magic.Menus.MenuCommand[] {
-            this.menuCmdFile,
-            this.menuCmdPrctice,
-            this.menuCmdTests,
-            this.menuHelp});
+            this.menuControl.MenuCommands.AddRange(new Crownwood.Magic.Menus.MenuCommand[]
+                                                       {
+                                                           this.menuCmdFile,
+                                                           this.menuCmdPrctice,
+                                                           this.menuCmdTests,
+                                                           this.menuHelp
+                                                       });
             this.menuControl.Name = "menuControl";
             this.menuControl.Size = new System.Drawing.Size(712, 25);
             this.menuControl.Style = Crownwood.Magic.Common.VisualStyle.IDE;
@@ -287,13 +320,15 @@ namespace GmatClubTest.Practice
             // menuCmdFile
             // 
             this.menuCmdFile.Description = "File";
-            this.menuCmdFile.MenuCommands.AddRange(new Crownwood.Magic.Menus.MenuCommand[] {
-            this.menuCommandResults,
-            this.menuCommandSep2,
-            this.menuCommandDownload,
-            this.menuCommandImport,
-            this.menuCommandSep,
-            this.menuCmdExit});
+            this.menuCmdFile.MenuCommands.AddRange(new Crownwood.Magic.Menus.MenuCommand[]
+                                                       {
+                                                           this.menuCommandResults,
+                                                           this.menuCommandSep2,
+                                                           this.menuCommandDownload,
+                                                           this.menuCommandImport,
+                                                           this.menuCommandSep,
+                                                           this.menuCmdExit
+                                                       });
             this.menuCmdFile.Text = "&File";
             // 
             // menuCommandResults
@@ -306,7 +341,8 @@ namespace GmatClubTest.Practice
             // 
             // imageList
             // 
-            this.imageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList.ImageStream")));
+            this.imageList.ImageStream =
+                ((System.Windows.Forms.ImageListStreamer) (resources.GetObject("imageList.ImageStream")));
             this.imageList.TransparentColor = System.Drawing.Color.Fuchsia;
             this.imageList.Images.SetKeyName(0, "");
             this.imageList.Images.SetKeyName(1, "");
@@ -355,9 +391,11 @@ namespace GmatClubTest.Practice
             // 
             this.menuCmdPrctice.Description = "Practice in selected area";
             this.menuCmdPrctice.Enabled = false;
-            this.menuCmdPrctice.MenuCommands.AddRange(new Crownwood.Magic.Menus.MenuCommand[] {
-            this.menuPrcticeVerbal,
-            this.menuPrcticeQuantitative});
+            this.menuCmdPrctice.MenuCommands.AddRange(new Crownwood.Magic.Menus.MenuCommand[]
+                                                          {
+                                                              this.menuPrcticeVerbal,
+                                                              this.menuPrcticeQuantitative
+                                                          });
             this.menuCmdPrctice.Text = "&Practice";
             // 
             // menuPrcticeVerbal
@@ -380,9 +418,11 @@ namespace GmatClubTest.Practice
             // 
             this.menuCmdTests.Description = "Computer-adaptive tests";
             this.menuCmdTests.Enabled = false;
-            this.menuCmdTests.MenuCommands.AddRange(new Crownwood.Magic.Menus.MenuCommand[] {
-            this.menuTestsVerbal,
-            this.menuTestsQuantitative});
+            this.menuCmdTests.MenuCommands.AddRange(new Crownwood.Magic.Menus.MenuCommand[]
+                                                        {
+                                                            this.menuTestsVerbal,
+                                                            this.menuTestsQuantitative
+                                                        });
             this.menuCmdTests.Text = "&Tests";
             // 
             // menuTestsVerbal
@@ -405,11 +445,13 @@ namespace GmatClubTest.Practice
             // 
             this.menuHelp.Description = "MenuItem";
             this.menuHelp.ImageList = this.imageList;
-            this.menuHelp.MenuCommands.AddRange(new Crownwood.Magic.Menus.MenuCommand[] {
-            this.menuCommandHelp,
-            this.menuCommandAddLicense,
-            this.menuCommandSep3,
-            this.menuCommandAbout});
+            this.menuHelp.MenuCommands.AddRange(new Crownwood.Magic.Menus.MenuCommand[]
+                                                    {
+                                                        this.menuCommandHelp,
+                                                        this.menuCommandAddLicense,
+                                                        this.menuCommandSep3,
+                                                        this.menuCommandAbout
+                                                    });
             this.menuHelp.Text = "&Help";
             // 
             // menuCommandHelp
@@ -442,11 +484,15 @@ namespace GmatClubTest.Practice
             // 
             // groupBoxPractice
             // 
-            this.groupBoxPractice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBoxPractice.Anchor =
+                ((System.Windows.Forms.AnchorStyles)
+                 (((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                   | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBoxPractice.Controls.Add(this.panelPractice);
             this.groupBoxPractice.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.groupBoxPractice.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBoxPractice.Font =
+                new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Bold,
+                                        System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.groupBoxPractice.Location = new System.Drawing.Point(5, 32);
             this.groupBoxPractice.Name = "groupBoxPractice";
             this.groupBoxPractice.Size = new System.Drawing.Size(346, 351);
@@ -484,7 +530,8 @@ namespace GmatClubTest.Practice
             this.linkDownloadPractice.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.linkDownloadPractice.Enter += new System.EventHandler(this.linkDownloadPractice_MouseEnter);
             this.linkDownloadPractice.MouseLeave += new System.EventHandler(this.linkLabel_MouseLeave);
-            this.linkDownloadPractice.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkDownloadPractice_LinkClicked);
+            this.linkDownloadPractice.LinkClicked +=
+                new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkDownloadPractice_LinkClicked);
             this.linkDownloadPractice.Leave += new System.EventHandler(this.linkLabel_MouseLeave);
             this.linkDownloadPractice.MouseEnter += new System.EventHandler(this.linkDownloadPractice_MouseEnter);
             // 
@@ -504,13 +551,14 @@ namespace GmatClubTest.Practice
             this.linkImportPractice.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.linkImportPractice.Enter += new System.EventHandler(this.linkImportPractice_MouseEnter);
             this.linkImportPractice.MouseLeave += new System.EventHandler(this.linkLabel_MouseLeave);
-            this.linkImportPractice.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkImportPractice_LinkClicked);
+            this.linkImportPractice.LinkClicked +=
+                new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkImportPractice_LinkClicked);
             this.linkImportPractice.Leave += new System.EventHandler(this.linkLabel_MouseLeave);
             this.linkImportPractice.MouseEnter += new System.EventHandler(this.linkImportPractice_MouseEnter);
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Image = ((System.Drawing.Image) (resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(8, 8);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(96, 94);
@@ -520,12 +568,16 @@ namespace GmatClubTest.Practice
             // 
             // groupBoxTests
             // 
-            this.groupBoxTests.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxTests.Anchor =
+                ((System.Windows.Forms.AnchorStyles)
+                 ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                    | System.Windows.Forms.AnchorStyles.Left)
+                   | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxTests.Controls.Add(this.panelTests);
             this.groupBoxTests.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.groupBoxTests.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBoxTests.Font =
+                new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Bold,
+                                        System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.groupBoxTests.Location = new System.Drawing.Point(360, 32);
             this.groupBoxTests.Name = "groupBoxTests";
             this.groupBoxTests.Size = new System.Drawing.Size(346, 351);
@@ -561,7 +613,8 @@ namespace GmatClubTest.Practice
             this.linkDownloadTest.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.linkDownloadTest.Enter += new System.EventHandler(this.linkDownloadTest_MouseEnter);
             this.linkDownloadTest.MouseLeave += new System.EventHandler(this.linkLabel_MouseLeave);
-            this.linkDownloadTest.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkDownloadTest_LinkClicked);
+            this.linkDownloadTest.LinkClicked +=
+                new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkDownloadTest_LinkClicked);
             this.linkDownloadTest.Leave += new System.EventHandler(this.linkLabel_MouseLeave);
             this.linkDownloadTest.MouseEnter += new System.EventHandler(this.linkDownloadTest_MouseEnter);
             // 
@@ -586,7 +639,7 @@ namespace GmatClubTest.Practice
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Image = ((System.Drawing.Image) (resources.GetObject("pictureBox2.Image")));
             this.pictureBox2.Location = new System.Drawing.Point(8, 8);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(96, 94);
@@ -615,7 +668,8 @@ namespace GmatClubTest.Practice
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "export practice test";
             this.linkLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            this.linkLabel1.LinkClicked +=
+                new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // MainForm
             // 
@@ -626,129 +680,132 @@ namespace GmatClubTest.Practice
             this.Controls.Add(this.groupBoxTests);
             this.Controls.Add(this.groupBoxPractice);
             this.Controls.Add(this.menuControl);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Icon = ((System.Drawing.Icon) (resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GMAT Club Test - Practice";
             this.groupBoxPractice.ResumeLayout(false);
             this.panelPractice.ResumeLayout(false);
             this.panelPractice.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.pictureBox1)).EndInit();
             this.groupBoxTests.ResumeLayout(false);
             this.panelTests.ResumeLayout(false);
             this.panelTests.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
+        }
 
-		}
-		#endregion
+        #endregion
 
-		private static MainForm mainForm = null;
+        private static MainForm mainForm = null;
 
-		#region Exception management
+        #region Exception management
 
-		private static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
-		{
-			if (e.Exception.GetType() == typeof(TimeIsUpException) &&  mainForm != null)
-			{
-				try
-				{
-					mainForm.activeTestController.TimeIsUp();
-				} catch /* We should get EndTestException*/
-				{
-				}
-			} else
-			{
-				if (e.Exception.GetType() == typeof(EndTestException)  &&  mainForm != null)
-				{
-					if (e.Exception.Message.Length != 0)
-					{
-						MessageBox.Show(e.Exception.Message, APP_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Error);
-					}
-				}
-				else 
-				{
-					try 
-					{
-						ExceptionBox.Show(e.Exception);
-					}
-					catch 
-					{
-						try 
-						{
-							MessageBox.Show("Fatal error. Application will be closed.", APP_CAPTION, 
-								MessageBoxButtons.OK, MessageBoxIcon.Stop);
-						}
-						finally 
-						{
-							Application.Exit();
-						}
-					}	
-				}
-			}
+        private static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
+        {
+            if (e.Exception.GetType() == typeof (TimeIsUpException) && mainForm != null)
+            {
+                try
+                {
+                    mainForm.activeTestController.TimeIsUp();
+                }
+                catch /* We should get EndTestException*/
+                {
+                }
+            }
+            else
+            {
+                if (e.Exception.GetType() == typeof (EndTestException) && mainForm != null)
+                {
+                    if (e.Exception.Message.Length != 0)
+                    {
+                        MessageBox.Show(e.Exception.Message, APP_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        ExceptionBox.Show(e.Exception);
+                    }
+                    catch
+                    {
+                        try
+                        {
+                            MessageBox.Show("Fatal error. Application will be closed.", APP_CAPTION,
+                                            MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        }
+                        finally
+                        {
+                            Application.Exit();
+                        }
+                    }
+                }
+            }
 
-			if (mainForm.activeTestController != null)
-			{
-				mainForm.activeTestController.EndTest();
-			} 
-			else
-				if (!mainForm.Visible) mainForm.Show();
+            if (mainForm.activeTestController != null)
+            {
+                mainForm.activeTestController.EndTest();
+            }
+            else if (!mainForm.Visible) mainForm.Show();
+        }
 
-		}
-		#endregion
+        #endregion
 
-		/// <summary>
-		/// The main entry point for the application.
-		/// </summary>		
-		private static DialogResult ShowLicenseDialog()
-		{
-			LicenseForm licenseForm = new LicenseForm(PUBLIC_KEY_FILE_NAME);
-			licenseForm.ShowDialog();
-			return licenseForm.DialogResult;
-		}
+        /// <summary>
+        /// The main entry point for the application.
+        /// </summary>      
+        private static DialogResult ShowLicenseDialog()
+        {
+            LicenseForm licenseForm = new LicenseForm(PUBLIC_KEY_FILE_NAME);
+            licenseForm.ShowDialog();
+            return licenseForm.DialogResult;
+        }
 
-		private static void Uninstall()
-		{
-			string lf = (String)registryKey.GetValue("LicenseFileName");
-			
-			string appDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\GmatClubTest - Practice";
-			string pathToDb = appDir + "\\" + DB_FILE_NAME;
+        private static void Uninstall()
+        {
+            string lf = (String) registryKey.GetValue("LicenseFileName");
 
-			if (lf != null && File.Exists(lf))
-				if (MessageBox.Show("Do you want to remove a copy of your license?", APP_CAPTION, 
-					MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-				{
-					try
-					{
-						File.Delete(lf);
-					} catch(Exception e)
-					{
-						MessageBox.Show("Cannot remove the license file: " + e.Message, APP_CAPTION, 
-							MessageBoxButtons.OK, MessageBoxIcon.Error);
-					}
-				}
+            string appDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) +
+                            "\\GmatClubTest - Practice";
+            string pathToDb = appDir + "\\" + DB_FILE_NAME;
 
-			if (File.Exists(pathToDb))
-				if (MessageBox.Show("Do you want to remove your GMAT Club Test database?", APP_CAPTION, 
-					MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-				{
-					try
-					{
-						File.Delete(pathToDb);
-					} 
-					catch(Exception e)
-					{
-						MessageBox.Show("Cannot remove the database file: " + e.Message, APP_CAPTION, 
-							MessageBoxButtons.OK, MessageBoxIcon.Error);
-					}
-				}
+            if (lf != null && File.Exists(lf))
+                if (MessageBox.Show("Do you want to remove a copy of your license?", APP_CAPTION,
+                                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    try
+                    {
+                        File.Delete(lf);
+                    }
+                    catch (Exception e)
+                    {
+                        MessageBox.Show("Cannot remove the license file: " + e.Message, APP_CAPTION,
+                                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
 
-			RegistryKey r = Registry.CurrentUser.CreateSubKey("Software\\GmatClubTest\\");
-			r.DeleteSubKeyTree("Practice");
-		}
+            if (File.Exists(pathToDb))
+                if (MessageBox.Show("Do you want to remove your GMAT Club Test database?", APP_CAPTION,
+                                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    try
+                    {
+                        File.Delete(pathToDb);
+                    }
+                    catch (Exception e)
+                    {
+                        MessageBox.Show("Cannot remove the database file: " + e.Message, APP_CAPTION,
+                                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+
+            RegistryKey r = Registry.CurrentUser.CreateSubKey("Software\\GmatClubTest\\");
+            r.DeleteSubKeyTree("Practice");
+        }
 
         [STAThread]
-        static void Main(String[] args)
+        private static void Main(String[] args)
         {
             registryKey = Registry.CurrentUser.CreateSubKey("Software\\GmatClubTest\\Practice\\");
 
@@ -762,24 +819,24 @@ namespace GmatClubTest.Practice
             try
             {
                 //copying database if needed...
-                string appDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\GmatClubTest - Practice";
+                string appDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) +
+                                "\\GmatClubTest - Practice";
                 string pathToDb = appDir + "\\" + DB_FILE_NAME;
                 string dbSrc1 = Application.StartupPath + "\\" + DB_FILE_NAME;
                 string dbSrc2 = @"c:\Projects\GmatClubTest\src\db\" + DB_FILE_NAME;
-                if ((string)registryKey.GetValue("DatabaseCopied", "false") == "false" || !File.Exists(pathToDb))
+                if ((string) registryKey.GetValue("DatabaseCopied", "false") == "false" || !File.Exists(pathToDb))
                 {
                     Directory.CreateDirectory(appDir);
                     if (File.Exists(dbSrc1))
                         File.Copy(dbSrc1, pathToDb, true);
+                    else if (File.Exists(dbSrc2))
+                        File.Copy(dbSrc2, pathToDb, true);
                     else
-                        if (File.Exists(dbSrc2))
-                            File.Copy(dbSrc2, pathToDb, true);
-                        else
-                        {
-                            MessageBox.Show("Cannot find database file.", APP_CAPTION,
-                                MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                            return;
-                        }
+                    {
+                        MessageBox.Show("Cannot find database file.", APP_CAPTION,
+                                        MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        return;
+                    }
                     registryKey.SetValue("DatabaseCopied", "true");
                 }
 
@@ -796,15 +853,16 @@ namespace GmatClubTest.Practice
                 r = new Random(13);
                 r.NextBytes(h);
                 for (int i = 0; i < 20; i++)
-                    h[i] = (byte)(a[i] ^ h[i]);
+                    h[i] = (byte) (a[i] ^ h[i]);
                 string s = Convert.ToBase64String(h);
 
-                string licenseFileName = (String)registryKey.GetValue("LicenseFileName");
+                string licenseFileName = (String) registryKey.GetValue("LicenseFileName");
                 publickKeyFileName = PUBLIC_KEY_FILE_NAME;
 
                 if (!File.Exists(publickKeyFileName))
                 {
-                    MessageBox.Show("No file with public key: " + publickKeyFileName, APP_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("No file with public key: " + publickKeyFileName, APP_CAPTION, MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
                     return;
                 }
 
@@ -813,13 +871,14 @@ namespace GmatClubTest.Practice
                     License.Manager.CheckHash(publickKeyFileName, h);
 
                     bool licenseChecked;
-                    for (licenseChecked = false; !licenseChecked; )
+                    for (licenseChecked = false; !licenseChecked;)
                     {
                         if (licenseFileName == null) break;
 
                         if (!File.Exists(licenseFileName))
                         {
-                            MessageBox.Show("No license file: '" + licenseFileName + "'", APP_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageBox.Show("No license file: '" + licenseFileName + "'", APP_CAPTION,
+                                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             break;
                         }
 
@@ -828,12 +887,13 @@ namespace GmatClubTest.Practice
                     }
 
                     if (!licenseChecked)
-                        if (ShowLicenseDialog() != System.Windows.Forms.DialogResult.OK) return;
+                        if (ShowLicenseDialog() != DialogResult.OK) return;
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show("Bad license: " + e.Message, APP_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    if (ShowLicenseDialog() != System.Windows.Forms.DialogResult.OK) return;
+                    MessageBox.Show("Bad license: " + e.Message, APP_CAPTION, MessageBoxButtons.OK,
+                                    MessageBoxIcon.Warning);
+                    if (ShowLicenseDialog() != DialogResult.OK) return;
                 }
 
                 //string pwd = "q&b3pz>#_24";
@@ -846,7 +906,7 @@ namespace GmatClubTest.Practice
                 //r = new Random(357);
                 //r.NextBytes(h);
                 //for (int i = 0; i < a.Length; i++)
-                //    h[i] = (byte)(a[i] ^ h[i]);	
+                //    h[i] = (byte)(a[i] ^ h[i]);   
 
                 //string v = Convert.ToBase64String(h);
                 //a = Convert.FromBase64String(v);
@@ -857,21 +917,20 @@ namespace GmatClubTest.Practice
                 r = new Random(357);
                 r.NextBytes(h);
                 for (int i = 0; i < a.Length; i++)
-                    h[i] = (byte)(a[i] ^ h[i]);
+                    h[i] = (byte) (a[i] ^ h[i]);
 
                 StringBuilder p = new StringBuilder(a.Length);
                 for (int i = 0; i < a.Length; ++i)
-                    p.Append((char)h[i]);
+                    p.Append((char) h[i]);
 
-				manager = Manager.CreareManagerUseSql(pathToDb, "", p.ToString());
-            	//TODO UP!!
-                //manager = Manager.CreareManagerUseAccess(pathToDb, p.ToString());
+                //manager = Manager.CreareManagerUseSql(SystemInformation.ComputerName);
+                manager = Manager.CreareManagerUseAccess(pathToDb, p.ToString());
 
                 LoginForm loginForm = new LoginForm(manager);
                 DialogResult res = loginForm.ShowDialog();
                 if (res == DialogResult.OK)
                 {
-                    mainForm = new MainForm();                    
+                    mainForm = new MainForm();
                     Application.Run(mainForm);
                 }
             }
@@ -880,120 +939,123 @@ namespace GmatClubTest.Practice
                 ExceptionBox.Show(e);
             }
         }
-	
 
-		private void linkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-		{
-			TestController c = new TestController((TestSet.TestsRow)(((LinkLabel)sender).Tag), manager.RunTest((TestSet.TestsRow)(((LinkLabel)sender).Tag)), this, manager);
-			c.Run();
-		}
 
-		private void menu_Click(object sender, EventArgs e)
-		{
-			TestController c = new TestController((TestSet.TestsRow)(((Crownwood.Magic.Menus.MenuCommand)sender).Tag), manager.RunTest((TestSet.TestsRow)(((Crownwood.Magic.Menus.MenuCommand)sender).Tag)), this, manager);
-			this.Hide();
-			c.Run();
-		}
+        private void linkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            TestController c =
+                new TestController((TestSet.TestsRow) (((LinkLabel) sender).Tag),
+                                   manager.RunTest((TestSet.TestsRow) (((LinkLabel) sender).Tag)), this, manager);
+            c.Run();
+        }
 
-		private void menuCmdExit_Click(object sender, System.EventArgs e)
-		{
-			Close();
-		}
+        private void menu_Click(object sender, EventArgs e)
+        {
+            TestController c =
+                new TestController((TestSet.TestsRow) (((MenuCommand) sender).Tag),
+                                   manager.RunTest((TestSet.TestsRow) (((MenuCommand) sender).Tag)), this, manager);
+            Hide();
+            c.Run();
+        }
 
-		private void menuCommandAbout_Click(object sender, System.EventArgs e)
-		{
-			(new AboutForm()).ShowDialog();
-		}
+        private void menuCmdExit_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
 
-		public void RegisterTestController(TestController testController)
-		{
-			activeTestController = testController;
-		}
+        private void menuCommandAbout_Click(object sender, EventArgs e)
+        {
+            (new AboutForm()).ShowDialog();
+        }
 
-		public void UnregisterTestController(TestController testController)
-		{
-			activeTestController = null;
-		}
+        public void RegisterTestController(TestController testController)
+        {
+            activeTestController = testController;
+        }
 
-		private void menuCommandResults_Click(object sender, System.EventArgs e)
-		{
-			ResultsForm resurtForm = new ResultsForm(manager);
-			resurtForm.ShowDialog();
-		}
+        public void UnregisterTestController(TestController testController)
+        {
+            activeTestController = null;
+        }
 
-		private void linkDownloadPractice_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
-		{
-			System.Diagnostics.Process.Start("http://www.gmatclub.com/downloadtests?practice");
-		}
+        private void menuCommandResults_Click(object sender, EventArgs e)
+        {
+            ResultsForm resurtForm = new ResultsForm(manager);
+            resurtForm.ShowDialog();
+        }
 
-		private void linkDownloadTest_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
-		{
-			System.Diagnostics.Process.Start("http://www.gmatclub.com/downloadtests?test");
-		}
+        private void linkDownloadPractice_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("http://www.gmatclub.com/downloadtests?practice");
+        }
 
-		private void linkLabel_MouseEnter(object sender, System.EventArgs e)
-		{
-			TestSet.TestsRow  testsRow = (TestSet.TestsRow)(((LinkLabel)sender).Tag);
-			statusBar.Text = "Run";
-			if(testsRow.IsPractice)
-			{
-				statusBar.Text += " practice ";
-				
-			}
-			else
-			{
-				statusBar.Text += " computer-adaptive test ";
-			}
+        private void linkDownloadTest_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("http://www.gmatclub.com/downloadtests?test");
+        }
 
-			statusBar.Text += testsRow.Name;
-		}
+        private void linkLabel_MouseEnter(object sender, EventArgs e)
+        {
+            TestSet.TestsRow testsRow = (TestSet.TestsRow) (((LinkLabel) sender).Tag);
+            statusBar.Text = "Run";
+            if (testsRow.IsPractice)
+            {
+                statusBar.Text += " practice ";
+            }
+            else
+            {
+                statusBar.Text += " computer-adaptive test ";
+            }
 
-		private void linkLabel_MouseLeave(object sender, System.EventArgs e)
-		{
-			statusBar.Text = "";
-		}
+            statusBar.Text += testsRow.Name;
+        }
 
-		private void menuCommandHepl_Click(object sender, System.EventArgs e)
-		{
-			ShowHelpForm(HelpForm.HelpSubtype.Main);
-		}
+        private void linkLabel_MouseLeave(object sender, EventArgs e)
+        {
+            statusBar.Text = "";
+        }
 
-		private void linkImportPractice_MouseEnter(object sender, System.EventArgs e)
-		{
-			statusBar.Text += "Import practice set";
-		}
+        private void menuCommandHepl_Click(object sender, EventArgs e)
+        {
+            ShowHelpForm(HelpForm.HelpSubtype.Main);
+        }
 
-		private void linkDownloadPractice_MouseEnter(object sender, System.EventArgs e)
-		{
-			statusBar.Text += "Download practice set";
-		}
+        private void linkImportPractice_MouseEnter(object sender, EventArgs e)
+        {
+            statusBar.Text += "Import practice set";
+        }
 
-		private void linkDownloadTest_MouseEnter(object sender, System.EventArgs e)
-		{
-			statusBar.Text += "Download computer-adaptive set";
-		}
+        private void linkDownloadPractice_MouseEnter(object sender, EventArgs e)
+        {
+            statusBar.Text += "Download practice set";
+        }
 
-		private void linkImportTest_MouseEnter(object sender, System.EventArgs e)
-		{
-			statusBar.Text += "Import computer-adaptive set";
-		}
-		
-		private void menuCommandAddLicense_Click(object sender, System.EventArgs e)
-		{
-			LicenseForm licenseForm = new LicenseForm(PUBLIC_KEY_FILE_NAME);
-			licenseForm.ShowDialog();
-		}
+        private void linkDownloadTest_MouseEnter(object sender, EventArgs e)
+        {
+            statusBar.Text += "Download computer-adaptive set";
+        }
 
-		static public void ShowHelpForm(HelpForm.HelpSubtype helpSubtype)
-		{
-			helpForm.helpTypeId = (int)helpSubtype;
-			helpForm.Show();
-		}
+        private void linkImportTest_MouseEnter(object sender, EventArgs e)
+        {
+            statusBar.Text += "Import computer-adaptive set";
+        }
 
-		private void menuCommandDownload_Click(object sender, System.EventArgs e)
-		{
-			System.Diagnostics.Process.Start("http://www.gmatclub.com/downloadtests");
-		}
+        private void menuCommandAddLicense_Click(object sender, EventArgs e)
+        {
+            LicenseForm licenseForm = new LicenseForm(PUBLIC_KEY_FILE_NAME);
+            licenseForm.ShowDialog();
+        }
+
+        public static void ShowHelpForm(HelpForm.HelpSubtype helpSubtype)
+        {
+            helpForm.helpTypeId = (int) helpSubtype;
+            helpForm.Show();
+        }
+
+        private void menuCommandDownload_Click(object sender, EventArgs e)
+        {
+            Process.Start("http://www.gmatclub.com/downloadtests");
+        }
 
         private void linkImportPractice_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -1003,10 +1065,9 @@ namespace GmatClubTest.Practice
         {
             ImEx imEx = new ImEx();
             imEx.InitConnection(true);
-            imEx.ExportTest(7,"c:\\test.tst");
+            imEx.ExportTest(7, "c:\\test.tst");
             MessageBox.Show("Export - OK", "Export", MessageBoxButtons.OK, MessageBoxIcon.Information);
             imEx.ImportTest("c:\\test.tst");
         }
-	}
-
+    }
 }

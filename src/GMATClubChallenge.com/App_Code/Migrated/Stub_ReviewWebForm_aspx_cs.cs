@@ -7,34 +7,25 @@
 //===========================================================================
 
 
-using System;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using GmatClubTest.Web;
-
 
 namespace GMATClubTest.Web
- {
-
-
-abstract public class ReviewWebForm :  Page
 {
-    //public System.Web.UI.WebControls.HyperLink loginStatusHyperLink;
-    //public System.Web.UI.WebControls.Table questionTable;
-    //public System.Web.UI.WebControls.Table setsTable;
-    //public System.Web.UI.WebControls.Label errorLabel;
-    //public System.Web.UI.WebControls.ImageButton imageButton;
-    //public System.Web.UI.WebControls.HyperLink adminHyperLink;
+    public abstract class ReviewWebForm : Page
+    {
+        //public System.Web.UI.WebControls.HyperLink loginStatusHyperLink;
+        //public System.Web.UI.WebControls.Table questionTable;
+        //public System.Web.UI.WebControls.Table setsTable;
+        //public System.Web.UI.WebControls.Label errorLabel;
+        //public System.Web.UI.WebControls.ImageButton imageButton;
+        //public System.Web.UI.WebControls.HyperLink adminHyperLink;
 
-    abstract public HyperLink LoginStatusHyperLink { get;}
-    abstract public HyperLink AdminHyperLink { get;}
-    abstract public Image ImageButton { get;}
-    abstract public Table QuestionTable { get;}
-    abstract public Table SetsTable { get;}
-    abstract public Label ErrorLabel { get;}
-   
-}
-
-
-
+        public abstract HyperLink LoginStatusHyperLink { get; }
+        public abstract HyperLink AdminHyperLink { get; }
+        public abstract Image ImageButton { get; }
+        public abstract Table QuestionTable { get; }
+        public abstract Table SetsTable { get; }
+        public abstract Label ErrorLabel { get; }
+    }
 }

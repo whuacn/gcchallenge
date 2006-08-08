@@ -13,7 +13,7 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyProduct("GMAT Club Test - UnexpectedExceptionDialog")]
 [assembly: AssemblyCopyright("(c) 2005 Gmat Club")]
 [assembly: AssemblyTrademark("GMAT Club")]
-[assembly: AssemblyCulture("")]		
+[assembly: AssemblyCulture("")]      
 //
 // Version information for an assembly consists of the following four values:
 //

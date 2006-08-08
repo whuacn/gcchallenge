@@ -8,30 +8,31 @@ namespace GmatClubTest.DbEditor
     public partial class SelectPassageQuestionForm : Form
     {
         private int setId;
-        CreateNewQuestionForm createForm;
-        Dataset t;
+        private CreateNewQuestionForm createForm;
+        private Dataset t;
         public int selectedPassageId = -1;
+
         public SelectPassageQuestionForm(Dataset data, int setId, CreateNewQuestionForm createForm)
         {
-            t = (Dataset)data.Copy();
+            t = (Dataset) data.Copy();
             this.createForm = createForm;
             this.setId = setId;
             InitializeComponent();
         }
 
- 
+
         public SelectPassageQuestionForm(Dataset data, int setId)
         {
-            t = (Dataset)data.Copy();
+            t = (Dataset) data.Copy();
             //this.createForm = createForm;
             this.setId = setId;
             InitializeComponent();
         }
-        
+
         private void selectPassageQuestionForm_Load(object sender, EventArgs e)
         {
             dataset = t;
-            for(int i=0; i< dataset.QuestionsEx.Count; i++)
+            for (int i = 0; i < dataset.QuestionsEx.Count; i++)
             {
                 if (dataset.QuestionsEx[i].RowState == DataRowState.Deleted)
                 {
@@ -42,14 +43,14 @@ namespace GmatClubTest.DbEditor
                 //    dataset.QuestionsEx[i].Delete();
                 //    continue;
                 //}
-                if(dataset.QuestionsEx[i].SubtypeId !=3)
+                if (dataset.QuestionsEx[i].SubtypeId != 3)
                 {
                     dataset.QuestionsEx[i].Delete();
                     continue;
                 }
-                if(!dataset.QuestionSetsEx.FindById(setId).IsQuestionTypeIdNull())
+                if (!dataset.QuestionSetsEx.FindById(setId).IsQuestionTypeIdNull())
                 {
-                    if(dataset.QuestionsEx[i].TypeId !=dataset.QuestionSetsEx.FindById(setId).QuestionTypeId)
+                    if (dataset.QuestionsEx[i].TypeId != dataset.QuestionSetsEx.FindById(setId).QuestionTypeId)
                     {
                         dataset.QuestionsEx[i].Delete();
                         continue;
@@ -64,22 +65,22 @@ namespace GmatClubTest.DbEditor
 
         private void selectButton_Click(object sender, EventArgs e)
         {
-            if(passagesDataGrid.SelectedRows.Count !=0)
+            if (passagesDataGrid.SelectedRows.Count != 0)
             {
                 //createForm.selectedPassageId = (int)passagesDataGrid.SelectedRows[0].Cells[0].Value;
-                selectedPassageId = (int)passagesDataGrid.SelectedRows[0].Cells[0].Value;
-                this.DialogResult = DialogResult.OK;
-                
-            }else
+                selectedPassageId = (int) passagesDataGrid.SelectedRows[0].Cells[0].Value;
+                DialogResult = DialogResult.OK;
+            }
+            else
             {
-                MessageBox.Show("Passage question not selected.", "Select set", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return; 
+                MessageBox.Show("Passage question not selected.", "Select set", MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                return;
             }
         }
 
         private void passagesDataGrid_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
-
         }
     }
 }

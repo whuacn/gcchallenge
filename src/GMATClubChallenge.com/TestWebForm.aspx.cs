@@ -14,80 +14,80 @@ using GmatClubTest.Web;
 
 namespace GMATClubTest.Web
 {
-	/// <summary>
-	/// Summary description for TestWebForm.
-	/// </summary>
-	public partial class Migrated_TestWebForm : TestWebForm
-	{
-		/*
-		 
-		public string answerConfirmClickScript;
-		public string nextClickScript;
-		public string status;
-		public System.Web.UI.WebControls.ImageButton helpImageButton;
-		public System.Web.UI.WebControls.RadioButtonList answerRadioButtonList;
-		public System.Web.UI.WebControls.Image passageImage;
-		public System.Web.UI.WebControls.Panel passagePanel;
-		public System.Web.UI.WebControls.Image questionImage;
-		public System.Web.UI.WebControls.Panel questionPanel;
-		public System.Web.UI.WebControls.Panel Panel;
-		public System.Web.UI.WebControls.HyperLink loginStatusHyperLink;
-		public System.Web.UI.WebControls.HyperLink AdminHyperLink;
-		public System.Web.UI.WebControls.Label statusLabel;
-		public ImageButton answerConfirmImagebutton;
-		public System.Web.UI.WebControls.Label timeLabel;
-		
-		*/
-	
-		protected void Page_Load(object sender, EventArgs e)
-		{
-			status = Request["isAnswerConfirm"];
-			((WebTestController)Session["WebTestController"]).TestWebForm_Load(this);
-		}
+    /// <summary>
+    /// Summary description for TestWebForm.
+    /// </summary>
+    public partial class Migrated_TestWebForm : TestWebForm
+    {
+        /*
+       
+      public string answerConfirmClickScript;
+      public string nextClickScript;
+      public string status;
+      public System.Web.UI.WebControls.ImageButton helpImageButton;
+      public System.Web.UI.WebControls.RadioButtonList answerRadioButtonList;
+      public System.Web.UI.WebControls.Image passageImage;
+      public System.Web.UI.WebControls.Panel passagePanel;
+      public System.Web.UI.WebControls.Image questionImage;
+      public System.Web.UI.WebControls.Panel questionPanel;
+      public System.Web.UI.WebControls.Panel Panel;
+      public System.Web.UI.WebControls.HyperLink loginStatusHyperLink;
+      public System.Web.UI.WebControls.HyperLink AdminHyperLink;
+      public System.Web.UI.WebControls.Label statusLabel;
+      public ImageButton answerConfirmImagebutton;
+      public System.Web.UI.WebControls.Label timeLabel;
+      
+      */
 
-		#region Web Form Designer generated code
-		override protected void OnInit(EventArgs e)
-		{
-			//
-			// CODEGEN: This call is required by the ASP.NET Web Form Designer.
-			//
-			string s = Request["isAnswerConfirm"];
-			((WebTestController)Session["WebTestController"]).TestWebForm_CreateScripts(this);
-			InitializeComponent();
-			((WebTestController)Session["WebTestController"]).TestWebForm_Init(this);
-			base.OnInit(e);
-		}
-		
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
-		private void InitializeComponent()
-		{    
-			this.helpImageButton.Click += new System.Web.UI.ImageClickEventHandler(this.helpImageButton_Click);
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            status = Request["isAnswerConfirm"];
 
-		}
-		#endregion
+            ((WebTestController) Session["WebTestController"]).TestWebForm_Init(this);
+            ((WebTestController) Session["WebTestController"]).TestWebForm_Load(this);
+            ((WebTestController) Session["WebTestController"]).TestWebForm_CreateScripts(this);
+        }
 
-		private void helpImageButton_Click(object sender, System.Web.UI.ImageClickEventArgs e)
-		{
-			((WebTestController)Session["WebTestController"]).showHelp(this);
-		}
+        #region Web Form Designer generated code
+
+        protected override void OnInit(EventArgs e)
+        {
+            //
+            // CODEGEN: This call is required by the ASP.NET Web Form Designer.
+            //
+            InitializeComponent();
+
+            base.OnInit(e);
+        }
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.helpImageButton.Click += new System.Web.UI.ImageClickEventHandler(this.helpImageButton_Click);
+        }
+
+        #endregion
+
+        private void helpImageButton_Click(object sender, ImageClickEventArgs e)
+        {
+            ((WebTestController) Session["WebTestController"]).showHelp(this);
+        }
 
         public override Image PassageImage
         {
             get { return passageImage; }
         }
 
-      
 
         public override ImageButton HelpImageButton
         {
             get { return helpImageButton; }
         }
 
-      
-     
+
         public override Image QuestionImage
         {
             get { return questionImage; }
@@ -113,10 +113,10 @@ namespace GMATClubTest.Web
             get { return statusLabel; }
         }
 
-     
+
         public override HyperLink LoginStatusHyperLink
         {
             get { return loginStatusHyperLink; }
         }
-	}
+    }
 }

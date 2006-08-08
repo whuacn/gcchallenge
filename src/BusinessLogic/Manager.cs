@@ -1,120 +1,132 @@
 using System;
 using System.Security.Cryptography;
+using System.Text;
 using GmatClubTest.Data;
 using GmatClubTest.DataProvider;
 
-
 namespace GmatClubTest.BusinessLogic
 {
-	/// <summary>
-	/// Manager of the Business Logic.
-	/// Singleton.
-	/// </summary>
-	public class Manager: IDisposable
-	{
-		private IDataProvider dataProvider;
-		private SHA1 sha = new SHA1CryptoServiceProvider();
-		private int userId = -1;
+    /// <summary>
+    /// Manager of the Business Logic.
+    /// Singleton.
+    /// </summary>
+    public class Manager : IDisposable
+    {
+        private IDataProvider dataProvider;
+        private SHA1 sha = new SHA1CryptoServiceProvider();
+        private int userId = -1;
 
-		public static Manager CreareManagerUseSql(string dataSource, string userName, string password)
-		{
-            DataProvider.SqlDataProvider p = new DataProvider.SqlDataProvider();
-			p.DataSource = dataSource;
-		    p.UserName = userName;
-		    p.Password = password;
-			return new Manager(p);
-		}
+        public static Manager CreareManagerUseSql(string dataSource, string userName, string password)
+        {
+            SqlDataProvider p = new SqlDataProvider();
+            p.DataSource = dataSource;
+            p.UserName = userName;
+            p.Password = password;
+            return new Manager(p);
+        }
 
-		public static Manager CreareManagerUseAccess(string fileName, string password)
-		{
-			DataProvider.AccessDataProvider p = new DataProvider.AccessDataProvider();
+        public static Manager CreareManagerUseAccess(string fileName, string password)
+        {
+            AccessDataProvider p = new AccessDataProvider();
 
-			p.FileName = fileName;
-			p.Password = password;
-			return new Manager(p);
-		}
+            p.FileName = fileName;
+            p.Password = password;
+            return new Manager(p);
+        }
 
-		private Manager(DataProvider.IDataProvider dataProvider)
-		{
-			this.dataProvider = dataProvider;
-		}
+        private Manager(IDataProvider dataProvider)
+        {
+            this.dataProvider = dataProvider;
+        }
 
-		~Manager()
-		{
-			Dispose();
-		}
+        ~Manager()
+        {
+            Dispose();
+        }
 
-		public void Dispose()
-		{
-			dataProvider.Close();
-		}
+        public void Dispose()
+        {
+            dataProvider.Close();
+        }
 
-		public void GetUsers(UserSet userSet)
-		{
-			dataProvider.GetUsers(userSet);
-		}
+        public void GetUsers(UserSet userSet)
+        {
+            dataProvider.GetUsers(userSet);
+        }
 
-		public void GetResults(int userId, DateTime beginTime, DateTime endTime, ResultSet  resultsSet)
-		{
-			dataProvider.GetResults(userId, beginTime, endTime, resultsSet);
-		}
+        public void GetResults(int userId, DateTime beginTime, DateTime endTime, ResultSet resultsSet)
+        {
+            dataProvider.GetResults(userId, beginTime, endTime, resultsSet);
+        }
 
-		public void CreateUser(string login, string password, string name, UserSet userSet)
-		{
-			byte[] hash = sha.ComputeHash(System.Text.Encoding.ASCII.GetBytes(password));
-			
-			userSet.Users.AddUsersRow(login, hash, name);
-			dataProvider.Update(userSet);
-		}
+        public void CreateUser(string login, string password, string name, UserSet userSet)
+        {
+            byte[] hash = sha.ComputeHash(Encoding.ASCII.GetBytes(password));
 
-		public void UpdateUsers(Data.UserSet userSet)
-		{
-			dataProvider.Update(userSet);
-		}
+            userSet.Users.AddUsersRow(login, hash, name);
+            dataProvider.Update(userSet);
+        }
 
-		public void GetUser(int id, UserSet userSet)
-		{
-			dataProvider.GetUser(id, userSet);
-			if (userSet.Users.Count == 0) throw new Exception(String.Format("User {0} was not found", id));
-		}
+        public void UpdateUsers(UserSet userSet)
+        {
+            dataProvider.Update(userSet);
+        }
 
-		public bool IsPasswordValid(UserSet.UsersRow user, string password)
-		{
-			byte[] hash = sha.ComputeHash(System.Text.Encoding.ASCII.GetBytes(password));
-			return IsEqual(hash, user.Password);
-		}
+        public void GetUser(int id, UserSet userSet)
+        {
+            dataProvider.GetUser(id, userSet);
+            if (userSet.Users.Count == 0) throw new Exception(String.Format("User {0} was not found", id));
+        }
 
-		private bool IsEqual(byte[] array1, byte[] array2)
-		{
-			if (array1.Length != array2.Length) return false;
-			for (int i = 0; i < array1.Length; i++) if (array1[i] != array2[i]) return false;
-			return true;
-		}
+        public bool IsPasswordValid(UserSet.UsersRow user, string password)
+        {
+            byte[] hash = sha.ComputeHash(Encoding.ASCII.GetBytes(password));
+            return IsEqual(hash, user.Password);
+        }
 
-		public void GetTests(TestSet testSet)
-		{
-			dataProvider.GetTests(testSet);
-		}
+        private bool IsEqual(byte[] array1, byte[] array2)
+        {
+            if (array1.Length != array2.Length) return false;
+            for (int i = 0; i < array1.Length; i++) if (array1[i] != array2[i]) return false;
+            return true;
+        }
 
-		public INavigator RunTest(TestSet.TestsRow test)
-		{
-			return test.IsPractice ? (INavigator)new PracticeNavigator(test, this) : (INavigator)new TestNavigator(test, this);
-		}
+        public void GetTests(TestSet testSet)
+        {
+            dataProvider.GetTests(testSet);
+        }
 
-		internal IDataProvider DataProvider
-		{
-			get {return dataProvider;}
-		}
+        public INavigator RunTest(TestSet.TestsRow test)
+        {
+            return
+                test.IsPractice
+                    ? (INavigator) new PracticeNavigator(test, this)
+                    : (INavigator) new TestNavigator(test, this);
+        }
 
-		public int UserId
-		{
-			get {if (userId == -1) throw new Exception("User ID must be set first."); return userId;}
-			set {if (userId != -1) throw new Exception("Cannot reset user ID. Recreate manager."); userId = value;}
-		}
+        internal IDataProvider DataProvider
+        {
+            get { return dataProvider; }
+        }
 
-		public void GetQuestionSetsResultDetailsSet(int resultId, QuestionSetsResultDetailsSet questionSetsResultsDetails)
-		{
-			dataProvider.GetQuestionSetsResultDetailsSet(resultId, questionSetsResultsDetails);
-		}
-	}
+        public int UserId
+        {
+            get
+            {
+                if (userId == -1) throw new Exception("User ID must be set first.");
+                return userId;
+            }
+            set
+            {
+                if (userId != -1) throw new Exception("Cannot reset user ID. Recreate manager.");
+                userId = value;
+            }
+        }
+
+        public void GetQuestionSetsResultDetailsSet(int resultId,
+                                                    QuestionSetsResultDetailsSet questionSetsResultsDetails)
+        {
+            dataProvider.GetQuestionSetsResultDetailsSet(resultId, questionSetsResultsDetails);
+        }
+    }
 }

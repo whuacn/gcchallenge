@@ -5,15 +5,15 @@ using GmatClubTest.DbEditor.Tree;
 
 namespace GmatClubTest.DbEditor.BusinessObjects
 {
-    class Question : DbObject
+    internal class Question : DbObject
     {
         protected Dataset.QuestionsExRow value;
         //public Connection connection;
         public Question(Dataset.QuestionsExRow value, Connection connection, Entity parent)
             :
-            base(value.Text, new QuestionType(
-					new OptionalInteger(value.IsTypeIdNull() ? null : (Object)value.TypeId),
-					new OptionalInteger(value.IsSubtypeIdNull() ? null : (Object)value.SubtypeId)))
+                base(value.Text, new QuestionType(
+                                     new OptionalInteger(value.IsTypeIdNull() ? null : (Object) value.TypeId),
+                                     new OptionalInteger(value.IsSubtypeIdNull() ? null : (Object) value.SubtypeId)))
         {
             this.value = value;
             parent.AddNewChild(this);
@@ -25,16 +25,18 @@ namespace GmatClubTest.DbEditor.BusinessObjects
         {
             get
             {
-                return (Parent is DbObject ? ((String)((DbObject)Parent).EntityId) : "") + connection.Name + "Quetion#" + value.Id;
+                return
+                    (Parent is DbObject ? ((String) ((DbObject) Parent).EntityId) : "") + connection.Name + "Quetion#" +
+                    value.Id;
             }
         }
-        
-       
+
+
         public Dataset.QuestionsExRow Value
         {
             get { return value; }
         }
-        
+
         protected override void DoLoadFullDataset()
         {
             //connection.DataProvider. (FullDataset, value.Id);
@@ -43,7 +45,7 @@ namespace GmatClubTest.DbEditor.BusinessObjects
 
         public override void Save()
         {
-         // connection.DataProvider.UpdateQuestions(FullDataset,value.SetId);
+            // connection.DataProvider.UpdateQuestions(FullDataset,value.SetId);
             connection.DataProvider.UpdateQuestion(FullDataset, value);
             OnStructureChangedInternally();
         }
@@ -55,9 +57,10 @@ namespace GmatClubTest.DbEditor.BusinessObjects
                 if ((value.RowState == DataRowState.Modified) || (value.RowState == DataRowState.Added))
                 {
                     return true;
-                }else
+                }
+                else
                 {
-                    for (int i = 0; i < FullDataset.Answers.Count; ++i )
+                    for (int i = 0; i < FullDataset.Answers.Count; ++i)
                     {
                         if ((FullDataset.Answers[i].RowState == DataRowState.Modified))
                         {

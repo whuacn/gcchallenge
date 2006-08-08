@@ -3,46 +3,46 @@ using GmatClubTest.Data;
 
 namespace GmatClubTest.BusinessLogic
 {
-	/// <summary>
-	/// Controls execution of practice/test. 
-	/// </summary>
-	public interface INavigator
-	{
-		int TotalNumberOfQuestions { get; }
-		TimeSpan TotalTime { get; }
+   /// <summary>
+   /// Controls execution of practice/test. 
+   /// </summary>
+   public interface INavigator
+   {
+      int TotalNumberOfQuestions { get; }
+      TimeSpan TotalTime { get; }
 
-		QuestionSetSet Sets { get; }
-		bool HasRandomSetAccess { get; }
-		void SetActiveSet(int setId);
-		bool IsActiveSetValid { get; }
-		bool HasNextSet { get; }
-		bool HasPreviousSet { get; }
-		QuestionSetSet.QuestionSetsRow GetPreviousSet();
-		QuestionSetSet.QuestionSetsRow GetNextSet();
+      QuestionSetSet Sets { get; }
+      bool HasRandomSetAccess { get; }
+      void SetActiveSet(int setId);
+      bool IsActiveSetValid { get; }
+      bool HasNextSet { get; }
+      bool HasPreviousSet { get; }
+      QuestionSetSet.QuestionSetsRow GetPreviousSet();
+      QuestionSetSet.QuestionSetsRow GetNextSet();
 
-		bool IsActiveQuestionValid {get;}
-		bool HasRandomQuestionAccess {get;}
-		void SetActiveQuestion(int questionId);
-		void GetActiveQuestion(QuestionAnswerSet questionAnswerSet);
-		bool HasNextQuestion { get; }
-		bool HasPreviousQuestion { get; }
-		void GetPreviousQuestion(QuestionAnswerSet questionAnswerSet);
-		void GetNextQuestion(QuestionAnswerSet questionAnswerSet);
-		void SetUserAnswer(int answerId);
+      bool IsActiveQuestionValid {get;}
+      bool HasRandomQuestionAccess {get;}
+      void SetActiveQuestion(int questionId);
+      void GetActiveQuestion(QuestionAnswerSet questionAnswerSet);
+      bool HasNextQuestion { get; }
+      bool HasPreviousQuestion { get; }
+      void GetPreviousQuestion(QuestionAnswerSet questionAnswerSet);
+      void GetNextQuestion(QuestionAnswerSet questionAnswerSet);
+      void SetUserAnswer(int answerId);
 
-		void CommitResult();
+      void CommitResult();
 
-		/// <summary>
-		/// Gets remeined time for current section. 
-		/// Returns TimeSpan.MaxValue if time is unlimited.
-		/// </summary>
-		TimeSpan RemainedTime { get; }
+      /// <summary>
+      /// Gets remeined time for current section. 
+      /// Returns TimeSpan.MaxValue if time is unlimited.
+      /// </summary>
+      TimeSpan RemainedTime { get; }
 
-		Question.Status GetQuestionStatus(int questionId);
-		QuestionAnswerSet[] QuestionsAnswers {get;}
+      Question.Status GetQuestionStatus(int questionId);
+      QuestionAnswerSet[] QuestionsAnswers {get;}
 
-		QuestionSet.QuestionsRow GetPasssageToQuestion(int questionId);
+      QuestionSet.QuestionsRow GetPasssageToQuestion(int questionId);
 
-		ResultResultDetailSet ResultResultDetailSet {get;}
-	}
+      ResultResultDetailSet ResultResultDetailSet {get;}
+   }
 }

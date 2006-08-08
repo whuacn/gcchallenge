@@ -436,7 +436,7 @@
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1D06A81ABEBE4035B2718D9FB2BDF446"
             {
-            "SourcePath" = "8:..\\RenderingConfiguration\\math-roman.ttf"
+            "SourcePath" = "8:..\\..\\Data\\RenderingConfiguration\\math-roman.ttf"
             "TargetName" = "8:math-roman.ttf"
             "Tag" = "8:"
             "Folder" = "8:_40E3BD16AD6448608A1199A345262BF4"
@@ -487,7 +487,7 @@
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_21A1B25277434F27BC4F01BF5D659744"
             {
-            "SourcePath" = "8:..\\RenderingConfiguration\\font-configuration-1-math-roman.xml"
+            "SourcePath" = "8:..\\..\\Data\\RenderingConfiguration\\font-configuration-1-math-roman.xml"
             "TargetName" = "8:font-configuration-1-math-roman.xml"
             "Tag" = "8:"
             "Folder" = "8:_40E3BD16AD6448608A1199A345262BF4"
@@ -589,7 +589,7 @@
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_47AA02D741C44A9787DB7831E28CC09C"
             {
-            "SourcePath" = "8:..\\RenderingConfiguration\\font-configuration-3-times-new-roman.xml"
+            "SourcePath" = "8:..\\..\\Data\\RenderingConfiguration\\font-configuration-3-times-new-roman.xml"
             "TargetName" = "8:font-configuration-3-times-new-roman.xml"
             "Tag" = "8:"
             "Folder" = "8:_40E3BD16AD6448608A1199A345262BF4"
@@ -731,7 +731,7 @@
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_684CAF683765457D8A2A002D4ED468C1"
             {
-            "SourcePath" = "8:..\\RenderingConfiguration\\cm-stretchy.ttf"
+            "SourcePath" = "8:..\\..\\Data\\RenderingConfiguration\\cm-stretchy.ttf"
             "TargetName" = "8:cm-stretchy.ttf"
             "Tag" = "8:"
             "Folder" = "8:_40E3BD16AD6448608A1199A345262BF4"
@@ -802,7 +802,7 @@
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7B0BEF421704402CAC43FDD5C66A2DB9"
             {
-            "SourcePath" = "8:..\\RenderingConfiguration\\font-configuration-2-cm-stretchy.xml"
+            "SourcePath" = "8:..\\..\\Data\\RenderingConfiguration\\font-configuration-2-cm-stretchy.xml"
             "TargetName" = "8:font-configuration-2-cm-stretchy.xml"
             "Tag" = "8:"
             "Folder" = "8:_40E3BD16AD6448608A1199A345262BF4"
@@ -955,7 +955,7 @@
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C628A8BD1EA94302B346E91E02BBA7A7"
             {
-            "SourcePath" = "8:..\\RenderingConfiguration\\cm-roman.ttf"
+            "SourcePath" = "8:..\\..\\Data\\RenderingConfiguration\\cm-roman.ttf"
             "TargetName" = "8:cm-roman.ttf"
             "Tag" = "8:"
             "Folder" = "8:_40E3BD16AD6448608A1199A345262BF4"

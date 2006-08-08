@@ -1,12 +1,11 @@
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace GmatClubTest.Web
 {
-    abstract public class IDescriptionWebForm : Page
+    public abstract class IDescriptionWebForm : Page
     {
         public string descriptionString = "";
-        abstract public void Caption(string caption);
-        abstract public void DescriptionString (string descriptionString);
+        public abstract void Caption(string caption);
+        public abstract void DescriptionString(string descriptionString);
     }
 }

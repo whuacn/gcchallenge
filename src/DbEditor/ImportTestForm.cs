@@ -11,7 +11,6 @@ using Dataset=ImportExport.Data.Dataset;
 
 namespace GmatClubTest.DbEditor
 {
-
     public partial class ImportTestForm : Form
     {
         private Provider provider;
@@ -33,25 +32,24 @@ namespace GmatClubTest.DbEditor
             int conCount = 0;
             for (int i = 0; i < mainForm.Tree.Connections.Count; i++)
             {
-                if (((Connection)mainForm.Tree.Connections[i]).Opened)
+                if (((Connection) mainForm.Tree.Connections[i]).Opened)
                 {
-                    connectionComboBox.Items.Add((Connection)mainForm.Tree.Connections[i]);
+                    connectionComboBox.Items.Add((Connection) mainForm.Tree.Connections[i]);
                     conCount++;
                 }
-
             }
 
             if (conCount > 0)
             {
                 connectionComboBox.SelectedIndex = 0;
-                provider = ((Connection)(connectionComboBox.SelectedItem)).DataProvider;
-                provider.AllTestsAdapter.Fill(this.dataset1.Tests);
+                provider = ((Connection) (connectionComboBox.SelectedItem)).DataProvider;
+                provider.AllTestsAdapter.Fill(dataset1.Tests);
                 baseDataGridView.Update();
             }
             else
             {
                 MessageBox.Show("No opened connection.", "Import test", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                this.DialogResult = DialogResult.Cancel;
+                DialogResult = DialogResult.Cancel;
             }
         }
 
@@ -65,21 +63,29 @@ namespace GmatClubTest.DbEditor
                     return;
                 }
             }
-         
+
             ImEx imEx = new ImEx();
-            if (((Connection)connectionComboBox.SelectedItem).DbType == Connection.Type.Sql)
+            if (((Connection) connectionComboBox.SelectedItem).DbType == Connection.Type.Sql)
             {
-                imEx.InitSQLConnection(((Connection)connectionComboBox.SelectedItem).ServerName, ((Connection)connectionComboBox.SelectedItem).DbName, ((Connection)connectionComboBox.SelectedItem).UserName, ((Connection)connectionComboBox.SelectedItem).Password);
-            }else
+                imEx.InitSQLConnection(((Connection) connectionComboBox.SelectedItem).ServerName,
+                                       ((Connection) connectionComboBox.SelectedItem).DbName,
+                                       ((Connection) connectionComboBox.SelectedItem).UserName,
+                                       ((Connection) connectionComboBox.SelectedItem).Password);
+            }
+            else
             {
-                imEx.InitAccessConnection(((Connection)connectionComboBox.SelectedItem).FileName);
+                imEx.InitAccessConnection(((Connection) connectionComboBox.SelectedItem).FileName);
             }
             bool isUpdate = false;
-            for (int i = 0; i < dataset1.Tests.Count;++i)
+            for (int i = 0; i < dataset1.Tests.Count; ++i)
             {
                 if (dataset1.Tests[i].GUID == fileDataset.Tests[0].GUID)
                 {
-                    if (MessageBox.Show("Test ' " + dataset1.Tests[i].Name + "' version " + dataset1.Tests[i].Version + " is alredy exist in databese. Updete test to version " + fileDataset.Tests[0].Version, "Import test", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    if (
+                        MessageBox.Show(
+                            "Test ' " + dataset1.Tests[i].Name + "' version " + dataset1.Tests[i].Version +
+                            " is alredy exist in databese. Updete test to version " + fileDataset.Tests[0].Version,
+                            "Import test", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         imEx.DeleteOldTest(dataset1.Tests[i].Id);
                         ProcessingForm pc = new ProcessingForm();
@@ -119,9 +125,8 @@ namespace GmatClubTest.DbEditor
                 pc.Dispose();
             }
             MessageBox.Show("Test is imported.", "Import test", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            ((Connection)connectionComboBox.SelectedItem).Refresh();
-            this.DialogResult = DialogResult.OK;
-        
+            ((Connection) connectionComboBox.SelectedItem).Refresh();
+            DialogResult = DialogResult.OK;
         }
 
         private DialogResult showOpenDialog(string filter)
@@ -132,7 +137,7 @@ namespace GmatClubTest.DbEditor
             //"Gmat test files(*.gtf)|*.gtf|All files (*.*)|*.*";
             if (baseDataGridView.SelectedRows.Count > 0)
             {
-                OpenFileDialog.FileName = (string)baseDataGridView.SelectedRows[0].Cells[1].Value;
+                OpenFileDialog.FileName = (string) baseDataGridView.SelectedRows[0].Cells[1].Value;
             }
             if (OpenFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -146,23 +151,25 @@ namespace GmatClubTest.DbEditor
             }
         }
 
-        
+
         private void buttonBrowse_Click(object sender, EventArgs e)
         {
             if (showOpenDialog("Gmat test text files(*.gtf)|*.gtf|All files (*.*)|*.*") == DialogResult.OK)
             {
                 IFormatter formatter = new BinaryFormatter();
                 Stream stream = new FileStream(textBoxFileName.Text, FileMode.Open, FileAccess.Read, FileShare.Read);
-                
+
                 try
                 {
-                    fileDataset = (Dataset)formatter.Deserialize(stream);
+                    fileDataset = (Dataset) formatter.Deserialize(stream);
                     fileDataGridView.DataSource = fileDataset;
                     fileDataGridView.Update();
                     import.Enabled = true;
-                }catch
+                }
+                catch
                 {
-                    MessageBox.Show("File isn't GmatClubTest file.", "Import test", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("File isn't GmatClubTest file.", "Import test", MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
                     textBoxFileName.Text = "";
                 }
                 stream.Close();
@@ -171,9 +178,9 @@ namespace GmatClubTest.DbEditor
 
         private void connectionComboBox_SelectedValueChanged(object sender, EventArgs e)
         {
-            provider = ((Connection)(connectionComboBox.SelectedItem)).DataProvider;
+            provider = ((Connection) (connectionComboBox.SelectedItem)).DataProvider;
             dataset1.Clear();
-            provider.AllTestsAdapter.Fill(this.dataset1.Tests);
+            provider.AllTestsAdapter.Fill(dataset1.Tests);
             baseDataGridView.Update();
         }
 
@@ -182,13 +189,16 @@ namespace GmatClubTest.DbEditor
             if (showOpenDialog("Gmat test files(*.txt)|*.txt|All files (*.*)|*.*") == DialogResult.OK)
             {
                 ImEx imEx = new ImEx();
-                if (((Connection)connectionComboBox.SelectedItem).DbType == Connection.Type.Sql)
+                if (((Connection) connectionComboBox.SelectedItem).DbType == Connection.Type.Sql)
                 {
-                    imEx.InitSQLConnection(((Connection)connectionComboBox.SelectedItem).ServerName, ((Connection)connectionComboBox.SelectedItem).DbName, ((Connection)connectionComboBox.SelectedItem).UserName, ((Connection)connectionComboBox.SelectedItem).Password);
+                    imEx.InitSQLConnection(((Connection) connectionComboBox.SelectedItem).ServerName,
+                                           ((Connection) connectionComboBox.SelectedItem).DbName,
+                                           ((Connection) connectionComboBox.SelectedItem).UserName,
+                                           ((Connection) connectionComboBox.SelectedItem).Password);
                 }
                 else
                 {
-                    imEx.InitAccessConnection(((Connection)connectionComboBox.SelectedItem).DbName);
+                    imEx.InitAccessConnection(((Connection) connectionComboBox.SelectedItem).DbName);
                 }
                 try
                 {
@@ -207,10 +217,12 @@ namespace GmatClubTest.DbEditor
                     pc.Close();
                     pc.Dispose();
                     MessageBox.Show("Test is imported.", "Import test", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.DialogResult = DialogResult.OK;
-                }catch
+                    DialogResult = DialogResult.OK;
+                }
+                catch
                 {
-                    MessageBox.Show("File isn't GmatClubTest file.", "Import test", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("File isn't GmatClubTest file.", "Import test", MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
                     textBoxFileName.Text = "";
                 }
             }

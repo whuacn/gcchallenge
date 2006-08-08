@@ -10,59 +10,59 @@ using GmatClubTest.Data;
 namespace GMATClubTest.Web
 {
 
-	public partial class LoginWebForm : Page
-	{
-		protected UserSet userSet;
-		protected DataView dataView;
-		private Manager manager;
-		protected void Page_Load(object sender, EventArgs e)
-		{
-			manager = (Manager)Session["Manager"];
-			manager = Manager.CreareManagerUseSql(ConfigurationManager.AppSettings["DataSource"], ConfigurationManager.AppSettings["DataSourceUserName"], ConfigurationManager.AppSettings["DataSourcePassword"]);
-			Session["Manager"] = manager;
-			manager.GetUsers(userSet);
+   public partial class LoginWebForm : Page
+   {
+      protected UserSet userSet;
+      protected DataView dataView;
+      private Manager manager;
+      protected void Page_Load(object sender, EventArgs e)
+      {
+         manager = (Manager)Session["Manager"];
+         manager = Manager.CreareManagerUseSql(ConfigurationManager.AppSettings["DataSource"], ConfigurationManager.AppSettings["DataSourceUserName"], ConfigurationManager.AppSettings["DataSourcePassword"]);
+         Session["Manager"] = manager;
+         manager.GetUsers(userSet);
             //errorLabel.Visible = false;
-			if (!IsPostBack)
-			{ 
-				//#if DEBUG 
+         if (!IsPostBack)
+         { 
+            //#if DEBUG 
                 //passwordTextBox.Text = "27005";
                 //#else
                 //#endif
-			}
-			
-		}
+         }
+         
+      }
         #region Web Form Designer generated code
-		override protected void OnInit(EventArgs e)
-		{
+      override protected void OnInit(EventArgs e)
+      {
 
-			InitializeComponent();
-			base.OnInit(e);
-		}
-		
+         InitializeComponent();
+         base.OnInit(e);
+      }
+      
 
-		private void InitializeComponent()
-		{    
-			this.userSet = new GmatClubTest.Data.UserSet();
-			this.dataView = new System.Data.DataView();
-			((System.ComponentModel.ISupportInitialize)(this.userSet)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.dataView)).BeginInit();
-			this.OkImageButton.Click += new System.Web.UI.ImageClickEventHandler(this.OkImageButton_Click1);
-			// 
-			// userSet
-			// 
-			this.userSet.DataSetName = "UserSet";
-			this.userSet.Locale = new System.Globalization.CultureInfo("en-US");
-			// 
-			// dataView
-			// 
-			this.dataView.Table = this.userSet.Users;
-			((System.ComponentModel.ISupportInitialize)(this.userSet)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.dataView)).EndInit();
+      private void InitializeComponent()
+      {    
+         this.userSet = new GmatClubTest.Data.UserSet();
+         this.dataView = new System.Data.DataView();
+         ((System.ComponentModel.ISupportInitialize)(this.userSet)).BeginInit();
+         ((System.ComponentModel.ISupportInitialize)(this.dataView)).BeginInit();
+         this.OkImageButton.Click += new System.Web.UI.ImageClickEventHandler(this.OkImageButton_Click1);
+         // 
+         // userSet
+         // 
+         this.userSet.DataSetName = "UserSet";
+         this.userSet.Locale = new System.Globalization.CultureInfo("en-US");
+         // 
+         // dataView
+         // 
+         this.dataView.Table = this.userSet.Users;
+         ((System.ComponentModel.ISupportInitialize)(this.userSet)).EndInit();
+         ((System.ComponentModel.ISupportInitialize)(this.dataView)).EndInit();
 
-		}
-		#endregion
+      }
+      #endregion
 
-		
+      
         protected void newUserImageButton_Click(object sender, ImageClickEventArgs e)
         {
             Response.Redirect("newUserWebForm.aspx");
@@ -74,7 +74,7 @@ namespace GMATClubTest.Web
             //    int userId = 2104;// Id User name yuve
             //    Session.Add("UserId", userId);
             //    Response.Redirect("MainWebForm.aspx");
-				
+            
             //}
             //#else
             //#endif

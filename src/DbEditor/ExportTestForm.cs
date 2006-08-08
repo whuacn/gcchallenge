@@ -1,26 +1,23 @@
 using System;
 using System.Threading;
-using System.Timers;
 using System.Windows.Forms;
 using GmatClubTest.DbEditor.BusinessObjects;
 using GmatClubTest.DbEditor.Data;
 using GmatClubTest.ImportExport;
-using Timer=System.Threading.Timer;
 
 namespace GmatClubTest.DbEditor
 {
-    
     public partial class ExportTestForm : Form
     {
         private Provider provider;
-        private System.Windows.Forms.SaveFileDialog saveFileDialog;
+        private SaveFileDialog saveFileDialog;
         private string fileName;
         private MainForm mainForm;
-        
-        
+
+
         public ExportTestForm(MainForm mainForm)
         {
-           // this.Dataset = new Dataset();
+            // this.Dataset = new Dataset();
             //provider =  p;
             this.mainForm = mainForm;
             InitializeComponent();
@@ -29,26 +26,26 @@ namespace GmatClubTest.DbEditor
         private void ExportTestForm_Load(object sender, EventArgs e)
         {
             int conCount = 0;
-            for (int i = 0; i < mainForm.Tree.Connections.Count; i++ )
+            for (int i = 0; i < mainForm.Tree.Connections.Count; i++)
             {
-                if (((Connection)mainForm.Tree.Connections[i]).Opened)
+                if (((Connection) mainForm.Tree.Connections[i]).Opened)
                 {
-                    connectionComboBox.Items.Add((Connection)mainForm.Tree.Connections[i]);
+                    connectionComboBox.Items.Add((Connection) mainForm.Tree.Connections[i]);
                     conCount++;
                 }
-                
             }
 
-            if (conCount>0)
+            if (conCount > 0)
             {
                 connectionComboBox.SelectedIndex = 0;
-                provider = ((Connection)(connectionComboBox.SelectedItem)).DataProvider;
-                provider.AllTestsAdapter.Fill(this.dataset.Tests);
+                provider = ((Connection) (connectionComboBox.SelectedItem)).DataProvider;
+                provider.AllTestsAdapter.Fill(dataset.Tests);
                 dataGridView1.Update();
-            }else
+            }
+            else
             {
                 MessageBox.Show("No opened connection.", "Export test", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                this.DialogResult = DialogResult.Cancel;
+                DialogResult = DialogResult.Cancel;
             }
         }
 
@@ -61,25 +58,28 @@ namespace GmatClubTest.DbEditor
             }
             if ((fileName == "") || (fileName == null))
             {
-               MessageBox.Show("File name not set.", "Export test", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-               if (showSaveDialog() != System.Windows.Forms.DialogResult.OK)
-               {
-                   return;
-               }
+                MessageBox.Show("File name not set.", "Export test", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                if (showSaveDialog() != DialogResult.OK)
+                {
+                    return;
+                }
             }
-            
-            int testId = (int)dataGridView1.SelectedRows[0].Cells[0].Value;
-           
+
+            int testId = (int) dataGridView1.SelectedRows[0].Cells[0].Value;
+
             ImEx imEx = new ImEx();
-            if (((Connection)connectionComboBox.SelectedItem).DbType == Connection.Type.Sql)
+            if (((Connection) connectionComboBox.SelectedItem).DbType == Connection.Type.Sql)
             {
-                imEx.InitSQLConnection(((Connection)connectionComboBox.SelectedItem).ServerName, ((Connection)connectionComboBox.SelectedItem).DbName, ((Connection)connectionComboBox.SelectedItem).UserName, ((Connection)connectionComboBox.SelectedItem).Password);
+                imEx.InitSQLConnection(((Connection) connectionComboBox.SelectedItem).ServerName,
+                                       ((Connection) connectionComboBox.SelectedItem).DbName,
+                                       ((Connection) connectionComboBox.SelectedItem).UserName,
+                                       ((Connection) connectionComboBox.SelectedItem).Password);
             }
             else
             {
-                imEx.InitAccessConnection(((Connection)connectionComboBox.SelectedItem).FileName);
+                imEx.InitAccessConnection(((Connection) connectionComboBox.SelectedItem).FileName);
             }
-            ProcessingForm pc =new ProcessingForm();
+            ProcessingForm pc = new ProcessingForm();
             pc.Show();
             pc.Caption = "Export test";
             pc.Operation = "Exporting...";
@@ -95,31 +95,31 @@ namespace GmatClubTest.DbEditor
             pc.Close();
             pc.Dispose();
             MessageBox.Show("Test is exported.", "Export test", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            this.DialogResult = DialogResult.OK;
-            
+            DialogResult = DialogResult.OK;
         }
 
-    
+
         private DialogResult showSaveDialog()
         {
             saveFileDialog = new SaveFileDialog();
-            
+
             saveFileDialog.Filter = "Gmat test files(*.gtf)|*.gtf|All files (*.*)|*.*";
             if (dataGridView1.SelectedRows.Count > 0)
             {
-                saveFileDialog.FileName = (string)dataGridView1.SelectedRows[0].Cells[1].Value;
+                saveFileDialog.FileName = (string) dataGridView1.SelectedRows[0].Cells[1].Value;
             }
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 textBoxFileName.Text = saveFileDialog.FileName;
                 fileName = saveFileDialog.FileName;
                 return DialogResult.OK;
-            }else
+            }
+            else
             {
                 return DialogResult.Cancel;
             }
         }
-        
+
         private void buttonBrowse_Click(object sender, EventArgs e)
         {
             showSaveDialog();
@@ -127,9 +127,9 @@ namespace GmatClubTest.DbEditor
 
         private void connectionComboBox_SelectedValueChanged(object sender, EventArgs e)
         {
-            provider = ((Connection)(connectionComboBox.SelectedItem)).DataProvider;
+            provider = ((Connection) (connectionComboBox.SelectedItem)).DataProvider;
             dataset.Clear();
-            provider.AllTestsAdapter.Fill(this.dataset.Tests);
+            provider.AllTestsAdapter.Fill(dataset.Tests);
             dataGridView1.Update();
         }
     }

@@ -1,13 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 using GmatClubTest.DbEditor.BusinessObjects;
 using GmatClubTest.DbEditor.Data;
-using GmatClubTest.DbEditor.Tree;
 
 namespace GmatClubTest.DbEditor
 {
@@ -15,10 +9,11 @@ namespace GmatClubTest.DbEditor
     {
         public int setId;
         private Connection connection;
-        int setOrder;
+        private int setOrder;
         public int testId;
         public Dataset.QuestionSetsRow qsRow;
         private Test test;
+
         public SelectSet(Connection con, int testId, int setId, int setOrder, Test t)
         {
             test = t;
@@ -39,23 +34,23 @@ namespace GmatClubTest.DbEditor
 
         private void SelectSet_Load(object sender, EventArgs e)
         {
-            
-            for (int i=0; i<setsDataset.QuestionSetsEx.Count; ++i)
+            for (int i = 0; i < setsDataset.QuestionSetsEx.Count; ++i)
             {
-                    if (setsDataset.QuestionSetsEx[i].TestId == testId)
-                    {
-                        try
-                        {
-                            setsDataset.QuestionSets.FindById(setsDataset.QuestionSetsEx[i].Id).Delete();
-                        }catch
-                        {
-                            
-                        }
-                        continue;
-                    }
-                if(!setsDataset.Tests.FindById(testId).IsQuestionTypeIdNull())
+                if (setsDataset.QuestionSetsEx[i].TestId == testId)
                 {
-                    if(setsDataset.Tests.FindById(testId).QuestionTypeId != setsDataset.QuestionSetsEx[i].QuestionTypeId)
+                    try
+                    {
+                        setsDataset.QuestionSets.FindById(setsDataset.QuestionSetsEx[i].Id).Delete();
+                    }
+                    catch
+                    {
+                    }
+                    continue;
+                }
+                if (!setsDataset.Tests.FindById(testId).IsQuestionTypeIdNull())
+                {
+                    if (setsDataset.Tests.FindById(testId).QuestionTypeId !=
+                        setsDataset.QuestionSetsEx[i].QuestionTypeId)
                     {
                         setsDataset.QuestionSetsEx[i].Delete();
                         continue;
@@ -63,24 +58,24 @@ namespace GmatClubTest.DbEditor
                 }
             }
             setsDataGrid.Update();
-            
         }
 
         private void addButton_Click(object sender, EventArgs e)
         {
             if (setsDataGrid.SelectedRows.Count > 0)
             {
-                setId = (int)setsDataGrid.SelectedRows[0].Cells[0].Value;
+                setId = (int) setsDataGrid.SelectedRows[0].Cells[0].Value;
                 qsRow = setsDataset.QuestionSets.FindById(setId);
                 test.setId = setId;
-                this.DialogResult = System.Windows.Forms.DialogResult.Yes;
-                
-            }else
+                DialogResult = DialogResult.Yes;
+            }
+            else
             {
                 MessageBox.Show("Set not selected.", "Select set", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;        
+                return;
             }
         }
+
         //public QuestionSet questionSet
         //{
         //    get

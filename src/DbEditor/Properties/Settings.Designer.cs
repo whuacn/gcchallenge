@@ -8,30 +8,32 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GmatClubTest.DbEditor.Properties {
-    
-    
-    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "8.0.0.0")]
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
-        private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
-        
-        public static Settings Default {
-            get {
-                return defaultInstance;
-            }
+using System.CodeDom.Compiler;
+using System.Configuration;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
+
+namespace GmatClubTest.DbEditor.Properties
+{
+    [CompilerGenerated()]
+    [GeneratedCode("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "8.0.0.0")]
+    internal sealed partial class Settings : ApplicationSettingsBase
+    {
+        private static Settings defaultInstance = ((Settings) (Synchronized(new Settings())));
+
+        public static Settings Default
+        {
+            get { return defaultInstance; }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Provider=SQLNCLI.1;Data Source=yuve;Integrated Security=SSPI;Initial Catalog=Gmat" +
-            "ClubTest")]
-        public string ConnectionString {
-            get {
-                return ((string)(this["ConnectionString"]));
-            }
+
+        [ApplicationScopedSetting()]
+        [DebuggerNonUserCode()]
+        [SpecialSetting(SpecialSetting.ConnectionString)]
+        [DefaultSettingValue("Provider=SQLNCLI.1;Data Source=yuve;Integrated Security=SSPI;Initial Catalog=Gmat" +
+                             "ClubTest")]
+        public string ConnectionString
+        {
+            get { return ((string) (this["ConnectionString"])); }
         }
     }
 }

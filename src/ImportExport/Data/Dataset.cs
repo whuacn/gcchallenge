@@ -1,6 +1,6 @@
-﻿namespace ImportExport.Data {
-    
-    
-    public partial class Dataset {
+﻿namespace ImportExport.Data
+{
+    public partial class Dataset
+    {
     }
 }

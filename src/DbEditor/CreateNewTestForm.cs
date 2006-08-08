@@ -1,9 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 using GmatClubTest.DbEditor.BusinessObjects;
 using GmatClubTest.DbEditor.Data;
@@ -15,6 +10,7 @@ namespace GmatClubTest.DbEditor
         private Provider provider;
         private MainForm mainForm;
         private Dataset dataset = new Dataset();
+
         public CreateNewTestForm(MainForm mainForm)
         {
             this.mainForm = mainForm;
@@ -26,18 +22,17 @@ namespace GmatClubTest.DbEditor
             int conCount = 0;
             for (int i = 0; i < mainForm.Tree.Connections.Count; i++)
             {
-                if (((Connection)mainForm.Tree.Connections[i]).Opened)
+                if (((Connection) mainForm.Tree.Connections[i]).Opened)
                 {
-                    connectionComboBox.Items.Add((Connection)mainForm.Tree.Connections[i]);
+                    connectionComboBox.Items.Add((Connection) mainForm.Tree.Connections[i]);
                     conCount++;
                 }
-
             }
 
             if (conCount > 0)
             {
                 connectionComboBox.SelectedIndex = 0;
-                provider = ((Connection)(connectionComboBox.SelectedItem)).DataProvider;
+                provider = ((Connection) (connectionComboBox.SelectedItem)).DataProvider;
                 provider.FillTypes_Subtypes(dataset);
                 typeComboBox.Items.Add("Mixed");
                 subTypecomboBox.Items.Add("Untyped");
@@ -57,7 +52,7 @@ namespace GmatClubTest.DbEditor
             else
             {
                 MessageBox.Show("No opened connection.", "New test", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                this.DialogResult = DialogResult.Cancel;
+                DialogResult = DialogResult.Cancel;
             }
         }
 
@@ -65,13 +60,15 @@ namespace GmatClubTest.DbEditor
         {
             Guid testGUID;
             testGUID = Guid.NewGuid();
-            dataset.Tests.AddTestsRow(nameTextBox.Text, isPracticeCheckBox.Checked ? (true) : (false), descriptionTextBox.Text, 0, 0, testGUID.ToString(), 1);
-            if(typeComboBox.SelectedIndex !=0)
+            dataset.Tests.AddTestsRow(nameTextBox.Text, isPracticeCheckBox.Checked ? (true) : (false),
+                                      descriptionTextBox.Text, 0, 0, testGUID.ToString(), 1);
+            if (typeComboBox.SelectedIndex != 0)
             {
-                dataset.Tests[0].QuestionTypeId = dataset.QuestionTypes[typeComboBox.SelectedIndex -1].Id;
-            }else
+                dataset.Tests[0].QuestionTypeId = dataset.QuestionTypes[typeComboBox.SelectedIndex - 1].Id;
+            }
+            else
             {
-                 dataset.Tests[0].SetQuestionTypeIdNull();
+                dataset.Tests[0].SetQuestionTypeIdNull();
             }
 
             if (subTypecomboBox.SelectedIndex != 0)
@@ -83,12 +80,10 @@ namespace GmatClubTest.DbEditor
                 dataset.Tests[0].SetQuestionSubtypeIdNull();
             }
             provider.AddNewTest(dataset.Tests[0]);
-            
-            ((Connection)connectionComboBox.SelectedItem).Refresh();
 
-            this.DialogResult = DialogResult.OK;
-            
-           
+            ((Connection) connectionComboBox.SelectedItem).Refresh();
+
+            DialogResult = DialogResult.OK;
         }
     }
 }

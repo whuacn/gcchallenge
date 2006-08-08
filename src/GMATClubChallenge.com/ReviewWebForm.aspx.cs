@@ -14,82 +14,85 @@ using GmatClubTest.Web;
 
 namespace GMATClubTest.Web
 {
-	/// <summary>
-	/// Summary description for ReviewWebForm.
-	/// </summary>
-	public partial class Migrated_ReviewWebForm : ReviewWebForm
-	{
-		/*
-		    public System.Web.UI.WebControls.HyperLink loginStatusHyperLink;
-			public System.Web.UI.WebControls.Table questionTable;
-			public System.Web.UI.WebControls.Table setsTable;
-			public System.Web.UI.WebControls.Label errorLabel;
-			public System.Web.UI.WebControls.ImageButton imageButton;
-			public System.Web.UI.WebControls.HyperLink AdminHyperLink;
-		*/
-	
-		protected void Page_Load(object sender, EventArgs e)
-		{
-			// Put user code to initialize the page here
-		}
+    /// <summary>
+    /// Summary description for ReviewWebForm.
+    /// </summary>
+    public partial class Migrated_ReviewWebForm : ReviewWebForm
+    {
+        /*
+          public System.Web.UI.WebControls.HyperLink loginStatusHyperLink;
+         public System.Web.UI.WebControls.Table questionTable;
+         public System.Web.UI.WebControls.Table setsTable;
+         public System.Web.UI.WebControls.Label errorLabel;
+         public System.Web.UI.WebControls.ImageButton imageButton;
+         public System.Web.UI.WebControls.HyperLink AdminHyperLink;
+      */
 
-		#region Web Form Designer generated code
-		override protected void OnInit(EventArgs e)
-		{
-			//
-			// CODEGEN: This call is required by the ASP.NET Web Form Designer.
-			//
-			InitializeComponent();
-			base.OnInit(e);
-		}
-		
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
-		private void InitializeComponent()
-		{    
-			this.Load += new EventHandler(this.Page_Load);
-			((WebTestController)Session["WebTestController"]).ReviewWebForm_Init(this);
-            imageButton.Click += new ImageClickEventHandler(((WebTestController)Session["WebTestController"]).imageButton_Click);
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            // Put user code to initialize the page here
+        }
 
-		}
-		#endregion
+        #region Web Form Designer generated code
 
-	    public override HyperLink LoginStatusHyperLink
-	    {
+        protected override void OnInit(EventArgs e)
+        {
+            //
+            // CODEGEN: This call is required by the ASP.NET Web Form Designer.
+            //
+            InitializeComponent();
+            base.OnInit(e);
+        }
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.Load += new EventHandler(this.Page_Load);
+            ((WebTestController) Session["WebTestController"]).ReviewWebForm_Init(this);
+            imageButton.Click +=
+                new ImageClickEventHandler(((WebTestController) Session["WebTestController"]).imageButton_Click);
+        }
+
+        #endregion
+
+        public override HyperLink LoginStatusHyperLink
+        {
             get { return loginStatusHyperLink; }
-	    }
+        }
 
-	    public override HyperLink AdminHyperLink
-	    {
+        public override HyperLink AdminHyperLink
+        {
             get { return adminHyperLink; }
-	    }
+        }
 
-	    public override Image ImageButton
-	    {
+        public override Image ImageButton
+        {
             get { return imageButton; }
-	    }
+        }
 
-	    public override Table QuestionTable
-	    {
+        public override Table QuestionTable
+        {
             get { return questionTable; }
-	    }
+        }
 
-	    public override Table SetsTable
-	    {
+        public override Table SetsTable
+        {
             get { return setsTable; }
-	    }
+        }
 
-	    public override Label ErrorLabel
-	    {
+        public override Label ErrorLabel
+        {
             get { return errorLabel; }
-	    }
+        }
+
         protected void imageButton_Click(object sender, ImageClickEventArgs e)
         {
             bool b = true;
-            this.Session.Add("IsEndTest", b);
-            ((WebTestController)Session["WebTestController"]).imageButton_Click(sender, e);
+            Session.Add("IsEndTest", b);
+            ((WebTestController) Session["WebTestController"]).imageButton_Click(sender, e);
         }
-}
+    }
 }
