@@ -24,7 +24,7 @@ namespace GmatClubTest.UnitTests
 		[TestFixtureSetUp] 
 		public void Init()
 		{
-			manager = Manager.CreareManagerUseSql(SystemInformation.ComputerName);
+			//manager = Manager.CreareManagerUseSql(SystemInformation.ComputerName);
 			UserSet u = new UserSet(); 
 			manager.CreateUser("UnitTestUser" + random.Next().ToString(), random.Next().ToString(), "UnitTestUserName", u);
 			manager.UserId = u.Users[0].Id;

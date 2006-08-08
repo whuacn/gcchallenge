@@ -863,7 +863,8 @@ namespace GmatClubTest.Practice
                 for (int i = 0; i < a.Length; ++i)
                     p.Append((char)h[i]);
 
-                manager = Manager.CreareManagerUseSql(SystemInformation.ComputerName);
+				manager = Manager.CreareManagerUseSql(pathToDb, "", p.ToString());
+            	//TODO UP!!
                 //manager = Manager.CreareManagerUseAccess(pathToDb, p.ToString());
 
                 LoginForm loginForm = new LoginForm(manager);

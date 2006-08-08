@@ -234,7 +234,7 @@ bool resetPasswordOnFail = false;
 #endif
 
 #if DEBUG
-            connection.Password = connection.DbType == Connection.Type.Access ? "q&b3pz>#_24" : "w&b3pz>#_25";
+			connection.Password = connection.DbType == Connection.Type.Access ? "q&b3pz>#_24" : "sys1157";
 #endif
 			if (connection.Password.Length == 0)
 			{

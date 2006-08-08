@@ -76,11 +76,11 @@
   <ItemGroup>
     <Reference Include="MathML">
       <Name>MathML</Name>
-      <HintPath>..\..\Thirdparty\bin\MathML.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\\MathML.dll</HintPath>
     </Reference>
     <Reference Include="MathML.Rendering">
       <Name>MathML.Rendering</Name>
-      <HintPath>..\..\Thirdparty\bin\MathML.Rendering.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\\MathML.Rendering.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <Name>System</Name>

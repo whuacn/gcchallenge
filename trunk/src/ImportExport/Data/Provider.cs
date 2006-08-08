@@ -187,14 +187,14 @@ namespace GmatClubTest.ImportExport.Data
                 questionEditorDataAdapter.InsertCommand.Parameters["SubtypeId"].Value = test.Questions[i].SubtypeId;
                 questionEditorDataAdapter.InsertCommand.Parameters["DifficultyLevelId"].Value = test.Questions[i].DifficultyLevelId;
                 questionEditorDataAdapter.InsertCommand.Parameters["Text"].Value = test.Questions[i].Text;
-                // (TypeId, SubtypeId, DifficultyLevelId, [Text], Picture)
-                if (!test.Questions[i].IsPictureNull())
+				//questionEditorDataAdapter.InsertCommand.Parameters["Text"].Value = "";
+				if (!test.Questions[i].IsPictureNull())
                 {
                     questionEditorDataAdapter.InsertCommand.Parameters["Picture"].Value = test.Questions[i].Picture;
                 }
                 else
                 {
-                    //questionEditorDataAdapter.InsertCommand.Parameters["Picture"].Value = null;
+                    questionEditorDataAdapter.InsertCommand.Parameters["Picture"].Value = DBNull.Value;
                 }
                 questionEditorDataAdapter.InsertCommand.ExecuteNonQuery();
 	            
@@ -515,52 +515,52 @@ namespace GmatClubTest.ImportExport.Data
 		/// </summary>
 		private void InitializeComponent()
 		{
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Provider));
-            this.connection = new System.Data.OleDb.OleDbConnection();
-            this.testById = new System.Data.OleDb.OleDbDataAdapter();
-            this.oleDbDeleteCommand1 = new System.Data.OleDb.OleDbCommand();
-            this.oleDbInsertCommand1 = new System.Data.OleDb.OleDbCommand();
-            this.oleDbSelectCommand4 = new System.Data.OleDb.OleDbCommand();
-            this.oleDbUpdateCommand1 = new System.Data.OleDb.OleDbCommand();
-            this.oleDbSelectCommand1 = new System.Data.OleDb.OleDbCommand();
-            this.questionSetsByTestId = new System.Data.OleDb.OleDbDataAdapter();
-            this.oleDbDeleteCommand = new System.Data.OleDb.OleDbCommand();
-            this.oleDbUpdateCommand = new System.Data.OleDb.OleDbCommand();
-            this.oleDbSelectCommand2 = new System.Data.OleDb.OleDbCommand();
-            this.oleDbInsertCommand2 = new System.Data.OleDb.OleDbCommand();
-            this.oleDbUpdateCommand2 = new System.Data.OleDb.OleDbCommand();
-            this.oleDbDeleteCommand2 = new System.Data.OleDb.OleDbCommand();
-            this.testContentByTestId = new System.Data.OleDb.OleDbDataAdapter();
-            this.oleDbSelectCommand3 = new System.Data.OleDb.OleDbCommand();
-            this.setsToQuestionByTestId = new System.Data.OleDb.OleDbDataAdapter();
-            this.oleDbSelectCommand6 = new System.Data.OleDb.OleDbCommand();
-            this.oleDbConnection1 = new System.Data.OleDb.OleDbConnection();
-            this.answersByTestId = new System.Data.OleDb.OleDbDataAdapter();
-            this.oleDbSelectCommand7 = new System.Data.OleDb.OleDbCommand();
-            this.passageToQuestions = new System.Data.OleDb.OleDbDataAdapter();
-            this.oleDbSelectCommand5 = new System.Data.OleDb.OleDbCommand();
-            this.questionsByTestId = new System.Data.OleDb.OleDbDataAdapter();
-            this.oleDbSelectCommand8 = new System.Data.OleDb.OleDbCommand();
-            this.oleDbDeleteCommand3 = new System.Data.OleDb.OleDbCommand();
-            this.setQuestions = new System.Data.OleDb.OleDbDataAdapter();
-            this.oleDbComand1 = new System.Data.OleDb.OleDbCommand();
-            this.questionEditorDataAdapter = new System.Data.OleDb.OleDbDataAdapter();
-            this.oleDbCommand1 = new System.Data.OleDb.OleDbCommand();
-            this.oleDbInsertCommand = new System.Data.OleDb.OleDbCommand();
-            this.oleDbCommand2 = new System.Data.OleDb.OleDbCommand();
-            this.oleDbCommand3 = new System.Data.OleDb.OleDbCommand();
-            // 
-            // connection
-            // 
-            this.connection.ConnectionString = "Provider=SQLNCLI.1;Data Source=yuve;Integrated Security=SSPI;Initial Catalog=Gmat" +
-                "ClubTest";
-            // 
-            // testById
-            // 
-            this.testById.DeleteCommand = this.oleDbDeleteCommand1;
-            this.testById.InsertCommand = this.oleDbInsertCommand1;
-            this.testById.SelectCommand = this.oleDbSelectCommand4;
-            this.testById.TableMappings.AddRange(new System.Data.Common.DataTableMapping[] {
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Provider));
+			this.connection = new System.Data.OleDb.OleDbConnection();
+			this.testById = new System.Data.OleDb.OleDbDataAdapter();
+			this.oleDbDeleteCommand1 = new System.Data.OleDb.OleDbCommand();
+			this.oleDbInsertCommand1 = new System.Data.OleDb.OleDbCommand();
+			this.oleDbSelectCommand4 = new System.Data.OleDb.OleDbCommand();
+			this.oleDbUpdateCommand1 = new System.Data.OleDb.OleDbCommand();
+			this.oleDbSelectCommand1 = new System.Data.OleDb.OleDbCommand();
+			this.questionSetsByTestId = new System.Data.OleDb.OleDbDataAdapter();
+			this.oleDbDeleteCommand = new System.Data.OleDb.OleDbCommand();
+			this.oleDbUpdateCommand = new System.Data.OleDb.OleDbCommand();
+			this.oleDbSelectCommand2 = new System.Data.OleDb.OleDbCommand();
+			this.oleDbInsertCommand2 = new System.Data.OleDb.OleDbCommand();
+			this.oleDbUpdateCommand2 = new System.Data.OleDb.OleDbCommand();
+			this.oleDbDeleteCommand2 = new System.Data.OleDb.OleDbCommand();
+			this.testContentByTestId = new System.Data.OleDb.OleDbDataAdapter();
+			this.oleDbSelectCommand3 = new System.Data.OleDb.OleDbCommand();
+			this.setsToQuestionByTestId = new System.Data.OleDb.OleDbDataAdapter();
+			this.oleDbSelectCommand6 = new System.Data.OleDb.OleDbCommand();
+			this.oleDbConnection1 = new System.Data.OleDb.OleDbConnection();
+			this.answersByTestId = new System.Data.OleDb.OleDbDataAdapter();
+			this.oleDbSelectCommand7 = new System.Data.OleDb.OleDbCommand();
+			this.passageToQuestions = new System.Data.OleDb.OleDbDataAdapter();
+			this.oleDbSelectCommand5 = new System.Data.OleDb.OleDbCommand();
+			this.questionsByTestId = new System.Data.OleDb.OleDbDataAdapter();
+			this.oleDbSelectCommand8 = new System.Data.OleDb.OleDbCommand();
+			this.oleDbDeleteCommand3 = new System.Data.OleDb.OleDbCommand();
+			this.setQuestions = new System.Data.OleDb.OleDbDataAdapter();
+			this.oleDbComand1 = new System.Data.OleDb.OleDbCommand();
+			this.questionEditorDataAdapter = new System.Data.OleDb.OleDbDataAdapter();
+			this.oleDbCommand1 = new System.Data.OleDb.OleDbCommand();
+			this.oleDbInsertCommand = new System.Data.OleDb.OleDbCommand();
+			this.oleDbCommand2 = new System.Data.OleDb.OleDbCommand();
+			this.oleDbCommand3 = new System.Data.OleDb.OleDbCommand();
+			// 
+			// connection
+			// 
+			this.connection.ConnectionString = "Provider=SQLNCLI.1;Data Source=yuve;Integrated Security=SSPI;Initial Catalog=Gmat" +
+				"ClubTest";
+			// 
+			// testById
+			// 
+			this.testById.DeleteCommand = this.oleDbDeleteCommand1;
+			this.testById.InsertCommand = this.oleDbInsertCommand1;
+			this.testById.SelectCommand = this.oleDbSelectCommand4;
+			this.testById.TableMappings.AddRange(new System.Data.Common.DataTableMapping[] {
             new System.Data.Common.DataTableMapping("Table", "Tests", new System.Data.Common.DataColumnMapping[] {
                         new System.Data.Common.DataColumnMapping("Id", "Id"),
                         new System.Data.Common.DataColumnMapping("Name", "Name"),
@@ -570,13 +570,13 @@ namespace GmatClubTest.ImportExport.Data
                         new System.Data.Common.DataColumnMapping("QuestionSubtypeId", "QuestionSubtypeId"),
                         new System.Data.Common.DataColumnMapping("GUID", "GUID"),
                         new System.Data.Common.DataColumnMapping("Version", "Version")})});
-            this.testById.UpdateCommand = this.oleDbUpdateCommand1;
-            // 
-            // oleDbDeleteCommand1
-            // 
-            this.oleDbDeleteCommand1.CommandText = resources.GetString("oleDbDeleteCommand1.CommandText");
-            this.oleDbDeleteCommand1.Connection = this.connection;
-            this.oleDbDeleteCommand1.Parameters.AddRange(new System.Data.OleDb.OleDbParameter[] {
+			this.testById.UpdateCommand = this.oleDbUpdateCommand1;
+			// 
+			// oleDbDeleteCommand1
+			// 
+			this.oleDbDeleteCommand1.CommandText = resources.GetString("oleDbDeleteCommand1.CommandText");
+			this.oleDbDeleteCommand1.Connection = this.connection;
+			this.oleDbDeleteCommand1.Parameters.AddRange(new System.Data.OleDb.OleDbParameter[] {
             new System.Data.OleDb.OleDbParameter("Original_Id", System.Data.OleDb.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "Id", System.Data.DataRowVersion.Original, null),
             new System.Data.OleDb.OleDbParameter("Original_Name", System.Data.OleDb.OleDbType.VarChar, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "Name", System.Data.DataRowVersion.Original, null),
             new System.Data.OleDb.OleDbParameter("Original_IsPractice", System.Data.OleDb.OleDbType.Boolean, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "IsPractice", System.Data.DataRowVersion.Original, null),
@@ -586,13 +586,13 @@ namespace GmatClubTest.ImportExport.Data
             new System.Data.OleDb.OleDbParameter("Original_QuestionSubtypeId", System.Data.OleDb.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "QuestionSubtypeId", System.Data.DataRowVersion.Original, null),
             new System.Data.OleDb.OleDbParameter("Original_GUID", System.Data.OleDb.OleDbType.Char, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "GUID", System.Data.DataRowVersion.Original, null),
             new System.Data.OleDb.OleDbParameter("Original_Version", System.Data.OleDb.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "Version", System.Data.DataRowVersion.Original, null)});
-            // 
-            // oleDbInsertCommand1
-            // 
-            this.oleDbInsertCommand1.CommandText = "INSERT INTO [Tests] ([Name], [IsPractice], [Description], [QuestionTypeId], [Ques" +
-                "tionSubtypeId], [GUID], [Version]) VALUES (?, ?, ?, ?, ?, ?, ?)";
-            this.oleDbInsertCommand1.Connection = this.connection;
-            this.oleDbInsertCommand1.Parameters.AddRange(new System.Data.OleDb.OleDbParameter[] {
+			// 
+			// oleDbInsertCommand1
+			// 
+			this.oleDbInsertCommand1.CommandText = "INSERT INTO [Tests] ([Name], [IsPractice], [Description], [QuestionTypeId], [Ques" +
+				"tionSubtypeId], [GUID], [Version]) VALUES (?, ?, ?, ?, ?, ?, ?)";
+			this.oleDbInsertCommand1.Connection = this.connection;
+			this.oleDbInsertCommand1.Parameters.AddRange(new System.Data.OleDb.OleDbParameter[] {
             new System.Data.OleDb.OleDbParameter("Name", System.Data.OleDb.OleDbType.VarChar, 0, "Name"),
             new System.Data.OleDb.OleDbParameter("IsPractice", System.Data.OleDb.OleDbType.Boolean, 0, "IsPractice"),
             new System.Data.OleDb.OleDbParameter("Description", System.Data.OleDb.OleDbType.LongVarChar, 0, "Description"),
@@ -600,19 +600,19 @@ namespace GmatClubTest.ImportExport.Data
             new System.Data.OleDb.OleDbParameter("QuestionSubtypeId", System.Data.OleDb.OleDbType.Integer, 0, "QuestionSubtypeId"),
             new System.Data.OleDb.OleDbParameter("GUID", System.Data.OleDb.OleDbType.Char, 0, "GUID"),
             new System.Data.OleDb.OleDbParameter("Version", System.Data.OleDb.OleDbType.Integer, 0, "Version")});
-            // 
-            // oleDbSelectCommand4
-            // 
-            this.oleDbSelectCommand4.CommandText = "SELECT     Tests.*\r\nFROM         Tests\r\nWHERE     (Id = ?)";
-            this.oleDbSelectCommand4.Connection = this.connection;
-            this.oleDbSelectCommand4.Parameters.AddRange(new System.Data.OleDb.OleDbParameter[] {
+			// 
+			// oleDbSelectCommand4
+			// 
+			this.oleDbSelectCommand4.CommandText = "SELECT     Tests.*\r\nFROM         Tests\r\nWHERE     (Id = ?)";
+			this.oleDbSelectCommand4.Connection = this.connection;
+			this.oleDbSelectCommand4.Parameters.AddRange(new System.Data.OleDb.OleDbParameter[] {
             new System.Data.OleDb.OleDbParameter("Id", System.Data.OleDb.OleDbType.Integer, 4, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "Id", System.Data.DataRowVersion.Current, "1")});
-            // 
-            // oleDbUpdateCommand1
-            // 
-            this.oleDbUpdateCommand1.CommandText = resources.GetString("oleDbUpdateCommand1.CommandText");
-            this.oleDbUpdateCommand1.Connection = this.connection;
-            this.oleDbUpdateCommand1.Parameters.AddRange(new System.Data.OleDb.OleDbParameter[] {
+			// 
+			// oleDbUpdateCommand1
+			// 
+			this.oleDbUpdateCommand1.CommandText = resources.GetString("oleDbUpdateCommand1.CommandText");
+			this.oleDbUpdateCommand1.Connection = this.connection;
+			this.oleDbUpdateCommand1.Parameters.AddRange(new System.Data.OleDb.OleDbParameter[] {
             new System.Data.OleDb.OleDbParameter("Name", System.Data.OleDb.OleDbType.VarChar, 0, "Name"),
             new System.Data.OleDb.OleDbParameter("IsPractice", System.Data.OleDb.OleDbType.Boolean, 0, "IsPractice"),
             new System.Data.OleDb.OleDbParameter("Description", System.Data.OleDb.OleDbType.LongVarChar, 0, "Description"),
@@ -629,21 +629,21 @@ namespace GmatClubTest.ImportExport.Data
             new System.Data.OleDb.OleDbParameter("Original_QuestionSubtypeId", System.Data.OleDb.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "QuestionSubtypeId", System.Data.DataRowVersion.Original, null),
             new System.Data.OleDb.OleDbParameter("Original_GUID", System.Data.OleDb.OleDbType.Char, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "GUID", System.Data.DataRowVersion.Original, null),
             new System.Data.OleDb.OleDbParameter("Original_Version", System.Data.OleDb.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "Version", System.Data.DataRowVersion.Original, null)});
-            // 
-            // oleDbSelectCommand1
-            // 
-            this.oleDbSelectCommand1.CommandText = "SELECT     QuestionSets.*\r\nFROM         QuestionSets  INNER JOIN\r\n               " +
-                "       TestContents ON QuestionSets.Id = TestContents.QuestionSetId\r\nWHERE     (" +
-                "TestContents.TestId = ?)";
-            this.oleDbSelectCommand1.Connection = this.connection;
-            this.oleDbSelectCommand1.Parameters.AddRange(new System.Data.OleDb.OleDbParameter[] {
+			// 
+			// oleDbSelectCommand1
+			// 
+			this.oleDbSelectCommand1.CommandText = "SELECT     QuestionSets.*\r\nFROM         QuestionSets  INNER JOIN\r\n               " +
+				"       TestContents ON QuestionSets.Id = TestContents.QuestionSetId\r\nWHERE     (" +
+				"TestContents.TestId = ?)";
+			this.oleDbSelectCommand1.Connection = this.connection;
+			this.oleDbSelectCommand1.Parameters.AddRange(new System.Data.OleDb.OleDbParameter[] {
             new System.Data.OleDb.OleDbParameter("TestId", System.Data.OleDb.OleDbType.Integer, 4, "TestId")});
-            // 
-            // questionSetsByTestId
-            // 
-            this.questionSetsByTestId.DeleteCommand = this.oleDbDeleteCommand;
-            this.questionSetsByTestId.SelectCommand = this.oleDbSelectCommand1;
-            this.questionSetsByTestId.TableMappings.AddRange(new System.Data.Common.DataTableMapping[] {
+			// 
+			// questionSetsByTestId
+			// 
+			this.questionSetsByTestId.DeleteCommand = this.oleDbDeleteCommand;
+			this.questionSetsByTestId.SelectCommand = this.oleDbSelectCommand1;
+			this.questionSetsByTestId.TableMappings.AddRange(new System.Data.Common.DataTableMapping[] {
             new System.Data.Common.DataTableMapping("Table", "QuestionSets", new System.Data.Common.DataColumnMapping[] {
                         new System.Data.Common.DataColumnMapping("Id", "Id"),
                         new System.Data.Common.DataColumnMapping("Name", "Name"),
@@ -655,13 +655,13 @@ namespace GmatClubTest.ImportExport.Data
                         new System.Data.Common.DataColumnMapping("NumberOfQuestionsInZone1", "NumberOfQuestionsInZone1"),
                         new System.Data.Common.DataColumnMapping("NumberOfQuestionsInZone2", "NumberOfQuestionsInZone2"),
                         new System.Data.Common.DataColumnMapping("NumberOfQuestionsInZone3", "NumberOfQuestionsInZone3")})});
-            this.questionSetsByTestId.UpdateCommand = this.oleDbUpdateCommand;
-            // 
-            // oleDbDeleteCommand
-            // 
-            this.oleDbDeleteCommand.CommandText = resources.GetString("oleDbDeleteCommand.CommandText");
-            this.oleDbDeleteCommand.Connection = this.connection;
-            this.oleDbDeleteCommand.Parameters.AddRange(new System.Data.OleDb.OleDbParameter[] {
+			this.questionSetsByTestId.UpdateCommand = this.oleDbUpdateCommand;
+			// 
+			// oleDbDeleteCommand
+			// 
+			this.oleDbDeleteCommand.CommandText = resources.GetString("oleDbDeleteCommand.CommandText");
+			this.oleDbDeleteCommand.Connection = this.connection;
+			this.oleDbDeleteCommand.Parameters.AddRange(new System.Data.OleDb.OleDbParameter[] {
             new System.Data.OleDb.OleDbParameter("Original_Id", System.Data.OleDb.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "Id", System.Data.DataRowVersion.Original, null),
             new System.Data.OleDb.OleDbParameter("Original_Name", System.Data.OleDb.OleDbType.VarChar, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "Name", System.Data.DataRowVersion.Original, null),
             new System.Data.OleDb.OleDbParameter("Original_NumberOfQuestionsToPick", System.Data.OleDb.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "NumberOfQuestionsToPick", System.Data.DataRowVersion.Original, null),
@@ -674,12 +674,12 @@ namespace GmatClubTest.ImportExport.Data
             new System.Data.OleDb.OleDbParameter("Original_NumberOfQuestionsInZone1", System.Data.OleDb.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "NumberOfQuestionsInZone1", System.Data.DataRowVersion.Original, null),
             new System.Data.OleDb.OleDbParameter("Original_NumberOfQuestionsInZone2", System.Data.OleDb.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "NumberOfQuestionsInZone2", System.Data.DataRowVersion.Original, null),
             new System.Data.OleDb.OleDbParameter("Original_NumberOfQuestionsInZone3", System.Data.OleDb.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "NumberOfQuestionsInZone3", System.Data.DataRowVersion.Original, null)});
-            // 
-            // oleDbUpdateCommand
-            // 
-            this.oleDbUpdateCommand.CommandText = resources.GetString("oleDbUpdateCommand.CommandText");
-            this.oleDbUpdateCommand.Connection = this.connection;
-            this.oleDbUpdateCommand.Parameters.AddRange(new System.Data.OleDb.OleDbParameter[] {
+			// 
+			// oleDbUpdateCommand
+			// 
+			this.oleDbUpdateCommand.CommandText = resources.GetString("oleDbUpdateCommand.CommandText");
+			this.oleDbUpdateCommand.Connection = this.connection;
+			this.oleDbUpdateCommand.Parameters.AddRange(new System.Data.OleDb.OleDbParameter[] {
             new System.Data.OleDb.OleDbParameter("Name", System.Data.OleDb.OleDbType.VarChar, 0, "Name"),
             new System.Data.OleDb.OleDbParameter("Description", System.Data.OleDb.OleDbType.LongVarChar, 0, "Description"),
             new System.Data.OleDb.OleDbParameter("NumberOfQuestionsToPick", System.Data.OleDb.OleDbType.Integer, 0, "NumberOfQuestionsToPick"),
@@ -701,126 +701,126 @@ namespace GmatClubTest.ImportExport.Data
             new System.Data.OleDb.OleDbParameter("Original_NumberOfQuestionsInZone1", System.Data.OleDb.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "NumberOfQuestionsInZone1", System.Data.DataRowVersion.Original, null),
             new System.Data.OleDb.OleDbParameter("Original_NumberOfQuestionsInZone2", System.Data.OleDb.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "NumberOfQuestionsInZone2", System.Data.DataRowVersion.Original, null),
             new System.Data.OleDb.OleDbParameter("Original_NumberOfQuestionsInZone3", System.Data.OleDb.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "NumberOfQuestionsInZone3", System.Data.DataRowVersion.Original, null)});
-            // 
-            // oleDbSelectCommand2
-            // 
-            this.oleDbSelectCommand2.CommandText = "SELECT     TestContents.*\r\nFROM         TestContents\r\nWHERE     (TestId = ?)";
-            this.oleDbSelectCommand2.Connection = this.connection;
-            this.oleDbSelectCommand2.Parameters.AddRange(new System.Data.OleDb.OleDbParameter[] {
+			// 
+			// oleDbSelectCommand2
+			// 
+			this.oleDbSelectCommand2.CommandText = "SELECT     TestContents.*\r\nFROM         TestContents\r\nWHERE     (TestId = ?)";
+			this.oleDbSelectCommand2.Connection = this.connection;
+			this.oleDbSelectCommand2.Parameters.AddRange(new System.Data.OleDb.OleDbParameter[] {
             new System.Data.OleDb.OleDbParameter("TestId", System.Data.OleDb.OleDbType.Integer, 4, "TestId")});
-            // 
-            // oleDbInsertCommand2
-            // 
-            this.oleDbInsertCommand2.CommandText = "INSERT INTO [TestContents] ([TestId], [QuestionSetId], [QuestionSetOrder]) VALUES" +
-                " (?, ?, ?)";
-            this.oleDbInsertCommand2.Connection = this.connection;
-            this.oleDbInsertCommand2.Parameters.AddRange(new System.Data.OleDb.OleDbParameter[] {
+			// 
+			// oleDbInsertCommand2
+			// 
+			this.oleDbInsertCommand2.CommandText = "INSERT INTO [TestContents] ([TestId], [QuestionSetId], [QuestionSetOrder]) VALUES" +
+				" (?, ?, ?)";
+			this.oleDbInsertCommand2.Connection = this.connection;
+			this.oleDbInsertCommand2.Parameters.AddRange(new System.Data.OleDb.OleDbParameter[] {
             new System.Data.OleDb.OleDbParameter("TestId", System.Data.OleDb.OleDbType.Integer, 0, "TestId"),
             new System.Data.OleDb.OleDbParameter("QuestionSetId", System.Data.OleDb.OleDbType.Integer, 0, "QuestionSetId"),
             new System.Data.OleDb.OleDbParameter("QuestionSetOrder", System.Data.OleDb.OleDbType.UnsignedTinyInt, 0, "QuestionSetOrder")});
-            // 
-            // oleDbUpdateCommand2
-            // 
-            this.oleDbUpdateCommand2.CommandText = "UPDATE [TestContents] SET [TestId] = ?, [QuestionSetId] = ?, [QuestionSetOrder] =" +
-                " ? WHERE (([TestId] = ?) AND ([QuestionSetId] = ?) AND ([QuestionSetOrder] = ?))" +
-                "";
-            this.oleDbUpdateCommand2.Connection = this.connection;
-            this.oleDbUpdateCommand2.Parameters.AddRange(new System.Data.OleDb.OleDbParameter[] {
+			// 
+			// oleDbUpdateCommand2
+			// 
+			this.oleDbUpdateCommand2.CommandText = "UPDATE [TestContents] SET [TestId] = ?, [QuestionSetId] = ?, [QuestionSetOrder] =" +
+				" ? WHERE (([TestId] = ?) AND ([QuestionSetId] = ?) AND ([QuestionSetOrder] = ?))" +
+				"";
+			this.oleDbUpdateCommand2.Connection = this.connection;
+			this.oleDbUpdateCommand2.Parameters.AddRange(new System.Data.OleDb.OleDbParameter[] {
             new System.Data.OleDb.OleDbParameter("TestId", System.Data.OleDb.OleDbType.Integer, 0, "TestId"),
             new System.Data.OleDb.OleDbParameter("QuestionSetId", System.Data.OleDb.OleDbType.Integer, 0, "QuestionSetId"),
             new System.Data.OleDb.OleDbParameter("QuestionSetOrder", System.Data.OleDb.OleDbType.UnsignedTinyInt, 0, "QuestionSetOrder"),
             new System.Data.OleDb.OleDbParameter("Original_TestId", System.Data.OleDb.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "TestId", System.Data.DataRowVersion.Original, null),
             new System.Data.OleDb.OleDbParameter("Original_QuestionSetId", System.Data.OleDb.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "QuestionSetId", System.Data.DataRowVersion.Original, null),
             new System.Data.OleDb.OleDbParameter("Original_QuestionSetOrder", System.Data.OleDb.OleDbType.UnsignedTinyInt, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "QuestionSetOrder", System.Data.DataRowVersion.Original, null)});
-            // 
-            // oleDbDeleteCommand2
-            // 
-            this.oleDbDeleteCommand2.CommandText = "DELETE FROM [TestContents] WHERE (([TestId] = ?) AND ([QuestionSetId] = ?) AND ([" +
-                "QuestionSetOrder] = ?))";
-            this.oleDbDeleteCommand2.Connection = this.connection;
-            this.oleDbDeleteCommand2.Parameters.AddRange(new System.Data.OleDb.OleDbParameter[] {
+			// 
+			// oleDbDeleteCommand2
+			// 
+			this.oleDbDeleteCommand2.CommandText = "DELETE FROM [TestContents] WHERE (([TestId] = ?) AND ([QuestionSetId] = ?) AND ([" +
+				"QuestionSetOrder] = ?))";
+			this.oleDbDeleteCommand2.Connection = this.connection;
+			this.oleDbDeleteCommand2.Parameters.AddRange(new System.Data.OleDb.OleDbParameter[] {
             new System.Data.OleDb.OleDbParameter("Original_TestId", System.Data.OleDb.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "TestId", System.Data.DataRowVersion.Original, null),
             new System.Data.OleDb.OleDbParameter("Original_QuestionSetId", System.Data.OleDb.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "QuestionSetId", System.Data.DataRowVersion.Original, null),
             new System.Data.OleDb.OleDbParameter("Original_QuestionSetOrder", System.Data.OleDb.OleDbType.UnsignedTinyInt, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "QuestionSetOrder", System.Data.DataRowVersion.Original, null)});
-            // 
-            // testContentByTestId
-            // 
-            this.testContentByTestId.DeleteCommand = this.oleDbDeleteCommand2;
-            this.testContentByTestId.InsertCommand = this.oleDbInsertCommand2;
-            this.testContentByTestId.SelectCommand = this.oleDbSelectCommand2;
-            this.testContentByTestId.TableMappings.AddRange(new System.Data.Common.DataTableMapping[] {
+			// 
+			// testContentByTestId
+			// 
+			this.testContentByTestId.DeleteCommand = this.oleDbDeleteCommand2;
+			this.testContentByTestId.InsertCommand = this.oleDbInsertCommand2;
+			this.testContentByTestId.SelectCommand = this.oleDbSelectCommand2;
+			this.testContentByTestId.TableMappings.AddRange(new System.Data.Common.DataTableMapping[] {
             new System.Data.Common.DataTableMapping("Table", "TestContents", new System.Data.Common.DataColumnMapping[] {
                         new System.Data.Common.DataColumnMapping("TestId", "TestId"),
                         new System.Data.Common.DataColumnMapping("QuestionSetId", "QuestionSetId"),
                         new System.Data.Common.DataColumnMapping("QuestionSetOrder", "QuestionSetOrder")})});
-            this.testContentByTestId.UpdateCommand = this.oleDbUpdateCommand2;
-            // 
-            // oleDbSelectCommand3
-            // 
-            this.oleDbSelectCommand3.CommandText = resources.GetString("oleDbSelectCommand3.CommandText");
-            this.oleDbSelectCommand3.Connection = this.connection;
-            this.oleDbSelectCommand3.Parameters.AddRange(new System.Data.OleDb.OleDbParameter[] {
+			this.testContentByTestId.UpdateCommand = this.oleDbUpdateCommand2;
+			// 
+			// oleDbSelectCommand3
+			// 
+			this.oleDbSelectCommand3.CommandText = resources.GetString("oleDbSelectCommand3.CommandText");
+			this.oleDbSelectCommand3.Connection = this.connection;
+			this.oleDbSelectCommand3.Parameters.AddRange(new System.Data.OleDb.OleDbParameter[] {
             new System.Data.OleDb.OleDbParameter("TestId", System.Data.OleDb.OleDbType.Integer, 4, "TestId")});
-            // 
-            // setsToQuestionByTestId
-            // 
-            this.setsToQuestionByTestId.SelectCommand = this.oleDbSelectCommand3;
-            this.setsToQuestionByTestId.TableMappings.AddRange(new System.Data.Common.DataTableMapping[] {
+			// 
+			// setsToQuestionByTestId
+			// 
+			this.setsToQuestionByTestId.SelectCommand = this.oleDbSelectCommand3;
+			this.setsToQuestionByTestId.TableMappings.AddRange(new System.Data.Common.DataTableMapping[] {
             new System.Data.Common.DataTableMapping("Table", "SetsToQuestions", new System.Data.Common.DataColumnMapping[] {
                         new System.Data.Common.DataColumnMapping("SetId", "SetId"),
                         new System.Data.Common.DataColumnMapping("QuestionId", "QuestionId"),
                         new System.Data.Common.DataColumnMapping("QuestionZone", "QuestionZone"),
                         new System.Data.Common.DataColumnMapping("QuestionOrder", "QuestionOrder")})});
-            // 
-            // oleDbSelectCommand6
-            // 
-            this.oleDbSelectCommand6.CommandText = resources.GetString("oleDbSelectCommand6.CommandText");
-            this.oleDbSelectCommand6.Connection = this.connection;
-            this.oleDbSelectCommand6.Parameters.AddRange(new System.Data.OleDb.OleDbParameter[] {
+			// 
+			// oleDbSelectCommand6
+			// 
+			this.oleDbSelectCommand6.CommandText = resources.GetString("oleDbSelectCommand6.CommandText");
+			this.oleDbSelectCommand6.Connection = this.connection;
+			this.oleDbSelectCommand6.Parameters.AddRange(new System.Data.OleDb.OleDbParameter[] {
             new System.Data.OleDb.OleDbParameter("TestId", System.Data.OleDb.OleDbType.Integer, 3, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "TestId", System.Data.DataRowVersion.Current, "115")});
-            // 
-            // oleDbConnection1
-            // 
-            this.oleDbConnection1.ConnectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\\GmatClubTest(UEditio" +
-                "n).mdb;Persist Security Info=True;Jet OLEDB:Database Password=q&b3pz>#_24";
-            // 
-            // answersByTestId
-            // 
-            this.answersByTestId.SelectCommand = this.oleDbSelectCommand6;
-            this.answersByTestId.TableMappings.AddRange(new System.Data.Common.DataTableMapping[] {
+			// 
+			// oleDbConnection1
+			// 
+			this.oleDbConnection1.ConnectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\\GmatClubTest.mdb;Jet" +
+				" OLEDB:Database Password=q&b3pz>#_24";
+			// 
+			// answersByTestId
+			// 
+			this.answersByTestId.SelectCommand = this.oleDbSelectCommand6;
+			this.answersByTestId.TableMappings.AddRange(new System.Data.Common.DataTableMapping[] {
             new System.Data.Common.DataTableMapping("Table", "Answers", new System.Data.Common.DataColumnMapping[] {
                         new System.Data.Common.DataColumnMapping("Id", "Id"),
                         new System.Data.Common.DataColumnMapping("QuestionId", "QuestionId"),
                         new System.Data.Common.DataColumnMapping("Text", "Text"),
                         new System.Data.Common.DataColumnMapping("IsCorrect", "IsCorrect"),
                         new System.Data.Common.DataColumnMapping("Order", "Order")})});
-            // 
-            // oleDbSelectCommand7
-            // 
-            this.oleDbSelectCommand7.CommandText = "SELECT     PassageQuestionId, QuestionId, QuestionOrder\r\nFROM         PassagesToQ" +
-                "uestions";
-            this.oleDbSelectCommand7.Connection = this.connection;
-            // 
-            // passageToQuestions
-            // 
-            this.passageToQuestions.SelectCommand = this.oleDbSelectCommand7;
-            this.passageToQuestions.TableMappings.AddRange(new System.Data.Common.DataTableMapping[] {
+			// 
+			// oleDbSelectCommand7
+			// 
+			this.oleDbSelectCommand7.CommandText = "SELECT DISTINCT PassageQuestionId, QuestionId, QuestionOrder\r\nFROM         Passag" +
+				"esToQuestions";
+			this.oleDbSelectCommand7.Connection = this.oleDbConnection1;
+			// 
+			// passageToQuestions
+			// 
+			this.passageToQuestions.SelectCommand = this.oleDbSelectCommand7;
+			this.passageToQuestions.TableMappings.AddRange(new System.Data.Common.DataTableMapping[] {
             new System.Data.Common.DataTableMapping("Table", "PassagesToQuestions", new System.Data.Common.DataColumnMapping[] {
                         new System.Data.Common.DataColumnMapping("PassageQuestionId", "PassageQuestionId"),
                         new System.Data.Common.DataColumnMapping("QuestionId", "QuestionId"),
                         new System.Data.Common.DataColumnMapping("QuestionOrder", "QuestionOrder")})});
-            // 
-            // oleDbSelectCommand5
-            // 
-            this.oleDbSelectCommand5.CommandText = resources.GetString("oleDbSelectCommand5.CommandText");
-            this.oleDbSelectCommand5.Connection = this.connection;
-            this.oleDbSelectCommand5.Parameters.AddRange(new System.Data.OleDb.OleDbParameter[] {
+			// 
+			// oleDbSelectCommand5
+			// 
+			this.oleDbSelectCommand5.CommandText = resources.GetString("oleDbSelectCommand5.CommandText");
+			this.oleDbSelectCommand5.Connection = this.connection;
+			this.oleDbSelectCommand5.Parameters.AddRange(new System.Data.OleDb.OleDbParameter[] {
             new System.Data.OleDb.OleDbParameter("Param1", System.Data.OleDb.OleDbType.Integer, 1, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "", System.Data.DataRowVersion.Current, "101")});
-            // 
-            // questionsByTestId
-            // 
-            this.questionsByTestId.SelectCommand = this.oleDbSelectCommand5;
-            this.questionsByTestId.TableMappings.AddRange(new System.Data.Common.DataTableMapping[] {
+			// 
+			// questionsByTestId
+			// 
+			this.questionsByTestId.SelectCommand = this.oleDbSelectCommand5;
+			this.questionsByTestId.TableMappings.AddRange(new System.Data.Common.DataTableMapping[] {
             new System.Data.Common.DataTableMapping("Table", "Questions", new System.Data.Common.DataColumnMapping[] {
                         new System.Data.Common.DataColumnMapping("Id", "Id"),
                         new System.Data.Common.DataColumnMapping("TypeId", "TypeId"),
@@ -828,34 +828,34 @@ namespace GmatClubTest.ImportExport.Data
                         new System.Data.Common.DataColumnMapping("DifficultyLevelId", "DifficultyLevelId"),
                         new System.Data.Common.DataColumnMapping("Text", "Text"),
                         new System.Data.Common.DataColumnMapping("Picture", "Picture")})});
-            // 
-            // oleDbSelectCommand8
-            // 
-            this.oleDbSelectCommand8.CommandText = "SELECT     Id\r\nFROM         Questions";
-            this.oleDbSelectCommand8.Connection = this.connection;
-            // 
-            // oleDbDeleteCommand3
-            // 
-            this.oleDbDeleteCommand3.CommandText = "DELETE FROM [Questions] WHERE (([Id] = ?))";
-            this.oleDbDeleteCommand3.Connection = this.connection;
-            this.oleDbDeleteCommand3.Parameters.AddRange(new System.Data.OleDb.OleDbParameter[] {
+			// 
+			// oleDbSelectCommand8
+			// 
+			this.oleDbSelectCommand8.CommandText = "SELECT     Id\r\nFROM         Questions";
+			this.oleDbSelectCommand8.Connection = this.connection;
+			// 
+			// oleDbDeleteCommand3
+			// 
+			this.oleDbDeleteCommand3.CommandText = "DELETE FROM [Questions] WHERE (([Id] = ?))";
+			this.oleDbDeleteCommand3.Connection = this.connection;
+			this.oleDbDeleteCommand3.Parameters.AddRange(new System.Data.OleDb.OleDbParameter[] {
             new System.Data.OleDb.OleDbParameter("Original_Id", System.Data.OleDb.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "Id", System.Data.DataRowVersion.Original, null)});
-            // 
-            // setQuestions
-            // 
-            this.setQuestions.DeleteCommand = this.oleDbDeleteCommand3;
-            this.setQuestions.InsertCommand = this.oleDbComand1;
-            this.setQuestions.SelectCommand = this.oleDbSelectCommand8;
-            this.setQuestions.TableMappings.AddRange(new System.Data.Common.DataTableMapping[] {
+			// 
+			// setQuestions
+			// 
+			this.setQuestions.DeleteCommand = this.oleDbDeleteCommand3;
+			this.setQuestions.InsertCommand = this.oleDbComand1;
+			this.setQuestions.SelectCommand = this.oleDbSelectCommand8;
+			this.setQuestions.TableMappings.AddRange(new System.Data.Common.DataTableMapping[] {
             new System.Data.Common.DataTableMapping("Table", "Questions", new System.Data.Common.DataColumnMapping[] {
                         new System.Data.Common.DataColumnMapping("Id", "Id")})});
-            // 
-            // questionEditorDataAdapter
-            // 
-            this.questionEditorDataAdapter.DeleteCommand = this.oleDbCommand1;
-            this.questionEditorDataAdapter.InsertCommand = this.oleDbInsertCommand;
-            this.questionEditorDataAdapter.SelectCommand = this.oleDbCommand2;
-            this.questionEditorDataAdapter.TableMappings.AddRange(new System.Data.Common.DataTableMapping[] {
+			// 
+			// questionEditorDataAdapter
+			// 
+			this.questionEditorDataAdapter.DeleteCommand = this.oleDbCommand1;
+			this.questionEditorDataAdapter.InsertCommand = this.oleDbInsertCommand;
+			this.questionEditorDataAdapter.SelectCommand = this.oleDbCommand2;
+			this.questionEditorDataAdapter.TableMappings.AddRange(new System.Data.Common.DataTableMapping[] {
             new System.Data.Common.DataTableMapping("Table", "Questions", new System.Data.Common.DataColumnMapping[] {
                         new System.Data.Common.DataColumnMapping("Id", "Id"),
                         new System.Data.Common.DataColumnMapping("TypeId", "TypeId"),
@@ -863,45 +863,45 @@ namespace GmatClubTest.ImportExport.Data
                         new System.Data.Common.DataColumnMapping("DifficultyLevelId", "DifficultyLevelId"),
                         new System.Data.Common.DataColumnMapping("Text", "Text"),
                         new System.Data.Common.DataColumnMapping("Picture", "Picture")})});
-            this.questionEditorDataAdapter.UpdateCommand = this.oleDbCommand3;
-            // 
-            // oleDbCommand1
-            // 
-            this.oleDbCommand1.CommandText = "DELETE FROM [Questions] WHERE (([Id] = ?) AND ([TypeId] = ?) AND ([SubtypeId] = ?" +
-                ") AND ([DifficultyLevelId] = ?) AND ([Text] = ?))";
-            this.oleDbCommand1.Connection = this.connection;
-            this.oleDbCommand1.Parameters.AddRange(new System.Data.OleDb.OleDbParameter[] {
+			this.questionEditorDataAdapter.UpdateCommand = this.oleDbCommand3;
+			// 
+			// oleDbCommand1
+			// 
+			this.oleDbCommand1.CommandText = "DELETE FROM [Questions] WHERE (([Id] = ?) AND ([TypeId] = ?) AND ([SubtypeId] = ?" +
+				") AND ([DifficultyLevelId] = ?) AND ([Text] = ?))";
+			this.oleDbCommand1.Connection = this.connection;
+			this.oleDbCommand1.Parameters.AddRange(new System.Data.OleDb.OleDbParameter[] {
             new System.Data.OleDb.OleDbParameter("Original_Id", System.Data.OleDb.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "Id", System.Data.DataRowVersion.Original, null),
             new System.Data.OleDb.OleDbParameter("Original_TypeId", System.Data.OleDb.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "TypeId", System.Data.DataRowVersion.Original, null),
             new System.Data.OleDb.OleDbParameter("Original_SubtypeId", System.Data.OleDb.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "SubtypeId", System.Data.DataRowVersion.Original, null),
             new System.Data.OleDb.OleDbParameter("Original_DifficultyLevelId", System.Data.OleDb.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "DifficultyLevelId", System.Data.DataRowVersion.Original, null),
             new System.Data.OleDb.OleDbParameter("Original_Text", System.Data.OleDb.OleDbType.VarChar, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "Text", System.Data.DataRowVersion.Original, null)});
-            // 
-            // oleDbInsertCommand
-            // 
-            this.oleDbInsertCommand.CommandText = "INSERT INTO Questions\r\n                      (TypeId, SubtypeId, DifficultyLevelI" +
-                "d, [Text], Picture)\r\nVALUES     (?, ?, ?, ?, ?)";
-            this.oleDbInsertCommand.Connection = this.oleDbConnection1;
-            this.oleDbInsertCommand.Parameters.AddRange(new System.Data.OleDb.OleDbParameter[] {
+			// 
+			// oleDbInsertCommand
+			// 
+			this.oleDbInsertCommand.CommandText = "INSERT INTO Questions\r\n                      (TypeId, SubtypeId, DifficultyLevelI" +
+				"d, [Text], Picture)\r\nVALUES     (?, ?, ?, ?, ?)";
+			this.oleDbInsertCommand.Connection = this.oleDbConnection1;
+			this.oleDbInsertCommand.Parameters.AddRange(new System.Data.OleDb.OleDbParameter[] {
             new System.Data.OleDb.OleDbParameter("TypeId", System.Data.OleDb.OleDbType.Integer, 0, "TypeId"),
             new System.Data.OleDb.OleDbParameter("SubtypeId", System.Data.OleDb.OleDbType.Integer, 0, "SubtypeId"),
             new System.Data.OleDb.OleDbParameter("DifficultyLevelId", System.Data.OleDb.OleDbType.Integer, 0, "DifficultyLevelId"),
             new System.Data.OleDb.OleDbParameter("Text", System.Data.OleDb.OleDbType.VarChar, 0, "Text"),
             new System.Data.OleDb.OleDbParameter("Picture", System.Data.OleDb.OleDbType.LongVarBinary, 0, "Picture")});
-            // 
-            // oleDbCommand2
-            // 
-            this.oleDbCommand2.CommandText = "SELECT     Id, TypeId, SubtypeId, DifficultyLevelId, Text, Picture\r\nFROM         " +
-                "Questions\r\nWHERE     (Id = ?)";
-            this.oleDbCommand2.Connection = this.connection;
-            this.oleDbCommand2.Parameters.AddRange(new System.Data.OleDb.OleDbParameter[] {
+			// 
+			// oleDbCommand2
+			// 
+			this.oleDbCommand2.CommandText = "SELECT     Id, TypeId, SubtypeId, DifficultyLevelId, Text, Picture\r\nFROM         " +
+				"Questions\r\nWHERE     (Id = ?)";
+			this.oleDbCommand2.Connection = this.connection;
+			this.oleDbCommand2.Parameters.AddRange(new System.Data.OleDb.OleDbParameter[] {
             new System.Data.OleDb.OleDbParameter("Id", System.Data.OleDb.OleDbType.Integer, 4, "Id")});
-            // 
-            // oleDbCommand3
-            // 
-            this.oleDbCommand3.CommandText = resources.GetString("oleDbCommand3.CommandText");
-            this.oleDbCommand3.Connection = this.connection;
-            this.oleDbCommand3.Parameters.AddRange(new System.Data.OleDb.OleDbParameter[] {
+			// 
+			// oleDbCommand3
+			// 
+			this.oleDbCommand3.CommandText = resources.GetString("oleDbCommand3.CommandText");
+			this.oleDbCommand3.Connection = this.connection;
+			this.oleDbCommand3.Parameters.AddRange(new System.Data.OleDb.OleDbParameter[] {
             new System.Data.OleDb.OleDbParameter("TypeId", System.Data.OleDb.OleDbType.Integer, 0, "TypeId"),
             new System.Data.OleDb.OleDbParameter("SubtypeId", System.Data.OleDb.OleDbType.Integer, 0, "SubtypeId"),
             new System.Data.OleDb.OleDbParameter("DifficultyLevelId", System.Data.OleDb.OleDbType.Integer, 0, "DifficultyLevelId"),
