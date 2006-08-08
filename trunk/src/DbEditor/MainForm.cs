@@ -5,34 +5,33 @@ using System.Windows.Forms;
 using Crownwood.Magic.Common;
 using Crownwood.Magic.Docking;
 using Crownwood.Magic.Menus;
-using GmatClubTest.ImportExport;
-using TabControl = Crownwood.Magic.Controls.TabControl;
+using TabControl=Crownwood.Magic.Controls.TabControl;
 
 namespace GmatClubTest.DbEditor
 {
-	public class MainForm : Form
-	{
-		private IContainer components;
-		private MenuCommand menuCommandFile;
-		private MenuCommand menuCommandEdit;
-		private MenuCommand menuCommandWindow;
-		private MenuCommand menuCommandHelp;
+    public class MainForm : Form
+    {
+        private IContainer components;
+        private MenuCommand menuCommandFile;
+        private MenuCommand menuCommandEdit;
+        private MenuCommand menuCommandWindow;
+        private MenuCommand menuCommandHelp;
         private ToolBar toolBar;
         private ImageList imageList24;
-		private ToolBarButton toolBarButtonSep1;
-		private ToolBarButton toolBarButtonCut;
-		private ToolBarButton toolBarButtonCopy;
-		private ToolBarButton toolBarButtonPaste;
-		private ToolBarButton toolBarButtonSep2;
-		private MenuControl menuControl;
-		private TabControl tabControl;
-		private Tree.Tree tree = new Tree.Tree();
-		private System.Windows.Forms.ToolBarButton toolBarButtonAddConnection;
-		private System.Windows.Forms.ToolBarButton toolBarButtonImportToDb;
-		private System.Windows.Forms.ToolBarButton toolBarButtonExportToAccess;
-		private System.Windows.Forms.ToolBarButton toolBarButtonAddTest;
-		private System.Windows.Forms.ToolBarButton toolBarButtonAddSet;
-		private System.Windows.Forms.ToolBarButton toolBarButtonSep3;
+        private ToolBarButton toolBarButtonSep1;
+        private ToolBarButton toolBarButtonCut;
+        private ToolBarButton toolBarButtonCopy;
+        private ToolBarButton toolBarButtonPaste;
+        private ToolBarButton toolBarButtonSep2;
+        private MenuControl menuControl;
+        private TabControl tabControl;
+        private Tree.Tree tree = new Tree.Tree();
+        private ToolBarButton toolBarButtonAddConnection;
+        private ToolBarButton toolBarButtonImportToDb;
+        private ToolBarButton toolBarButtonExportToAccess;
+        private ToolBarButton toolBarButtonAddTest;
+        private ToolBarButton toolBarButtonAddSet;
+        private ToolBarButton toolBarButtonSep3;
         private MenuCommand addConnectionMenuCommand;
         private ImageList imageList16;
         private MenuCommand exitMenuCommand;
@@ -46,60 +45,61 @@ namespace GmatClubTest.DbEditor
         private MenuCommand aboutMenuCommand;
         private MenuCommand menuCommandHelpSep1;
 
-		private DockingManager dockManager;
+        private DockingManager dockManager;
 
-		public MainForm()
-		{
-			//
-			// Required for Windows Form Designer support
-			//
-			InitializeComponent();
+        public MainForm()
+        {
+            //
+            // Required for Windows Form Designer support
+            //
+            InitializeComponent();
 
-			// Create the docking manager instance
-			dockManager = new DockingManager(this, VisualStyle.IDE);
+            // Create the docking manager instance
+            dockManager = new DockingManager(this, VisualStyle.IDE);
 
-			// Define innner/outer controls for correct docking operation
-			dockManager.InnerControl = tabControl;
-			dockManager.OuterControl = toolBar;
+            // Define innner/outer controls for correct docking operation
+            dockManager.InnerControl = tabControl;
+            dockManager.OuterControl = toolBar;
 
-			tree.ImageList = imageList16;
-		    
-			// Create content instances
+            tree.ImageList = imageList16;
+
+            // Create content instances
             Content c = dockManager.Contents.Add(Tree, "Connections", imageList16, 0);
 
             c.DisplaySize = new Size(230, c.DisplaySize.Height);
             c.AutoHideSize = new Size(230, c.DisplaySize.Height);
             c.FloatingSize = new Size(230, c.DisplaySize.Height);
-            
-			// Add to the display on the left hand side
-			dockManager.AddContentWithState(c, State.DockLeft);
 
-		 }
+            // Add to the display on the left hand side
+            dockManager.AddContentWithState(c, State.DockLeft);
+        }
 
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
-		protected override void Dispose( bool disposing )
-		{
-			if( disposing )
-			{
-				if (components != null) 
-				{
-					components.Dispose();
-				}
-			}
-			base.Dispose( disposing );
-		}
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (components != null)
+                {
+                    components.Dispose();
+                }
+            }
+            base.Dispose(disposing);
+        }
 
-		#region Windows Form Designer generated code
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
-		private void InitializeComponent()
-		{
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            System.ComponentModel.ComponentResourceManager resources =
+                new System.ComponentModel.ComponentResourceManager(typeof (MainForm));
             this.menuControl = new Crownwood.Magic.Menus.MenuControl();
             this.menuCommandFile = new Crownwood.Magic.Menus.MenuCommand();
             this.addConnectionMenuCommand = new Crownwood.Magic.Menus.MenuCommand();
@@ -140,14 +140,18 @@ namespace GmatClubTest.DbEditor
             this.menuControl.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.menuControl.Direction = Crownwood.Magic.Common.Direction.Horizontal;
             this.menuControl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.menuControl.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World);
+            this.menuControl.Font =
+                new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Regular,
+                                        System.Drawing.GraphicsUnit.World);
             this.menuControl.HighlightTextColor = System.Drawing.SystemColors.MenuText;
             this.menuControl.Location = new System.Drawing.Point(0, 0);
-            this.menuControl.MenuCommands.AddRange(new Crownwood.Magic.Menus.MenuCommand[] {
-            this.menuCommandFile,
-            this.menuCommandEdit,
-            this.menuCommandWindow,
-            this.menuCommandHelp});
+            this.menuControl.MenuCommands.AddRange(new Crownwood.Magic.Menus.MenuCommand[]
+                                                       {
+                                                           this.menuCommandFile,
+                                                           this.menuCommandEdit,
+                                                           this.menuCommandWindow,
+                                                           this.menuCommandHelp
+                                                       });
             this.menuControl.Name = "menuControl";
             this.menuControl.Size = new System.Drawing.Size(1018, 25);
             this.menuControl.Style = Crownwood.Magic.Common.VisualStyle.IDE;
@@ -158,10 +162,12 @@ namespace GmatClubTest.DbEditor
             // menuCommandFile
             // 
             this.menuCommandFile.Description = "MenuItem";
-            this.menuCommandFile.MenuCommands.AddRange(new Crownwood.Magic.Menus.MenuCommand[] {
-            this.addConnectionMenuCommand,
-            this.menuCommandSep1,
-            this.exitMenuCommand});
+            this.menuCommandFile.MenuCommands.AddRange(new Crownwood.Magic.Menus.MenuCommand[]
+                                                           {
+                                                               this.addConnectionMenuCommand,
+                                                               this.menuCommandSep1,
+                                                               this.exitMenuCommand
+                                                           });
             this.menuCommandFile.Text = "&File";
             // 
             // addConnectionMenuCommand
@@ -174,7 +180,8 @@ namespace GmatClubTest.DbEditor
             // 
             // imageList16
             // 
-            this.imageList16.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList16.ImageStream")));
+            this.imageList16.ImageStream =
+                ((System.Windows.Forms.ImageListStreamer) (resources.GetObject("imageList16.ImageStream")));
             this.imageList16.TransparentColor = System.Drawing.Color.Fuchsia;
             this.imageList16.Images.SetKeyName(0, "");
             this.imageList16.Images.SetKeyName(1, "Database-Disabled.bmp");
@@ -213,12 +220,14 @@ namespace GmatClubTest.DbEditor
             // menuCommandEdit
             // 
             this.menuCommandEdit.Description = "MenuItem";
-            this.menuCommandEdit.MenuCommands.AddRange(new Crownwood.Magic.Menus.MenuCommand[] {
-            this.addTestMenuCommand,
-            this.addSetMenuCommand,
-            this.menuCommandEditSep1,
-            this.importTestmenuCommand,
-            this.exportTestmenuCommand});
+            this.menuCommandEdit.MenuCommands.AddRange(new Crownwood.Magic.Menus.MenuCommand[]
+                                                           {
+                                                               this.addTestMenuCommand,
+                                                               this.addSetMenuCommand,
+                                                               this.menuCommandEditSep1,
+                                                               this.importTestmenuCommand,
+                                                               this.exportTestmenuCommand
+                                                           });
             this.menuCommandEdit.Text = "&Edit";
             // 
             // addTestMenuCommand
@@ -267,10 +276,12 @@ namespace GmatClubTest.DbEditor
             // menuCommandHelp
             // 
             this.menuCommandHelp.Description = "MenuItem";
-            this.menuCommandHelp.MenuCommands.AddRange(new Crownwood.Magic.Menus.MenuCommand[] {
-            this.helpMenuCommand,
-            this.menuCommandHelpSep1,
-            this.aboutMenuCommand});
+            this.menuCommandHelp.MenuCommands.AddRange(new Crownwood.Magic.Menus.MenuCommand[]
+                                                           {
+                                                               this.helpMenuCommand,
+                                                               this.menuCommandHelpSep1,
+                                                               this.aboutMenuCommand
+                                                           });
             this.menuCommandHelp.Text = "&Help";
             // 
             // helpMenuCommand
@@ -294,7 +305,8 @@ namespace GmatClubTest.DbEditor
             // 
             // imageList24
             // 
-            this.imageList24.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList24.ImageStream")));
+            this.imageList24.ImageStream =
+                ((System.Windows.Forms.ImageListStreamer) (resources.GetObject("imageList24.ImageStream")));
             this.imageList24.TransparentColor = System.Drawing.Color.Fuchsia;
             this.imageList24.Images.SetKeyName(0, "");
             this.imageList24.Images.SetKeyName(1, "");
@@ -310,18 +322,20 @@ namespace GmatClubTest.DbEditor
             // toolBar
             // 
             this.toolBar.Appearance = System.Windows.Forms.ToolBarAppearance.Flat;
-            this.toolBar.Buttons.AddRange(new System.Windows.Forms.ToolBarButton[] {
-            this.toolBarButtonAddConnection,
-            this.toolBarButtonSep1,
-            this.toolBarButtonAddTest,
-            this.toolBarButtonAddSet,
-            this.toolBarButtonSep2,
-            this.toolBarButtonCut,
-            this.toolBarButtonCopy,
-            this.toolBarButtonPaste,
-            this.toolBarButtonSep3,
-            this.toolBarButtonExportToAccess,
-            this.toolBarButtonImportToDb});
+            this.toolBar.Buttons.AddRange(new System.Windows.Forms.ToolBarButton[]
+                                              {
+                                                  this.toolBarButtonAddConnection,
+                                                  this.toolBarButtonSep1,
+                                                  this.toolBarButtonAddTest,
+                                                  this.toolBarButtonAddSet,
+                                                  this.toolBarButtonSep2,
+                                                  this.toolBarButtonCut,
+                                                  this.toolBarButtonCopy,
+                                                  this.toolBarButtonPaste,
+                                                  this.toolBarButtonSep3,
+                                                  this.toolBarButtonExportToAccess,
+                                                  this.toolBarButtonImportToDb
+                                              });
             this.toolBar.ButtonSize = new System.Drawing.Size(30, 30);
             this.toolBar.DropDownArrows = true;
             this.toolBar.ImageList = this.imageList24;
@@ -330,7 +344,8 @@ namespace GmatClubTest.DbEditor
             this.toolBar.ShowToolTips = true;
             this.toolBar.Size = new System.Drawing.Size(1018, 36);
             this.toolBar.TabIndex = 1;
-            this.toolBar.ButtonClick += new System.Windows.Forms.ToolBarButtonClickEventHandler(this.toolBar_ButtonClick);
+            this.toolBar.ButtonClick +=
+                new System.Windows.Forms.ToolBarButtonClickEventHandler(this.toolBar_ButtonClick);
             // 
             // toolBarButtonAddConnection
             // 
@@ -417,7 +432,7 @@ namespace GmatClubTest.DbEditor
             this.Controls.Add(this.toolBar);
             this.Controls.Add(this.menuControl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Icon = ((System.Drawing.Icon) (resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(1024, 768);
             this.Name = "MainForm";
@@ -427,75 +442,78 @@ namespace GmatClubTest.DbEditor
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
+        }
 
-		}
-		#endregion
+        #endregion
 
-		/// <summary>
-		/// The main entry point for the application.
-		/// </summary>
-		[STAThread]
-		static void Main() 
-		{
-			ApplicationController.Instance.Start();
-		}
+        /// <summary>
+        /// The main entry point for the application.
+        /// </summary>
+        [STAThread]
+        private static void Main()
+        {
+            ApplicationController.Instance.Start();
+        }
 
-		private void MainForm_Load(object sender, EventArgs e)
-		{
-			tree.LoadTree();
-		}
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            tree.LoadTree();
+        }
 
-		private void toolBar_ButtonClick(object sender, System.Windows.Forms.ToolBarButtonClickEventArgs e)
-		{
-			if (e.Button == toolBarButtonAddConnection) {ApplicationController.Instance.AddConnection(); return;}
-		    if (e.Button == toolBarButtonExportToAccess)
-		    {
-		       ApplicationController.Instance.ExportTest();
-		        return;
-		    }
-		    if (e.Button == toolBarButtonImportToDb)
-		    {
-		       ApplicationController.Instance.ImportTest();
-		       return;
-		    }
-		    
-		    if(e.Button == toolBarButtonAddTest)
-		    {
+        private void toolBar_ButtonClick(object sender, ToolBarButtonClickEventArgs e)
+        {
+            if (e.Button == toolBarButtonAddConnection)
+            {
+                ApplicationController.Instance.AddConnection();
+                return;
+            }
+            if (e.Button == toolBarButtonExportToAccess)
+            {
+                ApplicationController.Instance.ExportTest();
+                return;
+            }
+            if (e.Button == toolBarButtonImportToDb)
+            {
+                ApplicationController.Instance.ImportTest();
+                return;
+            }
+
+            if (e.Button == toolBarButtonAddTest)
+            {
                 ApplicationController.Instance.AddNewTest();
                 return;
-		    }
-		    if(e.Button == toolBarButtonAddSet)
-		    {
+            }
+            if (e.Button == toolBarButtonAddSet)
+            {
                 ApplicationController.Instance.AddNewQuestionSet();
                 return;
-		    }
-		    
-		}
+            }
+        }
 
-		private void MainForm_Closed(object sender, System.EventArgs e)
-		{
-			tree.SaveTree();
-		}
+        private void MainForm_Closed(object sender, EventArgs e)
+        {
+            tree.SaveTree();
+        }
 
-		public Tree.Tree Tree
-		{
-			get { return tree; }
-		}
+        public Tree.Tree Tree
+        {
+            get { return tree; }
+        }
 
-		public TabControl TabControl
-		{
-			get { return tabControl; }
-		}
+        public TabControl TabControl
+        {
+            get { return tabControl; }
+        }
 
         private void addConnectionMenuCommand_Click(object sender, EventArgs e)
         {
             ApplicationController.Instance.AddConnection();
         }
-          
+
 
         private void exitMenuCommand_Click(object sender, EventArgs e)
         {
-            this.Dispose();
+            Dispose();
         }
 
         private void exportTestmenuCommand_Click(object sender, EventArgs e)
@@ -529,6 +547,5 @@ namespace GmatClubTest.DbEditor
             AboutForm af = new AboutForm();
             af.ShowDialog();
         }
-
-	}
+    }
 }

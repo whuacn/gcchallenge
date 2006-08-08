@@ -4,50 +4,52 @@ using System.Windows.Forms;
 
 namespace GmatClubTest.DbEditor
 {
-	public class ProcessingForm : Form
-	{
-		private GroupBox groupBox;
-		public ProgressBar progressBar;
-		private Label label;
-		/// <summary>
-		/// Required designer variable.
-		/// </summary>
-		private Container components = null;
+    public class ProcessingForm : Form
+    {
+        private GroupBox groupBox;
+        public ProgressBar progressBar;
+        private Label label;
 
-		public ProcessingForm()
-		{
-			//
-			// Required for Windows Form Designer support
-			//
-			InitializeComponent();
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private Container components = null;
 
-			//
-			// TODO: Add any constructor code after InitializeComponent call
-			//
-		}
+        public ProcessingForm()
+        {
+            //
+            // Required for Windows Form Designer support
+            //
+            InitializeComponent();
 
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
-		protected override void Dispose( bool disposing )
-		{
-			if( disposing )
-			{
-				if(components != null)
-				{
-					components.Dispose();
-				}
-			}
-			base.Dispose( disposing );
-		}
+            //
+            // TODO: Add any constructor code after InitializeComponent call
+            //
+        }
 
-		#region Windows Form Designer generated code
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
-		private void InitializeComponent()
-		{
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (components != null)
+                {
+                    components.Dispose();
+                }
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
             this.groupBox = new System.Windows.Forms.GroupBox();
             this.label = new System.Windows.Forms.Label();
             this.progressBar = new System.Windows.Forms.ProgressBar();
@@ -71,8 +73,11 @@ namespace GmatClubTest.DbEditor
             // label
             // 
             this.label.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.label.Font =
+                new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold,
+                                        System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label.ForeColor =
+                System.Drawing.Color.FromArgb(((int) (((byte) (0)))), ((int) (((byte) (0)))), ((int) (((byte) (192)))));
             this.label.Location = new System.Drawing.Point(16, 40);
             this.label.Name = "label";
             this.label.Size = new System.Drawing.Size(456, 16);
@@ -103,53 +108,58 @@ namespace GmatClubTest.DbEditor
             this.TopMost = true;
             this.groupBox.ResumeLayout(false);
             this.ResumeLayout(false);
+        }
 
-		}
-		#endregion
+        #endregion
+
         public string Caption
-		{
-			get {return groupBox.Text;}
-			set {groupBox.Text = value;}
-		}
+        {
+            get { return groupBox.Text; }
+            set { groupBox.Text = value; }
+        }
 
-		public string Operation
-		{
-			get {return label.Text;}
-			set {label.Text = value;}
-		}
+        public string Operation
+        {
+            get { return label.Text; }
+            set { label.Text = value; }
+        }
 
-		public int Progress
-		{
-			get {return progressBar.Value;}
-			set {progressBar.Value = value;}
-		}
-        DateTime startDT;
-        bool first;
-        int i = 0;
-	    public void ReDrowProgress()
-	    {
+        public int Progress
+        {
+            get { return progressBar.Value; }
+            set { progressBar.Value = value; }
+        }
+
+        private DateTime startDT;
+        private bool first;
+        private int i = 0;
+
+        public void ReDrowProgress()
+        {
             TimeSpan m = (DateTime.Now - startDT);
             if ((m.TotalMilliseconds > i) || (first))
             {
-                if (first) { Update(); i = 0; }
+                if (first)
+                {
+                    Update();
+                    i = 0;
+                }
                 first = false;
 
-                if (progressBar.Value == progressBar.Maximum -1)
+                if (progressBar.Value == progressBar.Maximum - 1)
                 {
                     progressBar.Value = 0;
                 }
                 progressBar.Value += 1;
                 i += 25;
             }
-                
-	    }
-	    
+        }
+
         public void StartSomeProcess()
         {
             startDT = DateTime.Now;
             progressBar.Style = ProgressBarStyle.Marquee;
             first = true;
         }
-
-	}
+    }
 }

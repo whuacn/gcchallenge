@@ -12,7 +12,7 @@ using Microsoft.Win32;
 
 namespace GmatClubTest.DbEditor
 {
-	public class QuestionSetEditor : Editor
+   public class QuestionSetEditor : Editor
     {
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button buttonUp;
@@ -55,22 +55,22 @@ namespace GmatClubTest.DbEditor
         private Label label2;
         private Label label3;
         private DataGridViewTextBoxColumn questionIdDataGridViewTextBoxColumn;
-	
-		public QuestionSetEditor(QuestionSet questionSet): base(questionSet)
-		{
-			InitializeComponent();
-		}
+   
+      public QuestionSetEditor(QuestionSet questionSet): base(questionSet)
+      {
+         InitializeComponent();
+      }
 
         public static string APP_CAPTION = "GMAT Club Test - Database Editor";
         public bool questionHasChanges = false;
-	    
-		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
-		/// the contents of this method with the code editor.
-		/// </summary>
-		private void InitializeComponent()
-		{
+       
+      #region Component Designer generated code
+      /// <summary> 
+      /// Required method for Designer support - do not modify 
+      /// the contents of this method with the code editor.
+      /// </summary>
+      private void InitializeComponent()
+      {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuestionSetEditor));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -581,8 +581,8 @@ namespace GmatClubTest.DbEditor
             this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
-		}
-		#endregion
+      }
+      #endregion
 
 
         public override void SaveCurrentEdit()
@@ -603,39 +603,39 @@ namespace GmatClubTest.DbEditor
             }
             
         }
-	    
-		public override String ObjectName
-		{
-			get { return "question set '" + ((QuestionSet)dbObject).Value.Name + "'"; }
-		}
+       
+      public override String ObjectName
+      {
+         get { return "question set '" + ((QuestionSet)dbObject).Value.Name + "'"; }
+      }
 
-		public override int Id
-		{
-			get { return ((QuestionSet)dbObject).Value.Id; }
-		}
+      public override int Id
+      {
+         get { return ((QuestionSet)dbObject).Value.Id; }
+      }
 
-	    public void GetAllQuestions(Dataset ds)
-	    {
+       public void GetAllQuestions(Dataset ds)
+       {
             dbObject.GetAllQuestionsEx(ds); 
-	    }
-	    
-		public override void SetBindingPosition()
-		{
-			int pos = 0;
-			QuestionSet d = ((QuestionSet)dbObject);
-			foreach (Dataset.QuestionSetsExRow row in dbObject.FullDataset.QuestionSetsEx.Rows)
-			{
-				if (row.Id == d.Value.Id) break;
-				++pos;
+       }
+       
+      public override void SetBindingPosition()
+      {
+         int pos = 0;
+         QuestionSet d = ((QuestionSet)dbObject);
+         foreach (Dataset.QuestionSetsExRow row in dbObject.FullDataset.QuestionSetsEx.Rows)
+         {
+            if (row.Id == d.Value.Id) break;
+            ++pos;
             }
-			BindingContext[data,"QuestionSetsEx"].Position = pos;
-		}
+         BindingContext[data,"QuestionSetsEx"].Position = pos;
+      }
 
-		public override void EndCurrentEdit()
-		{
-			BindingContext[data,"QuestionSetsEx"].EndCurrentEdit();
-		    
-		}
+      public override void EndCurrentEdit()
+      {
+         BindingContext[data,"QuestionSetsEx"].EndCurrentEdit();
+          
+      }
 
         Dataset ds;
         private void QuestionSetEditor_Load(object sender, EventArgs e)
@@ -668,10 +668,10 @@ namespace GmatClubTest.DbEditor
             questionSetsDataGrid.Sort(questionSetsDataGrid.Columns[questionOrderDataGridViewTextBoxColumn.Index], direction);
         }
         private int[] pasId;
-	    
+       
 
-	    private void RefreshSetInfo()
-	    {
+       private void RefreshSetInfo()
+       {
             nameTextBox.Text = data.QuestionSetsEx.FindById(Id).Name;
             descriptionTextBox.Text = data.QuestionSetsEx.FindById(Id).Description;
             timeLable.Text = data.QuestionSetsEx.FindById(Id).IsTimeLimitNull() ? "Unlimited" : data.QuestionSetsEx.FindById(Id).TimeLimit.ToString() + " min";
@@ -686,10 +686,10 @@ namespace GmatClubTest.DbEditor
             inZone1.Text = data.QuestionSetsEx.FindById(Id).NumberOfQuestionsInZone1.ToString();
             inZone2.Text = data.QuestionSetsEx.FindById(Id).NumberOfQuestionsInZone2.ToString();
             inZone3.Text = data.QuestionSetsEx.FindById(Id).NumberOfQuestionsInZone3.ToString();
-	    }
+       }
 
         
-	    
+       
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -861,5 +861,5 @@ namespace GmatClubTest.DbEditor
             ds.QuestionSetsEx.FindById(Id).Description = descriptionTextBox.Text;
             dbObject.FullDataset.QuestionSetsEx.FindById(Id).Name += "";
         }
-	}
+   }
 }

@@ -7,22 +7,11 @@
 //===========================================================================
 
 
-using System;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-using GmatClubTest.Web;
-
 
 namespace GMATClubTest.Web
- {
-
-
-abstract public class DescriptionWebForm :  Page
 {
-
-
-}
-
-
-
+    public abstract class DescriptionWebForm : Page
+    {
+    }
 }

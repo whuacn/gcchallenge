@@ -30,7 +30,7 @@ Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "DbEditorSetup", "DbEditorSe
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "C:\...\GMATClubChallenge.com\", "GMATClubChallenge.com\", "{1CDB4AFA-9C0E-44BA-8758-2BA02BA005EA}"
 	ProjectSection(WebsiteProperties) = preProject
-		ProjectReferences = "{9AB869C1-D70C-48BE-9D63-F3566DB773D2}|QuestionRenderer.dll;{DBF7937E-CB3F-4D17-8097-648286226E0C}|DataProvider.dll;{A97069E2-8E61-4279-8056-793432FA023A}|BusinessLogic.dll;"
+		ProjectReferences = "{A97069E2-8E61-4279-8056-793432FA023A}|BusinessLogic.dll;{9AB869C1-D70C-48BE-9D63-F3566DB773D2}|QuestionRenderer.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/GMATClubChallenge.com"
 		Debug.AspNetCompiler.PhysicalPath = "GMATClubChallenge.com\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\GMATClubChallenge.com\"

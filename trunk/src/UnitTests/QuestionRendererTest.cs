@@ -10,27 +10,29 @@ using NUnit.Framework;
 
 namespace GmatClubTest.UnitTests
 {
-	/// <summary>
-	/// Summary description for QuestionRendererTest.
-	/// </summary>
-	[TestFixture]
-	public class QuestionRendererTest
-	{
-		private Random random = new Random();
-		private Manager manager;
-		private Renderer renderer = new Renderer();
-		private String text;
+    /// <summary>
+    /// Summary description for QuestionRendererTest.
+    /// </summary>
+    [TestFixture]
+    public class QuestionRendererTest
+    {
+        private Random random = new Random();
+        private Manager manager;
+        private Renderer renderer = new Renderer();
+        private String text;
 
-		[TestFixtureSetUp] 
-		public void Init()
-		{
-			//manager = Manager.CreareManagerUseSql(SystemInformation.ComputerName);
-			UserSet u = new UserSet(); 
-			manager.CreateUser("UnitTestUser" + random.Next().ToString(), random.Next().ToString(), "UnitTestUserName", u);
-			manager.UserId = u.Users[0].Id;
+        [TestFixtureSetUp]
+        public void Init()
+        {
+            manager = Manager.CreareManagerUseSql(SystemInformation.ComputerName, "re2085", "sys1157");
+            UserSet u = new UserSet();
+            manager.CreateUser("UnitTestUser" + random.Next().ToString(), random.Next().ToString(), "UnitTestUserName",
+                               u);
+            manager.UserId = u.Users[0].Id;
 
-			String formula1 = "<math><mfrac><mi>x</mi><mi>y</mi></mfrac></math>";
-			String formula2 = @"<math display = 'block'>
+            String formula1 = "<math><mfrac><mi>x</mi><mi>y</mi></mfrac></math>";
+            String formula2 =
+                @"<math display = 'block'>
   <mrow>
     <mi>x</mi>
     <mo>=</mo>
@@ -56,7 +58,8 @@ namespace GmatClubTest.UnitTests
     </mroot>
   </mrow>
 </math>";
-			String formula3 = @"<math display = 'block'>
+            String formula3 =
+                @"<math display = 'block'>
   <mtable columnalign = 'left'>
     <mtr>
       <mtd>
@@ -128,60 +131,64 @@ namespace GmatClubTest.UnitTests
   </mtable>
 </math>";
 
-			text = "Test Question.\nIt is a very long line. It is a very long line. It is a very long line. It is a very long line. It is a very long line. It is a very long line. It is a very long line.\nFormula1: '" + formula1 + "' Continue!\nFormula2: '" + formula2 + "'\n" + formula3 + "\n----------";
-		}
+            text =
+                "Test Question.\nIt is a very long line. It is a very long line. It is a very long line. It is a very long line. It is a very long line. It is a very long line. It is a very long line.\nFormula1: '" +
+                formula1 + "' Continue!\nFormula2: '" + formula2 + "'\n" + formula3 + "\n----------";
+        }
 
-		[TestFixtureTearDown] 
-		public void Dispose()
-		{
-			UserSet u = new UserSet();
-			manager.GetUsers(u);
+        [TestFixtureTearDown]
+        public void Dispose()
+        {
+            UserSet u = new UserSet();
+            manager.GetUsers(u);
 
-			foreach (UserSet.UsersRow row in u.Users.Rows)
-				if (row.Login.StartsWith("UnitTestUser")) row.Delete();
-			
-			manager.UpdateUsers(u);
+            foreach (UserSet.UsersRow row in u.Users.Rows)
+                if (row.Login.StartsWith("UnitTestUser")) row.Delete();
 
-			manager.Dispose();
-		}
+            manager.UpdateUsers(u);
 
-		[Test]
-		public void RenderToString()
-		{
-			Console.WriteLine(renderer.RenderToString(text));
-		}
+            manager.Dispose();
+        }
 
-		[Test]
-		public void Render()
-		{
-			string fileName = "c:\\test.gif";
-			File.Exists(fileName);
-			File.Delete(fileName);
+        [Test]
+        public void RenderToString()
+        {
+            Console.WriteLine(renderer.RenderToString(text));
+        }
 
-			QuestionAnswerSet q = new QuestionAnswerSet();
+        [Test]
+        public void Render()
+        {
+            string fileName = "c:\\test.gif";
+            File.Exists(fileName);
+            File.Delete(fileName);
 
-			Bitmap bitmap = new Bitmap(50, 50, PixelFormat.Format16bppRgb555);
+            QuestionAnswerSet q = new QuestionAnswerSet();
 
-			for (int i = 0; i < 50; ++i)
-				bitmap.SetPixel(i, i, Color.Red);
+            Bitmap bitmap = new Bitmap(50, 50, PixelFormat.Format16bppRgb555);
 
-			MemoryStream stream = new MemoryStream();
-			bitmap.Save(stream, ImageFormat.Gif);
-			
-			byte[] picture = stream.GetBuffer();
+            for (int i = 0; i < 50; ++i)
+                bitmap.SetPixel(i, i, Color.Red);
 
-			QuestionAnswerSet.QuestionsRow row = q.Questions.AddQuestionsRow((byte)Question.Type.Quantitative, (byte)Question.Subtype.DataSufficiency, 0, text, picture);
+            MemoryStream stream = new MemoryStream();
+            bitmap.Save(stream, ImageFormat.Gif);
 
-			ImageSet set = renderer.Render(row);
+            byte[] picture = stream.GetBuffer();
 
-			//set.Question.Save(fileName, ImageFormat.Gif);
+            QuestionAnswerSet.QuestionsRow row =
+                q.Questions.AddQuestionsRow((byte) Question.Type.Quantitative, (byte) Question.Subtype.DataSufficiency,
+                                            0, text, picture);
 
-			int j = 0;
-			foreach (Image image in set.Answers)
-			{
-				image.Save(fileName + j.ToString(), ImageFormat.Gif);
-				++j;
-			}
-		}
-	}
+            ImageSet set = renderer.Render(row);
+
+            //set.Question.Save(fileName, ImageFormat.Gif);
+
+            int j = 0;
+            foreach (Image image in set.Answers)
+            {
+                image.Save(fileName + j.ToString(), ImageFormat.Gif);
+                ++j;
+            }
+        }
+    }
 }

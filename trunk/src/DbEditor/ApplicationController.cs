@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.ComponentModel;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
@@ -9,48 +10,50 @@ using GmatClubTest.UnexpectedExceptionDialog;
 
 namespace GmatClubTest.DbEditor
 {
-	/// <summary>
-	/// Summary description for ApplicationController.
-	/// </summary>
-	public class ApplicationController
-	{
-		private static ApplicationController theOnlyOneInstance = new ApplicationController();
-		private static MainForm mainForm = null;
-		public static string APP_CAPTION = "GMAT Club Test - Database Editor";
-		public static string APP_DIR = Application.UserAppDataPath + "\\GmatClubTest - DbEditor\\";
-		
-		//Connection -> EditingDatabase
-		private Hashtable editingDatabases = new Hashtable();
+    /// <summary>
+    /// Summary description for ApplicationController.
+    /// </summary>
+    public class ApplicationController
+    {
+        private static ApplicationController theOnlyOneInstance = new ApplicationController();
+        private static MainForm mainForm = null;
+        public static string APP_CAPTION = "GMAT Club Test - Database Editor";
+        public static string APP_DIR = Application.UserAppDataPath + "\\GmatClubTest - DbEditor\\";
 
-		private ApplicationController()
-		{
-			Entity.Deleted += new GmatClubTest.DbEditor.Tree.Entity.DeleteEventHandler(Entity_Deleted);
-		}
+        //Connection -> EditingDatabase
+        private Hashtable editingDatabases = new Hashtable();
 
-		public static ApplicationController Instance
-		{
-			get {return theOnlyOneInstance;}
-		}
+        private ApplicationController()
+        {
+            Entity.Deleted += new Entity.DeleteEventHandler(Entity_Deleted);
+        }
 
-		public static MainForm MainForm
-		{
-			get {return mainForm;}
-		}
+        public static ApplicationController Instance
+        {
+            get { return theOnlyOneInstance; }
+        }
 
-		#region Exception management
+        public static MainForm MainForm
+        {
+            get { return mainForm; }
+        }
 
-		private static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
-		{
+        #region Exception management
+
+        private static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
+        {
             try
             {
-                if (e.Exception.Message == "Failed to enable constraints. One or more rows contain values violating non-null, unique, or foreign-key constraints.")
+                if (e.Exception.Message ==
+                    "Failed to enable constraints. One or more rows contain values violating non-null, unique, or foreign-key constraints."
+                    )
                 {
                     MessageBox.Show("Error in databese. Plese check database", APP_CAPTION,
-                       MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                                    MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     return;
                 }
 //#if DEBUG
-			
+
                 ExceptionBox.Show(e.Exception);
 //#endif
 //#if !DEBUG
@@ -63,62 +66,61 @@ namespace GmatClubTest.DbEditor
                 try
                 {
                     MessageBox.Show("Fatal error. Application will be closed.", APP_CAPTION,
-                        MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                                    MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 }
                 finally
                 {
                     Application.Exit();
                 }
             }
-			
-		}
+        }
 
-		#endregion
+        #endregion
 
-		public void Start()
-		{
-			try
-			{
-				Application.ThreadException += new ThreadExceptionEventHandler(Application_ThreadException);
-				Directory.CreateDirectory(APP_DIR);
-			    
-				mainForm = new MainForm();
-				mainForm.Closing += new System.ComponentModel.CancelEventHandler(mainForm_Closing);
-				
-				Application.Run(mainForm);
-			} 
-			catch(Exception e)
-			{
-				ExceptionBox.Show(e);
-			} 
-		}
+        public void Start()
+        {
+            try
+            {
+                Application.ThreadException += new ThreadExceptionEventHandler(Application_ThreadException);
+                Directory.CreateDirectory(APP_DIR);
 
-		public void AddConnection()
-		{
-			EditConnectionForm f = new EditConnectionForm(new Connection());
+                mainForm = new MainForm();
+                mainForm.Closing += new CancelEventHandler(mainForm_Closing);
 
-			if (f.ShowDialog() == DialogResult.OK)
-			{
-				mainForm.Tree.Connections.Add(f.Connection);
-				mainForm.Tree.DrawTree();
-			}
-		}
+                Application.Run(mainForm);
+            }
+            catch (Exception e)
+            {
+                ExceptionBox.Show(e);
+            }
+        }
 
-		public void Refresh()
-		{
-			foreach (Connection c in mainForm.Tree.Connections)
-			{
+        public void AddConnection()
+        {
+            EditConnectionForm f = new EditConnectionForm(new Connection());
+
+            if (f.ShowDialog() == DialogResult.OK)
+            {
+                mainForm.Tree.Connections.Add(f.Connection);
+                mainForm.Tree.DrawTree();
+            }
+        }
+
+        public void Refresh()
+        {
+            foreach (Connection c in mainForm.Tree.Connections)
+            {
                 if (c.Opened)
                 {
                     c.Refresh();
                 }
-			}
-			mainForm.Tree.DrawTree();
-		}
+            }
+            mainForm.Tree.DrawTree();
+        }
 
-		public void Refresh(Connection connection)
-		{
-            EditingDatabase ed = (EditingDatabase)editingDatabases[connection];
+        public void Refresh(Connection connection)
+        {
+            EditingDatabase ed = (EditingDatabase) editingDatabases[connection];
             if (ed != null)
             {
                 if (!ed.Closing()) return;
@@ -126,78 +128,81 @@ namespace GmatClubTest.DbEditor
                 editingDatabases.Remove(connection);
             }
             connection.Refresh();
-		}
+        }
 
-		public void DeleteEntities()
-		{
-			Entity[] es = mainForm.Tree.SelectedEntities;
-          
-			if (DialogResult.Yes == MessageBox.Show("Do you really want to delete the selected objects?", APP_CAPTION, MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
-			{
-				mainForm.Tree.SuspendLayout();
-				try
-				{
-					foreach (Entity entity in es)
-					{
-						if (entity is Connection)
-							mainForm.Tree.Connections.Remove(entity);
-						else
-							entity.Parent.RemoveChild(entity);
-					}
+        public void DeleteEntities()
+        {
+            Entity[] es = mainForm.Tree.SelectedEntities;
 
-					mainForm.Tree.DrawTree();	
-				} finally
-				{
-					mainForm.Tree.ResumeLayout();
-				}
-			}
-		}
-	    
-	 
-		private void Entity_Deleted(Entity en)
-		{
-			if (en is Connection)
-				((Connection)en).Close();
-		}
+            if (DialogResult.Yes ==
+                MessageBox.Show("Do you really want to delete the selected objects?", APP_CAPTION,
+                                MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+            {
+                mainForm.Tree.SuspendLayout();
+                try
+                {
+                    foreach (Entity entity in es)
+                    {
+                        if (entity is Connection)
+                            mainForm.Tree.Connections.Remove(entity);
+                        else
+                            entity.Parent.RemoveChild(entity);
+                    }
 
-		public void RunDefaultAction(Entity entity)
-		{
-			if (entity is Connection)
-			{
-				OpenConnection((Connection)entity);
-				return;
-			}
+                    mainForm.Tree.DrawTree();
+                }
+                finally
+                {
+                    mainForm.Tree.ResumeLayout();
+                }
+            }
+        }
 
-			if (entity is DbObject)
-			{
-				Edit((DbObject)entity);
-				return;
-			}
-		}
 
-		private void EditQuestionSet(QuestionSet questionSet)
-		{
-			EditingDatabase ed = GetEditingDatabase(questionSet);
-			ed.EditQuestionSet(questionSet);
-		}
+        private void Entity_Deleted(Entity en)
+        {
+            if (en is Connection)
+                ((Connection) en).Close();
+        }
+
+        public void RunDefaultAction(Entity entity)
+        {
+            if (entity is Connection)
+            {
+                OpenConnection((Connection) entity);
+                return;
+            }
+
+            if (entity is DbObject)
+            {
+                Edit((DbObject) entity);
+                return;
+            }
+        }
+
+        private void EditQuestionSet(QuestionSet questionSet)
+        {
+            EditingDatabase ed = GetEditingDatabase(questionSet);
+            ed.EditQuestionSet(questionSet);
+        }
 
         private void EditQuestion(Question question)
         {
             Connection c = question.connection;
-            EditingDatabase ed = (EditingDatabase)editingDatabases[c];
+            EditingDatabase ed = (EditingDatabase) editingDatabases[c];
             if (ed == null)
             {
                 ed = new EditingDatabase(c);
                 editingDatabases.Add(c, ed);
             }
-           
+
             ed.EditQuestion(question);
         }
 
         private void EditPassageQuestion(PassageQuestion question)
         {
             Connection c = question.connection;
-            EditingDatabase ed = (EditingDatabase)editingDatabases[c];
+            EditingDatabase ed = (EditingDatabase) editingDatabases[c];
             if (ed == null)
             {
                 ed = new EditingDatabase(c);
@@ -206,145 +211,145 @@ namespace GmatClubTest.DbEditor
 
             ed.EditPassageQuestion(question);
         }
-	    
-		private void EditTest(Test test)
-		{
-			EditingDatabase ed = GetEditingDatabase(test);
-			ed.EditTest(test);
-		}
 
-		private EditingDatabase GetEditingDatabase(Entity entity)
-		{
-			Connection c = (Connection)entity.Root;
-			EditingDatabase ed = (EditingDatabase)editingDatabases[c];
-			if (ed == null)
-			{
-				ed = new EditingDatabase(c);
-				editingDatabases.Add(c, ed);
-			}
-			return ed;
-		}
+        private void EditTest(Test test)
+        {
+            EditingDatabase ed = GetEditingDatabase(test);
+            ed.EditTest(test);
+        }
 
-		public void OpenConnection(Connection connection)
-		{
+        private EditingDatabase GetEditingDatabase(Entity entity)
+        {
+            Connection c = (Connection) entity.Root;
+            EditingDatabase ed = (EditingDatabase) editingDatabases[c];
+            if (ed == null)
+            {
+                ed = new EditingDatabase(c);
+                editingDatabases.Add(c, ed);
+            }
+            return ed;
+        }
+
+        public void OpenConnection(Connection connection)
+        {
 #if !DEBUG
 bool resetPasswordOnFail = false;
-			try
-			{
+         try
+         {
 #endif
 
 #if DEBUG
-			connection.Password = connection.DbType == Connection.Type.Access ? "q&b3pz>#_24" : "sys1157";
+            connection.Password = connection.DbType == Connection.Type.Access ? "q&b3pz>#_24" : "sys1157";
 #endif
-			if (connection.Password.Length == 0)
-			{
-				InputPasswordForm f = new InputPasswordForm();
-				if (DialogResult.OK != f.ShowDialog()) return;
-				connection.Password = f.Password;
+            if (connection.Password.Length == 0)
+            {
+                InputPasswordForm f = new InputPasswordForm();
+                if (DialogResult.OK != f.ShowDialog()) return;
+                connection.Password = f.Password;
 #if !DEBUG
-				resetPasswordOnFail = true;
+            resetPasswordOnFail = true;
 #endif
             }
 
-			connection.Open();
+            connection.Open();
 #if !DEBUG
-			} catch (Exception e)
-			{
-				if (resetPasswordOnFail) connection.Password = "";
-				MessageBox.Show("Cannot connect to the database: " + e.Message, APP_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
+         } catch (Exception e)
+         {
+            if (resetPasswordOnFail) connection.Password = "";
+            MessageBox.Show("Cannot connect to the database: " + e.Message, APP_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Error);
+         }
 #endif
-		}
+        }
 
-		public void CloseConnection(Connection connection)
-		{
-			EditingDatabase ed = (EditingDatabase)editingDatabases[connection];
-			if (ed != null)
-			{
-				if (!ed.Closing()) return;
-				ed.Close();
-				editingDatabases.Remove(connection);
-			}
-			
-			connection.Close();
-		}
+        public void CloseConnection(Connection connection)
+        {
+            EditingDatabase ed = (EditingDatabase) editingDatabases[connection];
+            if (ed != null)
+            {
+                if (!ed.Closing()) return;
+                ed.Close();
+                editingDatabases.Remove(connection);
+            }
 
-		public void EditConnection(Connection connection)
-		{
-			Connection clone = (Connection)connection.Clone();
-			EditConnectionForm f = new EditConnectionForm(clone);
+            connection.Close();
+        }
 
-			if (f.ShowDialog() == DialogResult.OK)
-			{
-				bool wasOpened = connection.Opened;
-				if (wasOpened) CloseConnection(connection);
-				connection.Assign(clone);
-				if (wasOpened) OpenConnection(connection);
-				mainForm.Tree.DrawTree();
-			}
-		}
+        public void EditConnection(Connection connection)
+        {
+            Connection clone = (Connection) connection.Clone();
+            EditConnectionForm f = new EditConnectionForm(clone);
 
-		private void mainForm_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-		{
-			foreach (EditingDatabase edb in editingDatabases.Values)
-			{
-				if (!edb.Closing())
-				{
-					e.Cancel = true;
-					return;
-				}
-			}
+            if (f.ShowDialog() == DialogResult.OK)
+            {
+                bool wasOpened = connection.Opened;
+                if (wasOpened) CloseConnection(connection);
+                connection.Assign(clone);
+                if (wasOpened) OpenConnection(connection);
+                mainForm.Tree.DrawTree();
+            }
+        }
 
-			EditingDatabase[] ed = new EditingDatabase[editingDatabases.Values.Count];
-			editingDatabases.Values.CopyTo(ed, 0);
-			foreach (EditingDatabase edb in ed)
-				edb.Close();
-		}
+        private void mainForm_Closing(object sender, CancelEventArgs e)
+        {
+            foreach (EditingDatabase edb in editingDatabases.Values)
+            {
+                if (!edb.Closing())
+                {
+                    e.Cancel = true;
+                    return;
+                }
+            }
 
-		public void Edit(DbObject dbObject)
-		{
-			if (dbObject is Test)
-			{
-				EditTest((Test)dbObject);
-				return;
-			}
+            EditingDatabase[] ed = new EditingDatabase[editingDatabases.Values.Count];
+            editingDatabases.Values.CopyTo(ed, 0);
+            foreach (EditingDatabase edb in ed)
+                edb.Close();
+        }
 
-			if (dbObject is QuestionSet)
-			{
-				EditQuestionSet((QuestionSet)dbObject);
-				return;
-			}
+        public void Edit(DbObject dbObject)
+        {
+            if (dbObject is Test)
+            {
+                EditTest((Test) dbObject);
+                return;
+            }
+
+            if (dbObject is QuestionSet)
+            {
+                EditQuestionSet((QuestionSet) dbObject);
+                return;
+            }
 
             if (dbObject is Question)
             {
-                EditQuestion((Question)dbObject);
+                EditQuestion((Question) dbObject);
                 return;
             }
 
             if (dbObject is PassageQuestion)
             {
-                EditPassageQuestion((PassageQuestion)dbObject);
+                EditPassageQuestion((PassageQuestion) dbObject);
                 return;
             }
-		}
+        }
 
-		public static void CopyEntity(Entity[] entities, Entity parent)
-		{
-			throw new NotImplementedException();
-		}
+        public static void CopyEntity(Entity[] entities, Entity parent)
+        {
+            throw new NotImplementedException();
+        }
 
-		public static void MoveEntity(Entity[] entities, Entity parent)
-		{
-			throw new NotImplementedException();
-		}
-	    
-	    public void ExportTest()
+        public static void MoveEntity(Entity[] entities, Entity parent)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ExportTest()
         {
             //Connection c = (Connection)(mainForm.Tree.Connections[1]);
 
             ExportTestForm eTestForm = new ExportTestForm(mainForm);
             eTestForm.ShowDialog();
-	       // Refresh();
+            // Refresh();
         }
 
         public void ImportTest()
@@ -353,19 +358,19 @@ bool resetPasswordOnFail = false;
 
             ImportTestForm iTestForm = new ImportTestForm(mainForm);
             iTestForm.ShowDialog();
-           // Refresh();
+            // Refresh();
         }
 
-	    public void AddNewTest()
-	    {
-	        CreateNewTestForm cTest = new CreateNewTestForm(mainForm);
+        public void AddNewTest()
+        {
+            CreateNewTestForm cTest = new CreateNewTestForm(mainForm);
             cTest.ShowDialog();
-	    }
+        }
 
-	    public void AddNewQuestionSet()
-	    {
-	        CreateNewQuestionSetForm cSet = new CreateNewQuestionSetForm(mainForm);
+        public void AddNewQuestionSet()
+        {
+            CreateNewQuestionSetForm cSet = new CreateNewQuestionSetForm(mainForm);
             cSet.ShowDialog();
-	    }
-	}
+        }
+    }
 }

@@ -8,356 +8,384 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+using System.CodeDom.Compiler;
+using System.Collections;
+using System.ComponentModel;
+using System.ComponentModel.Design;
+using System.Data;
+using System.Diagnostics;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Xml;
+using System.Xml.Schema;
+using System.Xml.Serialization;
 #pragma warning disable 1591
 
-namespace ImportExport {
-    using System;
-    
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+namespace ImportExport
+{
+    [GeneratedCode("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
     [Serializable()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.ComponentModel.ToolboxItem(true)]
-    [System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [System.Xml.Serialization.XmlRootAttribute("testById")]
-    [System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class testById : System.Data.DataSet {
-        
+    [DesignerCategory("code")]
+    [ToolboxItem(true)]
+    [XmlSchemaProvider("GetTypedDataSetSchema")]
+    [XmlRoot("testById")]
+    [HelpKeyword("vs.data.DataSet")]
+    public partial class testById : DataSet
+    {
         private TestsDataTable tableTests;
-        
-        private System.Data.SchemaSerializationMode _schemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-        
-        [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public testById() {
-            this.BeginInit();
-            this.InitClass();
-            System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
+
+        private SchemaSerializationMode _schemaSerializationMode = SchemaSerializationMode.IncludeSchema;
+
+        [DebuggerNonUserCode()]
+        public testById()
+        {
+            BeginInit();
+            InitClass();
+            CollectionChangeEventHandler schemaChangedHandler = new CollectionChangeEventHandler(SchemaChanged);
             base.Tables.CollectionChanged += schemaChangedHandler;
             base.Relations.CollectionChanged += schemaChangedHandler;
-            this.EndInit();
+            EndInit();
         }
-        
-        [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        protected testById(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) : 
-                base(info, context, false) {
-            if ((this.IsBinarySerialized(info, context) == true)) {
-                this.InitVars(false);
-                System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler1 = new System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
-                this.Tables.CollectionChanged += schemaChangedHandler1;
-                this.Relations.CollectionChanged += schemaChangedHandler1;
+
+        [DebuggerNonUserCode()]
+        protected testById(SerializationInfo info, StreamingContext context) :
+            base(info, context, false)
+        {
+            if ((IsBinarySerialized(info, context) == true))
+            {
+                InitVars(false);
+                CollectionChangeEventHandler schemaChangedHandler1 = new CollectionChangeEventHandler(SchemaChanged);
+                Tables.CollectionChanged += schemaChangedHandler1;
+                Relations.CollectionChanged += schemaChangedHandler1;
                 return;
             }
-            string strSchema = ((string)(info.GetValue("XmlSchema", typeof(string))));
-            if ((this.DetermineSchemaSerializationMode(info, context) == System.Data.SchemaSerializationMode.IncludeSchema)) {
-                System.Data.DataSet ds = new System.Data.DataSet();
-                ds.ReadXmlSchema(new System.Xml.XmlTextReader(new System.IO.StringReader(strSchema)));
-                if ((ds.Tables["Tests"] != null)) {
+            string strSchema = ((string) (info.GetValue("XmlSchema", typeof (string))));
+            if ((DetermineSchemaSerializationMode(info, context) == SchemaSerializationMode.IncludeSchema))
+            {
+                DataSet ds = new DataSet();
+                ds.ReadXmlSchema(new XmlTextReader(new StringReader(strSchema)));
+                if ((ds.Tables["Tests"] != null))
+                {
                     base.Tables.Add(new TestsDataTable(ds.Tables["Tests"]));
                 }
-                this.DataSetName = ds.DataSetName;
-                this.Prefix = ds.Prefix;
-                this.Namespace = ds.Namespace;
-                this.Locale = ds.Locale;
-                this.CaseSensitive = ds.CaseSensitive;
-                this.EnforceConstraints = ds.EnforceConstraints;
-                this.Merge(ds, false, System.Data.MissingSchemaAction.Add);
-                this.InitVars();
+                DataSetName = ds.DataSetName;
+                Prefix = ds.Prefix;
+                Namespace = ds.Namespace;
+                Locale = ds.Locale;
+                CaseSensitive = ds.CaseSensitive;
+                EnforceConstraints = ds.EnforceConstraints;
+                Merge(ds, false, MissingSchemaAction.Add);
+                InitVars();
             }
-            else {
-                this.ReadXmlSchema(new System.Xml.XmlTextReader(new System.IO.StringReader(strSchema)));
+            else
+            {
+                ReadXmlSchema(new XmlTextReader(new StringReader(strSchema)));
             }
-            this.GetSerializationData(info, context);
-            System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
+            GetSerializationData(info, context);
+            CollectionChangeEventHandler schemaChangedHandler = new CollectionChangeEventHandler(SchemaChanged);
             base.Tables.CollectionChanged += schemaChangedHandler;
-            this.Relations.CollectionChanged += schemaChangedHandler;
+            Relations.CollectionChanged += schemaChangedHandler;
         }
-        
-        [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [System.ComponentModel.Browsable(false)]
-        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public TestsDataTable Tests {
-            get {
-                return this.tableTests;
-            }
+
+        [DebuggerNonUserCode()]
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public TestsDataTable Tests
+        {
+            get { return tableTests; }
         }
-        
-        [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [System.ComponentModel.BrowsableAttribute(true)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Visible)]
-        public override System.Data.SchemaSerializationMode SchemaSerializationMode {
-            get {
-                return this._schemaSerializationMode;
-            }
-            set {
-                this._schemaSerializationMode = value;
-            }
+
+        [DebuggerNonUserCode()]
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public override SchemaSerializationMode SchemaSerializationMode
+        {
+            get { return _schemaSerializationMode; }
+            set { _schemaSerializationMode = value; }
         }
-        
-        [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public new System.Data.DataTableCollection Tables {
-            get {
-                return base.Tables;
-            }
+
+        [DebuggerNonUserCode()]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public new DataTableCollection Tables
+        {
+            get { return base.Tables; }
         }
-        
-        [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public new System.Data.DataRelationCollection Relations {
-            get {
-                return base.Relations;
-            }
+
+        [DebuggerNonUserCode()]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public new DataRelationCollection Relations
+        {
+            get { return base.Relations; }
         }
-        
-        [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        protected override void InitializeDerivedDataSet() {
-            this.BeginInit();
-            this.InitClass();
-            this.EndInit();
+
+        [DebuggerNonUserCode()]
+        protected override void InitializeDerivedDataSet()
+        {
+            BeginInit();
+            InitClass();
+            EndInit();
         }
-        
-        [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public override System.Data.DataSet Clone() {
-            testById cln = ((testById)(base.Clone()));
+
+        [DebuggerNonUserCode()]
+        public override DataSet Clone()
+        {
+            testById cln = ((testById) (base.Clone()));
             cln.InitVars();
-            cln.SchemaSerializationMode = this.SchemaSerializationMode;
+            cln.SchemaSerializationMode = SchemaSerializationMode;
             return cln;
         }
-        
-        [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        protected override bool ShouldSerializeTables() {
+
+        [DebuggerNonUserCode()]
+        protected override bool ShouldSerializeTables()
+        {
             return false;
         }
-        
-        [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        protected override bool ShouldSerializeRelations() {
+
+        [DebuggerNonUserCode()]
+        protected override bool ShouldSerializeRelations()
+        {
             return false;
         }
-        
-        [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        protected override void ReadXmlSerializable(System.Xml.XmlReader reader) {
-            if ((this.DetermineSchemaSerializationMode(reader) == System.Data.SchemaSerializationMode.IncludeSchema)) {
-                this.Reset();
-                System.Data.DataSet ds = new System.Data.DataSet();
+
+        [DebuggerNonUserCode()]
+        protected override void ReadXmlSerializable(XmlReader reader)
+        {
+            if ((DetermineSchemaSerializationMode(reader) == SchemaSerializationMode.IncludeSchema))
+            {
+                Reset();
+                DataSet ds = new DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["Tests"] != null)) {
+                if ((ds.Tables["Tests"] != null))
+                {
                     base.Tables.Add(new TestsDataTable(ds.Tables["Tests"]));
                 }
-                this.DataSetName = ds.DataSetName;
-                this.Prefix = ds.Prefix;
-                this.Namespace = ds.Namespace;
-                this.Locale = ds.Locale;
-                this.CaseSensitive = ds.CaseSensitive;
-                this.EnforceConstraints = ds.EnforceConstraints;
-                this.Merge(ds, false, System.Data.MissingSchemaAction.Add);
-                this.InitVars();
+                DataSetName = ds.DataSetName;
+                Prefix = ds.Prefix;
+                Namespace = ds.Namespace;
+                Locale = ds.Locale;
+                CaseSensitive = ds.CaseSensitive;
+                EnforceConstraints = ds.EnforceConstraints;
+                Merge(ds, false, MissingSchemaAction.Add);
+                InitVars();
             }
-            else {
-                this.ReadXml(reader);
-                this.InitVars();
+            else
+            {
+                ReadXml(reader);
+                InitVars();
             }
         }
-        
-        [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        protected override System.Xml.Schema.XmlSchema GetSchemaSerializable() {
-            System.IO.MemoryStream stream = new System.IO.MemoryStream();
-            this.WriteXmlSchema(new System.Xml.XmlTextWriter(stream, null));
+
+        [DebuggerNonUserCode()]
+        protected override XmlSchema GetSchemaSerializable()
+        {
+            MemoryStream stream = new MemoryStream();
+            WriteXmlSchema(new XmlTextWriter(stream, null));
             stream.Position = 0;
-            return System.Xml.Schema.XmlSchema.Read(new System.Xml.XmlTextReader(stream), null);
+            return XmlSchema.Read(new XmlTextReader(stream), null);
         }
-        
-        [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        internal void InitVars() {
-            this.InitVars(true);
+
+        [DebuggerNonUserCode()]
+        internal void InitVars()
+        {
+            InitVars(true);
         }
-        
-        [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        internal void InitVars(bool initTable) {
-            this.tableTests = ((TestsDataTable)(base.Tables["Tests"]));
-            if ((initTable == true)) {
-                if ((this.tableTests != null)) {
-                    this.tableTests.InitVars();
+
+        [DebuggerNonUserCode()]
+        internal void InitVars(bool initTable)
+        {
+            tableTests = ((TestsDataTable) (base.Tables["Tests"]));
+            if ((initTable == true))
+            {
+                if ((tableTests != null))
+                {
+                    tableTests.InitVars();
                 }
             }
         }
-        
-        [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private void InitClass() {
-            this.DataSetName = "testById";
-            this.Prefix = "";
-            this.Namespace = "http://tempuri.org/testById.xsd";
-            this.EnforceConstraints = true;
-            this.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableTests = new TestsDataTable();
-            base.Tables.Add(this.tableTests);
+
+        [DebuggerNonUserCode()]
+        private void InitClass()
+        {
+            DataSetName = "testById";
+            Prefix = "";
+            Namespace = "http://tempuri.org/testById.xsd";
+            EnforceConstraints = true;
+            SchemaSerializationMode = SchemaSerializationMode.IncludeSchema;
+            tableTests = new TestsDataTable();
+            base.Tables.Add(tableTests);
         }
-        
-        [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private bool ShouldSerializeTests() {
+
+        [DebuggerNonUserCode()]
+        private bool ShouldSerializeTests()
+        {
             return false;
         }
-        
-        [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private void SchemaChanged(object sender, System.ComponentModel.CollectionChangeEventArgs e) {
-            if ((e.Action == System.ComponentModel.CollectionChangeAction.Remove)) {
-                this.InitVars();
+
+        [DebuggerNonUserCode()]
+        private void SchemaChanged(object sender, CollectionChangeEventArgs e)
+        {
+            if ((e.Action == CollectionChangeAction.Remove))
+            {
+                InitVars();
             }
         }
-        
-        [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public static System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(System.Xml.Schema.XmlSchemaSet xs) {
+
+        [DebuggerNonUserCode()]
+        public static XmlSchemaComplexType GetTypedDataSetSchema(XmlSchemaSet xs)
+        {
             testById ds = new testById();
-            System.Xml.Schema.XmlSchemaComplexType type = new System.Xml.Schema.XmlSchemaComplexType();
-            System.Xml.Schema.XmlSchemaSequence sequence = new System.Xml.Schema.XmlSchemaSequence();
+            XmlSchemaComplexType type = new XmlSchemaComplexType();
+            XmlSchemaSequence sequence = new XmlSchemaSequence();
             xs.Add(ds.GetSchemaSerializable());
-            System.Xml.Schema.XmlSchemaAny any = new System.Xml.Schema.XmlSchemaAny();
+            XmlSchemaAny any = new XmlSchemaAny();
             any.Namespace = ds.Namespace;
             sequence.Items.Add(any);
             type.Particle = sequence;
             return type;
         }
-        
+
         public delegate void TestsRowChangeEventHandler(object sender, TestsRowChangeEvent e);
-        
-        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        [System.Serializable()]
-        [System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class TestsDataTable : System.Data.DataTable, System.Collections.IEnumerable {
-            
-            private System.Data.DataColumn columnDescription;
-            
-            private System.Data.DataColumn columnGUID;
-            
-            private System.Data.DataColumn columnId;
-            
-            private System.Data.DataColumn columnIsPractice;
-            
-            private System.Data.DataColumn columnName;
-            
-            private System.Data.DataColumn columnQuestionSubtypeId;
-            
-            private System.Data.DataColumn columnQuestionTypeId;
-            
-            private System.Data.DataColumn columnVersion;
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public TestsDataTable() {
-                this.TableName = "Tests";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
+
+        [GeneratedCode("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        [Serializable()]
+        [XmlSchemaProvider("GetTypedTableSchema")]
+        public partial class TestsDataTable : DataTable, IEnumerable
+        {
+            private DataColumn columnDescription;
+
+            private DataColumn columnGUID;
+
+            private DataColumn columnId;
+
+            private DataColumn columnIsPractice;
+
+            private DataColumn columnName;
+
+            private DataColumn columnQuestionSubtypeId;
+
+            private DataColumn columnQuestionTypeId;
+
+            private DataColumn columnVersion;
+
+            [DebuggerNonUserCode()]
+            public TestsDataTable()
+            {
+                TableName = "Tests";
+                BeginInit();
+                InitClass();
+                EndInit();
             }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal TestsDataTable(System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
+
+            [DebuggerNonUserCode()]
+            internal TestsDataTable(DataTable table)
+            {
+                TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive))
+                {
+                    CaseSensitive = table.CaseSensitive;
                 }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString()))
+                {
+                    Locale = table.Locale;
                 }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
+                if ((table.Namespace != table.DataSet.Namespace))
+                {
+                    Namespace = table.Namespace;
                 }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
+                Prefix = table.Prefix;
+                MinimumCapacity = table.MinimumCapacity;
             }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected TestsDataTable(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
+
+            [DebuggerNonUserCode()]
+            protected TestsDataTable(SerializationInfo info, StreamingContext context) :
+                base(info, context)
+            {
+                InitVars();
             }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public System.Data.DataColumn DescriptionColumn {
-                get {
-                    return this.columnDescription;
-                }
+
+            [DebuggerNonUserCode()]
+            public DataColumn DescriptionColumn
+            {
+                get { return columnDescription; }
             }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public System.Data.DataColumn GUIDColumn {
-                get {
-                    return this.columnGUID;
-                }
+
+            [DebuggerNonUserCode()]
+            public DataColumn GUIDColumn
+            {
+                get { return columnGUID; }
             }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public System.Data.DataColumn IdColumn {
-                get {
-                    return this.columnId;
-                }
+
+            [DebuggerNonUserCode()]
+            public DataColumn IdColumn
+            {
+                get { return columnId; }
             }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public System.Data.DataColumn IsPracticeColumn {
-                get {
-                    return this.columnIsPractice;
-                }
+
+            [DebuggerNonUserCode()]
+            public DataColumn IsPracticeColumn
+            {
+                get { return columnIsPractice; }
             }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public System.Data.DataColumn NameColumn {
-                get {
-                    return this.columnName;
-                }
+
+            [DebuggerNonUserCode()]
+            public DataColumn NameColumn
+            {
+                get { return columnName; }
             }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public System.Data.DataColumn QuestionSubtypeIdColumn {
-                get {
-                    return this.columnQuestionSubtypeId;
-                }
+
+            [DebuggerNonUserCode()]
+            public DataColumn QuestionSubtypeIdColumn
+            {
+                get { return columnQuestionSubtypeId; }
             }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public System.Data.DataColumn QuestionTypeIdColumn {
-                get {
-                    return this.columnQuestionTypeId;
-                }
+
+            [DebuggerNonUserCode()]
+            public DataColumn QuestionTypeIdColumn
+            {
+                get { return columnQuestionTypeId; }
             }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public System.Data.DataColumn VersionColumn {
-                get {
-                    return this.columnVersion;
-                }
+
+            [DebuggerNonUserCode()]
+            public DataColumn VersionColumn
+            {
+                get { return columnVersion; }
             }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
+
+            [DebuggerNonUserCode()]
+            [Browsable(false)]
+            public int Count
+            {
+                get { return Rows.Count; }
             }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public TestsRow this[int index] {
-                get {
-                    return ((TestsRow)(this.Rows[index]));
-                }
+
+            [DebuggerNonUserCode()]
+            public TestsRow this[int index]
+            {
+                get { return ((TestsRow) (Rows[index])); }
             }
-            
+
             public event TestsRowChangeEventHandler TestsRowChanging;
-            
+
             public event TestsRowChangeEventHandler TestsRowChanged;
-            
+
             public event TestsRowChangeEventHandler TestsRowDeleting;
-            
+
             public event TestsRowChangeEventHandler TestsRowDeleted;
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void AddTestsRow(TestsRow row) {
-                this.Rows.Add(row);
+
+            [DebuggerNonUserCode()]
+            public void AddTestsRow(TestsRow row)
+            {
+                Rows.Add(row);
             }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public TestsRow AddTestsRow(string Description, string GUID, bool IsPractice, string Name, int QuestionSubtypeId, int QuestionTypeId, int Version) {
-                TestsRow rowTestsRow = ((TestsRow)(this.NewRow()));
-                rowTestsRow.ItemArray = new object[] {
+
+            [DebuggerNonUserCode()]
+            public TestsRow AddTestsRow(string Description, string GUID, bool IsPractice, string Name,
+                                        int QuestionSubtypeId, int QuestionTypeId, int Version)
+            {
+                TestsRow rowTestsRow = ((TestsRow) (NewRow()));
+                rowTestsRow.ItemArray = new object[]
+                    {
                         Description,
                         GUID,
                         null,
@@ -365,148 +393,172 @@ namespace ImportExport {
                         Name,
                         QuestionSubtypeId,
                         QuestionTypeId,
-                        Version};
-                this.Rows.Add(rowTestsRow);
+                        Version
+                    };
+                Rows.Add(rowTestsRow);
                 return rowTestsRow;
             }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public TestsRow FindById(int Id) {
-                return ((TestsRow)(this.Rows.Find(new object[] {
-                            Id})));
+
+            [DebuggerNonUserCode()]
+            public TestsRow FindById(int Id)
+            {
+                return ((TestsRow) (Rows.Find(new object[]
+                                                  {
+                                                      Id
+                                                  })));
             }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public virtual System.Collections.IEnumerator GetEnumerator() {
-                return this.Rows.GetEnumerator();
+
+            [DebuggerNonUserCode()]
+            public virtual IEnumerator GetEnumerator()
+            {
+                return Rows.GetEnumerator();
             }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public override System.Data.DataTable Clone() {
-                TestsDataTable cln = ((TestsDataTable)(base.Clone()));
+
+            [DebuggerNonUserCode()]
+            public override DataTable Clone()
+            {
+                TestsDataTable cln = ((TestsDataTable) (base.Clone()));
                 cln.InitVars();
                 return cln;
             }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override System.Data.DataTable CreateInstance() {
+
+            [DebuggerNonUserCode()]
+            protected override DataTable CreateInstance()
+            {
                 return new TestsDataTable();
             }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal void InitVars() {
-                this.columnDescription = base.Columns["Description"];
-                this.columnGUID = base.Columns["GUID"];
-                this.columnId = base.Columns["Id"];
-                this.columnIsPractice = base.Columns["IsPractice"];
-                this.columnName = base.Columns["Name"];
-                this.columnQuestionSubtypeId = base.Columns["QuestionSubtypeId"];
-                this.columnQuestionTypeId = base.Columns["QuestionTypeId"];
-                this.columnVersion = base.Columns["Version"];
+
+            [DebuggerNonUserCode()]
+            internal void InitVars()
+            {
+                columnDescription = base.Columns["Description"];
+                columnGUID = base.Columns["GUID"];
+                columnId = base.Columns["Id"];
+                columnIsPractice = base.Columns["IsPractice"];
+                columnName = base.Columns["Name"];
+                columnQuestionSubtypeId = base.Columns["QuestionSubtypeId"];
+                columnQuestionTypeId = base.Columns["QuestionTypeId"];
+                columnVersion = base.Columns["Version"];
             }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            private void InitClass() {
-                this.columnDescription = new System.Data.DataColumn("Description", typeof(string), null, System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDescription);
-                this.columnGUID = new System.Data.DataColumn("GUID", typeof(string), null, System.Data.MappingType.Element);
-                base.Columns.Add(this.columnGUID);
-                this.columnId = new System.Data.DataColumn("Id", typeof(int), null, System.Data.MappingType.Element);
-                base.Columns.Add(this.columnId);
-                this.columnIsPractice = new System.Data.DataColumn("IsPractice", typeof(bool), null, System.Data.MappingType.Element);
-                base.Columns.Add(this.columnIsPractice);
-                this.columnName = new System.Data.DataColumn("Name", typeof(string), null, System.Data.MappingType.Element);
-                base.Columns.Add(this.columnName);
-                this.columnQuestionSubtypeId = new System.Data.DataColumn("QuestionSubtypeId", typeof(int), null, System.Data.MappingType.Element);
-                base.Columns.Add(this.columnQuestionSubtypeId);
-                this.columnQuestionTypeId = new System.Data.DataColumn("QuestionTypeId", typeof(int), null, System.Data.MappingType.Element);
-                base.Columns.Add(this.columnQuestionTypeId);
-                this.columnVersion = new System.Data.DataColumn("Version", typeof(int), null, System.Data.MappingType.Element);
-                base.Columns.Add(this.columnVersion);
-                this.Constraints.Add(new System.Data.UniqueConstraint("Constraint1", new System.Data.DataColumn[] {
-                                this.columnId}, true));
-                this.columnDescription.MaxLength = 536870910;
-                this.columnGUID.MaxLength = 36;
-                this.columnId.AutoIncrement = true;
-                this.columnId.AllowDBNull = false;
-                this.columnId.Unique = true;
-                this.columnName.MaxLength = 128;
+
+            [DebuggerNonUserCode()]
+            private void InitClass()
+            {
+                columnDescription = new DataColumn("Description", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnDescription);
+                columnGUID = new DataColumn("GUID", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnGUID);
+                columnId = new DataColumn("Id", typeof (int), null, MappingType.Element);
+                base.Columns.Add(columnId);
+                columnIsPractice = new DataColumn("IsPractice", typeof (bool), null, MappingType.Element);
+                base.Columns.Add(columnIsPractice);
+                columnName = new DataColumn("Name", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnName);
+                columnQuestionSubtypeId = new DataColumn("QuestionSubtypeId", typeof (int), null, MappingType.Element);
+                base.Columns.Add(columnQuestionSubtypeId);
+                columnQuestionTypeId = new DataColumn("QuestionTypeId", typeof (int), null, MappingType.Element);
+                base.Columns.Add(columnQuestionTypeId);
+                columnVersion = new DataColumn("Version", typeof (int), null, MappingType.Element);
+                base.Columns.Add(columnVersion);
+                Constraints.Add(new UniqueConstraint("Constraint1", new DataColumn[]
+                                                                        {
+                                                                            columnId
+                                                                        }, true));
+                columnDescription.MaxLength = 536870910;
+                columnGUID.MaxLength = 36;
+                columnId.AutoIncrement = true;
+                columnId.AllowDBNull = false;
+                columnId.Unique = true;
+                columnName.MaxLength = 128;
             }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public TestsRow NewTestsRow() {
-                return ((TestsRow)(this.NewRow()));
+
+            [DebuggerNonUserCode()]
+            public TestsRow NewTestsRow()
+            {
+                return ((TestsRow) (NewRow()));
             }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override System.Data.DataRow NewRowFromBuilder(System.Data.DataRowBuilder builder) {
+
+            [DebuggerNonUserCode()]
+            protected override DataRow NewRowFromBuilder(DataRowBuilder builder)
+            {
                 return new TestsRow(builder);
             }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override System.Type GetRowType() {
-                return typeof(TestsRow);
+
+            [DebuggerNonUserCode()]
+            protected override Type GetRowType()
+            {
+                return typeof (TestsRow);
             }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowChanged(System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode()]
+            protected override void OnRowChanged(DataRowChangeEventArgs e)
+            {
                 base.OnRowChanged(e);
-                if ((this.TestsRowChanged != null)) {
-                    this.TestsRowChanged(this, new TestsRowChangeEvent(((TestsRow)(e.Row)), e.Action));
+                if ((TestsRowChanged != null))
+                {
+                    TestsRowChanged(this, new TestsRowChangeEvent(((TestsRow) (e.Row)), e.Action));
                 }
             }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowChanging(System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode()]
+            protected override void OnRowChanging(DataRowChangeEventArgs e)
+            {
                 base.OnRowChanging(e);
-                if ((this.TestsRowChanging != null)) {
-                    this.TestsRowChanging(this, new TestsRowChangeEvent(((TestsRow)(e.Row)), e.Action));
+                if ((TestsRowChanging != null))
+                {
+                    TestsRowChanging(this, new TestsRowChangeEvent(((TestsRow) (e.Row)), e.Action));
                 }
             }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowDeleted(System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode()]
+            protected override void OnRowDeleted(DataRowChangeEventArgs e)
+            {
                 base.OnRowDeleted(e);
-                if ((this.TestsRowDeleted != null)) {
-                    this.TestsRowDeleted(this, new TestsRowChangeEvent(((TestsRow)(e.Row)), e.Action));
+                if ((TestsRowDeleted != null))
+                {
+                    TestsRowDeleted(this, new TestsRowChangeEvent(((TestsRow) (e.Row)), e.Action));
                 }
             }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowDeleting(System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode()]
+            protected override void OnRowDeleting(DataRowChangeEventArgs e)
+            {
                 base.OnRowDeleting(e);
-                if ((this.TestsRowDeleting != null)) {
-                    this.TestsRowDeleting(this, new TestsRowChangeEvent(((TestsRow)(e.Row)), e.Action));
+                if ((TestsRowDeleting != null))
+                {
+                    TestsRowDeleting(this, new TestsRowChangeEvent(((TestsRow) (e.Row)), e.Action));
                 }
             }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void RemoveTestsRow(TestsRow row) {
-                this.Rows.Remove(row);
+
+            [DebuggerNonUserCode()]
+            public void RemoveTestsRow(TestsRow row)
+            {
+                Rows.Remove(row);
             }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public static System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(System.Xml.Schema.XmlSchemaSet xs) {
-                System.Xml.Schema.XmlSchemaComplexType type = new System.Xml.Schema.XmlSchemaComplexType();
-                System.Xml.Schema.XmlSchemaSequence sequence = new System.Xml.Schema.XmlSchemaSequence();
+
+            [DebuggerNonUserCode()]
+            public static XmlSchemaComplexType GetTypedTableSchema(XmlSchemaSet xs)
+            {
+                XmlSchemaComplexType type = new XmlSchemaComplexType();
+                XmlSchemaSequence sequence = new XmlSchemaSequence();
                 testById ds = new testById();
                 xs.Add(ds.GetSchemaSerializable());
-                System.Xml.Schema.XmlSchemaAny any1 = new System.Xml.Schema.XmlSchemaAny();
+                XmlSchemaAny any1 = new XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
                 any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                any1.ProcessContents = XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any1);
-                System.Xml.Schema.XmlSchemaAny any2 = new System.Xml.Schema.XmlSchemaAny();
+                XmlSchemaAny any2 = new XmlSchemaAny();
                 any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
                 any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                any2.ProcessContents = XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any2);
-                System.Xml.Schema.XmlSchemaAttribute attribute1 = new System.Xml.Schema.XmlSchemaAttribute();
+                XmlSchemaAttribute attribute1 = new XmlSchemaAttribute();
                 attribute1.Name = "namespace";
                 attribute1.FixedValue = ds.Namespace;
                 type.Attributes.Add(attribute1);
-                System.Xml.Schema.XmlSchemaAttribute attribute2 = new System.Xml.Schema.XmlSchemaAttribute();
+                XmlSchemaAttribute attribute2 = new XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "TestsDataTable";
                 type.Attributes.Add(attribute2);
@@ -514,229 +566,259 @@ namespace ImportExport {
                 return type;
             }
         }
-        
-        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public partial class TestsRow : System.Data.DataRow {
-            
+
+        [GeneratedCode("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public partial class TestsRow : DataRow
+        {
             private TestsDataTable tableTests;
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal TestsRow(System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableTests = ((TestsDataTable)(this.Table));
+
+            [DebuggerNonUserCode()]
+            internal TestsRow(DataRowBuilder rb) :
+                base(rb)
+            {
+                tableTests = ((TestsDataTable) (Table));
             }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string Description {
-                get {
-                    try {
-                        return ((string)(this[this.tableTests.DescriptionColumn]));
+
+            [DebuggerNonUserCode()]
+            public string Description
+            {
+                get
+                {
+                    try
+                    {
+                        return ((string) (this[tableTests.DescriptionColumn]));
                     }
-                    catch (System.InvalidCastException e) {
-                        throw new System.Data.StrongTypingException("The value for column \'Description\' in table \'Tests\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableTests.DescriptionColumn] = value;
-                }
-            }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string GUID {
-                get {
-                    try {
-                        return ((string)(this[this.tableTests.GUIDColumn]));
-                    }
-                    catch (System.InvalidCastException e) {
-                        throw new System.Data.StrongTypingException("The value for column \'GUID\' in table \'Tests\' is DBNull.", e);
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'Description\' in table \'Tests\' is DBNull.", e);
                     }
                 }
-                set {
-                    this[this.tableTests.GUIDColumn] = value;
-                }
+                set { this[tableTests.DescriptionColumn] = value; }
             }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public int Id {
-                get {
-                    return ((int)(this[this.tableTests.IdColumn]));
-                }
-                set {
-                    this[this.tableTests.IdColumn] = value;
-                }
-            }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsPractice {
-                get {
-                    try {
-                        return ((bool)(this[this.tableTests.IsPracticeColumn]));
+
+            [DebuggerNonUserCode()]
+            public string GUID
+            {
+                get
+                {
+                    try
+                    {
+                        return ((string) (this[tableTests.GUIDColumn]));
                     }
-                    catch (System.InvalidCastException e) {
-                        throw new System.Data.StrongTypingException("The value for column \'IsPractice\' in table \'Tests\' is DBNull.", e);
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException("The value for column \'GUID\' in table \'Tests\' is DBNull.", e);
                     }
                 }
-                set {
-                    this[this.tableTests.IsPracticeColumn] = value;
-                }
+                set { this[tableTests.GUIDColumn] = value; }
             }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string Name {
-                get {
-                    try {
-                        return ((string)(this[this.tableTests.NameColumn]));
-                    }
-                    catch (System.InvalidCastException e) {
-                        throw new System.Data.StrongTypingException("The value for column \'Name\' in table \'Tests\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableTests.NameColumn] = value;
-                }
+
+            [DebuggerNonUserCode()]
+            public int Id
+            {
+                get { return ((int) (this[tableTests.IdColumn])); }
+                set { this[tableTests.IdColumn] = value; }
             }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public int QuestionSubtypeId {
-                get {
-                    try {
-                        return ((int)(this[this.tableTests.QuestionSubtypeIdColumn]));
+
+            [DebuggerNonUserCode()]
+            public bool IsPractice
+            {
+                get
+                {
+                    try
+                    {
+                        return ((bool) (this[tableTests.IsPracticeColumn]));
                     }
-                    catch (System.InvalidCastException e) {
-                        throw new System.Data.StrongTypingException("The value for column \'QuestionSubtypeId\' in table \'Tests\' is DBNull.", e);
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'IsPractice\' in table \'Tests\' is DBNull.", e);
                     }
                 }
-                set {
-                    this[this.tableTests.QuestionSubtypeIdColumn] = value;
-                }
+                set { this[tableTests.IsPracticeColumn] = value; }
             }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public int QuestionTypeId {
-                get {
-                    try {
-                        return ((int)(this[this.tableTests.QuestionTypeIdColumn]));
+
+            [DebuggerNonUserCode()]
+            public string Name
+            {
+                get
+                {
+                    try
+                    {
+                        return ((string) (this[tableTests.NameColumn]));
                     }
-                    catch (System.InvalidCastException e) {
-                        throw new System.Data.StrongTypingException("The value for column \'QuestionTypeId\' in table \'Tests\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableTests.QuestionTypeIdColumn] = value;
-                }
-            }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public int Version {
-                get {
-                    try {
-                        return ((int)(this[this.tableTests.VersionColumn]));
-                    }
-                    catch (System.InvalidCastException e) {
-                        throw new System.Data.StrongTypingException("The value for column \'Version\' in table \'Tests\' is DBNull.", e);
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException("The value for column \'Name\' in table \'Tests\' is DBNull.", e);
                     }
                 }
-                set {
-                    this[this.tableTests.VersionColumn] = value;
+                set { this[tableTests.NameColumn] = value; }
+            }
+
+            [DebuggerNonUserCode()]
+            public int QuestionSubtypeId
+            {
+                get
+                {
+                    try
+                    {
+                        return ((int) (this[tableTests.QuestionSubtypeIdColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'QuestionSubtypeId\' in table \'Tests\' is DBNull.", e);
+                    }
                 }
+                set { this[tableTests.QuestionSubtypeIdColumn] = value; }
             }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsDescriptionNull() {
-                return this.IsNull(this.tableTests.DescriptionColumn);
+
+            [DebuggerNonUserCode()]
+            public int QuestionTypeId
+            {
+                get
+                {
+                    try
+                    {
+                        return ((int) (this[tableTests.QuestionTypeIdColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'QuestionTypeId\' in table \'Tests\' is DBNull.", e);
+                    }
+                }
+                set { this[tableTests.QuestionTypeIdColumn] = value; }
             }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetDescriptionNull() {
-                this[this.tableTests.DescriptionColumn] = System.Convert.DBNull;
+
+            [DebuggerNonUserCode()]
+            public int Version
+            {
+                get
+                {
+                    try
+                    {
+                        return ((int) (this[tableTests.VersionColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'Version\' in table \'Tests\' is DBNull.", e);
+                    }
+                }
+                set { this[tableTests.VersionColumn] = value; }
             }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsGUIDNull() {
-                return this.IsNull(this.tableTests.GUIDColumn);
+
+            [DebuggerNonUserCode()]
+            public bool IsDescriptionNull()
+            {
+                return IsNull(tableTests.DescriptionColumn);
             }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetGUIDNull() {
-                this[this.tableTests.GUIDColumn] = System.Convert.DBNull;
+
+            [DebuggerNonUserCode()]
+            public void SetDescriptionNull()
+            {
+                this[tableTests.DescriptionColumn] = Convert.DBNull;
             }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsIsPracticeNull() {
-                return this.IsNull(this.tableTests.IsPracticeColumn);
+
+            [DebuggerNonUserCode()]
+            public bool IsGUIDNull()
+            {
+                return IsNull(tableTests.GUIDColumn);
             }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetIsPracticeNull() {
-                this[this.tableTests.IsPracticeColumn] = System.Convert.DBNull;
+
+            [DebuggerNonUserCode()]
+            public void SetGUIDNull()
+            {
+                this[tableTests.GUIDColumn] = Convert.DBNull;
             }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsNameNull() {
-                return this.IsNull(this.tableTests.NameColumn);
+
+            [DebuggerNonUserCode()]
+            public bool IsIsPracticeNull()
+            {
+                return IsNull(tableTests.IsPracticeColumn);
             }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetNameNull() {
-                this[this.tableTests.NameColumn] = System.Convert.DBNull;
+
+            [DebuggerNonUserCode()]
+            public void SetIsPracticeNull()
+            {
+                this[tableTests.IsPracticeColumn] = Convert.DBNull;
             }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsQuestionSubtypeIdNull() {
-                return this.IsNull(this.tableTests.QuestionSubtypeIdColumn);
+
+            [DebuggerNonUserCode()]
+            public bool IsNameNull()
+            {
+                return IsNull(tableTests.NameColumn);
             }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetQuestionSubtypeIdNull() {
-                this[this.tableTests.QuestionSubtypeIdColumn] = System.Convert.DBNull;
+
+            [DebuggerNonUserCode()]
+            public void SetNameNull()
+            {
+                this[tableTests.NameColumn] = Convert.DBNull;
             }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsQuestionTypeIdNull() {
-                return this.IsNull(this.tableTests.QuestionTypeIdColumn);
+
+            [DebuggerNonUserCode()]
+            public bool IsQuestionSubtypeIdNull()
+            {
+                return IsNull(tableTests.QuestionSubtypeIdColumn);
             }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetQuestionTypeIdNull() {
-                this[this.tableTests.QuestionTypeIdColumn] = System.Convert.DBNull;
+
+            [DebuggerNonUserCode()]
+            public void SetQuestionSubtypeIdNull()
+            {
+                this[tableTests.QuestionSubtypeIdColumn] = Convert.DBNull;
             }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsVersionNull() {
-                return this.IsNull(this.tableTests.VersionColumn);
+
+            [DebuggerNonUserCode()]
+            public bool IsQuestionTypeIdNull()
+            {
+                return IsNull(tableTests.QuestionTypeIdColumn);
             }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetVersionNull() {
-                this[this.tableTests.VersionColumn] = System.Convert.DBNull;
+
+            [DebuggerNonUserCode()]
+            public void SetQuestionTypeIdNull()
+            {
+                this[tableTests.QuestionTypeIdColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode()]
+            public bool IsVersionNull()
+            {
+                return IsNull(tableTests.VersionColumn);
+            }
+
+            [DebuggerNonUserCode()]
+            public void SetVersionNull()
+            {
+                this[tableTests.VersionColumn] = Convert.DBNull;
             }
         }
-        
-        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public class TestsRowChangeEvent : System.EventArgs {
-            
+
+        [GeneratedCode("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public class TestsRowChangeEvent : EventArgs
+        {
             private TestsRow eventRow;
-            
-            private System.Data.DataRowAction eventAction;
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public TestsRowChangeEvent(TestsRow row, System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
+
+            private DataRowAction eventAction;
+
+            [DebuggerNonUserCode()]
+            public TestsRowChangeEvent(TestsRow row, DataRowAction action)
+            {
+                eventRow = row;
+                eventAction = action;
             }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public TestsRow Row {
-                get {
-                    return this.eventRow;
-                }
+
+            [DebuggerNonUserCode()]
+            public TestsRow Row
+            {
+                get { return eventRow; }
             }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
+
+            [DebuggerNonUserCode()]
+            public DataRowAction Action
+            {
+                get { return eventAction; }
             }
         }
     }

@@ -1,6 +1,6 @@
-﻿namespace GmatClubTest.DbEditor.Data {
-    
-    
-    public partial class Dataset {
+﻿namespace GmatClubTest.DbEditor.Data
+{
+    public partial class Dataset
+    {
     }
 }

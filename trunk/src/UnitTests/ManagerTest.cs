@@ -2,187 +2,192 @@ using System;
 using GmatClubTest.BusinessLogic;
 using GmatClubTest.Data;
 using NUnit.Framework;
-using System.Windows.Forms;
 
 namespace GmatClubTest.UnitTests
 {
-	/// <summary>
-	/// Tests for BusinessLogic.Manager
-	/// </summary>
-	//[TestFixture]
-	public class ManagerTest
-	{
-		private Random random = new Random();
-		private Manager manager;
+    /// <summary>
+    /// Tests for BusinessLogic.Manager
+    /// </summary>
+    //[TestFixture]
+    public class ManagerTest
+    {
+        private Random random = new Random();
+        private Manager manager;
 
-		private void CheckNavigator(INavigator navigator)
-		{
-			QuestionSetSet.QuestionSetsRow qs;
-			QuestionAnswerSet qd = new QuestionAnswerSet(); 
+        private void CheckNavigator(INavigator navigator)
+        {
+            QuestionSetSet.QuestionSetsRow qs;
+            QuestionAnswerSet qd = new QuestionAnswerSet();
 
-			while (navigator.HasNextSet)
-			{
-				if (navigator.HasPreviousSet && random.Next(3) == 1)
-					qs = navigator.GetPreviousSet();
-				else
-					qs = navigator.GetNextSet();
+            while (navigator.HasNextSet)
+            {
+                if (navigator.HasPreviousSet && random.Next(3) == 1)
+                    qs = navigator.GetPreviousSet();
+                else
+                    qs = navigator.GetNextSet();
 
-				while (navigator.HasNextQuestion)
-				{
-					
-					if (navigator.HasPreviousQuestion && random.Next(3) == 1)
-						navigator.GetPreviousQuestion(qd);
-					else
-						navigator.GetNextQuestion(qd);
+                while (navigator.HasNextQuestion)
+                {
+                    if (navigator.HasPreviousQuestion && random.Next(3) == 1)
+                        navigator.GetPreviousQuestion(qd);
+                    else
+                        navigator.GetNextQuestion(qd);
 
-					QuestionAnswerSet.QuestionsRow q = qd.Questions[0];
+                    QuestionAnswerSet.QuestionsRow q = qd.Questions[0];
 
-					if (q.SubtypeId == (byte)Data.Question.Subtype.ReadingComprehensionPassage)
-						Assert.Fail("Set cannot directly contain question of type ReadingComprehensionPassage");
+                    if (q.SubtypeId == (byte) Question.Subtype.ReadingComprehensionPassage)
+                        Assert.Fail("Set cannot directly contain question of type ReadingComprehensionPassage");
 
-					if (q.SubtypeId == (byte)Data.Question.Subtype.ReadingComprehensionQuestionToPassage)
-						navigator.GetPasssageToQuestion(q.Id);
-				
-					QuestionAnswerSet.AnswersRow[] a = q.GetAnswersRows();
+                    if (q.SubtypeId == (byte) Question.Subtype.ReadingComprehensionQuestionToPassage)
+                        navigator.GetPasssageToQuestion(q.Id);
 
-					navigator.SetUserAnswer(a[random.Next(a.Length)].Id);
-				}	 
-			}
+                    QuestionAnswerSet.AnswersRow[] a = q.GetAnswersRows();
 
-			navigator.CommitResult();
-		}
+                    navigator.SetUserAnswer(a[random.Next(a.Length)].Id);
+                }
+            }
 
-		[TestFixtureSetUp] 
-		public void Init()
-		{
-			manager = Manager.CreareManagerUseAccess(@"c:\Projects\GmatClubTest\src\Practice\bin\Debug\GmatClubTest.mdb", "q&b3pz>#_24");
-			//manager = Manager.CreareManagerUseSql(SystemInformation.ComputerName);
-			UserSet u = new UserSet();  
-			manager.CreateUser("UnitTestUser" + random.Next().ToString(), random.Next().ToString(), "UnitTestUserName", u);
-			manager.UserId = u.Users[0].Id;
-		} 
+            navigator.CommitResult();
+        }
 
-		[TestFixtureTearDown] 
-		public void Dispose()
-		{
-			UserSet u = new UserSet();
-			manager.GetUsers(u);
+        [TestFixtureSetUp]
+        public void Init()
+        {
+            manager =
+                Manager.CreareManagerUseAccess(@"c:\Projects\GmatClubTest\src\Practice\bin\Debug\GmatClubTest.mdb",
+                                               "q&b3pz>#_24");
+            //manager = Manager.CreareManagerUseSql(SystemInformation.ComputerName);
+            UserSet u = new UserSet();
+            manager.CreateUser("UnitTestUser" + random.Next().ToString(), random.Next().ToString(), "UnitTestUserName",
+                               u);
+            manager.UserId = u.Users[0].Id;
+        }
 
-			foreach (UserSet.UsersRow row in u.Users.Rows)
+        [TestFixtureTearDown]
+        public void Dispose()
+        {
+            UserSet u = new UserSet();
+            manager.GetUsers(u);
+
+            foreach (UserSet.UsersRow row in u.Users.Rows)
                 if (row.Login.StartsWith("UnitTestUser")) row.Delete();
-			
-			manager.UpdateUsers(u);
 
-			manager.Dispose();
-		}
+            manager.UpdateUsers(u);
 
-		[Test] 
-		public void CreateUser()
-		{
-			UserSet u = new UserSet();
-			manager.CreateUser("UnitTestUser" + random.Next().ToString(), random.Next().ToString(), "UnitTestUserName", u);
-			Assert.IsTrue(u.Users.Count > 0);
-		}
+            manager.Dispose();
+        }
 
-		[Test] 
-		public void GetUser()
-		{
-			UserSet u1 = new UserSet();
-			UserSet u2 = new UserSet();
-			manager.CreateUser("UnitTestUser" + random.Next().ToString(), random.Next().ToString(), "UnitTestUserName", u1);
-			manager.GetUser(u1.Users[0].Id, u2);
-			Assert.IsTrue(u1.Users[0].Id == u2.Users[0].Id);
-		}
+        [Test]
+        public void CreateUser()
+        {
+            UserSet u = new UserSet();
+            manager.CreateUser("UnitTestUser" + random.Next().ToString(), random.Next().ToString(), "UnitTestUserName",
+                               u);
+            Assert.IsTrue(u.Users.Count > 0);
+        }
 
-		[Test] 
-		public void RemoveUser()
-		{
-			UserSet u = new UserSet();
-			manager.CreateUser("UnitTestUser" + random.Next().ToString(), random.Next().ToString(), "UnitTestUserName", u);
-			int id = u.Users[0].Id;
+        [Test]
+        public void GetUser()
+        {
+            UserSet u1 = new UserSet();
+            UserSet u2 = new UserSet();
+            manager.CreateUser("UnitTestUser" + random.Next().ToString(), random.Next().ToString(), "UnitTestUserName",
+                               u1);
+            manager.GetUser(u1.Users[0].Id, u2);
+            Assert.IsTrue(u1.Users[0].Id == u2.Users[0].Id);
+        }
 
-			u.Users[0].Delete(); //marks the record for deletion
-			manager.UpdateUsers(u); //executes the deletion
+        [Test]
+        public void RemoveUser()
+        {
+            UserSet u = new UserSet();
+            manager.CreateUser("UnitTestUser" + random.Next().ToString(), random.Next().ToString(), "UnitTestUserName",
+                               u);
+            int id = u.Users[0].Id;
 
-			try
-			{
-				manager.GetUser(id, u);
-			} catch
-			{ 
-				/*it's ok*/
-				return;
-			}
+            u.Users[0].Delete(); //marks the record for deletion
+            manager.UpdateUsers(u); //executes the deletion
 
-			Assert.Fail(String.Format("User {0} was not removed successfully.", id));
-		}
+            try
+            {
+                manager.GetUser(id, u);
+            }
+            catch
+            {
+                /*it's ok*/
+                return;
+            }
 
-		[Test] 
-		public void UpdateUser()
-		{
-			Data.UserSet u = new UserSet();
-			manager.CreateUser("UnitTestUser" + random.Next().ToString(), random.Next().ToString(), "UnitTestUserName", u);
-			int id = u.Users[0].Id;
+            Assert.Fail(String.Format("User {0} was not removed successfully.", id));
+        }
 
-			u.Users[0].Name = "1";
-			manager.UpdateUsers(u);
+        [Test]
+        public void UpdateUser()
+        {
+            UserSet u = new UserSet();
+            manager.CreateUser("UnitTestUser" + random.Next().ToString(), random.Next().ToString(), "UnitTestUserName",
+                               u);
+            int id = u.Users[0].Id;
 
-			UserSet u2 = new UserSet();
-			manager.GetUser(id, u2);
-			Assert.AreEqual(u2.Users[0].Name, "1");
-		}
+            u.Users[0].Name = "1";
+            manager.UpdateUsers(u);
 
-		[Test] 
-		public void GetUsers()
-		{
-			UserSet u = new UserSet();
-			manager.GetUsers(u);
-		}
+            UserSet u2 = new UserSet();
+            manager.GetUser(id, u2);
+            Assert.AreEqual(u2.Users[0].Name, "1");
+        }
 
-		[Test] 
-		public void CheckPassword()
-		{
-			string passw = random.Next().ToString();
-			UserSet u = new UserSet();
-			manager.CreateUser("UnitTestUser" + random.Next().ToString(), passw, "UnitTestUserName", u);
+        [Test]
+        public void GetUsers()
+        {
+            UserSet u = new UserSet();
+            manager.GetUsers(u);
+        }
 
-			Assert.IsTrue(manager.IsPasswordValid(u.Users[0], passw));
-			Assert.IsFalse(manager.IsPasswordValid(u.Users[0], "AAA!"));
-		}
+        [Test]
+        public void CheckPassword()
+        {
+            string passw = random.Next().ToString();
+            UserSet u = new UserSet();
+            manager.CreateUser("UnitTestUser" + random.Next().ToString(), passw, "UnitTestUserName", u);
 
-		[Test] 
-		public void GetTests()
-		{
-			TestSet t = new TestSet();
-			manager.GetTests(t);
-		}
+            Assert.IsTrue(manager.IsPasswordValid(u.Users[0], passw));
+            Assert.IsFalse(manager.IsPasswordValid(u.Users[0], "AAA!"));
+        }
 
-		[Test]
-		public void RunPractice()
-		{
-			TestSet ts = new TestSet();
-			manager.GetTests(ts);
+        [Test]
+        public void GetTests()
+        {
+            TestSet t = new TestSet();
+            manager.GetTests(t);
+        }
 
-			foreach (TestSet.TestsRow t in ts.Tests)
-				if (t.IsPractice)
-				{
-					INavigator navigator = manager.RunTest(t);
-					CheckNavigator(navigator);
-				}
-		}
+        [Test]
+        public void RunPractice()
+        {
+            TestSet ts = new TestSet();
+            manager.GetTests(ts);
 
-		[Test]
-		public void RunTest()
-		{
-			TestSet ts = new TestSet();
-			manager.GetTests(ts);
+            foreach (TestSet.TestsRow t in ts.Tests)
+                if (t.IsPractice)
+                {
+                    INavigator navigator = manager.RunTest(t);
+                    CheckNavigator(navigator);
+                }
+        }
 
-			foreach (TestSet.TestsRow t in ts.Tests)
-				if (!t.IsPractice)
-				{
-					INavigator navigator = manager.RunTest(t);
-					CheckNavigator(navigator);
-				}
-		}
+        [Test]
+        public void RunTest()
+        {
+            TestSet ts = new TestSet();
+            manager.GetTests(ts);
 
-	}
+            foreach (TestSet.TestsRow t in ts.Tests)
+                if (!t.IsPractice)
+                {
+                    INavigator navigator = manager.RunTest(t);
+                    CheckNavigator(navigator);
+                }
+        }
+    }
 }

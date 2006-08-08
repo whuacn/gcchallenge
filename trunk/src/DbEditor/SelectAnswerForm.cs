@@ -1,9 +1,5 @@
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 using GmatClubTest.DbEditor.Data;
 
@@ -19,7 +15,7 @@ namespace GmatClubTest.DbEditor
         {
             InitializeComponent();
             this.questionId = questionId;
-            copyDataset = (Dataset)data.Copy();
+            copyDataset = (Dataset) data.Copy();
             dataset = copyDataset;
         }
 
@@ -32,7 +28,7 @@ namespace GmatClubTest.DbEditor
                     dataset.Answers[i].Delete();
                 }
             }
-          
+
             answersDataGrid.DataSource = dataset;
             ListSortDirection direction;
             direction = ListSortDirection.Ascending;
@@ -42,14 +38,17 @@ namespace GmatClubTest.DbEditor
 
         private void addButton_Click(object sender, EventArgs e)
         {
-            if(answersDataGrid.SelectedRows.Count == 0)
+            if (answersDataGrid.SelectedRows.Count == 0)
             {
-                MessageBox.Show("No selected answer.", "Select exist answer", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("No selected answer.", "Select exist answer", MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
                 return;
-            }else
+            }
+            else
             {
-                answerId = Convert.ToInt32(answersDataGrid.SelectedRows[0].Cells[idDataGridViewTextBoxColumn.Index].Value);
-                this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                answerId =
+                    Convert.ToInt32(answersDataGrid.SelectedRows[0].Cells[idDataGridViewTextBoxColumn.Index].Value);
+                DialogResult = DialogResult.OK;
             }
         }
     }
