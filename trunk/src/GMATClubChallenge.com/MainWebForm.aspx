@@ -10,9 +10,7 @@
 	</HEAD>
 	<body style="text-align: center">
 		<form id="Form1" method="post" runat="server">
-            &nbsp;&nbsp;
-			<asp:LinkButton id="LinkButton4" style="Z-INDEX: 104; LEFT: 800px; POSITION: absolute; TOP: 47px"
-				runat="server" onclick="LinkButton4_Click">Results</asp:LinkButton>
+            &nbsp;&nbsp;&nbsp;
             <table id="Table1" align="center" border="0" cellpadding="1" cellspacing="1">
                 <tr>
                     <td align="left" width="20%">

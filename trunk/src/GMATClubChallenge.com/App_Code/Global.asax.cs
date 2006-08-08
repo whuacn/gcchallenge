@@ -54,6 +54,7 @@ namespace GMATClubTest.Web
 
 		protected void Application_Error(Object sender, EventArgs e)
 		{
+			Response.Redirect("errorWebForm.aspx");
 		}
 
 		protected void Session_End(Object sender, EventArgs e)
