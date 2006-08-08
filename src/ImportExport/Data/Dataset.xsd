@@ -115,16 +115,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="PassagesToQuestions" msprop:Generator_UserTableName="PassagesToQuestions" msprop:Generator_RowDeletedName="PassagesToQuestionsRowDeleted" msprop:Generator_RowChangedName="PassagesToQuestionsRowChanged" msprop:Generator_RowClassName="PassagesToQuestionsRow" msprop:Generator_RowChangingName="PassagesToQuestionsRowChanging" msprop:Generator_RowEvArgName="PassagesToQuestionsRowChangeEvent" msprop:Generator_RowEvHandlerName="PassagesToQuestionsRowChangeEventHandler" msprop:Generator_TableClassName="PassagesToQuestionsDataTable" msprop:Generator_TableVarName="tablePassagesToQuestions" msprop:Generator_RowDeletingName="PassagesToQuestionsRowDeleting" msprop:Generator_TablePropName="PassagesToQuestions">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="PassageQuestionId" msprop:Generator_UserColumnName="PassageQuestionId" msprop:Generator_ColumnPropNameInRow="PassageQuestionId" msprop:Generator_ColumnVarNameInTable="columnPassageQuestionId" msprop:Generator_ColumnPropNameInTable="PassageQuestionIdColumn" type="xs:int" />
-              <xs:element name="QuestionId" msprop:Generator_UserColumnName="QuestionId" msprop:Generator_ColumnPropNameInRow="QuestionId" msprop:Generator_ColumnVarNameInTable="columnQuestionId" msprop:Generator_ColumnPropNameInTable="QuestionIdColumn" type="xs:int" />
-              <xs:element name="QuestionOrder" msprop:Generator_UserColumnName="QuestionOrder" msprop:Generator_ColumnPropNameInRow="QuestionOrder" msprop:Generator_ColumnVarNameInTable="columnQuestionOrder" msprop:Generator_ColumnPropNameInTable="QuestionOrderColumn" type="xs:unsignedByte" />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="Questions" msprop:Generator_UserTableName="Questions" msprop:Generator_RowDeletedName="QuestionsRowDeleted" msprop:Generator_TableClassName="QuestionsDataTable" msprop:Generator_RowChangedName="QuestionsRowChanged" msprop:Generator_RowClassName="QuestionsRow" msprop:Generator_RowChangingName="QuestionsRowChanging" msprop:Generator_RowEvArgName="QuestionsRowChangeEvent" msprop:Generator_RowEvHandlerName="QuestionsRowChangeEventHandler" msprop:Generator_TablePropName="Questions" msprop:Generator_TableVarName="tableQuestions" msprop:Generator_RowDeletingName="QuestionsRowDeleting">
+        <xs:element name="Questions" msprop:Generator_UserTableName="Questions" msprop:Generator_RowDeletedName="QuestionsRowDeleted" msprop:Generator_RowChangedName="QuestionsRowChanged" msprop:Generator_RowClassName="QuestionsRow" msprop:Generator_RowChangingName="QuestionsRowChanging" msprop:Generator_RowEvArgName="QuestionsRowChangeEvent" msprop:Generator_RowEvHandlerName="QuestionsRowChangeEventHandler" msprop:Generator_TableClassName="QuestionsDataTable" msprop:Generator_TableVarName="tableQuestions" msprop:Generator_RowDeletingName="QuestionsRowDeleting" msprop:Generator_TablePropName="Questions">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msdata:AutoIncrement="true" msprop:Generator_UserColumnName="Id" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInTable="IdColumn" type="xs:int" />
@@ -139,6 +130,15 @@
                 </xs:simpleType>
               </xs:element>
               <xs:element name="Picture" msprop:Generator_UserColumnName="Picture" msprop:Generator_ColumnPropNameInRow="Picture" msprop:Generator_ColumnVarNameInTable="columnPicture" msprop:Generator_ColumnPropNameInTable="PictureColumn" type="xs:base64Binary" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="PassagesToQuestions" msprop:Generator_UserTableName="PassagesToQuestions" msprop:Generator_RowDeletedName="PassagesToQuestionsRowDeleted" msprop:Generator_TableClassName="PassagesToQuestionsDataTable" msprop:Generator_RowChangedName="PassagesToQuestionsRowChanged" msprop:Generator_RowClassName="PassagesToQuestionsRow" msprop:Generator_RowChangingName="PassagesToQuestionsRowChanging" msprop:Generator_RowEvArgName="PassagesToQuestionsRowChangeEvent" msprop:Generator_RowEvHandlerName="PassagesToQuestionsRowChangeEventHandler" msprop:Generator_TablePropName="PassagesToQuestions" msprop:Generator_TableVarName="tablePassagesToQuestions" msprop:Generator_RowDeletingName="PassagesToQuestionsRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PassageQuestionId" msprop:Generator_UserColumnName="PassageQuestionId" msprop:Generator_ColumnPropNameInRow="PassageQuestionId" msprop:Generator_ColumnVarNameInTable="columnPassageQuestionId" msprop:Generator_ColumnPropNameInTable="PassageQuestionIdColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="QuestionId" msprop:Generator_UserColumnName="QuestionId" msprop:Generator_ColumnPropNameInRow="QuestionId" msprop:Generator_ColumnVarNameInTable="columnQuestionId" msprop:Generator_ColumnPropNameInTable="QuestionIdColumn" type="xs:int" />
+              <xs:element name="QuestionOrder" msprop:Generator_UserColumnName="QuestionOrder" msprop:Generator_ColumnPropNameInRow="QuestionOrder" msprop:Generator_ColumnVarNameInTable="columnQuestionOrder" msprop:Generator_ColumnPropNameInTable="QuestionOrderColumn" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -166,13 +166,13 @@
       <xs:field xpath="mstns:SetId" />
       <xs:field xpath="mstns:QuestionId" />
     </xs:unique>
-    <xs:unique name="PassagesToQuestions_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
-      <xs:selector xpath=".//mstns:PassagesToQuestions" />
-      <xs:field xpath="mstns:QuestionId" />
-    </xs:unique>
     <xs:unique name="Questions_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:Questions" />
       <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="PassagesToQuestions_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:PassagesToQuestions" />
+      <xs:field xpath="mstns:QuestionId" />
     </xs:unique>
   </xs:element>
 </xs:schema>

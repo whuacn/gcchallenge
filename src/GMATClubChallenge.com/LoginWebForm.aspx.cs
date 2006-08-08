@@ -1,4 +1,5 @@
 using System;
+using System.Configuration;
 using System.Data;
 using System.Globalization;
 using System.Web.UI;
@@ -17,6 +18,8 @@ namespace GMATClubTest.Web
 		protected void Page_Load(object sender, EventArgs e)
 		{
 			manager = (Manager)Session["Manager"];
+			manager = Manager.CreareManagerUseSql(ConfigurationManager.AppSettings["DataSource"], ConfigurationManager.AppSettings["DataSourceUserName"], ConfigurationManager.AppSettings["DataSourcePassword"]);
+			Session["Manager"] = manager;
 			manager.GetUsers(userSet);
             //errorLabel.Visible = false;
 			if (!IsPostBack)

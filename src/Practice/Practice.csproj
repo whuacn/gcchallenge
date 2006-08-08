@@ -243,16 +243,7 @@
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>
-    <PostBuildEvent>rem md "%25APPDATA%25\GmatClubTest - Practice"
-
-copy /Y "$(ProjectDir)\Practice.exe.manifest" "$(TargetDir)\Practice.exe.manifest"
-copy /Y "$(ProjectDir)\..\RenderingConfiguration\*.xml" "$(TargetDir)\*.*"
-copy /Y "$(ProjectDir)\..\..\Data\rtf\*.rtf" "$(TargetDir)\*.*"
-
-rem copy /Y "$(ProjectDir)\..\..\Data\db\GmatClubTest.mdb" "%25APPDATA%25\GmatClubTest - Practice\*.*"
-rem copy /Y "$(ProjectDir)\..\..\Data\db\GmatClubTest.mdb" "$(TargetDir)\*.*"
-
-
-copy /Y "$(ProjectDir)\..\..\Data\Keys\DefaultGmatClubPublicKey.gck" "$(TargetDir)\*.*"</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
 </Project>

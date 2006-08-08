@@ -33,9 +33,9 @@ namespace ImportExport.Data {
         
         private SetsToQuestionsDataTable tableSetsToQuestions;
         
-        private PassagesToQuestionsDataTable tablePassagesToQuestions;
-        
         private QuestionsDataTable tableQuestions;
+        
+        private PassagesToQuestionsDataTable tablePassagesToQuestions;
         
         private System.Data.SchemaSerializationMode _schemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -78,11 +78,11 @@ namespace ImportExport.Data {
                 if ((ds.Tables["SetsToQuestions"] != null)) {
                     base.Tables.Add(new SetsToQuestionsDataTable(ds.Tables["SetsToQuestions"]));
                 }
-                if ((ds.Tables["PassagesToQuestions"] != null)) {
-                    base.Tables.Add(new PassagesToQuestionsDataTable(ds.Tables["PassagesToQuestions"]));
-                }
                 if ((ds.Tables["Questions"] != null)) {
                     base.Tables.Add(new QuestionsDataTable(ds.Tables["Questions"]));
+                }
+                if ((ds.Tables["PassagesToQuestions"] != null)) {
+                    base.Tables.Add(new PassagesToQuestionsDataTable(ds.Tables["PassagesToQuestions"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -150,18 +150,18 @@ namespace ImportExport.Data {
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [System.ComponentModel.Browsable(false)]
         [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public PassagesToQuestionsDataTable PassagesToQuestions {
+        public QuestionsDataTable Questions {
             get {
-                return this.tablePassagesToQuestions;
+                return this.tableQuestions;
             }
         }
         
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [System.ComponentModel.Browsable(false)]
         [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public QuestionsDataTable Questions {
+        public PassagesToQuestionsDataTable PassagesToQuestions {
             get {
-                return this.tableQuestions;
+                return this.tablePassagesToQuestions;
             }
         }
         
@@ -239,11 +239,11 @@ namespace ImportExport.Data {
                 if ((ds.Tables["SetsToQuestions"] != null)) {
                     base.Tables.Add(new SetsToQuestionsDataTable(ds.Tables["SetsToQuestions"]));
                 }
-                if ((ds.Tables["PassagesToQuestions"] != null)) {
-                    base.Tables.Add(new PassagesToQuestionsDataTable(ds.Tables["PassagesToQuestions"]));
-                }
                 if ((ds.Tables["Questions"] != null)) {
                     base.Tables.Add(new QuestionsDataTable(ds.Tables["Questions"]));
+                }
+                if ((ds.Tables["PassagesToQuestions"] != null)) {
+                    base.Tables.Add(new PassagesToQuestionsDataTable(ds.Tables["PassagesToQuestions"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -305,16 +305,16 @@ namespace ImportExport.Data {
                     this.tableSetsToQuestions.InitVars();
                 }
             }
-            this.tablePassagesToQuestions = ((PassagesToQuestionsDataTable)(base.Tables["PassagesToQuestions"]));
-            if ((initTable == true)) {
-                if ((this.tablePassagesToQuestions != null)) {
-                    this.tablePassagesToQuestions.InitVars();
-                }
-            }
             this.tableQuestions = ((QuestionsDataTable)(base.Tables["Questions"]));
             if ((initTable == true)) {
                 if ((this.tableQuestions != null)) {
                     this.tableQuestions.InitVars();
+                }
+            }
+            this.tablePassagesToQuestions = ((PassagesToQuestionsDataTable)(base.Tables["PassagesToQuestions"]));
+            if ((initTable == true)) {
+                if ((this.tablePassagesToQuestions != null)) {
+                    this.tablePassagesToQuestions.InitVars();
                 }
             }
         }
@@ -336,10 +336,10 @@ namespace ImportExport.Data {
             base.Tables.Add(this.tableAnswers);
             this.tableSetsToQuestions = new SetsToQuestionsDataTable();
             base.Tables.Add(this.tableSetsToQuestions);
-            this.tablePassagesToQuestions = new PassagesToQuestionsDataTable();
-            base.Tables.Add(this.tablePassagesToQuestions);
             this.tableQuestions = new QuestionsDataTable();
             base.Tables.Add(this.tableQuestions);
+            this.tablePassagesToQuestions = new PassagesToQuestionsDataTable();
+            base.Tables.Add(this.tablePassagesToQuestions);
         }
         
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -368,12 +368,12 @@ namespace ImportExport.Data {
         }
         
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private bool ShouldSerializePassagesToQuestions() {
+        private bool ShouldSerializeQuestions() {
             return false;
         }
         
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private bool ShouldSerializeQuestions() {
+        private bool ShouldSerializePassagesToQuestions() {
             return false;
         }
         
@@ -407,9 +407,9 @@ namespace ImportExport.Data {
         
         public delegate void SetsToQuestionsRowChangeEventHandler(object sender, SetsToQuestionsRowChangeEvent e);
         
-        public delegate void PassagesToQuestionsRowChangeEventHandler(object sender, PassagesToQuestionsRowChangeEvent e);
-        
         public delegate void QuestionsRowChangeEventHandler(object sender, QuestionsRowChangeEvent e);
+        
+        public delegate void PassagesToQuestionsRowChangeEventHandler(object sender, PassagesToQuestionsRowChangeEvent e);
         
         [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
         [System.Serializable()]
@@ -1778,235 +1778,6 @@ namespace ImportExport.Data {
         [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
         [System.Serializable()]
         [System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class PassagesToQuestionsDataTable : System.Data.DataTable, System.Collections.IEnumerable {
-            
-            private System.Data.DataColumn columnPassageQuestionId;
-            
-            private System.Data.DataColumn columnQuestionId;
-            
-            private System.Data.DataColumn columnQuestionOrder;
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public PassagesToQuestionsDataTable() {
-                this.TableName = "PassagesToQuestions";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal PassagesToQuestionsDataTable(System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected PassagesToQuestionsDataTable(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public System.Data.DataColumn PassageQuestionIdColumn {
-                get {
-                    return this.columnPassageQuestionId;
-                }
-            }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public System.Data.DataColumn QuestionIdColumn {
-                get {
-                    return this.columnQuestionId;
-                }
-            }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public System.Data.DataColumn QuestionOrderColumn {
-                get {
-                    return this.columnQuestionOrder;
-                }
-            }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public PassagesToQuestionsRow this[int index] {
-                get {
-                    return ((PassagesToQuestionsRow)(this.Rows[index]));
-                }
-            }
-            
-            public event PassagesToQuestionsRowChangeEventHandler PassagesToQuestionsRowChanging;
-            
-            public event PassagesToQuestionsRowChangeEventHandler PassagesToQuestionsRowChanged;
-            
-            public event PassagesToQuestionsRowChangeEventHandler PassagesToQuestionsRowDeleting;
-            
-            public event PassagesToQuestionsRowChangeEventHandler PassagesToQuestionsRowDeleted;
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void AddPassagesToQuestionsRow(PassagesToQuestionsRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public PassagesToQuestionsRow AddPassagesToQuestionsRow(int PassageQuestionId, int QuestionId, byte QuestionOrder) {
-                PassagesToQuestionsRow rowPassagesToQuestionsRow = ((PassagesToQuestionsRow)(this.NewRow()));
-                rowPassagesToQuestionsRow.ItemArray = new object[] {
-                        PassageQuestionId,
-                        QuestionId,
-                        QuestionOrder};
-                this.Rows.Add(rowPassagesToQuestionsRow);
-                return rowPassagesToQuestionsRow;
-            }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public PassagesToQuestionsRow FindByQuestionId(int QuestionId) {
-                return ((PassagesToQuestionsRow)(this.Rows.Find(new object[] {
-                            QuestionId})));
-            }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public virtual System.Collections.IEnumerator GetEnumerator() {
-                return this.Rows.GetEnumerator();
-            }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public override System.Data.DataTable Clone() {
-                PassagesToQuestionsDataTable cln = ((PassagesToQuestionsDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override System.Data.DataTable CreateInstance() {
-                return new PassagesToQuestionsDataTable();
-            }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal void InitVars() {
-                this.columnPassageQuestionId = base.Columns["PassageQuestionId"];
-                this.columnQuestionId = base.Columns["QuestionId"];
-                this.columnQuestionOrder = base.Columns["QuestionOrder"];
-            }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            private void InitClass() {
-                this.columnPassageQuestionId = new System.Data.DataColumn("PassageQuestionId", typeof(int), null, System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPassageQuestionId);
-                this.columnQuestionId = new System.Data.DataColumn("QuestionId", typeof(int), null, System.Data.MappingType.Element);
-                base.Columns.Add(this.columnQuestionId);
-                this.columnQuestionOrder = new System.Data.DataColumn("QuestionOrder", typeof(byte), null, System.Data.MappingType.Element);
-                base.Columns.Add(this.columnQuestionOrder);
-                this.Constraints.Add(new System.Data.UniqueConstraint("Constraint1", new System.Data.DataColumn[] {
-                                this.columnQuestionId}, true));
-                this.columnPassageQuestionId.AllowDBNull = false;
-                this.columnQuestionId.AllowDBNull = false;
-                this.columnQuestionId.Unique = true;
-                this.columnQuestionOrder.AllowDBNull = false;
-            }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public PassagesToQuestionsRow NewPassagesToQuestionsRow() {
-                return ((PassagesToQuestionsRow)(this.NewRow()));
-            }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override System.Data.DataRow NewRowFromBuilder(System.Data.DataRowBuilder builder) {
-                return new PassagesToQuestionsRow(builder);
-            }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override System.Type GetRowType() {
-                return typeof(PassagesToQuestionsRow);
-            }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowChanged(System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.PassagesToQuestionsRowChanged != null)) {
-                    this.PassagesToQuestionsRowChanged(this, new PassagesToQuestionsRowChangeEvent(((PassagesToQuestionsRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowChanging(System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.PassagesToQuestionsRowChanging != null)) {
-                    this.PassagesToQuestionsRowChanging(this, new PassagesToQuestionsRowChangeEvent(((PassagesToQuestionsRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowDeleted(System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.PassagesToQuestionsRowDeleted != null)) {
-                    this.PassagesToQuestionsRowDeleted(this, new PassagesToQuestionsRowChangeEvent(((PassagesToQuestionsRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowDeleting(System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.PassagesToQuestionsRowDeleting != null)) {
-                    this.PassagesToQuestionsRowDeleting(this, new PassagesToQuestionsRowChangeEvent(((PassagesToQuestionsRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void RemovePassagesToQuestionsRow(PassagesToQuestionsRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public static System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(System.Xml.Schema.XmlSchemaSet xs) {
-                System.Xml.Schema.XmlSchemaComplexType type = new System.Xml.Schema.XmlSchemaComplexType();
-                System.Xml.Schema.XmlSchemaSequence sequence = new System.Xml.Schema.XmlSchemaSequence();
-                Dataset ds = new Dataset();
-                xs.Add(ds.GetSchemaSerializable());
-                System.Xml.Schema.XmlSchemaAny any1 = new System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                System.Xml.Schema.XmlSchemaAny any2 = new System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                System.Xml.Schema.XmlSchemaAttribute attribute1 = new System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                System.Xml.Schema.XmlSchemaAttribute attribute2 = new System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "PassagesToQuestionsDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                return type;
-            }
-        }
-        
-        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        [System.Serializable()]
-        [System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class QuestionsDataTable : System.Data.DataTable, System.Collections.IEnumerable {
             
             private System.Data.DataColumn columnId;
@@ -2266,6 +2037,233 @@ namespace ImportExport.Data {
                 System.Xml.Schema.XmlSchemaAttribute attribute2 = new System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "QuestionsDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                return type;
+            }
+        }
+        
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        [System.Serializable()]
+        [System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class PassagesToQuestionsDataTable : System.Data.DataTable, System.Collections.IEnumerable {
+            
+            private System.Data.DataColumn columnPassageQuestionId;
+            
+            private System.Data.DataColumn columnQuestionId;
+            
+            private System.Data.DataColumn columnQuestionOrder;
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public PassagesToQuestionsDataTable() {
+                this.TableName = "PassagesToQuestions";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal PassagesToQuestionsDataTable(System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected PassagesToQuestionsDataTable(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public System.Data.DataColumn PassageQuestionIdColumn {
+                get {
+                    return this.columnPassageQuestionId;
+                }
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public System.Data.DataColumn QuestionIdColumn {
+                get {
+                    return this.columnQuestionId;
+                }
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public System.Data.DataColumn QuestionOrderColumn {
+                get {
+                    return this.columnQuestionOrder;
+                }
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public PassagesToQuestionsRow this[int index] {
+                get {
+                    return ((PassagesToQuestionsRow)(this.Rows[index]));
+                }
+            }
+            
+            public event PassagesToQuestionsRowChangeEventHandler PassagesToQuestionsRowChanging;
+            
+            public event PassagesToQuestionsRowChangeEventHandler PassagesToQuestionsRowChanged;
+            
+            public event PassagesToQuestionsRowChangeEventHandler PassagesToQuestionsRowDeleting;
+            
+            public event PassagesToQuestionsRowChangeEventHandler PassagesToQuestionsRowDeleted;
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void AddPassagesToQuestionsRow(PassagesToQuestionsRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public PassagesToQuestionsRow AddPassagesToQuestionsRow(int PassageQuestionId, int QuestionId, int QuestionOrder) {
+                PassagesToQuestionsRow rowPassagesToQuestionsRow = ((PassagesToQuestionsRow)(this.NewRow()));
+                rowPassagesToQuestionsRow.ItemArray = new object[] {
+                        PassageQuestionId,
+                        QuestionId,
+                        QuestionOrder};
+                this.Rows.Add(rowPassagesToQuestionsRow);
+                return rowPassagesToQuestionsRow;
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public PassagesToQuestionsRow FindByQuestionId(int QuestionId) {
+                return ((PassagesToQuestionsRow)(this.Rows.Find(new object[] {
+                            QuestionId})));
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public virtual System.Collections.IEnumerator GetEnumerator() {
+                return this.Rows.GetEnumerator();
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public override System.Data.DataTable Clone() {
+                PassagesToQuestionsDataTable cln = ((PassagesToQuestionsDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override System.Data.DataTable CreateInstance() {
+                return new PassagesToQuestionsDataTable();
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal void InitVars() {
+                this.columnPassageQuestionId = base.Columns["PassageQuestionId"];
+                this.columnQuestionId = base.Columns["QuestionId"];
+                this.columnQuestionOrder = base.Columns["QuestionOrder"];
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            private void InitClass() {
+                this.columnPassageQuestionId = new System.Data.DataColumn("PassageQuestionId", typeof(int), null, System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPassageQuestionId);
+                this.columnQuestionId = new System.Data.DataColumn("QuestionId", typeof(int), null, System.Data.MappingType.Element);
+                base.Columns.Add(this.columnQuestionId);
+                this.columnQuestionOrder = new System.Data.DataColumn("QuestionOrder", typeof(int), null, System.Data.MappingType.Element);
+                base.Columns.Add(this.columnQuestionOrder);
+                this.Constraints.Add(new System.Data.UniqueConstraint("Constraint1", new System.Data.DataColumn[] {
+                                this.columnQuestionId}, true));
+                this.columnQuestionId.AllowDBNull = false;
+                this.columnQuestionId.Unique = true;
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public PassagesToQuestionsRow NewPassagesToQuestionsRow() {
+                return ((PassagesToQuestionsRow)(this.NewRow()));
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override System.Data.DataRow NewRowFromBuilder(System.Data.DataRowBuilder builder) {
+                return new PassagesToQuestionsRow(builder);
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override System.Type GetRowType() {
+                return typeof(PassagesToQuestionsRow);
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowChanged(System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.PassagesToQuestionsRowChanged != null)) {
+                    this.PassagesToQuestionsRowChanged(this, new PassagesToQuestionsRowChangeEvent(((PassagesToQuestionsRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowChanging(System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.PassagesToQuestionsRowChanging != null)) {
+                    this.PassagesToQuestionsRowChanging(this, new PassagesToQuestionsRowChangeEvent(((PassagesToQuestionsRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowDeleted(System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.PassagesToQuestionsRowDeleted != null)) {
+                    this.PassagesToQuestionsRowDeleted(this, new PassagesToQuestionsRowChangeEvent(((PassagesToQuestionsRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowDeleting(System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.PassagesToQuestionsRowDeleting != null)) {
+                    this.PassagesToQuestionsRowDeleting(this, new PassagesToQuestionsRowChangeEvent(((PassagesToQuestionsRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void RemovePassagesToQuestionsRow(PassagesToQuestionsRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public static System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(System.Xml.Schema.XmlSchemaSet xs) {
+                System.Xml.Schema.XmlSchemaComplexType type = new System.Xml.Schema.XmlSchemaComplexType();
+                System.Xml.Schema.XmlSchemaSequence sequence = new System.Xml.Schema.XmlSchemaSequence();
+                Dataset ds = new Dataset();
+                xs.Add(ds.GetSchemaSerializable());
+                System.Xml.Schema.XmlSchemaAny any1 = new System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                System.Xml.Schema.XmlSchemaAny any2 = new System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                System.Xml.Schema.XmlSchemaAttribute attribute1 = new System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                System.Xml.Schema.XmlSchemaAttribute attribute2 = new System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "PassagesToQuestionsDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 return type;
@@ -2708,48 +2706,6 @@ namespace ImportExport.Data {
         }
         
         [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public partial class PassagesToQuestionsRow : System.Data.DataRow {
-            
-            private PassagesToQuestionsDataTable tablePassagesToQuestions;
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal PassagesToQuestionsRow(System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tablePassagesToQuestions = ((PassagesToQuestionsDataTable)(this.Table));
-            }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public int PassageQuestionId {
-                get {
-                    return ((int)(this[this.tablePassagesToQuestions.PassageQuestionIdColumn]));
-                }
-                set {
-                    this[this.tablePassagesToQuestions.PassageQuestionIdColumn] = value;
-                }
-            }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public int QuestionId {
-                get {
-                    return ((int)(this[this.tablePassagesToQuestions.QuestionIdColumn]));
-                }
-                set {
-                    this[this.tablePassagesToQuestions.QuestionIdColumn] = value;
-                }
-            }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public byte QuestionOrder {
-                get {
-                    return ((byte)(this[this.tablePassagesToQuestions.QuestionOrderColumn]));
-                }
-                set {
-                    this[this.tablePassagesToQuestions.QuestionOrderColumn] = value;
-                }
-            }
-        }
-        
-        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
         public partial class QuestionsRow : System.Data.DataRow {
             
             private QuestionsDataTable tableQuestions;
@@ -2897,6 +2853,79 @@ namespace ImportExport.Data {
         }
         
         [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public partial class PassagesToQuestionsRow : System.Data.DataRow {
+            
+            private PassagesToQuestionsDataTable tablePassagesToQuestions;
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal PassagesToQuestionsRow(System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tablePassagesToQuestions = ((PassagesToQuestionsDataTable)(this.Table));
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public int PassageQuestionId {
+                get {
+                    try {
+                        return ((int)(this[this.tablePassagesToQuestions.PassageQuestionIdColumn]));
+                    }
+                    catch (System.InvalidCastException e) {
+                        throw new System.Data.StrongTypingException("The value for column \'PassageQuestionId\' in table \'PassagesToQuestions\' is DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tablePassagesToQuestions.PassageQuestionIdColumn] = value;
+                }
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public int QuestionId {
+                get {
+                    return ((int)(this[this.tablePassagesToQuestions.QuestionIdColumn]));
+                }
+                set {
+                    this[this.tablePassagesToQuestions.QuestionIdColumn] = value;
+                }
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public int QuestionOrder {
+                get {
+                    try {
+                        return ((int)(this[this.tablePassagesToQuestions.QuestionOrderColumn]));
+                    }
+                    catch (System.InvalidCastException e) {
+                        throw new System.Data.StrongTypingException("The value for column \'QuestionOrder\' in table \'PassagesToQuestions\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePassagesToQuestions.QuestionOrderColumn] = value;
+                }
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsPassageQuestionIdNull() {
+                return this.IsNull(this.tablePassagesToQuestions.PassageQuestionIdColumn);
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetPassageQuestionIdNull() {
+                this[this.tablePassagesToQuestions.PassageQuestionIdColumn] = System.Convert.DBNull;
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsQuestionOrderNull() {
+                return this.IsNull(this.tablePassagesToQuestions.QuestionOrderColumn);
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetQuestionOrderNull() {
+                this[this.tablePassagesToQuestions.QuestionOrderColumn] = System.Convert.DBNull;
+            }
+        }
+        
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
         public class TestsRowChangeEvent : System.EventArgs {
             
             private TestsRow eventRow;
@@ -3037,34 +3066,6 @@ namespace ImportExport.Data {
         }
         
         [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public class PassagesToQuestionsRowChangeEvent : System.EventArgs {
-            
-            private PassagesToQuestionsRow eventRow;
-            
-            private System.Data.DataRowAction eventAction;
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public PassagesToQuestionsRowChangeEvent(PassagesToQuestionsRow row, System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public PassagesToQuestionsRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
         public class QuestionsRowChangeEvent : System.EventArgs {
             
             private QuestionsRow eventRow;
@@ -3079,6 +3080,34 @@ namespace ImportExport.Data {
             
             [System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public QuestionsRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public class PassagesToQuestionsRowChangeEvent : System.EventArgs {
+            
+            private PassagesToQuestionsRow eventRow;
+            
+            private System.Data.DataRowAction eventAction;
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public PassagesToQuestionsRowChangeEvent(PassagesToQuestionsRow row, System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public PassagesToQuestionsRow Row {
                 get {
                     return this.eventRow;
                 }

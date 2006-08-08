@@ -26,14 +26,13 @@ namespace GMATClubTest.Web
 		
 		protected void Application_Start(Object sender, EventArgs e)
 		{
-
+			
 		}
  
 		protected void Session_Start(Object sender, EventArgs e)
 		{
 			Manager manager;
             manager = Manager.CreareManagerUseSql(ConfigurationManager.AppSettings["DataSourceHost"], ConfigurationManager.AppSettings["DataSourceUserName"], ConfigurationManager.AppSettings["DataSourcePassword"]);
-		    
 			Session.Add("Manager", manager);
 		}
 
