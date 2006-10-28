@@ -433,6 +433,7 @@ String.Format(
 SELECT     acl_group.idx, acl_group.name, acl_user_group_membership.idx AS Expr1
 FROM         acl_group LEFT OUTER JOIN
                       acl_user_group_membership ON acl_group.idx = acl_user_group_membership.group_idx AND acl_user_group_membership.user_idx = (select idx from acl_user where guididx='{0}')
+where acl_group.deleted = 0
 GROUP BY acl_group.idx, acl_group.name, acl_user_group_membership.idx
 order by acl_group.idx
 "
