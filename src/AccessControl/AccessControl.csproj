@@ -1,0 +1,142 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9A61CCF6-0EA3-4954-A35D-A990E1EED338}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AccessControl</RootNamespace>
+    <AssemblyName>AccessControl</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccessManager.cs" />
+    <Compile Include="acl_function.cs">
+      <DependentUpon>acl_function.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="acl_function.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>acl_function.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="acl_group.cs">
+      <DependentUpon>acl_group.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="acl_group.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>acl_group.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="acl_property.cs">
+      <DependentUpon>acl_property.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="acl_property.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>acl_property.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="acl_user.cs">
+      <DependentUpon>acl_user.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="acl_user.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>acl_user.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="BaseManager.cs" />
+    <Compile Include="GroupManager.cs" />
+    <Compile Include="UserManager.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="acl_function.xsc">
+      <DependentUpon>acl_function.xsd</DependentUpon>
+    </None>
+    <None Include="acl_function.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>acl_function.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="acl_function.xss">
+      <DependentUpon>acl_function.xsd</DependentUpon>
+    </None>
+    <None Include="acl_group.xsc">
+      <DependentUpon>acl_group.xsd</DependentUpon>
+    </None>
+    <None Include="acl_group.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>acl_group.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="acl_group.xss">
+      <DependentUpon>acl_group.xsd</DependentUpon>
+    </None>
+    <None Include="acl_property.xsc">
+      <DependentUpon>acl_property.xsd</DependentUpon>
+    </None>
+    <None Include="acl_property.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>acl_property.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="acl_property.xss">
+      <DependentUpon>acl_property.xsd</DependentUpon>
+    </None>
+    <None Include="acl_user.xsc">
+      <DependentUpon>acl_user.xsd</DependentUpon>
+    </None>
+    <None Include="acl_user.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>acl_user.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="acl_user.xss">
+      <DependentUpon>acl_user.xsd</DependentUpon>
+    </None>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Handlers\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
