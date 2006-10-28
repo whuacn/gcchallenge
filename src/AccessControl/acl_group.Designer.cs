@@ -234,6 +234,8 @@ namespace AccessControl {
             
             private System.Data.DataColumn columndescr;
             
+            private System.Data.DataColumn columndeleted;
+            
             [System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public acl_groupDataTable() {
                 this.TableName = "acl_group";
@@ -300,6 +302,13 @@ namespace AccessControl {
             }
             
             [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public System.Data.DataColumn deletedColumn {
+                get {
+                    return this.columndeleted;
+                }
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -328,14 +337,15 @@ namespace AccessControl {
             }
             
             [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public acl_groupRow Addacl_groupRow(string guididx, int grouplevel, string name, string descr) {
+            public acl_groupRow Addacl_groupRow(System.Guid guididx, int grouplevel, string name, string descr, bool deleted) {
                 acl_groupRow rowacl_groupRow = ((acl_groupRow)(this.NewRow()));
                 rowacl_groupRow.ItemArray = new object[] {
                         null,
                         guididx,
                         grouplevel,
                         name,
-                        descr};
+                        descr,
+                        deleted};
                 this.Rows.Add(rowacl_groupRow);
                 return rowacl_groupRow;
             }
@@ -370,13 +380,14 @@ namespace AccessControl {
                 this.columngrouplevel = base.Columns["grouplevel"];
                 this.columnname = base.Columns["name"];
                 this.columndescr = base.Columns["descr"];
+                this.columndeleted = base.Columns["deleted"];
             }
             
             [System.Diagnostics.DebuggerNonUserCodeAttribute()]
             private void InitClass() {
                 this.columnidx = new System.Data.DataColumn("idx", typeof(int), null, System.Data.MappingType.Element);
                 base.Columns.Add(this.columnidx);
-                this.columnguididx = new System.Data.DataColumn("guididx", typeof(string), null, System.Data.MappingType.Element);
+                this.columnguididx = new System.Data.DataColumn("guididx", typeof(System.Guid), null, System.Data.MappingType.Element);
                 base.Columns.Add(this.columnguididx);
                 this.columngrouplevel = new System.Data.DataColumn("grouplevel", typeof(int), null, System.Data.MappingType.Element);
                 base.Columns.Add(this.columngrouplevel);
@@ -384,6 +395,8 @@ namespace AccessControl {
                 base.Columns.Add(this.columnname);
                 this.columndescr = new System.Data.DataColumn("descr", typeof(string), null, System.Data.MappingType.Element);
                 base.Columns.Add(this.columndescr);
+                this.columndeleted = new System.Data.DataColumn("deleted", typeof(bool), null, System.Data.MappingType.Element);
+                base.Columns.Add(this.columndeleted);
                 this.Constraints.Add(new System.Data.UniqueConstraint("Constraint1", new System.Data.DataColumn[] {
                                 this.columnidx}, true));
                 this.Constraints.Add(new System.Data.UniqueConstraint("Constraint2", new System.Data.DataColumn[] {
@@ -393,7 +406,6 @@ namespace AccessControl {
                 this.columnidx.ReadOnly = true;
                 this.columnidx.Unique = true;
                 this.columnguididx.AllowDBNull = false;
-                this.columnguididx.MaxLength = 36;
                 this.columngrouplevel.AllowDBNull = false;
                 this.columnname.AllowDBNull = false;
                 this.columnname.Unique = true;
@@ -507,9 +519,9 @@ namespace AccessControl {
             }
             
             [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string guididx {
+            public System.Guid guididx {
                 get {
-                    return ((string)(this[this.tableacl_group.guididxColumn]));
+                    return ((System.Guid)(this[this.tableacl_group.guididxColumn]));
                 }
                 set {
                     this[this.tableacl_group.guididxColumn] = value;
@@ -552,6 +564,21 @@ namespace AccessControl {
             }
             
             [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool deleted {
+                get {
+                    try {
+                        return ((bool)(this[this.tableacl_group.deletedColumn]));
+                    }
+                    catch (System.InvalidCastException e) {
+                        throw new System.Data.StrongTypingException("The value for column \'deleted\' in table \'acl_group\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableacl_group.deletedColumn] = value;
+                }
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public bool IsdescrNull() {
                 return this.IsNull(this.tableacl_group.descrColumn);
             }
@@ -559,6 +586,16 @@ namespace AccessControl {
             [System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public void SetdescrNull() {
                 this[this.tableacl_group.descrColumn] = System.Convert.DBNull;
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsdeletedNull() {
+                return this.IsNull(this.tableacl_group.deletedColumn);
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetdeletedNull() {
+                this[this.tableacl_group.deletedColumn] = System.Convert.DBNull;
             }
         }
         
@@ -680,10 +717,11 @@ namespace AccessControl.acl_groupTableAdapters {
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "acl_group";
             tableMapping.ColumnMappings.Add("idx", "idx");
-            tableMapping.ColumnMappings.Add("guididx", "guididx");
             tableMapping.ColumnMappings.Add("grouplevel", "grouplevel");
             tableMapping.ColumnMappings.Add("name", "name");
             tableMapping.ColumnMappings.Add("descr", "descr");
+            tableMapping.ColumnMappings.Add("guididx", "guididx");
+            tableMapping.ColumnMappings.Add("deleted", "deleted");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -698,27 +736,29 @@ namespace AccessControl.acl_groupTableAdapters {
             this._commandCollection = new System.Data.SqlClient.SqlCommand[5];
             this._commandCollection[0] = new System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT     acl_group.*\r\nFROM         acl_group";
+            this._commandCollection[0].CommandText = "SELECT     acl_group.*\r\nFROM         acl_group\r\nwhere deleted<>1;";
             this._commandCollection[0].CommandType = System.Data.CommandType.Text;
             this._commandCollection[1] = new System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "DELETE FROM acl_group\r\nWHERE     (idx = @Original_idx) AND (name <> \'admins\') AND" +
-                " (name <> \'no_one\') AND (name <> \'users\')";
+            this._commandCollection[1].CommandText = "UPDATE    acl_group\r\nSET              deleted = 1, name = \'_del.\' + name\r\nWHERE  " +
+                "   (idx = @Original_idx) AND (name <> \'admins\') AND (name <> \'no_one\') AND (name" +
+                " <> \'users\')";
             this._commandCollection[1].CommandType = System.Data.CommandType.Text;
-            this._commandCollection[1].Parameters.Add(new System.Data.SqlClient.SqlParameter("@Original_idx", System.Data.SqlDbType.Int, 4, System.Data.ParameterDirection.Input, 0, 0, "idx", System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new System.Data.SqlClient.SqlParameter("@Original_idx", System.Data.SqlDbType.Int, 4, System.Data.ParameterDirection.Input, 0, 0, "idx", System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT     acl_group.*\r\nFROM         acl_group where name like @value or descr li" +
-                "ke @value";
+            this._commandCollection[2].CommandText = "SELECT deleted, descr, grouplevel, guididx, idx, name FROM acl_group WHERE (delet" +
+                "ed <> 1) AND (name LIKE @value OR descr LIKE @value) ";
             this._commandCollection[2].CommandType = System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new System.Data.SqlClient.SqlParameter("@value", System.Data.SqlDbType.VarChar, 100, System.Data.ParameterDirection.Input, 0, 0, "name", System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "INSERT INTO [acl_group] ([guididx], [grouplevel], [name], [descr]) VALUES (@guidi" +
-                "dx, @grouplevel, @name, @descr);\r\nSELECT idx, guididx, grouplevel, name, descr F" +
-                "ROM acl_group WHERE (idx = SCOPE_IDENTITY())";
+            this._commandCollection[3].CommandText = "INSERT INTO acl_group\r\n                      (guididx, grouplevel, name, descr, d" +
+                "eleted)\r\nVALUES     (@guididx,@grouplevel,@name,@descr, 0); \r\nSELECT idx, guidid" +
+                "x, grouplevel, name, descr,deleted FROM acl_group WHERE (idx = SCOPE_IDENTITY())" +
+                "";
             this._commandCollection[3].CommandType = System.Data.CommandType.Text;
-            this._commandCollection[3].Parameters.Add(new System.Data.SqlClient.SqlParameter("@guididx", System.Data.SqlDbType.VarChar, 36, System.Data.ParameterDirection.Input, 0, 0, "guididx", System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new System.Data.SqlClient.SqlParameter("@guididx", System.Data.SqlDbType.UniqueIdentifier, 16, System.Data.ParameterDirection.Input, 0, 0, "guididx", System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3].Parameters.Add(new System.Data.SqlClient.SqlParameter("@grouplevel", System.Data.SqlDbType.Int, 4, System.Data.ParameterDirection.Input, 0, 0, "grouplevel", System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3].Parameters.Add(new System.Data.SqlClient.SqlParameter("@name", System.Data.SqlDbType.VarChar, 100, System.Data.ParameterDirection.Input, 0, 0, "name", System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3].Parameters.Add(new System.Data.SqlClient.SqlParameter("@descr", System.Data.SqlDbType.Text, 2147483647, System.Data.ParameterDirection.Input, 0, 0, "descr", System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -792,7 +832,7 @@ namespace AccessControl.acl_groupTableAdapters {
         
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int DeleteGroup(int Original_idx) {
+        public virtual object DeleteGroup(int Original_idx) {
             System.Data.SqlClient.SqlCommand command = this.CommandCollection[1];
             command.Parameters[0].Value = ((int)(Original_idx));
             System.Data.ConnectionState previousConnectionState = command.Connection.State;
@@ -800,29 +840,29 @@ namespace AccessControl.acl_groupTableAdapters {
                         != System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
             }
-            int returnValue;
+            object returnValue;
             try {
-                returnValue = command.ExecuteNonQuery();
+                returnValue = command.ExecuteScalar();
             }
             finally {
                 if ((previousConnectionState == System.Data.ConnectionState.Closed)) {
                     command.Connection.Close();
                 }
             }
-            return returnValue;
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(System.DBNull)))) {
+                return null;
+            }
+            else {
+                return ((object)(returnValue));
+            }
         }
         
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [System.ComponentModel.DataObjectMethodAttribute(System.ComponentModel.DataObjectMethodType.Insert, false)]
-        public virtual int InsertGroup(string guididx, int grouplevel, string name, string descr) {
+        public virtual int InsertGroup(System.Guid guididx, int grouplevel, string name, string descr) {
             System.Data.SqlClient.SqlCommand command = this.CommandCollection[3];
-            if ((guididx == null)) {
-                throw new System.ArgumentNullException("guididx");
-            }
-            else {
-                command.Parameters[0].Value = ((string)(guididx));
-            }
+            command.Parameters[0].Value = ((System.Guid)(guididx));
             command.Parameters[1].Value = ((int)(grouplevel));
             if ((name == null)) {
                 throw new System.ArgumentNullException("name");
