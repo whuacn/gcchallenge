@@ -174,6 +174,7 @@ namespace GmatClubTest.Web
 
             loginStatusHyperLink.Text = "Log out...";
             loginStatusHyperLink.NavigateUrl = "loginWebForm.aspx";
+            practicelWebForm.PracticeNameLabel.Text = testRow.Name;
             questionGUID = Guid.NewGuid();
 
             statusLabel.Visible = false;
@@ -219,6 +220,7 @@ namespace GmatClubTest.Web
             {
                 practicelWebForm.PrewImageButton.Enabled = true;
             }
+            
         }
 
         private void PrepareAndRenderAnswers()
@@ -762,6 +764,8 @@ namespace GmatClubTest.Web
                                             navigator.RemainedTime.Minutes.ToString() + "\" name=\"timemm\">";
             testWebForm.clockHiddenParam += "<INPUT id=\"timess\" type=\"hidden\" value=\"" +
                                             navigator.RemainedTime.Seconds.ToString() + "\" name=\"timess\">";
+
+            testWebForm.TestNameLabel.Text = "Test: " + testRow.Name;
 
             //<INPUT id="isAnswerConfirm" type="hidden" value="false" name="isAnswerConfirm"><INPUT id="Hidden1" type="hidden" name="endData">
         }

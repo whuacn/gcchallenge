@@ -6,7 +6,7 @@
 <head runat="server">
     <title>GmatClubTest - Error</title>
 </head>
-<body>
+<body bgcolor="#026caa">
     <form id="form1" runat="server">
     <div>
         <table id="Table1" align="center" border="0" cellpadding="1" cellspacing="1" width="739">
@@ -25,12 +25,12 @@
                     <p>
                         &nbsp;</p>
                     <p>
-                        <asp:HyperLink ID="loginStatusHyperLink" runat="server"></asp:HyperLink></p>
+                        <asp:HyperLink ID="loginStatusHyperLink" runat="server" ForeColor="White">[loginStatusHyperLink]</asp:HyperLink></p>
                 </td>
             </tr>
         </table>
         <hr noshade="" size="1" width="100%" />
-        <span style="font-size: 14pt">Sorry, your request cannot be processed now.<br />
+        <span style="font-size: 14pt; color: white;">Sorry, your request cannot be processed now.<br />
             Administrators were notified about this problem. Please, try to submit your request
             later or try another one.</span><br />
     
@@ -38,7 +38,7 @@
         <hr noshade="" size="1" width="100%" />
         <table id="Table12" align="center" border="0" cellpadding="1" cellspacing="1">
             <tr>
-                <td style="font-size: 12px; text-transform: none; font-style: italic; font-variant: normal">
+                <td style="font-size: 12px; text-transform: none; font-style: italic; font-variant: normal; color: white;">
                     @2006 GMATClubTest</td>
             </tr>
         </table>

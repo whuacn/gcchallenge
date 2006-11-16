@@ -106,113 +106,104 @@ function Url(num)
   }
 		</script>
 	</HEAD>
-	<body onload="onStart()">
+	<body onload="onStart()" bgcolor="#006daa">
 		<form id="Form1" metod="post" runat="server">
 			<INPUT id="isAnswerConfirm" type="hidden" value="false" name="isAnswerConfirm">
 			<%=clockHiddenParam%>
-			<TABLE id="Table1" cellSpacing="1" cellPadding="1" width="739" align="center" border="0">
+			<TABLE id="Table1" cellSpacing="1" cellPadding="1" align="center" border="0" style="border-left-color: white; border-bottom-color: white; width: 100%; border-top-color: white; border-right-color: white;">
 				<TR>
-					<TD align="left" width="20%" style="height: 160px"></TD>
-					<TD align="center" width="40%" style="height: 160px">
-						<TABLE id="Table3" cellSpacing="1" cellPadding="1" border="0">
-							<TR>
-								<TD><IMG height="136" alt="" src="images/gmatclub.jpg" width="280"
-										align="left"></TD>
-							</TR>
-						</TABLE>
-						<asp:label id="timeLabel" runat="server" CssClass="Title"></asp:label><asp:label id="statusLabel" runat="server" CssClass="Title" Font-Bold="True" ForeColor="DarkBlue"></asp:label></TD>
-					<TD align="left" style="width: 20%; height: 160px;">
+					<TD align="left" width="20%" style="height: 137px;"></TD>
+					<TD align="center" width="40%" style="height: 137px; width: 100%;">
+                        <table id="Table3" border="0" cellpadding="1" cellspacing="1">
+                            <tr>
+                                <td style="width: 290px">
+                                    <img align="left" alt="" height="136" src="images/gmatclub.jpg" width="280" /></td>
+                            </tr>
+                        </table>
+						<asp:label id="timeLabel" runat="server" CssClass="Title" ForeColor="White"></asp:label><asp:label id="statusLabel" runat="server" CssClass="Title" Font-Bold="True" ForeColor="AliceBlue"></asp:label></TD>
+					<TD align="left" style="width: 20%; height: 137px; background-color: #006daa;">
 						<P>
                             &nbsp;</P>
-						<P><asp:hyperlink id="loginStatusHyperLink" runat="server" Visible="False">[loginStatusHyperLink]</asp:hyperlink></P>
+						<P><asp:hyperlink id="loginStatusHyperLink" runat="server" Visible="False" ForeColor="White">[loginStatusHyperLink]</asp:hyperlink></P>
 					</TD>
 				</TR>
-			</TABLE>
-			<HR width="100%" noShade SIZE="1">
-			<TABLE id="Table2" cellSpacing="1" cellPadding="1" width="660" align="center" border="0">
-				<TR>
-					<TD><asp:panel id="Panel" runat="server" Width="100%">
+			</TABLE><HR width="100%" noShade SIZE="1" style="color: white">
+			<TABLE id="Table2" cellSpacing="1" cellPadding="1" width="660" align="center" border="0" style="border-top-style: ridge; border-right-style: ridge; border-left-style: ridge; border-bottom-style: ridge">
+                <tr>
+                    <td rowspan="" style="height: 0px; width: 946px; text-align: right;">
+                        <table>
+                            <tr>
+                                <td style="vertical-align: middle; width: 17%; text-align: left; height: 44px; background-color: #80aee1;">
+                                    <asp:Label ID="practiceNameLabel" runat="server" Text="Label" Width="100px"></asp:Label></td>
+                                <td style="vertical-align: top; width: 20%; text-align: right; height: 44px; background-color: #80aee1;">
+                                    <table>
+                                        <tr>
+                                            <td style="font-weight: bold; vertical-align: middle; color: #006daa; text-align: right">
+                                                <img src="TimeRemaining.gif" style="vertical-align: middle" />Time Remaining</td>
+                                            <td>
+									    <IMG height="21" src="images/clock/nb.gif" width="16" name="hour1">
+										<IMG height="21" src="images/clock/nb.gif" width="16" name="hour2"><IMG height="21" src="images/clock/nc.gif" width="9" name="colon"><IMG height="21" src="images/clock/nb.gif" width="16" name="minute1"><IMG height="21" src="images/clock/nb.gif" width="16" name="minute2"><IMG height="21" src="images/clock/nc.gif" width="9" name="colon"><IMG height="21" src="images/clock/nb.gif" width="16" name="second1"><IMG height="21" src="images/clock/nb.gif" width="16" name="second2"></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>				
+					<TD style="width: 946px; height: 103px"><asp:panel id="Panel" runat="server" Width="100%" BackColor="White" BorderColor="White">
 							<TABLE id="Table11" cellSpacing="1" cellPadding="1" width="650" border="0">
-								<TR>
-									<TD>
+								
+									<TD style="height: 55px">
 										<asp:Panel id="questionPanel" runat="server">
 											<asp:Image id="questionImage" runat="server"></asp:Image>
 										</asp:Panel></TD>
-									<TD>
+									<TD style="height: 55px">
 										<asp:Panel id="passagePanel" runat="server">
 											<asp:Image id="passageImage" runat="server"></asp:Image>
 										</asp:Panel></TD>
-								</TR>
+								
 							</TABLE>
 							<asp:RadioButtonList id="answerRadioButtonList" runat="server" onselectedindexchanged = "answerRadioButtonList_SelectedIndexChanged"></asp:RadioButtonList>
-						</asp:panel></TD>
-				</TR>
+						</asp:panel></TD>				
 			</TABLE>
-			<TABLE id="Table4" cellSpacing="1" cellPadding="1" width="660" align="center" border="0">
+			<TABLE id="Table4" cellSpacing="1" cellPadding="1" align="center" border="0" style="width: 662px;">
 				<TR>
-					<TD width="5%">
+					<TD style="height: 31px; width: 9%;">
 						<TABLE id="Table5" cellSpacing="1" cellPadding="1" width="45" align="left" border="0">
 							<TR>
-								<TD><asp:imagebutton id="exitImageButton" runat="server" ImageUrl="images/exitButton.gif" OnClick="exitImageButton_Click"></asp:imagebutton></TD>
+								<TD style="width: 79px">
+						<asp:imagebutton id="exitImageButton" runat="server" ImageUrl="~/EndExam.gif" OnClick="exitImageButton_Click"></asp:imagebutton></TD>
 							</TR>
 						</TABLE>
 					</TD>
-					<TD width="5%">
-						<TABLE id="Table6" cellSpacing="1" cellPadding="1" width="45" align="left" border="0">
-							<TR>
-								<TD><asp:imagebutton id="reviewImageButton" runat="server" ImageUrl="images/reviewButton.gif"></asp:imagebutton></TD>
-							</TR>
-						</TABLE>
+                    <td style="width: 7%; height: 31px">
+                        <asp:ImageButton ID="reviewImageButton" runat="server" ImageUrl="~/ReviewAll.gif" /></td>
+					<TD style="height: 31px; width: 7%;">
+						<asp:imagebutton id="helpImageButton" runat="server" ImageUrl="~/Help.gif" OnClick="helpImageButton_Click"></asp:imagebutton></TD>
+					<TD style="vertical-align: text-bottom; text-align: center; height: 31px; background-color: #006daa; width: 248px;">
 					</TD>
-					<TD width="40%">
-						<TABLE id="Table9" cellSpacing="1" cellPadding="1" width="45" align="right" border="0">
-							<TR>
-								<TD><asp:imagebutton id="answerCheckImageButton" runat="server" ImageUrl="images/answerCheckButton.gif"></asp:imagebutton></TD>
-							</TR>
-						</TABLE>
-						<TABLE id="clockTable" cellSpacing="1" cellPadding="1" align="center" border="0">
-							<TR>
-								<TD>
-									<P><IMG height="21" src="images/clock/nb.gif" width="16" name="hour1">
-										<IMG height="21" src="images/clock/nb.gif" width="16" name="hour2">
-										<IMG height="21" src="images/clock/nc.gif" width="9" name="colon">
-										<IMG height="21" src="images/clock/nb.gif" width="16" name="minute1">
-										<IMG height="21" src="images/clock/nb.gif" width="16" name="minute2">
-										<IMG height="21" src="images/clock/nc.gif" width="9" name="colon">
-										<IMG height="21" src="images/clock/nb.gif" width="16" name="second1">
-										<IMG height="21" src="images/clock/nb.gif" width="16" name="second2">
-									</P>
-								</TD>
-							</TR>
-						</TABLE>
-					</TD>
-					<TD width="5%">
-						<TABLE id="Table10" cellSpacing="1" cellPadding="1" width="45" align="right" border="0">
-							<TR>
-								<TD><asp:imagebutton id="helpImageButton" runat="server" ImageUrl="images/helpButton.gif"></asp:imagebutton></TD>
-							</TR>
-						</TABLE>
-					</TD>
-					<TD width="5%">
+					<TD width="5%" style="height: 31px">
+                        <asp:ImageButton ID="answerCheckImageButton" runat="server" ImageUrl="~/CheckAnswer.gif" /></TD>
+					<TD width="5%" style="height: 31px">
 						<TABLE id="Table8" cellSpacing="1" cellPadding="1" width="45" align="right" border="0">
 							<TR>
-								<TD><asp:imagebutton id="prewImageButton" runat="server" ImageUrl="images/prevButton.gif"></asp:imagebutton></TD>
+								<TD><asp:imagebutton id="prewImageButton" runat="server" ImageUrl="~/Previous.gif" OnClick="prewImageButton_Click"></asp:imagebutton></TD>
 							</TR>
 						</TABLE>
 					</TD>
-					<TD width="5%">
+					<TD style="width: 5%; height: 31px">
 						<TABLE id="Table7" cellSpacing="1" cellPadding="1" width="45" align="right" border="0">
 							<TR>
-								<TD><asp:imagebutton id="nextImageButton" runat="server" ImageUrl="images/nextButton.gif"></asp:imagebutton></TD>
+								<TD><asp:imagebutton id="nextImageButton" runat="server" ImageUrl="~/Next.gif" OnClick="nextImageButton_Click" BorderStyle="Solid" EnableTheming="True"></asp:imagebutton></TD>
 							</TR>
 						</TABLE>
 					</TD>
 				</TR>
 			</TABLE>
-			<HR width="100%" noShade SIZE="1">
+			<HR width="100%" noShade SIZE="1" style="border-left-color: white; border-bottom-color: white; border-top-style: solid; border-top-color: white; border-right-style: solid; border-left-style: solid; border-right-color: white; border-bottom-style: solid">
 			<TABLE id="Table12" cellSpacing="1" cellPadding="1" align="center" border="0">
 				<TR>
-					<TD style="FONT-SIZE: 12px; TEXT-TRANSFORM: none; FONT-STYLE: italic; FONT-VARIANT: normal">@2006 
+					<TD style="FONT-SIZE: 12px; TEXT-TRANSFORM: none; FONT-STYLE: italic; FONT-VARIANT: normal; width: 120px; color: white; height: 17px;">@2006 
 						GMATClubTest</TD>
 				</TR>
 			</TABLE>

@@ -663,7 +663,10 @@ namespace GmatClubTest.DbEditor
                     Convert.ToInt32(answersDataGridView.Rows[e.RowIndex].Cells[idDataGridViewTextBoxColumn.Index].Value))
                     .Text =
                     answersDataGridView.Rows[e.RowIndex].Cells[textDataGridViewTextBoxColumn.Index].Value.ToString();
-                value.SetModified();
+                if (value.RowState == DataRowState.Unchanged)
+                {
+                    value.SetModified();
+                }
                 //dbObject.FullDataset.QuestionsEx.FindByIdSetId(value.Id, value.SetId).Text = answersDataGridView.Rows[e.RowIndex].Cells[textDataGridViewTextBoxColumn.Index].Value.ToString();
                 return;
             }

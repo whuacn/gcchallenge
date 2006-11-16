@@ -8,7 +8,7 @@
 		<meta content="JavaScript" name="vs_defaultClientScript">
 		<meta content="http://schemas.microsoft.com/intellisense/ie5" name="vs_targetSchema">
 	</HEAD>
-	<body style="text-align: center">
+	<body style="text-align: center" bgcolor="#006daa">
 		<form id="Form1" method="post" runat="server">
 			<TABLE id="Table1" cellSpacing="1" cellPadding="1" width="739" align="center" border="0">
 				<TR>
@@ -44,29 +44,31 @@
 			<HR width="100%" noShade SIZE="1">
 			<TABLE id="Table4" cellSpacing="1" cellPadding="1" align="center" border="0">
 				<TR>
-					<TD align="center">
+					<TD align="center" style="width: 166px; border-top-style: ridge; border-right-style: ridge; border-left-style: ridge; border-bottom-style: ridge">
 						<TABLE id="Table6" cellSpacing="1" cellPadding="1" align="center" border="0">
 							<TR>
-								<TD style="FONT-WEIGHT: bold">
+								<TD style="FONT-WEIGHT: bold; font-size: medium; width: 57px; color: white;">
                                     Section:</TD>
 							</TR>
 						</TABLE>
-						<asp:datagrid id=setStutusDataGrid runat="server" DataSource="<%# questionSetsResultDetailsSet %>" DataMember="QuestionSets" AutoGenerateColumns="False" onselectedindexchanged="setStutusDataGrid_SelectedIndexChanged">
-							<HeaderStyle Font-Bold="True"></HeaderStyle>
+						<asp:datagrid id=setStutusDataGrid runat="server" DataSource="<%# questionSetsResultDetailsSet %>" DataMember="QuestionSets" AutoGenerateColumns="False" onselectedindexchanged="setStutusDataGrid_SelectedIndexChanged" Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False" Font-Underline="False" ForeColor="White">
+							<HeaderStyle Font-Bold="True" Font-Italic="False" Font-Overline="False" Font-Strikeout="False" Font-Underline="False" ForeColor="White"></HeaderStyle>
 							<Columns>
 								<asp:ButtonColumn Text="Select" DataTextField="Name" HeaderText="Section name" CommandName="Select"></asp:ButtonColumn>
 								<asp:BoundColumn Visible="False" DataField="Name" SortExpression="Name" HeaderText="Section name"></asp:BoundColumn>
 								<asp:BoundColumn DataField="Score" SortExpression="Score" HeaderText="Score"></asp:BoundColumn>
 							</Columns>
+                            <ItemStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False"
+                                Font-Underline="False" />
 						</asp:datagrid></TD>
 				</TR>
 			</TABLE>
-			<TABLE id="Table2" cellSpacing="1" cellPadding="1" align="center" border="0">
+			<TABLE id="Table2" cellSpacing="1" cellPadding="1" align="center" border="0" style="border-top-style: ridge; border-right-style: ridge; border-left-style: ridge; border-bottom-style: ridge">
 				<TR>
-					<TD align="center">
+					<TD align="center" style="width: 80px; height: 73px">
 						<TABLE id="Table7" cellSpacing="1" cellPadding="1" align="center" border="0">
 							<TR>
-								<TD style="FONT-WEIGHT: bold">Questions:</TD>
+								<TD style="FONT-WEIGHT: bold; font-size: medium; color: white;">Questions:</TD>
 							</TR>
 						</TABLE>
 						<asp:table id="questionStatusTable" runat="server" GridLines="Both"></asp:table></TD>

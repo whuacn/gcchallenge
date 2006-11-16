@@ -45,6 +45,7 @@ namespace GMATClubTest.Web
         public abstract Label StatusLabel { get; }
         public abstract Label TimeLabel { get; }
         //bstract public HyperLink AdminHyperLink { get;}
+        public abstract Label PracticeNameLabel { get;}
         public abstract HyperLink LoginStatusHyperLink { get; }
 
         public string clockHiddenParam = "";

@@ -6,7 +6,7 @@
 <head runat="server">
     <title>Untitled Page</title>
 </head>
-<body>
+<body bgcolor="#026caa">
     <form id="form1" runat="server">
     <div style="text-align: center">
         <table id="Table1" align="center" border="0" cellpadding="1" cellspacing="1">
@@ -30,23 +30,30 @@
                 </td>
             </tr>
         </table>
+        <table style="border-top-style: ridge; border-right-style: ridge; border-left-style: ridge;
+            border-bottom-style: ridge">
+            <tr>
+                <td style="width: 735px; background-color: #80aee1">
         <table style="width: 732px">
             <tr>
-                <td style="width: 50px; height: 21px">
-                    <asp:HyperLink ID="homeHyperLink" runat="server" Font-Bold="True" ForeColor="DimGray"
-                        NavigateUrl="mainwebform.aspx">Home</asp:HyperLink></td>
-                <td style="width: 50px; height: 21px; background-color: white">
-                    <asp:HyperLink ID="historyHyperLink" runat="server" Font-Bold="True" ForeColor="DimGray"
-                        NavigateUrl="resultswebform.aspx">History</asp:HyperLink></td>
-                <td style="width: 630px; height: 21px; background-color: white; text-align: right">
-                    <asp:HyperLink ID="logoutHyperLink" runat="server" Font-Bold="True" ForeColor="DimGray"
-                        NavigateUrl="loginwebform.aspx">Log out</asp:HyperLink></td>
+                <td style="width: 50px; height: 21px; background-color: #80aee1;">
+                    <asp:HyperLink ID="homeHyperLink" runat="server" Font-Bold="True" ForeColor="#CCE2EE"
+                        NavigateUrl="mainwebform.aspx" Font-Size="Large">Home</asp:HyperLink></td>
+                <td style="width: 50px; height: 21px; background-color: #80aee1">
+                    <asp:HyperLink ID="historyHyperLink" runat="server" Font-Bold="True" ForeColor="#CCE2EE"
+                        NavigateUrl="resultswebform.aspx" BackColor="#80AEE1" BorderColor="#80AEE1" Font-Size="Large">History</asp:HyperLink></td>
+                <td style="width: 630px; height: 21px; background-color: #80aee1; text-align: right">
+                    <asp:HyperLink ID="logoutHyperLink" runat="server" Font-Bold="True" ForeColor="#CCE2EE"
+                        NavigateUrl="loginwebform.aspx" Font-Size="Large">Log out</asp:HyperLink></td>
+            </tr>
+        </table>
+                </td>
             </tr>
         </table>
         <hr noshade="" size="1" width="100%" />
-        <table style="text-align: center">
+        <table style="text-align: center; border-top-style: groove; border-right-style: groove; border-left-style: groove; border-bottom-style: groove;">
             <tr>
-                <td style="width: 700px">
+                <td style="width: 700px; background-color: white;">
                     <br />
                         <%=descriptionString%>
                 </td>
@@ -64,7 +71,7 @@
         <hr noshade="" size="1" width="100%" />
         <table id="Table10" align="center" border="0" cellpadding="1" cellspacing="1">
             <tr>
-                <td style="font-size: 12px; text-transform: none; font-style: italic; font-variant: normal">
+                <td style="font-size: 12px; text-transform: none; font-style: italic; font-variant: normal; color: white;">
                     @2006 GMATClubTest</td>
             </tr>
         </table>

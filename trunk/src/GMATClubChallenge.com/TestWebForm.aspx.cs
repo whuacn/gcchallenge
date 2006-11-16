@@ -118,5 +118,10 @@ namespace GMATClubTest.Web
         {
             get { return loginStatusHyperLink; }
         }
+
+        public override Label TestNameLabel
+        {
+            get { return testNameLabel; }
+        }
     }
 }
