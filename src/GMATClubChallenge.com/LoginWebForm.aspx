@@ -10,7 +10,7 @@
 		<meta content="JavaScript" name="vs_defaultClientScript">
 		<meta content="http://schemas.microsoft.com/intellisense/ie5" name="vs_targetSchema">
 	</HEAD>
-	<body>
+	<body style="color: white" bgcolor="#026caa">
 		<form id="Form1" method="post" runat="server">
 			<TABLE id="Table1" cellSpacing="1" cellPadding="1" align="center" border="0">
 				<TR>
@@ -18,7 +18,7 @@
 					<TD align="left" width="40%" style="text-align: center;">
 						<TABLE id="Table3" cellSpacing="1" cellPadding="1" border="0">
 							<TR>
-								<TD><IMG height="136" alt="" src="images/gmatclub.jpg" width="280"
+								<TD style="width: 290px"><IMG height="136" alt="" src="images/gmatclub.jpg" width="280"
 										align="left"></TD>
 							</TR>
 						</TABLE>
@@ -27,13 +27,13 @@
 				</TR>
 			</TABLE>
 			<HR width="100%" noShade SIZE="1">
-			<TABLE id="Table2" cellSpacing="1" cellPadding="1" align="center" border="0">
+			<TABLE id="Table2" cellSpacing="1" cellPadding="1" align="center" border="0" style="border-top-style: ridge; border-right-style: ridge; border-left-style: ridge; border-bottom-style: ridge">
 				<TR>
 					<TD align="left" style="height: 52px">
 						<TABLE id="Table5" style="WIDTH: 67px; HEIGHT: 23px" cellSpacing="1" cellPadding="1" align="right"
 							border="0">
 							<TR>
-								<TD><asp:label id="Label1" runat="server" Width="60px">Login</asp:label></TD>
+								<TD><asp:label id="Label1" runat="server" Width="60px" Font-Size="Medium">Login</asp:label></TD>
 							</TR>
 						</TABLE>
 					</TD>
@@ -42,7 +42,7 @@
 							<TABLE id="Table4" cellSpacing="1" cellPadding="1" width="300" align="left" border="0">
 								<TR>
 									<TD style="height: 24px">
-                                        <asp:TextBox ID="loginTextBox" runat="server" Width="300px"></asp:TextBox></TD>
+                                        <asp:TextBox ID="loginTextBox" runat="server" Width="300px" BackColor="#80AEE1" Font-Size="Medium" ForeColor="White"></asp:TextBox></TD>
 								</TR>
 							</TABLE>
 						</P>
@@ -63,14 +63,14 @@
 						<TABLE id="Table7" style="WIDTH: 67px; HEIGHT: 23px" cellSpacing="1" cellPadding="1" width="67"
 							align="right" border="0">
 							<TR>
-								<TD><asp:label id="Label2" runat="server">Password</asp:label></TD>
+								<TD><asp:label id="Label2" runat="server" Font-Size="Medium">Password</asp:label></TD>
 							</TR>
 						</TABLE>
 					</TD>
 					<TD>
 						<TABLE id="Table6" cellSpacing="1" cellPadding="1" width="300" align="left" border="0">
 							<TR>
-								<TD><asp:textbox id="passwordTextBox" runat="server" Width="300px" TextMode="Password"></asp:textbox></TD>
+								<TD><asp:textbox id="passwordTextBox" runat="server" Width="300px" TextMode="Password" BackColor="#80AEE1" Font-Size="Medium" ForeColor="White"></asp:textbox></TD>
 							</TR>
 						</TABLE>
 					</TD>

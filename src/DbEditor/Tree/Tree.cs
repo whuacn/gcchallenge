@@ -168,7 +168,13 @@ namespace GmatClubTest.DbEditor.Tree
         internal void ReadExpanded(Hashtable list, TreeNode node)
         {
             //list.Clear();
-            list.Add(((Entity) node.Tag).EntityId, new NodeProperties(node.IsExpanded, node.IsSelected));
+            if (!list.ContainsKey(((Entity)node.Tag).EntityId))
+            {
+                list.Add(((Entity)node.Tag).EntityId, new NodeProperties(node.IsExpanded, node.IsSelected));
+            }else
+            {
+                list[((Entity) node.Tag).EntityId] = new NodeProperties(node.IsExpanded, node.IsSelected);
+            }
             foreach (TreeNode n in node.Nodes)
                 ReadExpanded(list, n);
         }
