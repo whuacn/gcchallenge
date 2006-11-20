@@ -8,7 +8,7 @@
 		<meta content="JavaScript" name="vs_defaultClientScript">
 		<meta content="http://schemas.microsoft.com/intellisense/ie5" name="vs_targetSchema">
 	</HEAD>
-	<body>
+	<body style="background-color: #026caa">
 		<form id="Form1" method="post" runat="server">
 			<TABLE id="Table1" cellSpacing="1" cellPadding="1" width="739" align="center" border="0">
 				<TR>
@@ -31,21 +31,21 @@
 			<TABLE id="Table2" cellSpacing="1" cellPadding="1" width="739" align="center" border="0">
 				<TR>
 					<TD>
-						<TABLE id="Table4" cellSpacing="1" cellPadding="1" width="100%" align="center" border="0">
+						<TABLE id="Table4" cellSpacing="1" cellPadding="1" width="100%" align="center" border="0" style="background-color: #026caa">
 							<TR>
-								<TD style="FONT-WEIGHT: bold; background-color: #ff00ff;" align="center">Sets:<asp:table id="setsTable" runat="server" GridLines="Both">
-										<asp:TableRow>
-											<asp:TableCell></asp:TableCell>
+								<TD style="FONT-WEIGHT: bold; background-color: #026caa; color: #ffffff; height: 71px;" align="center">Sets:<asp:table id="setsTable" runat="server" GridLines="Both" BorderStyle="Groove" Font-Bold="True" Font-Size="Medium">
+										<asp:TableRow runat="server">
+											<asp:TableCell runat="server"></asp:TableCell>
 										</asp:TableRow>
 									</asp:table></TD>
 							</TR>
 							<TR>
-								<TD style="FONT-WEIGHT: bold; height: 71px;" align="center">Questions:<asp:table id="questionTable" runat="server" GridLines="Both"></asp:table></TD>
+								<TD style="FONT-WEIGHT: bold; height: 71px; color: #ffffff; background-color: #026caa;" align="center">Questions:<asp:table id="questionTable" runat="server" GridLines="Both" BorderStyle="Groove" Font-Bold="True" Font-Size="Medium"></asp:table></TD>
 							</TR>
 						</TABLE>
 						<TABLE id="Table5" cellSpacing="1" cellPadding="1" align="center" border="0">
 							<TR>
-								<TD><asp:imagebutton id="imageButton" runat="server" OnClick="imageButton_Click"></asp:imagebutton></TD>
+								<TD style="width: 31px"><asp:imagebutton id="imageButton" runat="server" OnClick="imageButton_Click"></asp:imagebutton></TD>
 							</TR>
 						</TABLE>
 					</TD>
@@ -54,7 +54,7 @@
 			<HR width="100%" noShade SIZE="1">
 			<TABLE id="Table10" cellSpacing="1" cellPadding="1" align="center" border="0">
 				<TR>
-					<TD style="FONT-SIZE: 12px; TEXT-TRANSFORM: none; FONT-STYLE: italic; FONT-VARIANT: normal">@2006 
+					<TD style="FONT-SIZE: 12px; TEXT-TRANSFORM: none; FONT-STYLE: italic; FONT-VARIANT: normal; width: 119px; color: #ffffff;">@2006 
 						GMATClubTest</TD>
 				</TR>
 			</TABLE>
