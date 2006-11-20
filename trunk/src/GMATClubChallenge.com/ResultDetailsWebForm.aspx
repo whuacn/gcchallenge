@@ -12,8 +12,8 @@
 		<form id="Form1" method="post" runat="server">
 			<TABLE id="Table1" cellSpacing="1" cellPadding="1" width="739" align="center" border="0">
 				<TR>
-					<TD align="left" width="20%"></TD>
-					<TD align="center" width="40%">
+					<TD align="left" width="20%" style="height: 161px"></TD>
+					<TD align="center" width="40%" style="height: 161px">
 						<TABLE id="Table3" cellSpacing="1" cellPadding="1" border="0">
 							<TR>
 								<TD><IMG height="136" alt="" src="images/gmatclub.jpg" width="280"
@@ -21,30 +21,30 @@
 							</TR>
 						</TABLE>
 						<asp:label id="statusLabel" runat="server" CssClass="Title"></asp:label></TD>
-					<TD align="left" width="20%">
+					<TD align="left" width="20%" style="height: 161px">
 						<P>
                             &nbsp;</P>
-						<P><asp:hyperlink id="loginStatusHyperLink" runat="server" Visible="False">[loginStatusHyperLink]</asp:hyperlink></P>
+						<P><asp:hyperlink id="loginStatusHyperLink" runat="server" Visible="False" BackColor="#006DAA" BorderStyle="None" ForeColor="White">[loginStatusHyperLink]</asp:hyperlink></P>
 					</TD>
 				</TR>
 			</TABLE>
-            <table style="width: 732px">
+            <table style="width: 732px; border-top-style: ridge; border-right-style: ridge; border-left-style: ridge; border-bottom-style: ridge;">
                 <tr>
-                    <td style="width: 50px; height: 21px">
-                        <asp:HyperLink ID="homeHyperLink" runat="server" Font-Bold="True" ForeColor="DimGray"
-                            NavigateUrl="mainwebform.aspx">Home</asp:HyperLink></td>
-                    <td style="width: 50px; height: 21px; background-color: white">
-                        <asp:HyperLink ID="historyHyperLink" runat="server" Font-Bold="True" ForeColor="DimGray"
-                            NavigateUrl="resultswebform.aspx">History</asp:HyperLink></td>
-                    <td style="width: 630px; height: 21px; background-color: white; text-align: right">
-                        <asp:HyperLink ID="logoutHyperLink" runat="server" Font-Bold="True" ForeColor="DimGray"
-                            NavigateUrl="loginwebform.aspx">Log out</asp:HyperLink></td>
+                    <td style="width: 50px; height: 21px; background-color: #80aee1;">
+                        <asp:HyperLink ID="homeHyperLink" runat="server" Font-Bold="True" ForeColor="#CCE2EE"
+                            NavigateUrl="mainwebform.aspx" Font-Size="Medium">Home</asp:HyperLink></td>
+                    <td style="width: 50px; height: 21px; background-color: #80aee1">
+                        <asp:HyperLink ID="historyHyperLink" runat="server" Font-Bold="True" ForeColor="#CCE2EE"
+                            NavigateUrl="resultswebform.aspx" BackColor="#80AEE1" Font-Size="Medium">History</asp:HyperLink></td>
+                    <td style="width: 630px; height: 21px; background-color: #80aee1; text-align: right">
+                        <asp:HyperLink ID="logoutHyperLink" runat="server" Font-Bold="True" ForeColor="#CCE2EE"
+                            NavigateUrl="loginwebform.aspx" Font-Size="Medium">Log out</asp:HyperLink></td>
                 </tr>
             </table>
 			<HR width="100%" noShade SIZE="1">
-			<TABLE id="Table4" cellSpacing="1" cellPadding="1" align="center" border="0">
+			<TABLE id="Table4" cellSpacing="1" cellPadding="1" align="center" border="0" width="500">
 				<TR>
-					<TD align="center" style="width: 166px; border-top-style: ridge; border-right-style: ridge; border-left-style: ridge; border-bottom-style: ridge">
+					<TD align="center" style="width: 166px; border-top-style: ridge; border-right-style: ridge; border-left-style: ridge; border-bottom-style: ridge; text-align: center;">
 						<TABLE id="Table6" cellSpacing="1" cellPadding="1" align="center" border="0">
 							<TR>
 								<TD style="FONT-WEIGHT: bold; font-size: medium; width: 57px; color: white;">
@@ -65,7 +65,7 @@
 			</TABLE>
 			<TABLE id="Table2" cellSpacing="1" cellPadding="1" align="center" border="0" style="border-top-style: ridge; border-right-style: ridge; border-left-style: ridge; border-bottom-style: ridge">
 				<TR>
-					<TD align="center" style="width: 80px; height: 73px">
+					<TD align="center" style="width: 500px; height: 73px">
 						<TABLE id="Table7" cellSpacing="1" cellPadding="1" align="center" border="0">
 							<TR>
 								<TD style="FONT-WEIGHT: bold; font-size: medium; color: white;">Questions:</TD>
@@ -82,7 +82,7 @@
 			<HR width="100%" noShade SIZE="1">
 			<TABLE id="Table10" cellSpacing="1" cellPadding="1" align="center" border="0">
 				<TR>
-					<TD style="FONT-SIZE: 12px; TEXT-TRANSFORM: none; FONT-STYLE: italic; FONT-VARIANT: normal">@2006 
+					<TD style="FONT-SIZE: 12px; TEXT-TRANSFORM: none; FONT-STYLE: italic; FONT-VARIANT: normal; color: #ffffff;">@2006 
 						GMATClubTest</TD>
 				</TR>
 			</TABLE>

@@ -8,7 +8,7 @@
 		<meta name="vs_defaultClientScript" content="JavaScript">
 		<meta name="vs_targetSchema" content="http://schemas.microsoft.com/intellisense/ie5">
 	</HEAD>
-	<body style="text-align: center">
+	<body style="text-align: center" bgcolor="#026caa">
 		<form id="Form1" method="post" runat="server">
             &nbsp;&nbsp;&nbsp;
             <table id="Table1" align="center" border="0" cellpadding="1" cellspacing="1">
@@ -23,8 +23,8 @@
                                         width="280" /></td>
                             </tr>
                         </table>
-                        <asp:Label ID="timeLabel" runat="server" CssClass="Title"></asp:Label><asp:Label
-                            ID="statusLabel" runat="server" CssClass="Title"></asp:Label></td>
+                        <asp:Label ID="timeLabel" runat="server" CssClass="Title" ForeColor="White"></asp:Label><asp:Label
+                            ID="statusLabel" runat="server" CssClass="Title" ForeColor="White"></asp:Label></td>
                     <td align="left" style="width: 20%">
                         <p>
                             &nbsp;</p>
@@ -33,25 +33,25 @@
                     </td>
                 </tr>
             </table>
-            <table style="width: 732px">
+            <table style="width: 732px; border-top-style: groove; border-right-style: groove; border-left-style: groove; border-bottom-style: groove;">
                 <tr>
-                    <td style="width: 50px; height: 21px">
+                    <td style="width: 50px; height: 21px; background-color: #80aee1;">
                         <asp:HyperLink ID="homeHyperLink" runat="server" NavigateUrl="mainwebform.aspx" Font-Bold="True" ForeColor="DimGray">Home</asp:HyperLink></td>
-                    <td style="width: 50px; height: 21px; background-color: white">
+                    <td style="width: 50px; height: 21px; background-color: #80aee1">
                         <asp:HyperLink ID="historyHyperLink" runat="server" NavigateUrl="resultswebform.aspx" Font-Bold="True" ForeColor="DimGray">History</asp:HyperLink></td>
                     <td style="width: 630px; height: 21px;
-                        background-color: white; text-align: right">
+                        background-color: #80aee1; text-align: right">
                             <asp:LinkButton ID="logOutLinkButton" runat="server" OnClick="logOutLinkButton_Click" Font-Bold="True" ForeColor="DimGray">Log out</asp:LinkButton></td>
                 </tr>
             </table>
             <hr noshade="noshade" size="1" width="100%" />
-            <table border="0" style="vertical-align: text-top; text-align: left">
+            <table border="0" style="vertical-align: text-top; text-align: left; border-top-style: groove; border-right-style: groove; border-left-style: groove; border-bottom-style: groove;">
                 <tr>
-                    <td style="width: 3px; height: 21px; vertical-align: top;">
+                    <td style="width: 3px; height: 21px; vertical-align: top; background-color: #80aee1;">
                         <table style="text-align: left">
                             <tr>
                                 <td style="width: 2px; height: 23px">
-                        <asp:Table ID="practiceTable" runat="server" HorizontalAlign="Left" Width="250px">
+                        <asp:Table ID="practiceTable" runat="server" HorizontalAlign="Left" Width="250px" BackColor="#80AEE1">
                             <asp:TableRow runat="server" Width="200px">
                                 <asp:TableCell runat="server" Width="200px" Font-Bold="True" Font-Size="Larger" ForeColor="Blue">Practice</asp:TableCell>
                             </asp:TableRow>
@@ -60,11 +60,11 @@
                             </tr>
                         </table>
                     </td>
-                    <td style="width: 3px; height: 21px">
+                    <td style="width: 3px; height: 21px; background-color: #80aee1;">
                         <table>
                             <tr>
                                 <td style="width: 2px; height: 28px">
-                        <asp:Table ID="testsTable" runat="server" HorizontalAlign="Left" Width="250px">
+                        <asp:Table ID="testsTable" runat="server" HorizontalAlign="Left" Width="250px" BackColor="#80AEE1">
                             <asp:TableRow runat="server">
                                 <asp:TableCell runat="server" Width="200px" Font-Bold="True" Font-Size="Larger" ForeColor="Blue">Adaptive test</asp:TableCell>
                             </asp:TableRow>
@@ -79,7 +79,7 @@
             <hr noshade="" size="1" width="100%" />
             <table id="Table10" align="center" border="0" cellpadding="1" cellspacing="1">
                 <tr>
-                    <td style="font-size: 12px; text-transform: none; font-style: italic; font-variant: normal">
+                    <td style="font-size: 12px; text-transform: none; font-style: italic; font-variant: normal; color: white;">
                         @2006 GMATClubTest</td>
                 </tr>
             </table>

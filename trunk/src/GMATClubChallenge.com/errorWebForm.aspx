@@ -25,7 +25,7 @@
                     <p>
                         &nbsp;</p>
                     <p>
-                        <asp:HyperLink ID="loginStatusHyperLink" runat="server" ForeColor="White">[loginStatusHyperLink]</asp:HyperLink></p>
+                        <asp:HyperLink ID="loginStatusHyperLink" runat="server" ForeColor="White" BorderStyle="None">[loginStatusHyperLink]</asp:HyperLink></p>
                 </td>
             </tr>
         </table>

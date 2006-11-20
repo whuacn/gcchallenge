@@ -106,35 +106,39 @@ function Url(num)
   }
 		</script>
 	</HEAD>
-	<body onload="onStart()" bgcolor="#006daa">
+	<body onload="onStart()" bgcolor="#006daa" style="text-align: center">
 		<form id="Form1" metod="post" runat="server">
 			<INPUT id="isAnswerConfirm" type="hidden" value="false" name="isAnswerConfirm">
-			<%=clockHiddenParam%>
-			<TABLE id="Table1" cellSpacing="1" cellPadding="1" align="center" border="0" style="border-left-color: white; border-bottom-color: white; width: 100%; border-top-color: white; border-right-color: white;">
-				<TR>
-					<TD align="left" width="20%" style="height: 137px;"></TD>
-					<TD align="center" width="40%" style="height: 137px; width: 100%;">
+            <table id="Table1" align="center" border="0" cellpadding="1" cellspacing="1" width="739">
+                <tr>
+                    <td align="left" width="20%">
+                    </td>
+                    <td align="center" style="width: 40%">
                         <table id="Table3" border="0" cellpadding="1" cellspacing="1">
                             <tr>
-                                <td style="width: 290px">
+                                <td>
                                     <img align="left" alt="" height="136" src="images/gmatclub.jpg" width="280" /></td>
                             </tr>
                         </table>
-						<asp:label id="timeLabel" runat="server" CssClass="Title" ForeColor="White"></asp:label><asp:label id="statusLabel" runat="server" CssClass="Title" Font-Bold="True" ForeColor="AliceBlue"></asp:label></TD>
-					<TD align="left" style="width: 20%; height: 137px; background-color: #006daa;">
-						<P>
-                            &nbsp;</P>
-						<P><asp:hyperlink id="loginStatusHyperLink" runat="server" Visible="False" ForeColor="White">[loginStatusHyperLink]</asp:hyperlink></P>
-					</TD>
-				</TR>
-			</TABLE><HR width="100%" noShade SIZE="1" style="color: white">
+						<asp:label id="timeLabel" runat="server" CssClass="Title" ForeColor="White"></asp:label>
+                        <asp:Label ID="statusLabel" runat="server" CssClass="Title" ForeColor="White"></asp:Label></td>
+                    <td align="left" width="20%">
+                        <p>
+                            &nbsp;</p>
+                        <p>
+                            <asp:HyperLink ID="loginStatusHyperLink" runat="server" ForeColor="White" Visible="False">[loginStatusHyperLink]</asp:HyperLink></p>
+                    </td>
+                </tr>
+            </table>
+			<%=clockHiddenParam%>
+			<HR width="100%" noShade SIZE="1" style="color: white">
 			<TABLE id="Table2" cellSpacing="1" cellPadding="1" width="660" align="center" border="0" style="border-top-style: ridge; border-right-style: ridge; border-left-style: ridge; border-bottom-style: ridge">
                 <tr>
                     <td rowspan="" style="height: 0px; width: 946px; text-align: right;">
                         <table>
                             <tr>
                                 <td style="vertical-align: middle; width: 17%; text-align: left; height: 44px; background-color: #80aee1;">
-                                    <asp:Label ID="practiceNameLabel" runat="server" Text="Label" Width="100px"></asp:Label></td>
+                                    <asp:Label ID="practiceNameLabel" runat="server" Text="Label" Width="100%" Font-Size="Medium" ForeColor="White"></asp:Label></td>
                                 <td style="vertical-align: top; width: 20%; text-align: right; height: 44px; background-color: #80aee1;">
                                     <table>
                                         <tr>
@@ -194,7 +198,7 @@ function Url(num)
 					<TD style="width: 5%; height: 31px">
 						<TABLE id="Table7" cellSpacing="1" cellPadding="1" width="45" align="right" border="0">
 							<TR>
-								<TD><asp:imagebutton id="nextImageButton" runat="server" ImageUrl="~/Next.gif" OnClick="nextImageButton_Click" BorderStyle="Solid" EnableTheming="True"></asp:imagebutton></TD>
+								<TD style="height: 27px"><asp:imagebutton id="nextImageButton" runat="server" ImageUrl="~/Next.gif" OnClick="nextImageButton_Click" EnableTheming="True"></asp:imagebutton></TD>
 							</TR>
 						</TABLE>
 					</TD>

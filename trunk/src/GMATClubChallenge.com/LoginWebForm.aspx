@@ -85,7 +85,9 @@
 				<TR>
 					<TD><asp:imagebutton id="OkImageButton" runat="server" ImageUrl="images/OkButton.gif" OnClick="OkImageButton_Click1"></asp:imagebutton></TD>
 					<TD><asp:imagebutton id="cancelImageButton" runat="server" ImageUrl="images/cancelButton.gif"></asp:imagebutton></TD>
-					<TD><asp:imagebutton id="newUserImageButton" runat="server" ImageUrl="images/newUserButton.gif" OnClick="newUserImageButton_Click"></asp:imagebutton></TD>
+					<TD>
+                        <asp:ImageButton ID="btnNewUser" runat="server" Height="32px" ImageUrl="~/images/newUserButton.gif"
+                            OnClick="newUserImageButton_Click" Width="96px" /></TD>
 				</TR>
 			</TABLE>
 			<HR width="100%" noShade SIZE="1">

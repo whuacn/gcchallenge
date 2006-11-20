@@ -1,4 +1,5 @@
 using System;
+using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Web;
@@ -401,19 +402,31 @@ namespace GmatClubTest.Web
             Question.Status status;
             TableRow tr = new TableRow();
             TableCell tc = new TableCell();
-            tc.BorderStyle = BorderStyle.Double;
+            tc.BorderStyle = BorderStyle.Groove;
             int rows = 0;
             form.SetsTable.Rows.Add(tr);
             form.SetsTable.Rows[rows].Cells.Add(tc);
             form.SetsTable.Rows[rows].Cells[0].Text = "#";
+            form.SetsTable.Rows[rows].Cells[0].Font.Size = FontUnit.Medium;
+            form.SetsTable.Rows[rows].Cells[0].ForeColor = Color.White;
+            form.SetsTable.Rows[rows].Cells[0].HorizontalAlign = HorizontalAlign.Center;
+             form.SetsTable.Rows[rows].Cells[0].BackColor = Color.FromArgb(8433377);
             tc = new TableCell();
-            tc.BorderStyle = BorderStyle.Double;
+            tc.BorderStyle = BorderStyle.Groove;
             form.SetsTable.Rows[rows].Cells.Add(tc);
             form.SetsTable.Rows[rows].Cells[1].Text = "Section name";
+            form.SetsTable.Rows[rows].Cells[1].Font.Size = FontUnit.Medium;
+            form.SetsTable.Rows[rows].Cells[1].ForeColor = Color.White;
+            form.SetsTable.Rows[rows].Cells[1].HorizontalAlign = HorizontalAlign.Center;
+            form.SetsTable.Rows[rows].Cells[1].BackColor = Color.FromArgb(8433377);
             tc = new TableCell();
-            tc.BorderStyle = BorderStyle.Double;
+            tc.BorderStyle = BorderStyle.Groove;
             form.SetsTable.Rows[rows].Cells.Add(tc);
             form.SetsTable.Rows[rows].Cells[2].Text = "Score";
+            form.SetsTable.Rows[rows].Cells[2].Font.Size = FontUnit.Medium;
+            form.SetsTable.Rows[rows].Cells[2].ForeColor = Color.White;
+            form.SetsTable.Rows[rows].Cells[2].HorizontalAlign = HorizontalAlign.Center;
+            form.SetsTable.Rows[rows].Cells[2].BackColor = Color.FromArgb(8433377);
             ++rows;
             for (int i = 0; i < navigator.QuestionsAnswers.Length; i++)
             {
@@ -423,15 +436,15 @@ namespace GmatClubTest.Web
                 form.SetsTable.Rows.Add(tr);
                 form.SetsTable.Rows[rows].Cells.Add(tc);
                 tc = new TableCell();
-                tc.BorderStyle = BorderStyle.Double;
+                tc.BorderStyle = BorderStyle.Groove;
                 form.SetsTable.Rows[rows].Cells.Add(tc);
                 form.SetsTable.Rows[rows].Cells[cells].Text = (i + 1).ToString();
-
+                form.SetsTable.Rows[rows].Cells[cells].ForeColor = Color.White;
                 ++cells;
                 tc = new TableCell();
-                tc.BorderStyle = BorderStyle.Double;
+                tc.BorderStyle = BorderStyle.Groove;
                 tc = new TableCell();
-                tc.BorderStyle = BorderStyle.Double;
+                tc.BorderStyle = BorderStyle.Groove;
                 form.SetsTable.Rows[rows].Cells.Add(tc);
                 LinkButton setLinkButton = new LinkButton();
                 setLinkButton.Text = navigator.Sets.QuestionSets[i].Name;
@@ -448,10 +461,11 @@ namespace GmatClubTest.Web
                     setScore += status.score;
                 }
                 tc = new TableCell();
-                tc.BorderStyle = BorderStyle.Double;
+                tc.BorderStyle = BorderStyle.Groove;
                 tc = new TableCell();
-                tc.BorderStyle = BorderStyle.Double;
+                tc.BorderStyle = BorderStyle.Groove;
                 form.SetsTable.Rows[rows].Cells[cells].Text = setScore.ToString();
+                form.SetsTable.Rows[rows].Cells[cells].ForeColor = Color.White;
                 ++rows;
             }
 
@@ -462,23 +476,35 @@ namespace GmatClubTest.Web
             tr = new TableRow();
             tc = new TableCell();
 
-            tc.BorderStyle = BorderStyle.Double;
+            tc.BorderStyle = BorderStyle.Groove;
 
             rows = 0;
 
             tc = new TableCell();
-            tc.BorderStyle = BorderStyle.Double;
+            tc.BorderStyle = BorderStyle.Groove;
             form.QuestionTable.Rows.Add(tr);
             form.QuestionTable.Rows[rows].Cells.Add(tc);
             form.QuestionTable.Rows[rows].Cells[0].Text = "#";
+            form.QuestionTable.Rows[rows].Cells[0].ForeColor = Color.White;
+            form.QuestionTable.Rows[rows].Cells[0].Font.Size = FontUnit.Medium;
+            form.QuestionTable.Rows[rows].Cells[0].HorizontalAlign = HorizontalAlign.Center;
+            form.QuestionTable.Rows[rows].Cells[0].BackColor = Color.FromArgb(8433377);
             tc = new TableCell();
-            tc.BorderStyle = BorderStyle.Double;
+            tc.BorderStyle = BorderStyle.Groove;
             form.QuestionTable.Rows[rows].Cells.Add(tc);
             form.QuestionTable.Rows[rows].Cells[1].Text = "Question";
+            form.QuestionTable.Rows[rows].Cells[1].ForeColor = Color.White;
+            form.QuestionTable.Rows[rows].Cells[1].Font.Size = FontUnit.Medium;
+            form.QuestionTable.Rows[rows].Cells[1].HorizontalAlign = HorizontalAlign.Center;
+            form.QuestionTable.Rows[rows].Cells[1].BackColor = Color.FromArgb(8433377);
             tc = new TableCell();
-            tc.BorderStyle = BorderStyle.Double;
+            tc.BorderStyle = BorderStyle.Groove;
             form.QuestionTable.Rows[rows].Cells.Add(tc);
             form.QuestionTable.Rows[rows].Cells[2].Text = "Status";
+            form.QuestionTable.Rows[rows].Cells[2].ForeColor = Color.White;
+            form.QuestionTable.Rows[rows].Cells[2].Font.Size = FontUnit.Medium;
+            form.QuestionTable.Rows[rows].Cells[2].HorizontalAlign = HorizontalAlign.Center;
+            form.QuestionTable.Rows[rows].Cells[2].BackColor = Color.FromArgb(8433377);
             ++rows;
 
 
@@ -490,13 +516,14 @@ namespace GmatClubTest.Web
 
                 status = navigator.GetQuestionStatus(qas.Questions[i].Id);
                 tc = new TableCell();
-                tc.BorderStyle = BorderStyle.Double;
+                tc.BorderStyle = BorderStyle.Groove;
                 form.QuestionTable.Rows[rows].Cells.Add(tc);
                 form.QuestionTable.Rows[rows].Cells[cells].Text += (i + 1).ToString();
+                form.QuestionTable.Rows[rows].Cells[cells].ForeColor = Color.White;
                 ++cells;
 
                 tc = new TableCell();
-                tc.BorderStyle = BorderStyle.Double;
+                tc.BorderStyle = BorderStyle.Groove;
                 form.QuestionTable.Rows[rows].Cells.Add(tc);
                 LinkButton questoinLinkButton = new LinkButton();
                 //form.questionTable.Rows[rows].Cells[cells].Text = "<input type=\"image\" src=/" + "images/status/" + Question.Status.StatusType.GetName(typeof(Question.Status.StatusType), (int)status.status).ToString() + ".bmp"+">";
@@ -512,7 +539,7 @@ namespace GmatClubTest.Web
                 ++cells;
 
                 tc = new TableCell();
-                tc.BorderStyle = BorderStyle.Double;
+                tc.BorderStyle = BorderStyle.Groove;
                 form.QuestionTable.Rows[rows].Cells.Add(tc);
                 switch ((int) status.status)
                 {
@@ -529,6 +556,7 @@ namespace GmatClubTest.Web
                         form.QuestionTable.Rows[rows].Cells[cells].Text = "Incorrect";
                         break;
                 }
+                form.QuestionTable.Rows[rows].Cells[cells].ForeColor = Color.White;
                 ++rows;
             }
         }
