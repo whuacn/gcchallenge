@@ -42,10 +42,10 @@
                 </tr>
             </table>
 			<HR width="100%" noShade SIZE="1">
-			<TABLE id="Table4" cellSpacing="1" cellPadding="1" align="center" border="0" width="500">
+			<TABLE id="Table4" cellSpacing="1" cellPadding="1" align="center" border="0">
 				<TR>
-					<TD align="center" style="width: 166px; border-top-style: ridge; border-right-style: ridge; border-left-style: ridge; border-bottom-style: ridge; text-align: center;">
-						<TABLE id="Table6" cellSpacing="1" cellPadding="1" align="center" border="0">
+					<TD align="center" style="border-top-style: ridge; border-right-style: ridge; border-left-style: ridge; border-bottom-style: ridge; text-align: center;">
+						<TABLE id="Table6" cellSpacing="1" cellPadding="1" border="0" style="text-align: center">
 							<TR>
 								<TD style="FONT-WEIGHT: bold; font-size: medium; width: 57px; color: white;">
                                     Section:</TD>
@@ -65,7 +65,7 @@
 			</TABLE>
 			<TABLE id="Table2" cellSpacing="1" cellPadding="1" align="center" border="0" style="border-top-style: ridge; border-right-style: ridge; border-left-style: ridge; border-bottom-style: ridge">
 				<TR>
-					<TD align="center" style="width: 500px; height: 73px">
+					<TD align="center">
 						<TABLE id="Table7" cellSpacing="1" cellPadding="1" align="center" border="0">
 							<TR>
 								<TD style="FONT-WEIGHT: bold; font-size: medium; color: white;">Questions:</TD>
