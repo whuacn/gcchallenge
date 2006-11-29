@@ -10,7 +10,7 @@ using GmatClubTest.Data;
 using GmatClubTest.QuestionRenderer;
 using GMATClubTest.Web;
 
-namespace GmatClubTest.Web
+namespace GMATClubTest.Web
 {
     public class WebTestController
     {
@@ -85,7 +85,7 @@ namespace GmatClubTest.Web
             }
         }
 
-        public void PrepareTestDescription(IDescriptionWebForm form)
+        public void PrepareTestDescription(IDescription form)
         {
             descriptionTestString = "";
             string caption = testRow.Name;
@@ -112,7 +112,7 @@ namespace GmatClubTest.Web
             form.DescriptionString(descriptionTestString);
         }
 
-        public void PrepareSetDescription(IDescriptionWebForm form)
+        public void PrepareSetDescription(IDescription form)
         {
             descriptionTestString = "";
             string caption = questionSet.Name;
@@ -855,14 +855,12 @@ namespace GmatClubTest.Web
             form.Response.Redirect("mainWebForm.aspx");
         }
 
-        public void OnDescriptionOk(IDescriptionWebForm form)
+        public void OnDescriptionOk(Page form)
         {
             if (!started)
             {
                 started = true;
                 GetNextSet();
-                PrepareSetDescription(form);
-                return;
             }
 
             if (isPractice)
@@ -875,7 +873,7 @@ namespace GmatClubTest.Web
             }
         }
 
-        public void PrepareDescription(IDescriptionWebForm form)
+        public void PrepareDescription(IDescription form)
         {
             if (!started)
                 PrepareTestDescription(form);
