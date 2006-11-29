@@ -1,0 +1,85 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MainLayout.master.cs" Inherits="GMATClubTest.Web.MainLayout" %>
+<% 
+    Response.Expires = 0;
+    Response.Cache.SetCacheability(HttpCacheability.Private);
+    Response.CacheControl = "no-cache";
+    Response.Cache.SetNoStore();
+%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+<title>Untitled Page</title>
+<script type="text/javascript" language="javascript" src="ajax/dragger.js"></script>
+<script type="text/javascript" language="javascript" src="ajax/ajax_base.js"></script>
+<script type="text/javascript" language="javascript" src="js/access_control.js"></script>
+<script type="text/javascript" language="javascript" src="js/dd_menu.js"></script>
+<script type="text/javascript" language="javascript" src="js/common.js"></script>
+<script type="text/javascript" language="javascript" src="FCKeditor/fckeditor.js"></script>
+
+<link rel="stylesheet" type="text/css" media="all" href="styles.css" title="winter" />
+<script language="javascript" type="text/javascript">
+function on_load()
+{
+   <% = onLoadScript %>
+   document.onmousemove = getMouseXY;
+}
+</script>
+</head>
+<body onload="Javascript:on_load()">
+<div style="font:9pt verdana;" align="center">
+<table  border="0" cellspacing="0" cellpadding="0" style="width: 800px">
+<% = adminPanel() %>
+  <tr>
+    <td colspan="2" valign="top" align="left"><table width="92%"  border="0" cellspacing="0" cellpadding="4">
+        <tr>
+         <td valign="top">
+         <a href="/"><img src="i/logo_small.gif" alt="GMAT Challenge Home" width="250" height="96" hspace="0" vspace="0" border="0" /></a> 
+         <% =topMenu() %>
+         </td>
+         <td>
+<!-- top menu -->
+<!-- <a href="index.htm"> <a href="index.htm">Home</a>&nbsp; | &nbsp;<a href="GMATTests.htm">GMAT Tests</a> &nbsp;|&nbsp; <a href="CustomGmatTests.htm">Custom GMAT Tests</a> &nbsp;|&nbsp; Rankings&nbsp; |&nbsp; <a href="profile.htm">Profile</a>&nbsp; |&nbsp; Help | <a href="http://www.gmatclub.com">GMATClub.com</a> -->
+          </td>
+        </tr>
+    </table>
+    </td>
+  </tr>
+  <tr>
+    <td width="61%" valign="top" align="left">
+    <table width="750" class="borderr" border="0" cellspacing="10" cellpadding="0">
+        <tr>
+          <td width="99%" valign="top"><table width="100%" border="0" cellpadding="5" cellspacing="1">
+              <tr>
+                <td height="22" valign="middle" bgcolor="#B7C6FF"><div align="center"><strong> 
+                <% = pageHead %>
+                </strong></div></td>
+              </tr>
+            </table>
+         </td>
+        </tr>
+    </table>
+    
+<form id="form1" runat="server">    
+<asp:contentplaceholder id="content" runat="server">
+
+<!--content here-->
+
+</asp:contentplaceholder>
+ </form>
+
+    </td>
+    <td width="160" valign="top" class="borderl"><img alt='' src="blank.gif" width="160" height="1" />
+    <% = access_manager_.show_login_status_box() %>
+    </td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td valign="top">&nbsp;</td>
+  </tr>
+</table>
+<asp:contentplaceholder id="ajax_windows" runat="server"></asp:contentplaceholder>
+</div>
+</body>
+</html>
+
+

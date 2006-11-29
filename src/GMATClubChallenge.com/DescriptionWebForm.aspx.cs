@@ -1,35 +1,54 @@
 using System;
+using System.Data;
+using System.Configuration;
+using System.Collections;
+using System.Web;
+using System.Web.Security;
 using System.Web.UI;
-using GmatClubTest.Web;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Web.UI.HtmlControls;
 
-public partial class DescriptionWebForm : IDescriptionWebForm
+
+
+namespace GMATClubTest.Web
 {
-    protected void Page_Load(object sender, EventArgs e)
-    {
-        logoutHyperLink.Text = "Log out" + " [" + Session["UserLogin"] + "]";
-        if (!IsPostBack)
-        {
-            ((WebTestController) (Session["WebTestController"])).PrepareDescription(this);
-        }
-    }
+   public partial class DescriptionWebForm : BasePage, IDescription
+   {
+      protected void Page_Load(object sender, EventArgs e)
+      {
+         base.Page_Load(sender, e);
+      }
 
-    public override void Caption(string caption)
-    {
-        Title = caption;
-    }
+      public override void DoLoad(object sender, EventArgs e)
+      {
+         if (!IsPostBack)
+         {
+            ((GMATClubTest.Web.WebTestController)Session["WebTestController"]).PrepareDescription(this);
+         }
+      }
 
-    public override void DescriptionString(string desString)
-    {
-        descriptionString = desString;
-    }
+      
+      public virtual void Caption(string caption)
+      {
+         ((GMATClubTest.Web.MainLayout)(Master)).setPageHead(caption);
+      }
 
-    protected void OkImageButton_Click(object sender, ImageClickEventArgs e)
-    {
-        ((WebTestController) (Session["WebTestController"])).OnDescriptionOk(this);
-    }
+      public virtual void DescriptionString(string desString)
+      {
+         descriptionString = desString;
+      } 
 
-    protected void cancelImageButton_Click(object sender, ImageClickEventArgs e)
-    {
-        Response.Redirect("mainWebForm.aspx");
-    }
+      protected void OkImageButton_Click(object sender, ImageClickEventArgs e)
+      {
+         ((WebTestController)(Session["WebTestController"])).OnDescriptionOk(this);
+      }
+
+      protected void cancelImageButton_Click(object sender, ImageClickEventArgs e)
+      {
+         Response.Redirect("Tests.aspx");
+      }
+
+      public string descriptionString = "";
+   }
 }

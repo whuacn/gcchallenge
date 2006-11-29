@@ -199,7 +199,8 @@ function Url(num)
 									<TD>
 										<asp:Panel id="passagePanel" runat="server">
 											<asp:Image id="passageImage" runat="server"></asp:Image>
-										</asp:Panel></TD>
+										</asp:Panel>
+                              </TD>
 								</TR>
 							</TABLE>
 							<asp:RadioButtonList id="answerRadioButtonList" runat="server"></asp:RadioButtonList>
