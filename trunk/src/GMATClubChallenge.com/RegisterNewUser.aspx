@@ -29,12 +29,12 @@
             <asp:BoundField DataField="name" HeaderText="name" SortExpression="name" Visible="False">
                <ItemStyle CssClass="itt" Width="200px" />
             </asp:BoundField>
-            <asp:BoundField DataField="human_name" HeaderText="Property value" SortExpression="idx">
+            <asp:BoundField DataField="human_name" HeaderText="Property" SortExpression="idx">
                <ItemStyle CssClass="itt" Width="200px" />
             </asp:BoundField>
             <asp:CheckBoxField DataField="nesses" HeaderText="nesses" SortExpression="nesses"
                Visible="False" />
-            <asp:TemplateField HeaderText="Property value" SortExpression="idx">
+            <asp:TemplateField HeaderText="Value" SortExpression="idx">
                <ItemStyle CssClass="itt" Width="200px" />
                <ItemTemplate>
                   <asp:TextBox Width="200px" CssClass="itt" ID="value_box" runat="server" Text='<%# Bind("human_name") %>'></asp:TextBox>

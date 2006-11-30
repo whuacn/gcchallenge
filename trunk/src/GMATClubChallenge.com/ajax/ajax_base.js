@@ -16,7 +16,7 @@ var http = getHTTPObject();
 
 function exec_http_req(remote_handler,vars,handler)
 {
-   var url = "handler.ajx?handler_name="+encodeURI(remote_handler);
+   var url = "handler.ajx.aspx?handler_name="+encodeURI(remote_handler);
    var h_part="";
    if(null!=vars)
    {

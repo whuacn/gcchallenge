@@ -15,15 +15,11 @@
 function do_login()
 {
    var url=window.location.href;
-   if(url.indexOf("?")!=-1)
+   if(url.substr(url.length-1,1)=="/")
    {
-      url+="&";
+      url+="Default.aspx";
    }
-   else
-   {
-      url+="?";
-   };
-   document.login_form.action=window.location.href;
+   document.login_form.action=url;
    document.login_form.submit();
 }
 
