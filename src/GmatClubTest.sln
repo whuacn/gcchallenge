@@ -43,8 +43,8 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "C:\...\GMATClubChallenge.co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccessControl", "AccessControl\AccessControl.csproj", "{9A61CCF6-0EA3-4954-A35D-A990E1EED338}"
 	ProjectSection(ProjectDependencies) = postProject
-		{DBF7937E-CB3F-4D17-8097-648286226E0C} = {DBF7937E-CB3F-4D17-8097-648286226E0C}
 		{41BCC868-380C-4BC1-B834-687C32E829CC} = {41BCC868-380C-4BC1-B834-687C32E829CC}
+		{DBF7937E-CB3F-4D17-8097-648286226E0C} = {DBF7937E-CB3F-4D17-8097-648286226E0C}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop", "Shop\Shop.csproj", "{E2A82915-B88C-4201-9E60-21BE7D7BA8AF}"
@@ -71,6 +71,7 @@ Global
 		{A97069E2-8E61-4279-8056-793432FA023A}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
 		{A97069E2-8E61-4279-8056-793432FA023A}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{A97069E2-8E61-4279-8056-793432FA023A}.Release|.NET.ActiveCfg = Release|Any CPU
+		{A97069E2-8E61-4279-8056-793432FA023A}.Release|.NET.Build.0 = Release|Any CPU
 		{A97069E2-8E61-4279-8056-793432FA023A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A97069E2-8E61-4279-8056-793432FA023A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A97069E2-8E61-4279-8056-793432FA023A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
@@ -82,6 +83,7 @@ Global
 		{DBF7937E-CB3F-4D17-8097-648286226E0C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
 		{DBF7937E-CB3F-4D17-8097-648286226E0C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{DBF7937E-CB3F-4D17-8097-648286226E0C}.Release|.NET.ActiveCfg = Release|Any CPU
+		{DBF7937E-CB3F-4D17-8097-648286226E0C}.Release|.NET.Build.0 = Release|Any CPU
 		{DBF7937E-CB3F-4D17-8097-648286226E0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DBF7937E-CB3F-4D17-8097-648286226E0C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DBF7937E-CB3F-4D17-8097-648286226E0C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
@@ -102,6 +104,7 @@ Global
 		{41BCC868-380C-4BC1-B834-687C32E829CC}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
 		{41BCC868-380C-4BC1-B834-687C32E829CC}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{41BCC868-380C-4BC1-B834-687C32E829CC}.Release|.NET.ActiveCfg = Release|Any CPU
+		{41BCC868-380C-4BC1-B834-687C32E829CC}.Release|.NET.Build.0 = Release|Any CPU
 		{41BCC868-380C-4BC1-B834-687C32E829CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{41BCC868-380C-4BC1-B834-687C32E829CC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{41BCC868-380C-4BC1-B834-687C32E829CC}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
@@ -175,6 +178,7 @@ Global
 		{9A61CCF6-0EA3-4954-A35D-A990E1EED338}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
 		{9A61CCF6-0EA3-4954-A35D-A990E1EED338}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{9A61CCF6-0EA3-4954-A35D-A990E1EED338}.Release|.NET.ActiveCfg = Release|Any CPU
+		{9A61CCF6-0EA3-4954-A35D-A990E1EED338}.Release|.NET.Build.0 = Release|Any CPU
 		{9A61CCF6-0EA3-4954-A35D-A990E1EED338}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A61CCF6-0EA3-4954-A35D-A990E1EED338}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9A61CCF6-0EA3-4954-A35D-A990E1EED338}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
@@ -186,6 +190,7 @@ Global
 		{E2A82915-B88C-4201-9E60-21BE7D7BA8AF}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
 		{E2A82915-B88C-4201-9E60-21BE7D7BA8AF}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{E2A82915-B88C-4201-9E60-21BE7D7BA8AF}.Release|.NET.ActiveCfg = Release|Any CPU
+		{E2A82915-B88C-4201-9E60-21BE7D7BA8AF}.Release|.NET.Build.0 = Release|Any CPU
 		{E2A82915-B88C-4201-9E60-21BE7D7BA8AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E2A82915-B88C-4201-9E60-21BE7D7BA8AF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E2A82915-B88C-4201-9E60-21BE7D7BA8AF}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
