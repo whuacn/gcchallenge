@@ -130,7 +130,7 @@
     <value>17, 17</value>
   </metadata>
   <metadata name="sqlConnection.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 128</value>
+    <value>17, 91</value>
   </metadata>
   <metadata name="sqlInsertCommand1.DesignTimeVisible" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -163,7 +163,7 @@
     <value>UPDATE Users SET Login = @Login, Password = @Password, Name = @Name WHERE (Id = @Original_Id) AND (Login = @Original_Login) AND (Name = @Original_Name) AND (Password = @Original_Password); SELECT Id, Login, Password, Name FROM Users WHERE (Id = @Id)</value>
   </data>
   <metadata name="adapterTests.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 276</value>
+    <value>17, 165</value>
   </metadata>
   <metadata name="sqlDeleteCommand2.DesignTimeVisible" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -202,7 +202,7 @@
     <value>17, 17</value>
   </metadata>
   <metadata name="adapterQuestionById.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 350</value>
+    <value>17, 202</value>
   </metadata>
   <metadata name="sqlDeleteCommand3.DesignTimeVisible" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -247,7 +247,7 @@
     <value>UPDATE Questions SET TypeId = @TypeId, SubtypeId = @SubtypeId, DifficultyLevelId = @DifficultyLevelId, Text = @Text, Picture = @Picture WHERE (Id = @Original_Id); SELECT Id, TypeId, SubtypeId, DifficultyLevelId, Text, Picture FROM Questions WHERE (Id = @Id)</value>
   </data>
   <metadata name="adapterAnswersByQuestionId.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 387</value>
+    <value>17, 313</value>
   </metadata>
   <metadata name="sqlDeleteCommand4.DesignTimeVisible" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -292,7 +292,7 @@
     <value>UPDATE Answers SET QuestionId = @QuestionId, Text = @Text, IsCorrect = @IsCorrect, [Order] = @Param2 WHERE (QuestionId = @Original_QuestionId) AND (Text = @Original_Text); SELECT QuestionId, Text, IsCorrect, [Order] FROM Answers WHERE (QuestionId = @QuestionId) AND (Text = @Text)</value>
   </data>
   <metadata name="adapterUserById.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 461</value>
+    <value>17, 387</value>
   </metadata>
   <metadata name="sqlDeleteCommand5.DesignTimeVisible" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -331,7 +331,7 @@
     <value>0, 0</value>
   </metadata>
   <metadata name="adapterQuestionsByQuestionSetId.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 646</value>
+    <value>17, 461</value>
   </metadata>
   <metadata name="sqlDeleteCommand8.DesignTimeVisible" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -373,7 +373,7 @@
     <value>17, 17</value>
   </metadata>
   <metadata name="adapterAnswersByQuestionSetId.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 683</value>
+    <value>17, 498</value>
   </metadata>
   <metadata name="sqlSelectAnswersByQuestionSetId.DesignTimeVisible" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -388,7 +388,7 @@
     <value>SELECT Answers.* FROM Answers INNER JOIN Questions ON Answers.QuestionId = Questions.Id INNER JOIN SetsToQuestions ON Questions.Id = SetsToQuestions.QuestionId WHERE (SetsToQuestions.SetId = @QuestionSetId)</value>
   </data>
   <metadata name="adapterResultsByUserIdTimeRange.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 572</value>
+    <value>17, 535</value>
   </metadata>
   <metadata name="sqlSelectResultsByUserIdTimeRange.DesignTimeVisible" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -403,7 +403,7 @@
     <value>SELECT Results.Id, Results.UserId, Results.StartTime, Results.EndTime, Results.Score, Tests.Name AS TestName, Tests.IsPractice AS TestIsPractice, Tests.Id AS TestId FROM Results INNER JOIN Tests ON Results.TestId = Tests.Id WHERE (Results.UserId = @UserId) AND (Results.StartTime BETWEEN @Time1 AND @Time2)</value>
   </data>
   <metadata name="adapterResultsDetailsByResultId.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 609</value>
+    <value>17, 572</value>
   </metadata>
   <metadata name="sqlDeleteCommand7.DesignTimeVisible" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -451,7 +451,7 @@
     <value>UPDATE ResultsDetails SET ResultId = @ResultId, QuestionId = @QuestionId, AnswerId = @AnswerId, QuestionOrder = @QuestionOrder WHERE (QuestionId = @Original_QuestionId) AND (ResultId = @Original_ResultId) AND (AnswerId = @Original_AnswerId OR @Original_AnswerId IS NULL AND AnswerId IS NULL) AND (QuestionOrder = @Original_QuestionOrder); SELECT ResultId, QuestionId, AnswerId, QuestionOrder FROM ResultsDetails WHERE (QuestionId = @QuestionId) AND (ResultId = @ResultId)</value>
   </data>
   <metadata name="adapterQuestionSetsByTestId.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 535</value>
+    <value>17, 646</value>
   </metadata>
   <metadata name="sqlDeleteCommand9.DesignTimeVisible" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -499,7 +499,7 @@
     <value>UPDATE QuestionSets SET Name = @Name, Description = @Description, NumberOfQuestionsToPick = @NumberOfQuestionsToPick, TimeLimit = @TimeLimit, QuestionTypeId = @QuestionTypeId, QuestionSubtypeId = @QuestionSubtypeId, NumberOfQuestionsInZone2 = @NumberOfQuestionsInZone2, NumberOfQuestionsInZone1 = @NumberOfQuestionsInZone1, NumberOfQuestionsInZone3 = @NumberOfQuestionsInZone3 WHERE (Id = @Original_Id)</value>
   </data>
   <metadata name="adapterResultsByResultId.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 165</value>
+    <value>17, 276</value>
   </metadata>
   <metadata name="sqlDeleteCommand6.DesignTimeVisible" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -547,7 +547,7 @@
     <value>UPDATE Results SET UserId = @UserId, TestId = @TestId, StartTime = @StartTime, EndTime = @EndTime, Score = @Score WHERE (Id = @Original_Id) AND (EndTime = @Original_EndTime) AND (Score = @Original_Score) AND (StartTime = @Original_StartTime) AND (TestId = @Original_TestId) AND (UserId = @Original_UserId); SELECT Id, UserId, TestId, StartTime, EndTime, Score FROM Results WHERE (Id = @Id)</value>
   </data>
   <metadata name="adapterResultDetailsByResultId.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 498</value>
+    <value>17, 683</value>
   </metadata>
   <metadata name="sqlSelectCommand7.DesignTimeVisible" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -562,7 +562,7 @@
     <value>SELECT Answers.IsCorrect, ResultsDetails.QuestionId, ResultsDetails.QuestionOrder, Questions.Text AS QuestionText, DifficultyLevel.Name AS QuestionDifficultyLevel, SetsToQuestions.SetId, Answers.Id FROM Answers INNER JOIN Questions ON Answers.QuestionId = Questions.Id INNER JOIN ResultsDetails ON Answers.Id = ResultsDetails.AnswerId AND Questions.Id = ResultsDetails.QuestionId INNER JOIN DifficultyLevel ON Questions.DifficultyLevelId = DifficultyLevel.Id INNER JOIN SetsToQuestions ON Questions.Id = SetsToQuestions.QuestionId INNER JOIN ResultsDetailsOfSets ON ResultsDetails.ResultId = ResultsDetailsOfSets.ResultId AND SetsToQuestions.SetId = ResultsDetailsOfSets.QuestionSetId WHERE (ResultsDetails.ResultId = @ResultId) ORDER BY ResultsDetails.QuestionOrder</value>
   </data>
   <metadata name="adapterPassagesToQuestionsByQuestionId.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 424</value>
+    <value>17, 609</value>
   </metadata>
   <metadata name="sqlSelectPassagesToQuestionsByQuestionId.DesignTimeVisible" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -577,7 +577,7 @@
     <value>SELECT PassagesToQuestions.PassageQuestionId, PassagesToQuestions.QuestionId FROM PassagesToQuestions INNER JOIN PassagesToQuestions PassagesToQuestions_1 ON PassagesToQuestions.PassageQuestionId = PassagesToQuestions_1.PassageQuestionId WHERE (PassagesToQuestions_1.QuestionId = @Id)</value>
   </data>
   <metadata name="adapterQuestionsByQuestionSetIdAndZone.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 239</value>
+    <value>17, 350</value>
   </metadata>
   <metadata name="sqlSelectCommand5.DesignTimeVisible" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -592,7 +592,7 @@
     <value>SELECT Questions.Id, Questions.TypeId, Questions.SubtypeId, Questions.DifficultyLevelId, Questions.Text, Questions.Picture FROM SetsToQuestions INNER JOIN Questions ON SetsToQuestions.QuestionId = Questions.Id WHERE (SetsToQuestions.SetId = @QuestionSetId) AND (SetsToQuestions.QuestionZone = @QuestionZone)</value>
   </data>
   <metadata name="adapterAnswersByQuestionSetIdAndZone.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 313</value>
+    <value>17, 424</value>
   </metadata>
   <metadata name="sqlCommand1.DesignTimeVisible" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -607,7 +607,7 @@
     <value>SELECT Answers.* FROM Answers INNER JOIN Questions ON Answers.QuestionId = Questions.Id INNER JOIN SetsToQuestions ON Questions.Id = SetsToQuestions.QuestionId WHERE (SetsToQuestions.SetId = @QuestionSetId) AND (SetsToQuestions.QuestionZone = @QuestionZone)</value>
   </data>
   <metadata name="adapterResultsDetailsOfSetsByResultId.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 91</value>
+    <value>17, 128</value>
   </metadata>
   <metadata name="sqlDeleteCommand10.DesignTimeVisible" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -652,7 +652,7 @@
     <value>UPDATE ResultsDetailsOfSets SET ResultId = @ResultId, QuestionSetId = @QuestionSetId, Score = @Score, QuestionSetOrder = @QuestionSetOrder WHERE (QuestionSetId = @Original_QuestionSetId) AND (ResultId = @Original_ResultId); SELECT ResultId, QuestionSetId, Score, QuestionSetOrder FROM ResultsDetailsOfSets WHERE (QuestionSetId = @QuestionSetId) AND (ResultId = @ResultId)</value>
   </data>
   <metadata name="adapterQuestionSetsExByResultId.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 202</value>
+    <value>17, 239</value>
   </metadata>
   <metadata name="sqlSelectCommand10.DesignTimeVisible" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>

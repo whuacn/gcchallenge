@@ -144,6 +144,12 @@ namespace GmatClubTest.DataProvider
             base.Dispose(disposing);
         }
 
+        public override IDbConnection getConnection()
+        {
+            return oleDbConnection;
+        }
+
+
         public override void Open()
         {
             oleDbConnection.Open();
