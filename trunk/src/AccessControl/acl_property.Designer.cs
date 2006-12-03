@@ -780,7 +780,7 @@ SELECT idx, name, human_name, nesses, is_internal, is_user_editable FROM acl_pro
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::AccessControl.Properties.Settings.Default.gmatConnectionString;
+            this._connection.ConnectionString = global::AccessControl.Properties.Settings.Default.GmatClubChallengeConnectionString;
         }
         
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]

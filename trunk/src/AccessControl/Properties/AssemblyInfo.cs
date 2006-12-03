@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("AccessControl")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Malva")]
+[assembly: AssemblyCompany("Undead")]
 [assembly: AssemblyProduct("AccessControl")]
-[assembly: AssemblyCopyright("Copyright © Malva 2006")]
+[assembly: AssemblyCopyright("Copyright © Undead 2006")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

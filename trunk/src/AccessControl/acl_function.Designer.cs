@@ -692,12 +692,12 @@ namespace AccessControl.acl_functionTableAdapters {
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::AccessControl.Properties.Settings.Default.gmatConnectionString;
+            this._connection.ConnectionString = global::AccessControl.Properties.Settings.Default.GmatClubChallengeConnectionString;
         }
         
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitCommandCollection() {
-            this._commandCollection = new System.Data.SqlClient.SqlCommand[5];
+            this._commandCollection = new System.Data.SqlClient.SqlCommand[6];
             this._commandCollection[0] = new System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT     idx, name, descr, deleted\r\nFROM         acl_function\r\nWHERE     (delet" +
@@ -717,20 +717,25 @@ namespace AccessControl.acl_functionTableAdapters {
             this._commandCollection[2].Parameters.Add(new System.Data.SqlClient.SqlParameter("@value", System.Data.SqlDbType.VarChar, 192, System.Data.ParameterDirection.Input, 0, 0, "name", System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "INSERT INTO acl_function\r\n                      (name, descr, deleted)\r\nVALUES   " +
-                "  (@name,@descr, 0); \r\nSELECT idx, name, descr, deleted FROM acl_function WHERE " +
-                "(idx = SCOPE_IDENTITY())";
+            this._commandCollection[3].CommandText = "SELECT idx FROM acl_function where name=@name;";
             this._commandCollection[3].CommandType = System.Data.CommandType.Text;
             this._commandCollection[3].Parameters.Add(new System.Data.SqlClient.SqlParameter("@name", System.Data.SqlDbType.VarChar, 192, System.Data.ParameterDirection.Input, 0, 0, "name", System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[3].Parameters.Add(new System.Data.SqlClient.SqlParameter("@descr", System.Data.SqlDbType.Text, 2147483647, System.Data.ParameterDirection.Input, 0, 0, "descr", System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4] = new System.Data.SqlClient.SqlCommand();
             this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = "UPDATE    acl_function\r\nSET              descr = @descr, name = @name where idx=@" +
-                "Original_idx";
+            this._commandCollection[4].CommandText = "INSERT INTO acl_function\r\n                      (name, descr, deleted)\r\nVALUES   " +
+                "  (@name,@descr, 0); \r\nSELECT idx, name, descr, deleted FROM acl_function WHERE " +
+                "(idx = SCOPE_IDENTITY())";
             this._commandCollection[4].CommandType = System.Data.CommandType.Text;
-            this._commandCollection[4].Parameters.Add(new System.Data.SqlClient.SqlParameter("@descr", System.Data.SqlDbType.Text, 2147483647, System.Data.ParameterDirection.Input, 0, 0, "descr", System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4].Parameters.Add(new System.Data.SqlClient.SqlParameter("@name", System.Data.SqlDbType.VarChar, 192, System.Data.ParameterDirection.Input, 0, 0, "name", System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[4].Parameters.Add(new System.Data.SqlClient.SqlParameter("@Original_idx", System.Data.SqlDbType.Int, 4, System.Data.ParameterDirection.Input, 0, 0, "idx", System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new System.Data.SqlClient.SqlParameter("@descr", System.Data.SqlDbType.Text, 2147483647, System.Data.ParameterDirection.Input, 0, 0, "descr", System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[5] = new System.Data.SqlClient.SqlCommand();
+            this._commandCollection[5].Connection = this.Connection;
+            this._commandCollection[5].CommandText = "UPDATE    acl_function\r\nSET              descr = @descr, name = @name where idx=@" +
+                "Original_idx";
+            this._commandCollection[5].CommandType = System.Data.CommandType.Text;
+            this._commandCollection[5].Parameters.Add(new System.Data.SqlClient.SqlParameter("@descr", System.Data.SqlDbType.Text, 2147483647, System.Data.ParameterDirection.Input, 0, 0, "descr", System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[5].Parameters.Add(new System.Data.SqlClient.SqlParameter("@name", System.Data.SqlDbType.VarChar, 192, System.Data.ParameterDirection.Input, 0, 0, "name", System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[5].Parameters.Add(new System.Data.SqlClient.SqlParameter("@Original_idx", System.Data.SqlDbType.Int, 4, System.Data.ParameterDirection.Input, 0, 0, "idx", System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -813,8 +818,41 @@ namespace AccessControl.acl_functionTableAdapters {
         
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int InsertFunction(string name, string descr) {
+        public virtual object HasFunction(string name) {
             System.Data.SqlClient.SqlCommand command = this.CommandCollection[3];
+            if ((name == null)) {
+                command.Parameters[0].Value = System.DBNull.Value;
+            }
+            else {
+                command.Parameters[0].Value = ((string)(name));
+            }
+            System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & System.Data.ConnectionState.Open) 
+                        != System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            object returnValue;
+            try {
+                returnValue = command.ExecuteScalar();
+            }
+            finally {
+                if ((previousConnectionState == System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(System.DBNull)))) {
+                return null;
+            }
+            else {
+                return ((object)(returnValue));
+            }
+        }
+        
+        [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual System.Nullable<int> InsertFunction(string name, string descr) {
+            System.Data.SqlClient.SqlCommand command = this.CommandCollection[4];
             if ((name == null)) {
                 command.Parameters[0].Value = System.DBNull.Value;
             }
@@ -832,23 +870,29 @@ namespace AccessControl.acl_functionTableAdapters {
                         != System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
             }
-            int returnValue;
+            object returnValue;
             try {
-                returnValue = command.ExecuteNonQuery();
+                returnValue = command.ExecuteScalar();
             }
             finally {
                 if ((previousConnectionState == System.Data.ConnectionState.Closed)) {
                     command.Connection.Close();
                 }
             }
-            return returnValue;
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(System.DBNull)))) {
+                return new System.Nullable<int>();
+            }
+            else {
+                return new System.Nullable<int>(((int)(returnValue)));
+            }
         }
         
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [System.ComponentModel.DataObjectMethodAttribute(System.ComponentModel.DataObjectMethodType.Update, false)]
         public virtual int UpdateFunction(string descr, string name, int Original_idx) {
-            System.Data.SqlClient.SqlCommand command = this.CommandCollection[4];
+            System.Data.SqlClient.SqlCommand command = this.CommandCollection[5];
             if ((descr == null)) {
                 command.Parameters[0].Value = System.DBNull.Value;
             }

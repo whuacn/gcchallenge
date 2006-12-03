@@ -7,6 +7,12 @@ namespace AccessControl
    {
       partial class base_user_infoTableAdapter
       {
+         public System.Data.SqlClient.SqlConnection SqlConnection
+         {
+            get { return this.Connection; }
+            set { this.Connection = value; }
+        
+         }
          protected int ExecuteNonQuery(System.Data.SqlClient.SqlCommand cmd)
          {
             System.Data.ConnectionState previousConnectionState = cmd.Connection.State;

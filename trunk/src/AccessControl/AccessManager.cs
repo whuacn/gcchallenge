@@ -35,6 +35,20 @@ namespace AccessControl
             return error_descr_;   
          }
       }
+      
+      public int UserId
+      {
+         get
+         {
+            return user_idx_;
+         }
+      }
+      
+      public SqlTransaction Transaction
+      {
+         get { return transaction_; }
+         set { transaction_=value; }
+      }
       public AccessStatus get_access_status()
       {
          if (logon_) return AccessStatus.logged;
@@ -73,6 +87,8 @@ namespace AccessControl
       {
          logon_ = false;
          Guid c_ctx;
+         user_idx_=-1;
+         
          if (null!=cookie_ctx)
          {
             c_ctx=new Guid(cookie_ctx);
@@ -85,9 +101,7 @@ namespace AccessControl
 
          {
 
-            SqlCommand cmd = (SqlCommand)(connection_.CreateCommand());
-            cmd.CommandText = String.Format("select guididx,userid from acl_session where guididx='{0}';", c_ctx);
-
+            SqlCommand cmd = build_command_(String.Format("select guididx,userid from acl_session where guididx='{0}';", c_ctx));
             read = cmd.ExecuteReader();
             if(!read.HasRows)
             {
@@ -108,17 +122,57 @@ namespace AccessControl
             read.Close();
          }
          {
-            SqlCommand cmd = (SqlCommand)(connection_.CreateCommand());
-            cmd.CommandText = String.Format("select login from acl_user where guididx='{0}';", user_guididx_);
+            SqlCommand cmd = build_command_(String.Format("select idx,login from acl_user where guididx='{0}';", user_guididx_));
             read = cmd.ExecuteReader();
             if (read.Read())
             {
-               login_name_ = read[0].ToString();
+               user_idx_=(int)(read[0]);
+               login_name_ = read[1].ToString();
             }
             read.Close();
          }
          
          init_user_groups_();
+      }
+
+
+      public void create_user(string login, string pwd, System.Collections.Hashtable props)
+      {
+
+         if (has_login(login))
+         {
+            throw new System.Exception("Login '" + login + "' is already exists.\nTry another one");
+         }
+         SqlCommand cmd = build_command_(
+            String.Format(
+            "insert into acl_user (guididx,login,pwd) values('{0}','{1}','{2}');\n", 
+            System.Guid.NewGuid(),
+            login,
+            buildHash_(pwd)));
+         
+         cmd.CommandText += "insert into acl_user_group_membership (user_idx,group_idx) select IDENT_CURRENT('acl_user'),idx from acl_group where name='users';\n";
+
+         foreach(Object prop_idx in props.Keys)
+         {
+            string value = props[prop_idx].ToString();
+            cmd.CommandText += String.Format("insert into acl_user_prop_value (user_idx,prop_idx,value) select IDENT_CURRENT('acl_user'),{0},'{1}';", prop_idx, value);
+         }
+         
+         cmd.ExecuteNonQuery();
+
+      }
+      public bool has_login(string login)
+      {
+         SqlCommand cmd=build_command_(String.Format("select guididx from acl_user where login='{0}';", login));
+         Object o=cmd.ExecuteScalar();
+         if (o==null || o.GetType() == typeof(System.DBNull) )
+         {
+            return false;
+         }
+         else
+         {
+            return true; 
+         }
       }
 
       public Guid logon(string login, string pwd)
@@ -128,12 +182,13 @@ namespace AccessControl
             logof();
          }
          logon_ = false;
+         user_idx_=-1;
          Guid ret=System.Guid.NewGuid();
          
          
          // find user
          {
-            SqlDataReader read = build_reader_(String.Format("select guididx from \"acl_user\" where login='{0}' and pwd='{1}';", login, pwd));
+            SqlDataReader read = build_reader_(String.Format("select idx,guididx from \"acl_user\" where login='{0}' and pwd='{1}';", login, buildHash_(pwd)));
             if (!read.HasRows)
             {
                read.Close();
@@ -141,7 +196,9 @@ namespace AccessControl
                throw new System.Exception("Can't logon. Probably no such user.");
             }
             read.Read();
-            user_guididx_ = new Guid(read[0].ToString());
+            user_idx_ = (int)read[0];
+            user_guididx_ = new Guid(read[1].ToString());
+            
 
             if (read.Read())
             {
@@ -193,10 +250,10 @@ namespace AccessControl
       public void logof()
       {
          logon_ = false;
+         user_idx_=-1;
          user_guididx_=Guid.Empty;
          login_name_="";
-         SqlCommand insertCmd = (SqlCommand)connection_.CreateCommand();
-         insertCmd.CommandText = String.Format("delete from acl_session where guididx='{0}';", ctx_);
+         SqlCommand insertCmd = build_command_(String.Format("delete from acl_session where guididx='{0}';", ctx_));
          insertCmd.ExecuteNonQuery();
       }
 
@@ -205,13 +262,21 @@ namespace AccessControl
          return false;
       }
       
-      public bool can_do(Guid idx,string function)
+      public void can_do(Guid idx,string function)
+      {
+         if(!check_do(idx,function))
+         {
+            throw new SystemException("Access to: '"+function +"' for: '"+idx.ToString()+ "'denied");
+         }
+      }
+      
+      public bool check_do(Guid idx,string function)
       {
          SqlCommand cmd=build_command_(String.Format(
 @"
 select acl_function.idx 
 from acl_user 
-inner join acl_user_group_membership on (acl_user.idx = acl_user_group_membership.user_idx and acl_user.guididx='{0}')
+inner join acl_user_group_membership on (acl_user.idx = acl_user_group_membership.user_idx and (acl_user.guididx='{0}' or acl_user.login='nobody'))
 inner join acl_group on (acl_user_group_membership.group_idx=acl_group.idx)
 inner join acl_function_grants on (acl_group.idx=acl_function_grants.group_idx)
 inner join acl_function on (acl_function_grants.func_idx=acl_function.idx and (acl_function.name='all' or acl_function.name='{1}') and acl_function.deleted=0)
@@ -223,7 +288,7 @@ inner join acl_function on (acl_function_grants.func_idx=acl_function.idx and (a
             Object o=cmd.ExecuteScalar();         
             if(null==o || o.GetType()==typeof(System.DBNull))
             {
-               throw new System.Exception("Access denied");
+               return false;
             }
             return true;
          }
@@ -233,26 +298,42 @@ inner join acl_function on (acl_function_grants.func_idx=acl_function.idx and (a
          }
       }
 
-      public bool can_do(string function)
+
+      public void can_do(string function)
       {
-         if(login_name_=="admin") return true;
-         return can_do(user_guididx_,function);
+         if(!check_do(function))
+         {
+            throw new SystemException(String.Format("Access denied for {0} to {1}",UserLogin,function));
+         }
       }
 
-
-      public void add_function(string name,string description)
+      public bool check_do(string function)
       {
-
-      }
-
-      public void grant(string login,string function)
-      {
-
-
+         if (login_name_ == "admin") return true;
+         return check_do(user_guididx_, function);
       }
 
       ////////////////////////////////////////////////////
-      protected string buildHash_(string pwd)
+
+      public string reset_pwd(System.Guid guididx)
+      {
+         set_pwd(guididx, "empty");
+         return "empty";
+      }
+
+      public void set_pwd(System.Guid guididx, string new_pwd)
+      {
+         build_command_(
+                        String.Format("update acl_user set pwd='{0}' where guididx='{1}';",
+                        buildHash_(new_pwd),
+                        guididx)).ExecuteNonQuery();
+      }
+   
+
+      ////////////////////////////////////////////////////
+      
+      
+      protected static string buildHash_(string pwd)
       {
          SHA1 sha = new SHA1CryptoServiceProvider();
          byte[] hash = sha.ComputeHash(System.Text.Encoding.ASCII.GetBytes(pwd));
@@ -308,8 +389,8 @@ inner join acl_user_group_membership on
          System.Collections.ArrayList must_be_properties=new System.Collections.ArrayList();
 
 
-         SqlCommand cmd0 = (SqlCommand)(connection_.CreateCommand());
-         cmd0.CommandText = @"
+         SqlCommand cmd0 = build_command_(
+         @"
 select 
 acl_property.idx,
 acl_property.name,
@@ -322,7 +403,8 @@ acl_property.is_user_editable
 from acl_property inner join acl_property_group on 
 (acl_property_group.prop_idx=acl_property.idx and acl_property_group.group_name='user_props') 
 order by acl_property.idx, acl_property.name;
-         ";
+         "
+         );
 
          SqlDataReader reader0 = cmd0.ExecuteReader();
          try
@@ -339,8 +421,8 @@ order by acl_property.idx, acl_property.name;
             throw ee;
          }
          
-         SqlCommand cmd=(SqlCommand)(connection_.CreateCommand());
-         cmd.CommandText=String.Format(
+         SqlCommand cmd=build_command_(
+         String.Format(
          @"
 select 
 acl_user_prop_value.idx,
@@ -350,7 +432,8 @@ acl_user.login
          from acl_user 
           inner JOIN acl_user_prop_value on ((acl_user_prop_value.user_idx=acl_user.idx) and acl_user.guididx='{0}') 
           order by acl_user.login;"
-          , user);
+          ,
+           user));
 
          SqlDataReader reader=cmd.ExecuteReader();
          
@@ -425,10 +508,7 @@ acl_user.login
       public System.Collections.ArrayList get_user_groups_info(Guid user)
       {
       System.Collections.ArrayList al=new System.Collections.ArrayList();
-         SqlCommand cmd0 = (SqlCommand)(connection_.CreateCommand());
-         cmd0.CommandText =
-            //acl_group.idx, acl_group.name,  acl_user_group_membership.idx 
-String.Format(
+         SqlCommand cmd0 = build_command_(String.Format(
 @"
 SELECT     acl_group.idx, acl_group.name, acl_user_group_membership.idx AS Expr1
 FROM         acl_group LEFT OUTER JOIN
@@ -437,7 +517,7 @@ where acl_group.deleted = 0
 GROUP BY acl_group.idx, acl_group.name, acl_user_group_membership.idx
 order by acl_group.idx
 "
-, user);
+, user));
         
          SqlDataReader read=cmd0.ExecuteReader();
          try
@@ -484,27 +564,23 @@ select acl_user.idx,acl_property.idx,'{2}' from acl_user,acl_property where acl_
       }
       public void apply_login(Guid guididx,string login)
       {
-         SqlCommand set_login=(SqlCommand)(connection_.CreateCommand());
-         set_login.CommandText=String.Format("update acl_user set login='{1}' where guididx='{0}';",guididx,login);
-         set_login.ExecuteNonQuery();
+         SqlCommand al=build_command_(String.Format("update acl_user set login='{1}' where guididx='{0}';",guididx,login));
+         al.ExecuteNonQuery();
       }
 
       public void apply_prop(int original_idx,string value)
       {
-         SqlCommand set_login = (SqlCommand)(connection_.CreateCommand());
-         set_login.CommandText = String.Format("update acl_user_prop_value set value='{1}' where idx='{0}';", original_idx, value);
-         set_login.ExecuteNonQuery();
+         SqlCommand ap = build_command_(String.Format("update acl_user_prop_value set value='{1}' where idx='{0}';", original_idx, value));
+         ap.ExecuteNonQuery();
       }
       public void add_prop(Guid guididx,string name,string value)
       {
-         SqlCommand add_user_prop = (SqlCommand)(connection_.CreateCommand());
-         add_user_prop.CommandText = String.Format(
+         SqlCommand add_user_prop = build_command_(String.Format(
          @"
 insert into acl_user_prop_value (user_idx,prop_idx,value)
 select acl_user.idx,acl_property.idx,'{2}' from acl_user CROSS JOIN acl_property where acl_user.guididx='{0}' and acl_property.name='{1}';", 
-guididx, name,value);
+guididx, name,value));
          add_user_prop.ExecuteNonQuery();
-         
       }
       
       
@@ -619,9 +695,10 @@ order by acl_function.idx;
       
       protected SqlCommand build_command_(string cmd)
       {
-         SqlCommand get_group_info = (SqlCommand)(connection_.CreateCommand());
-         get_group_info.CommandText = cmd;
-         return get_group_info;
+         SqlCommand ret = (SqlCommand)(connection_.CreateCommand());
+         ret.CommandText = cmd;
+         ret.Transaction=transaction_;
+         return ret;
       }
 
       protected SqlDataReader build_reader_(string cmd)
@@ -724,7 +801,10 @@ inner join acl_group           on (acl_function_grants.group_idx=acl_group.idx a
          return "<div align='right' id=\"login_box\">"+ret+"</div>";
       }
       
-      public bool manage_session(System.Web.HttpRequest request, System.Web.HttpResponse response,string cookieName,string logoff_page)
+      public bool manage_session(System.Web.HttpRequest request, 
+                                 System.Web.HttpResponse response,
+                                 string cookieName,
+                                 IStatusHandler handler)
       {
          error_descr_ = "";
          if(null==cookieName || ""==cookieName) 
@@ -739,24 +819,21 @@ inner join acl_group           on (acl_function_grants.group_idx=acl_group.idx a
                logon(
                      request.Params["login"].ToString(),
                      request.Params["password"].ToString());
+
+
+               if (request.Params["remember"]!=null) 
+               {
+                  response.Cookies[cookieName].Value = ctx_.ToString();
+                  response.Cookies[cookieName].Expires = DateTime.Now.AddDays(32);
+               }
                
-               response.Cookies[cookieName].Value=ctx_.ToString();
-               response.Cookies[cookieName].Expires=DateTime.Now.AddDays(32);
+               handler.on_logon();               
             }
 
             if (null != request.Params["logoff"] && request.Params["logoff"].Equals("true"))
             {
                logof();
-               if(null==logoff_page || ""==logoff_page) 
-               {
-                  response.Redirect("/");
-                  return false;
-               }
-               else
-               {
-                  response.Redirect(logoff_page);
-                  return false;
-               }
+               return handler.on_logof();               
             }         
          }
          catch(System.Exception ee)
@@ -765,12 +842,54 @@ inner join acl_group           on (acl_function_grants.group_idx=acl_group.idx a
          }
          return true;
       }
+
+
+      public void check_function_and_group(string name,string descr)
+      {
+         acl_functionTableAdapters.acl_functionTableAdapter af=new acl_functionTableAdapters.acl_functionTableAdapter();
+         af.Connection = (SqlConnection)connection_;
+         
+         acl_groupTableAdapters.acl_groupTableAdapter ag=new acl_groupTableAdapters.acl_groupTableAdapter();
+         ag.Connection = (SqlConnection)connection_;
+         
+         Object func_idx_ = af.HasFunction(name); ;
+         Object group_idx_ = ag.HasGroup(name);
+         if (null == func_idx_ || func_idx_.GetType() == typeof(DBNull))
+         {
+            func_idx_ = af.InsertFunction(name, descr).Value;
+         }
+
+         if (null == group_idx_ || group_idx_.GetType() == typeof(DBNull))
+         {
+            group_idx_ = ag.InsertGroup(System.Guid.NewGuid(),500,name,descr).Value;
+         }
+
+         {
+            SqlCommand cmd = build_command_(String.Format("select idx from acl_function_grants where group_idx='{0}' and func_idx={1};", group_idx_, func_idx_));
+            Object idx_ = cmd.ExecuteScalar();
+            if (null == idx_ || idx_.GetType() == typeof(DBNull))
+            {
+               grant_((int)group_idx_,(int)func_idx_);     
+            }
+         }
+         
+      }
       
+      void grant_(int group_idx,int function_idx)
+      {
+         SqlCommand ins = build_command_(
+         String.Format("insert into acl_function_grants (group_idx,func_idx) values({0},{1});", group_idx, function_idx));   
+         if(ins.ExecuteNonQuery()!=1) throw new System.Exception("Can't grant access");
+      }
+      
+      
+      protected SqlTransaction transaction_=null;
       protected string error_descr_;
       protected string groupDescr_;
       protected bool logon_;
       protected Guid ctx_;
       protected Guid user_guididx_;
+      protected int  user_idx_;
       protected string login_name_;
       protected System.Collections.ArrayList user_groups_;
       protected string site_root_;

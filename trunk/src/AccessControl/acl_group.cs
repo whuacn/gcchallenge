@@ -4,7 +4,6 @@ using System.Data;
 
 namespace AccessControl {
 
-
    partial class acl_group
    {
       partial class acl_groupDataTable
@@ -26,5 +25,32 @@ namespace AccessControl {
          cmd.CommandText = "select idx from acl_group where name='" + name + "';";
          return cmd.ExecuteScalar();
       }
+
+      public static int create(IDbConnection conn,string name)
+      {
+         acl_groupTableAdapters.acl_groupTableAdapter ad = new acl_groupTableAdapters.acl_groupTableAdapter();
+         ad.Connection = (SqlConnection)conn;
+         return ad.InsertGroup(System.Guid.NewGuid(), 500, name, "system_created").Value;
+      }
+
+      public static void destroy(IDbConnection conn,string name)
+      {
+         acl_groupTableAdapters.acl_groupTableAdapter ad = new acl_groupTableAdapters.acl_groupTableAdapter();
+         ad.Connection = (SqlConnection)conn;
+         ad.DeleteGroupByName(name);
+      }
+
    }
+}
+namespace AccessControl.acl_groupTableAdapters
+{
+   public partial class acl_groupTableAdapter
+   {
+      public System.Data.SqlClient.SqlConnection SqlConnection
+      {
+         get { return this.Connection; }
+         set { this.Connection = value; }
+
+      }
+   };
 }

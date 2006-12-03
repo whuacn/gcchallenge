@@ -68,7 +68,7 @@
       <DependentUpon>acl_user.xsd</DependentUpon>
     </Compile>
     <Compile Include="BaseManager.cs" />
-    <Compile Include="GroupManager.cs" />
+    <Compile Include="IStatusHandler.cs" />
     <Compile Include="UserManager.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>

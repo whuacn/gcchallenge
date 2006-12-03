@@ -29,3 +29,15 @@ namespace AccessControl {
       }
    }
 }
+namespace AccessControl.acl_propertyTableAdapters
+{
+   public partial class acl_propertyTableAdapter
+   {
+      public System.Data.SqlClient.SqlConnection SqlConnection
+      {
+         get { return this.Connection; }
+         set { this.Connection = value; }
+
+      }
+   };
+}
