@@ -88,10 +88,12 @@
     <Content Include="AnswerSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>AnswerSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="PassageToQuestionSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>PassageToQuestionSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="QuestionAnswerSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
@@ -116,19 +118,16 @@
     <Content Include="ResultResultDetailSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>ResultResultDetailSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="ResultSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>ResultSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="TestSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>TestSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="UserSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>UserSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
     <Compile Include="AnswerSet.Designer.cs">
@@ -139,10 +138,23 @@
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BindedTests.cs">
+      <DependentUpon>BindedTests.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="BindedTests.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BindedTests.xsd</DependentUpon>
+    </Compile>
     <Compile Include="PassageToQuestionSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>PassageToQuestionSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Question.cs">
       <SubType>Code</SubType>
@@ -188,16 +200,39 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TestSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="UserSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>UserSet.xsd</DependentUpon>
-    </Compile>
+    <None Include="AnswerSet.xsc">
+      <DependentUpon>AnswerSet.xsd</DependentUpon>
+    </None>
+    <None Include="AnswerSet.xss">
+      <DependentUpon>AnswerSet.xsd</DependentUpon>
+    </None>
     <None Include="AnswerSet.xsx">
       <DependentUpon>AnswerSet.xsd</DependentUpon>
     </None>
+    <None Include="app.config" />
+    <None Include="BindedTests.xsc">
+      <DependentUpon>BindedTests.xsd</DependentUpon>
+    </None>
+    <None Include="BindedTests.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BindedTests.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="BindedTests.xss">
+      <DependentUpon>BindedTests.xsd</DependentUpon>
+    </None>
+    <None Include="PassageToQuestionSet.xsc">
+      <DependentUpon>PassageToQuestionSet.xsd</DependentUpon>
+    </None>
+    <None Include="PassageToQuestionSet.xss">
+      <DependentUpon>PassageToQuestionSet.xsd</DependentUpon>
+    </None>
     <None Include="PassageToQuestionSet.xsx">
       <DependentUpon>PassageToQuestionSet.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="QuestionAnswerSet.xsc">
       <DependentUpon>QuestionAnswerSet.xsd</DependentUpon>
@@ -217,6 +252,12 @@
     <None Include="QuestionSet.xsx">
       <DependentUpon>QuestionSet.xsd</DependentUpon>
     </None>
+    <None Include="QuestionSetSet.xsc">
+      <DependentUpon>QuestionSetSet.xsd</DependentUpon>
+    </None>
+    <None Include="QuestionSetSet.xss">
+      <DependentUpon>QuestionSetSet.xsd</DependentUpon>
+    </None>
     <None Include="QuestionSetSet.xsx">
       <DependentUpon>QuestionSetSet.xsd</DependentUpon>
     </None>
@@ -229,8 +270,20 @@
     <None Include="QuestionSetsResultDetailsSet.xsx">
       <DependentUpon>QuestionSetsResultDetailsSet.xsd</DependentUpon>
     </None>
+    <None Include="ResultResultDetailSet.xsc">
+      <DependentUpon>ResultResultDetailSet.xsd</DependentUpon>
+    </None>
+    <None Include="ResultResultDetailSet.xss">
+      <DependentUpon>ResultResultDetailSet.xsd</DependentUpon>
+    </None>
     <None Include="ResultResultDetailSet.xsx">
       <DependentUpon>ResultResultDetailSet.xsd</DependentUpon>
+    </None>
+    <None Include="ResultSet.xsc">
+      <DependentUpon>ResultSet.xsd</DependentUpon>
+    </None>
+    <None Include="ResultSet.xss">
+      <DependentUpon>ResultSet.xsd</DependentUpon>
     </None>
     <None Include="ResultSet.xsx">
       <DependentUpon>ResultSet.xsd</DependentUpon>
@@ -243,15 +296,6 @@
     </None>
     <None Include="TestSet.xsx">
       <DependentUpon>TestSet.xsd</DependentUpon>
-    </None>
-    <None Include="UserSet.xsc">
-      <DependentUpon>UserSet.xsd</DependentUpon>
-    </None>
-    <None Include="UserSet.xss">
-      <DependentUpon>UserSet.xsd</DependentUpon>
-    </None>
-    <None Include="UserSet.xsx">
-      <DependentUpon>UserSet.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
