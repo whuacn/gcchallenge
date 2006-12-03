@@ -32,11 +32,10 @@
          </InsertParameters>
       </asp:ObjectDataSource>
       <div style="width:100%; background-color: #FFFBB7; border: solid 1px #C3C1A8; text-align: left;">
-
-      &nbsp; &nbsp; &nbsp; <b>Order</b> column specifies order in which packages rendered in Test.aspx page.
-      Zero less value mean's what such item do not be rendered. This issue can be used to create sub package which must be rendered just inside it's parent container...      
-      <br>&nbsp; &nbsp; &nbsp; If a <b>Descr</b> field text contains '---' string then the part above '---' will be placed into content's of the 
-      Tests page cell and the part below '---' will be used as a bottom cell text.
+      &nbsp; &nbsp; &nbsp; <b>Order</b> column specifies order in which packages are rendered in Test.aspx page. 
+      Negative value means that the item is not rendered. This trick can be used to create a sub package that must be rendered just inside it's parent container... 
+      <br>&nbsp; &nbsp; &nbsp; If a <b>Descr</b> field text contains '---' string then the part above '---' will be placed into the content of the 
+      Tests.aspx page cell and the part below '---' will be used as a bottom cell text.
       </div>
       <asp:GridView ID="itemsGv" runat="server" AutoGenerateColumns="False" DataKeyNames="idx"
          DataSourceID="itemsDso" AllowPaging="True" PageSize="20" OnRowCancelingEdit="row_RowCancelingEdit" OnRowUpdating="itemsGv_RowUpdating" AllowSorting="True" Width="100%">
