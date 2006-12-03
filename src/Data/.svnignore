@@ -1,0 +1,12 @@
+*.xsc
+*.xsx
+*.xss
+bin
+DB
+Keys
+obj
+RenderingConfiguration
+Rtf
+Templates
+
+
