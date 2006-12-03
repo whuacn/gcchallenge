@@ -27,7 +27,8 @@ namespace GMATClubTest.Web
       
       protected void Application_Start(Object sender, EventArgs e)
       {
-         log4net.Config.XmlConfigurator.Configure(new System.IO.FileInfo(@"log4net.config"));
+         
+         log4net.Config.XmlConfigurator.Configure(new System.IO.FileInfo(Server.MapPath(".")+"/log4net.config"));
          LogManager.GetLogger(typeof(Global)).Info("Application started");
       }
 
