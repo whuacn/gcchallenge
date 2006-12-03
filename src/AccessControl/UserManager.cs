@@ -14,6 +14,7 @@ namespace AccessControl
          return firstNumber + secondNumber;
       }
 
+      
       protected static string build_prop_(System.Collections.Hashtable ht)
       {
          if((System.Boolean)ht["is_user_editable"]==true)
@@ -49,6 +50,25 @@ namespace AccessControl
          {
             return "<tr><td><input type='checkbox' name='grants_" + ht["idx"] + "' value='" + ht["grant_idx"] + "' checked >" + ht["name"] + "</td><td>" + ht["descr"] + "</td></tr>";
          }
+      }
+
+      public static string check_login(AccessControl.AccessManager mgr, System.Web.HttpRequest req)
+      {
+         if(!(mgr.has_login(req["login"])))
+         {
+            return "Login '" + req["login"] + "' is free!";
+         }
+         else
+         {
+            return "Login '" + req["login"] + "' is <b>busy</b>!";
+         }
+
+      }
+      public static string reset_pwd(AccessControl.AccessManager mgr, System.Web.HttpRequest req)
+      {
+         Guid guididx = new Guid(req.Params["guididx"]);
+
+         return "Password was set to: '" + mgr.reset_pwd(guididx)+"'";
       }
 
 

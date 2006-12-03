@@ -728,12 +728,12 @@ namespace AccessControl.acl_groupTableAdapters {
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::AccessControl.Properties.Settings.Default.gmatConnectionString;
+            this._connection.ConnectionString = global::AccessControl.Properties.Settings.Default.GmatClubChallengeConnectionString;
         }
         
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitCommandCollection() {
-            this._commandCollection = new System.Data.SqlClient.SqlCommand[5];
+            this._commandCollection = new System.Data.SqlClient.SqlCommand[7];
             this._commandCollection[0] = new System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT     acl_group.*\r\nFROM         acl_group\r\nwhere deleted<>1;";
@@ -747,31 +747,41 @@ namespace AccessControl.acl_groupTableAdapters {
             this._commandCollection[1].Parameters.Add(new System.Data.SqlClient.SqlParameter("@Original_idx", System.Data.SqlDbType.Int, 4, System.Data.ParameterDirection.Input, 0, 0, "idx", System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT deleted, descr, grouplevel, guididx, idx, name FROM acl_group WHERE (delet" +
-                "ed <> 1) AND (name LIKE @value OR descr LIKE @value) ";
+            this._commandCollection[2].CommandText = "DELETE FROM acl_group\r\nWHERE     (name = @name)";
             this._commandCollection[2].CommandType = System.Data.CommandType.Text;
-            this._commandCollection[2].Parameters.Add(new System.Data.SqlClient.SqlParameter("@value", System.Data.SqlDbType.VarChar, 100, System.Data.ParameterDirection.Input, 0, 0, "name", System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new System.Data.SqlClient.SqlParameter("@name", System.Data.SqlDbType.VarChar, 100, System.Data.ParameterDirection.Input, 0, 0, "name", System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[3] = new System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "INSERT INTO acl_group\r\n                      (guididx, grouplevel, name, descr, d" +
+            this._commandCollection[3].CommandText = "SELECT deleted, descr, grouplevel, guididx, idx, name FROM acl_group WHERE (delet" +
+                "ed <> 1) AND (name LIKE @value OR descr LIKE @value) ";
+            this._commandCollection[3].CommandType = System.Data.CommandType.Text;
+            this._commandCollection[3].Parameters.Add(new System.Data.SqlClient.SqlParameter("@value", System.Data.SqlDbType.VarChar, 100, System.Data.ParameterDirection.Input, 0, 0, "name", System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4] = new System.Data.SqlClient.SqlCommand();
+            this._commandCollection[4].Connection = this.Connection;
+            this._commandCollection[4].CommandText = "SELECT idx FROM acl_group where name=@name;";
+            this._commandCollection[4].CommandType = System.Data.CommandType.Text;
+            this._commandCollection[4].Parameters.Add(new System.Data.SqlClient.SqlParameter("@name", System.Data.SqlDbType.VarChar, 100, System.Data.ParameterDirection.Input, 0, 0, "name", System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[5] = new System.Data.SqlClient.SqlCommand();
+            this._commandCollection[5].Connection = this.Connection;
+            this._commandCollection[5].CommandText = "INSERT INTO acl_group\r\n                      (guididx, grouplevel, name, descr, d" +
                 "eleted)\r\nVALUES     (@guididx,@grouplevel,@name,@descr, 0); \r\nSELECT idx, guidid" +
                 "x, grouplevel, name, descr,deleted FROM acl_group WHERE (idx = SCOPE_IDENTITY())" +
                 "";
-            this._commandCollection[3].CommandType = System.Data.CommandType.Text;
-            this._commandCollection[3].Parameters.Add(new System.Data.SqlClient.SqlParameter("@guididx", System.Data.SqlDbType.UniqueIdentifier, 16, System.Data.ParameterDirection.Input, 0, 0, "guididx", System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[3].Parameters.Add(new System.Data.SqlClient.SqlParameter("@grouplevel", System.Data.SqlDbType.Int, 4, System.Data.ParameterDirection.Input, 0, 0, "grouplevel", System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[3].Parameters.Add(new System.Data.SqlClient.SqlParameter("@name", System.Data.SqlDbType.VarChar, 100, System.Data.ParameterDirection.Input, 0, 0, "name", System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[3].Parameters.Add(new System.Data.SqlClient.SqlParameter("@descr", System.Data.SqlDbType.Text, 2147483647, System.Data.ParameterDirection.Input, 0, 0, "descr", System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[4] = new System.Data.SqlClient.SqlCommand();
-            this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = "UPDATE    acl_group\r\nSET              grouplevel = @grouplevel, name = @name, des" +
+            this._commandCollection[5].CommandType = System.Data.CommandType.Text;
+            this._commandCollection[5].Parameters.Add(new System.Data.SqlClient.SqlParameter("@guididx", System.Data.SqlDbType.UniqueIdentifier, 16, System.Data.ParameterDirection.Input, 0, 0, "guididx", System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[5].Parameters.Add(new System.Data.SqlClient.SqlParameter("@grouplevel", System.Data.SqlDbType.Int, 4, System.Data.ParameterDirection.Input, 0, 0, "grouplevel", System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[5].Parameters.Add(new System.Data.SqlClient.SqlParameter("@name", System.Data.SqlDbType.VarChar, 100, System.Data.ParameterDirection.Input, 0, 0, "name", System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[5].Parameters.Add(new System.Data.SqlClient.SqlParameter("@descr", System.Data.SqlDbType.Text, 2147483647, System.Data.ParameterDirection.Input, 0, 0, "descr", System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[6] = new System.Data.SqlClient.SqlCommand();
+            this._commandCollection[6].Connection = this.Connection;
+            this._commandCollection[6].CommandText = "UPDATE    acl_group\r\nSET              grouplevel = @grouplevel, name = @name, des" +
                 "cr = @descr\r\nWHERE     (idx = @Original_idx);   \r\nSELECT idx, guididx, groupleve" +
                 "l, name, descr FROM acl_group WHERE (idx = @Original_idx)";
-            this._commandCollection[4].CommandType = System.Data.CommandType.Text;
-            this._commandCollection[4].Parameters.Add(new System.Data.SqlClient.SqlParameter("@grouplevel", System.Data.SqlDbType.Int, 4, System.Data.ParameterDirection.Input, 0, 0, "grouplevel", System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[4].Parameters.Add(new System.Data.SqlClient.SqlParameter("@name", System.Data.SqlDbType.VarChar, 100, System.Data.ParameterDirection.Input, 0, 0, "name", System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[4].Parameters.Add(new System.Data.SqlClient.SqlParameter("@descr", System.Data.SqlDbType.Text, 2147483647, System.Data.ParameterDirection.Input, 0, 0, "descr", System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[4].Parameters.Add(new System.Data.SqlClient.SqlParameter("@Original_idx", System.Data.SqlDbType.Int, 4, System.Data.ParameterDirection.Input, 0, 0, "idx", System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[6].CommandType = System.Data.CommandType.Text;
+            this._commandCollection[6].Parameters.Add(new System.Data.SqlClient.SqlParameter("@grouplevel", System.Data.SqlDbType.Int, 4, System.Data.ParameterDirection.Input, 0, 0, "grouplevel", System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[6].Parameters.Add(new System.Data.SqlClient.SqlParameter("@name", System.Data.SqlDbType.VarChar, 100, System.Data.ParameterDirection.Input, 0, 0, "name", System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[6].Parameters.Add(new System.Data.SqlClient.SqlParameter("@descr", System.Data.SqlDbType.Text, 2147483647, System.Data.ParameterDirection.Input, 0, 0, "descr", System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[6].Parameters.Add(new System.Data.SqlClient.SqlParameter("@Original_idx", System.Data.SqlDbType.Int, 4, System.Data.ParameterDirection.Input, 0, 0, "idx", System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -800,7 +810,7 @@ namespace AccessControl.acl_groupTableAdapters {
         [System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [System.ComponentModel.DataObjectMethodAttribute(System.ComponentModel.DataObjectMethodType.Fill, false)]
         public virtual int FillBy(acl_group.acl_groupDataTable dataTable, string value) {
-            this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand = this.CommandCollection[3];
             if ((value == null)) {
                 throw new System.ArgumentNullException("value");
             }
@@ -818,7 +828,7 @@ namespace AccessControl.acl_groupTableAdapters {
         [System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [System.ComponentModel.DataObjectMethodAttribute(System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual acl_group.acl_groupDataTable GetDataWithFilter(string value) {
-            this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand = this.CommandCollection[3];
             if ((value == null)) {
                 throw new System.ArgumentNullException("value");
             }
@@ -860,21 +870,14 @@ namespace AccessControl.acl_groupTableAdapters {
         
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int InsertGroup(System.Guid guididx, int grouplevel, string name, string descr) {
-            System.Data.SqlClient.SqlCommand command = this.CommandCollection[3];
-            command.Parameters[0].Value = ((System.Guid)(guididx));
-            command.Parameters[1].Value = ((int)(grouplevel));
+        [System.ComponentModel.DataObjectMethodAttribute(System.ComponentModel.DataObjectMethodType.Delete, false)]
+        public virtual int DeleteGroupByName(string name) {
+            System.Data.SqlClient.SqlCommand command = this.CommandCollection[2];
             if ((name == null)) {
                 throw new System.ArgumentNullException("name");
             }
             else {
-                command.Parameters[2].Value = ((string)(name));
-            }
-            if ((descr == null)) {
-                command.Parameters[3].Value = System.DBNull.Value;
-            }
-            else {
-                command.Parameters[3].Value = ((string)(descr));
+                command.Parameters[0].Value = ((string)(name));
             }
             System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & System.Data.ConnectionState.Open) 
@@ -895,9 +898,83 @@ namespace AccessControl.acl_groupTableAdapters {
         
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual object HasGroup(string name) {
+            System.Data.SqlClient.SqlCommand command = this.CommandCollection[4];
+            if ((name == null)) {
+                throw new System.ArgumentNullException("name");
+            }
+            else {
+                command.Parameters[0].Value = ((string)(name));
+            }
+            System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & System.Data.ConnectionState.Open) 
+                        != System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            object returnValue;
+            try {
+                returnValue = command.ExecuteScalar();
+            }
+            finally {
+                if ((previousConnectionState == System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(System.DBNull)))) {
+                return null;
+            }
+            else {
+                return ((object)(returnValue));
+            }
+        }
+        
+        [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual System.Nullable<int> InsertGroup(System.Guid guididx, int grouplevel, string name, string descr) {
+            System.Data.SqlClient.SqlCommand command = this.CommandCollection[5];
+            command.Parameters[0].Value = ((System.Guid)(guididx));
+            command.Parameters[1].Value = ((int)(grouplevel));
+            if ((name == null)) {
+                throw new System.ArgumentNullException("name");
+            }
+            else {
+                command.Parameters[2].Value = ((string)(name));
+            }
+            if ((descr == null)) {
+                command.Parameters[3].Value = System.DBNull.Value;
+            }
+            else {
+                command.Parameters[3].Value = ((string)(descr));
+            }
+            System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & System.Data.ConnectionState.Open) 
+                        != System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            object returnValue;
+            try {
+                returnValue = command.ExecuteScalar();
+            }
+            finally {
+                if ((previousConnectionState == System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(System.DBNull)))) {
+                return new System.Nullable<int>();
+            }
+            else {
+                return new System.Nullable<int>(((int)(returnValue)));
+            }
+        }
+        
+        [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [System.ComponentModel.DataObjectMethodAttribute(System.ComponentModel.DataObjectMethodType.Update, false)]
         public virtual int UpdateGroup(int grouplevel, string name, string descr, int Original_idx) {
-            System.Data.SqlClient.SqlCommand command = this.CommandCollection[4];
+            System.Data.SqlClient.SqlCommand command = this.CommandCollection[6];
             command.Parameters[0].Value = ((int)(grouplevel));
             if ((name == null)) {
                 throw new System.ArgumentNullException("name");

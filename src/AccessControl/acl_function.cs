@@ -25,9 +25,27 @@ namespace AccessControl {
          cmd.CommandText = "select idx from acl_function where name='" + new_name + "';";
          return cmd.ExecuteScalar();
       }
-
-      partial class acl_functionDataTable
+      
+      public static int create(IDbConnection c,string name)
       {
+         throw new System.Exception("Not impl");
       }
+
+
    }
 }
+
+namespace AccessControl.acl_functionTableAdapters
+{
+   public partial class acl_functionTableAdapter
+   {
+      public System.Data.SqlClient.SqlConnection SqlConnection
+      {
+         get { return this.Connection; }
+         set { this.Connection = value; }
+
+      }
+   };
+}
+
+

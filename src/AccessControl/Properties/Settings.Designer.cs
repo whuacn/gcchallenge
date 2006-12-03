@@ -26,11 +26,11 @@ namespace AccessControl.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=SHARK\\SQLEXPRESS;Initial Catalog=gmat;Integrated Security=True;Poolin" +
-            "g=False")]
-        public string gmatConnectionString {
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=SHARK\\toothsql;Initial Catalog=GmatClubChallenge;Integrated Security=" +
+            "True")]
+        public string GmatClubChallengeConnectionString {
             get {
-                return ((string)(this["gmatConnectionString"]));
+                return ((string)(this["GmatClubChallengeConnectionString"]));
             }
         }
     }

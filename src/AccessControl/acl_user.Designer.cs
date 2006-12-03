@@ -741,7 +741,7 @@ namespace AccessControl.acl_userTableAdapters {
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::AccessControl.Properties.Settings.Default.gmatConnectionString;
+            this._connection.ConnectionString = global::AccessControl.Properties.Settings.Default.GmatClubChallengeConnectionString;
         }
         
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -754,7 +754,8 @@ namespace AccessControl.acl_userTableAdapters {
             this._commandCollection[0].CommandType = System.Data.CommandType.Text;
             this._commandCollection[1] = new System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "DELETE FROM acl_user\r\nWHERE     (idx = @original_idx) AND (login <> \'admin\')";
+            this._commandCollection[1].CommandText = "DELETE FROM acl_user\r\nWHERE     (idx = @original_idx) AND (login <> \'admin\') AND " +
+                " (login <> \'nobody\')";
             this._commandCollection[1].CommandType = System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new System.Data.SqlClient.SqlParameter("@original_idx", System.Data.SqlDbType.Int, 4, System.Data.ParameterDirection.Input, 0, 0, "idx", System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[2] = new System.Data.SqlClient.SqlCommand();

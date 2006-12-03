@@ -2,15 +2,17 @@
 <xs:schema id="acl_function" targetNamespace="http://tempuri.org/acl_function.xsd" xmlns:mstns="http://tempuri.org/acl_function.xsd" xmlns="http://tempuri.org/acl_function.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="gmatConnectionString" ConnectionStringObject="" IsAppSettingsProperty="True" Modifier="Assembly" Name="gmatConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.AccessControl.Properties.Settings.GlobalReference.Default.gmatConnectionString" Provider="System.Data.SqlClient">
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="gmatConnectionString" IsAppSettingsProperty="True" Modifier="Assembly" Name="gmatConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.AccessControl.Properties.Settings.GlobalReference.Default.gmatConnectionString" Provider="System.Data.SqlClient">
+          </Connection>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="GmatClubChallengeConnectionString" ConnectionStringObject="" IsAppSettingsProperty="True" Modifier="Assembly" Name="GmatClubChallengeConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.AccessControl.Properties.Settings.GlobalReference.Default.GmatClubChallengeConnectionString" Provider="System.Data.SqlClient">
           </Connection>
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="acl_functionTableAdapter" GeneratorDataComponentClassName="acl_functionTableAdapter" Name="acl_function" UserDataComponentName="acl_functionTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="gmatConnectionString (Settings)" DbObjectName="gmat.dbo.acl_function" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="False" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="False" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="GmatClubChallengeConnectionString (Settings)" DbObjectName="GmatClubChallenge.dbo.acl_function" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="False" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="False" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="True">
                     <CommandText>SELECT     idx, name, descr, deleted
@@ -29,7 +31,7 @@ WHERE     (deleted &lt;&gt; 1)</CommandText>
               <Mapping SourceColumn="deleted" DataSetColumn="deleted" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="gmatConnectionString (Settings)" DbObjectName="gmat.dbo.acl_function" DbObjectType="Table" GenerateShortCommands="True" GeneratorSourceName="DeleteFunction" Modifier="Public" Name="DeleteFunction" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetDataBy" UserSourceName="DeleteFunction">
+              <DbSource ConnectionRef="GmatClubChallengeConnectionString (Settings)" DbObjectName="GmatClubChallenge.dbo.acl_function" DbObjectType="Table" GenerateShortCommands="True" GeneratorSourceName="DeleteFunction" Modifier="Public" Name="DeleteFunction" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetDataBy" UserSourceName="DeleteFunction">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="True">
                     <CommandText>update acl_function set deleted=1, name = '_del.' + name
@@ -52,7 +54,7 @@ WHERE     (idx = @Original_idx) AND (name &lt;&gt; 'all')</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="gmatConnectionString (Settings)" DbObjectName="gmat.dbo.acl_function" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillBy" GenerateMethods="Both" GenerateShortCommands="True" GeneratorGetMethodName="GetDataWithFilter" GeneratorSourceName="FillBy" GetMethodModifier="Public" GetMethodName="GetDataWithFilter" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetDataWithFilter" UserSourceName="FillBy">
+              <DbSource ConnectionRef="GmatClubChallengeConnectionString (Settings)" DbObjectName="GmatClubChallenge.dbo.acl_function" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillBy" GenerateMethods="Both" GenerateShortCommands="True" GeneratorGetMethodName="GetDataWithFilter" GeneratorSourceName="FillBy" GetMethodModifier="Public" GetMethodName="GetDataWithFilter" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetDataWithFilter" UserSourceName="FillBy">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="True">
                     <CommandText>SELECT deleted, descr, idx, name FROM acl_function WHERE (name LIKE @value) AND (deleted &lt;&gt; 1)</CommandText>
@@ -63,7 +65,18 @@ WHERE     (idx = @Original_idx) AND (name &lt;&gt; 'all')</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="gmatConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="True" GeneratorSourceName="InsertFunction" Modifier="Public" Name="InsertFunction" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetDataBy2" UserSourceName="InsertFunction">
+              <DbSource ConnectionRef="GmatClubChallengeConnectionString (Settings)" DbObjectName="GmatClubChallenge.dbo.acl_function" DbObjectType="Table" GenerateShortCommands="True" GeneratorSourceName="HasFunction" Modifier="Public" Name="HasFunction" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetDataBy3" UserSourceName="HasFunction">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="True">
+                    <CommandText>SELECT idx FROM acl_function where name=@name;</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="True" AutogeneratedName="name" ColumnName="name" DataSourceName="GmatClubChallenge.dbo.acl_function" DataTypeServer="varchar(192)" DbType="AnsiString" Direction="Input" ParameterName="@name" Precision="0" ProviderType="VarChar" Scale="0" Size="192" SourceColumn="name" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="GmatClubChallengeConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="True" GeneratorSourceName="InsertFunction" Modifier="Public" Name="InsertFunction" QueryType="Scalar" ScalarCallRetval="System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetDataBy1" UserSourceName="InsertFunction">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="True">
                     <CommandText>INSERT INTO [dbo].[acl_function] ([name], [descr],[deleted]) VALUES (@name, @descr,1);
@@ -91,7 +104,7 @@ SELECT idx, name, descr, deleted FROM acl_function WHERE (idx = SCOPE_IDENTITY()
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="gmatConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="True" GeneratorSourceName="UpdateFunction" Modifier="Public" Name="UpdateFunction" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetDataBy1" UserSourceName="UpdateFunction">
+              <DbSource ConnectionRef="GmatClubChallengeConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="True" GeneratorSourceName="UpdateFunction" Modifier="Public" Name="UpdateFunction" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetDataBy2" UserSourceName="UpdateFunction">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="True">
                     <CommandText>UPDATE    acl_function
