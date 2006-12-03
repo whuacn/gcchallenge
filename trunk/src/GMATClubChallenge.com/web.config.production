@@ -1,18 +1,19 @@
 <?xml version="1.0"?>
 <configuration xmlns="http://schemas.microsoft.com/.NetConfiguration/v2.0">
         <connectionStrings>
-                <add name="gmatConnectionString" connectionString="Data Source=localhost;Initial Catalog=GmatClubChallenge;User ID=re2085;Password=sys1157;" providerName="System.Data.SqlClient"/>
+                <add name="gmatConnectionString" connectionString="Data Source=sql2.reinventinc.com;Initial Catalog=GmatClubChallenge;User ID=re2085;Password=sys1157;" providerName="System.Data.SqlClient"/>
         </connectionStrings>
         <appSettings>
-                <add key="mathml-rendering-config" value="c:\savis\gcchallenge\src\GMATClubChallenge.com\MathML\"/>
+                <add key="mathml-rendering-config" value="D:\websites\69.20.75.1\gmatclubchallenge.com\MathML\"/>
                 <add key="AccessManager.Cookie" value="GMAT_ACC_CTX"/>
                 <add key="AccessManager.ByePage" value="Default.aspx"/>
-                <add key="backcolor" value="#006daa"/>
+               <add key="backcolor" value="#006daa"/>
         </appSettings>
         <system.web>
                 <httpHandlers>
-                        <add verb="GET" path="*.ajx.aspx" type="GmatClubTest.Web.AjaxRequestHandler"/>
+                        <add verb="GET" path="*.ajx" type="GmatClubTest.Web.AjaxRequestHandler"/>
                 </httpHandlers>
+
                 <roleManager enabled="true"/>
                 <compilation defaultLanguage="c#" debug="true">
                         <compilers>
