@@ -107,30 +107,30 @@ function Url(num)
 
 
 
-			function nextClick()
-			{
-				<%=nextClickScript%>
-			}			
-			function answerConfirmClick()
-			{
-				<%=answerConfirmClickScript%>
-			}
-			
-			function exitClick()
-			{
-				if (confirm("You will not be able to continue the test. Do you really want to exit?"))
-				{ 
-					document.Form1.isAnswerConfirm.value = "exit";
-					document.Form1.submit(''); 
-				}
-            }
-            function sectionExitClick()
-            {
-				if (confirm("You will not be able to return to this section. Do you really want to exit from the current section?")) 
-				 {
-					document.Form1.isAnswerConfirm.value="sectionExit";
-					document.Form1.submit('');
-				 }
+function nextClick()
+{
+	<%=nextClickScript%>
+}			
+function answerConfirmClick()
+{
+	<%=answerConfirmClickScript%>
+}
+
+function exitClick()
+{
+	if (confirm("You will not be able to continue the test. Do you really want to exit?"))
+	{ 
+		document.Form1.isAnswerConfirm.value = "exit";
+		document.Form1.submit(''); 
+	}
+}
+function sectionExitClick()
+{
+	if (confirm("You will not be able to return to this section. Do you really want to exit from the current section?")) 
+	 {
+		document.Form1.isAnswerConfirm.value="sectionExit";
+		document.Form1.submit('');
+	 }
             }
             
 

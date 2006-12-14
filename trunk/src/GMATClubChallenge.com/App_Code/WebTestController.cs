@@ -14,10 +14,14 @@ namespace GMATClubTest.Web
 {
     public class WebTestController
     {
-        private Manager manager = null;
-        private INavigator navigator;
+       
+        //Use child class!
+        protected Manager manager = null;
+        protected INavigator navigator;
+        //
+        
         private bool isPractice = new bool();
-        public TestSet.TestsRow testRow;
+        public  TestSet.TestsRow testRow;
         private QuestionSetSet.QuestionSetsRow questionSet;
         private QuestionAnswerSet questionAnswerSet = new QuestionAnswerSet();
         private QuestionAnswerSet.QuestionsRow question;
@@ -27,8 +31,8 @@ namespace GMATClubTest.Web
         private Label statusLabel;
         private Label timeLabel;
         private HyperLink loginStatusHyperLink;
-        private ReviewWebForm reviewWebForm;
-        private int activSetNumber = 0;
+        private ReviewWebForm _reviewWebForm;
+        protected int activSetNumber = 0;
         private TestWebForm testWebForm;
         private string nextClickScript;
         private string answerConfirmClickScript;
@@ -36,13 +40,14 @@ namespace GMATClubTest.Web
         private Guid questionGUID;
         private Guid passageGUID;
         private Guid[] answerGUIDMas = new Guid[20];
-        private Renderer renderer = new Renderer();
+        protected Renderer renderer = new Renderer();
         private ImageSet imageSet;
         private string mapPath = HttpContext.Current.Request.MapPath(".");
         private PracticeGeneralWebForm practicelWebForm;
         private int selectedAnswer;
         private bool started = false;
-
+                
+        
         public WebTestController(TestSet.TestsRow testRow, Manager manager)
         {
             isPractice = testRow.IsPractice;
@@ -50,7 +55,7 @@ namespace GMATClubTest.Web
             this.testRow = testRow;
             navigator = manager.RunTest(testRow);
         }
-
+        
         ~WebTestController()
         {
             DeletePicturesFiles();
@@ -104,7 +109,7 @@ namespace GMATClubTest.Web
             else
             {
                 descriptionTestString += "Time: " + "unlimited" + "<p>";
-                ;
+                
             }
             descriptionTestString += "Number of questions: " + navigator.TotalNumberOfQuestions.ToString() + "<p>";
             descriptionTestString += testRow.Description.ToString() + "<p>";
@@ -131,7 +136,7 @@ namespace GMATClubTest.Web
             else
             {
                 descriptionTestString += "Time: " + "unlimited" + "<p>";
-                ;
+                
             }
             if (isPractice)
             {
@@ -283,7 +288,7 @@ namespace GMATClubTest.Web
             questionSet = navigator.GetPreviousSet();
         }
 
-        private void GetActivQuestion()
+        protected void GetActivQuestion()
         {
             navigator.GetActiveQuestion(questionAnswerSet);
             question = questionAnswerSet.Questions[0];
@@ -300,9 +305,12 @@ namespace GMATClubTest.Web
 
         private void GetNextQuestion()
         {
+            if (!navigator.HasNextQuestion)
+            {
+                throw new ApplicationException("No next question");
+            }
             navigator.GetNextQuestion(questionAnswerSet);
             question = questionAnswerSet.Questions[0];
-            //navigator.SetActiveQuestion(question.Id);
             answersRow = question.GetAnswersRows();
         }
 
@@ -316,7 +324,8 @@ namespace GMATClubTest.Web
         {
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
             int id = questionAnswerSet.Answers[selectedAnswer].Id;
-            navigator.SetUserAnswer(id);
+            //TODO: Review flag!
+            navigator.SetUserAnswer(id, true);
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
             if (navigator.HasNextQuestion)
             {
@@ -332,8 +341,8 @@ namespace GMATClubTest.Web
                 else
                 {
                     navigator.CommitResult();
-                    bool b = true;
-                    form.Session.Add("IsEndTest", b);
+                    
+                    form.Session.Add("IsEndTest", true);
                     form.Response.Redirect("resultsWebForm.aspx");
                 }
             }
@@ -356,7 +365,7 @@ namespace GMATClubTest.Web
                 }
                 else
                 {
-                    //form.Response.Redirect("reviewWebForm.aspx");
+                    //form.Response.Redirect("_reviewWebForm.aspx");
                 }
             }
         }
@@ -383,182 +392,14 @@ namespace GMATClubTest.Web
 
         public void ReviewWebForm_Init(ReviewWebForm form)
         {
-            reviewWebForm = form;
+            _reviewWebForm = form;
             form.ErrorLabel.Visible = true;
             QuestionAnswerSet qas;
-
-            if (!((navigator.HasNextSet) || (navigator.HasNextQuestion)))
+            if (_reviewWebForm.Session["IReviewFormController"] == null)
             {
-                form.ImageButton.ImageUrl = @"images/exitTestButton.gif";
+                _reviewWebForm.Session.Add("IReviewFormController", new ReviewFormController(testRow, manager));
             }
-            else
-            {
-                form.ImageButton.ImageUrl = @"images/returnButton.gif";
-            }
-
-            //form.ImageButton.Click += new ImageClickEventHandler(imageButton_Click);
-
-            int questionCount;
-            Question.Status status;
-            TableRow tr = new TableRow();
-            TableCell tc = new TableCell();
-            tc.BorderStyle = BorderStyle.Groove;
-            int rows = 0;
-            form.SetsTable.Rows.Add(tr);
-            form.SetsTable.Rows[rows].Cells.Add(tc);
-            form.SetsTable.Rows[rows].Cells[0].Text = "#";
-            form.SetsTable.Rows[rows].Cells[0].Font.Size = FontUnit.Medium;
-            form.SetsTable.Rows[rows].Cells[0].ForeColor = Color.White;
-            form.SetsTable.Rows[rows].Cells[0].HorizontalAlign = HorizontalAlign.Center;
-             form.SetsTable.Rows[rows].Cells[0].BackColor = Color.FromArgb(8433377);
-            tc = new TableCell();
-            tc.BorderStyle = BorderStyle.Groove;
-            form.SetsTable.Rows[rows].Cells.Add(tc);
-            form.SetsTable.Rows[rows].Cells[1].Text = "Section name";
-            form.SetsTable.Rows[rows].Cells[1].Font.Size = FontUnit.Medium;
-            form.SetsTable.Rows[rows].Cells[1].ForeColor = Color.White;
-            form.SetsTable.Rows[rows].Cells[1].HorizontalAlign = HorizontalAlign.Center;
-            form.SetsTable.Rows[rows].Cells[1].BackColor = Color.FromArgb(8433377);
-            tc = new TableCell();
-            tc.BorderStyle = BorderStyle.Groove;
-            form.SetsTable.Rows[rows].Cells.Add(tc);
-            form.SetsTable.Rows[rows].Cells[2].Text = "Score";
-            form.SetsTable.Rows[rows].Cells[2].Font.Size = FontUnit.Medium;
-            form.SetsTable.Rows[rows].Cells[2].ForeColor = Color.White;
-            form.SetsTable.Rows[rows].Cells[2].HorizontalAlign = HorizontalAlign.Center;
-            form.SetsTable.Rows[rows].Cells[2].BackColor = Color.FromArgb(8433377);
-            ++rows;
-            for (int i = 0; i < navigator.QuestionsAnswers.Length; i++)
-            {
-                int cells = 0;
-                tr = new TableRow();
-
-                form.SetsTable.Rows.Add(tr);
-                form.SetsTable.Rows[rows].Cells.Add(tc);
-                tc = new TableCell();
-                tc.BorderStyle = BorderStyle.Groove;
-                form.SetsTable.Rows[rows].Cells.Add(tc);
-                form.SetsTable.Rows[rows].Cells[cells].Text = (i + 1).ToString();
-                form.SetsTable.Rows[rows].Cells[cells].ForeColor = Color.White;
-                ++cells;
-                tc = new TableCell();
-                tc.BorderStyle = BorderStyle.Groove;
-                tc = new TableCell();
-                tc.BorderStyle = BorderStyle.Groove;
-                form.SetsTable.Rows[rows].Cells.Add(tc);
-                LinkButton setLinkButton = new LinkButton();
-                setLinkButton.Text = navigator.Sets.QuestionSets[i].Name;
-                setLinkButton.ID = i.ToString();
-                setLinkButton.Click += new EventHandler(setLinkButton_Click);
-                form.SetsTable.Rows[rows].Cells[cells].Controls.Add(setLinkButton);
-                ++cells;
-                qas = navigator.QuestionsAnswers[i];
-                questionCount = navigator.QuestionsAnswers[i].Questions.Count;
-                double setScore = 0;
-                for (int j = 0; j < questionCount; ++j)
-                {
-                    status = navigator.GetQuestionStatus(qas.Questions[j].Id);
-                    setScore += status.score;
-                }
-                tc = new TableCell();
-                tc.BorderStyle = BorderStyle.Groove;
-                tc = new TableCell();
-                tc.BorderStyle = BorderStyle.Groove;
-                form.SetsTable.Rows[rows].Cells[cells].Text = setScore.ToString();
-                form.SetsTable.Rows[rows].Cells[cells].ForeColor = Color.White;
-                ++rows;
-            }
-
-            qas = navigator.QuestionsAnswers[activSetNumber];
-            questionCount = navigator.QuestionsAnswers[activSetNumber].Questions.Count;
-
-
-            tr = new TableRow();
-            tc = new TableCell();
-
-            tc.BorderStyle = BorderStyle.Groove;
-
-            rows = 0;
-
-            tc = new TableCell();
-            tc.BorderStyle = BorderStyle.Groove;
-            form.QuestionTable.Rows.Add(tr);
-            form.QuestionTable.Rows[rows].Cells.Add(tc);
-            form.QuestionTable.Rows[rows].Cells[0].Text = "#";
-            form.QuestionTable.Rows[rows].Cells[0].ForeColor = Color.White;
-            form.QuestionTable.Rows[rows].Cells[0].Font.Size = FontUnit.Medium;
-            form.QuestionTable.Rows[rows].Cells[0].HorizontalAlign = HorizontalAlign.Center;
-            form.QuestionTable.Rows[rows].Cells[0].BackColor = Color.FromArgb(8433377);
-            tc = new TableCell();
-            tc.BorderStyle = BorderStyle.Groove;
-            form.QuestionTable.Rows[rows].Cells.Add(tc);
-            form.QuestionTable.Rows[rows].Cells[1].Text = "Question";
-            form.QuestionTable.Rows[rows].Cells[1].ForeColor = Color.White;
-            form.QuestionTable.Rows[rows].Cells[1].Font.Size = FontUnit.Medium;
-            form.QuestionTable.Rows[rows].Cells[1].HorizontalAlign = HorizontalAlign.Center;
-            form.QuestionTable.Rows[rows].Cells[1].BackColor = Color.FromArgb(8433377);
-            tc = new TableCell();
-            tc.BorderStyle = BorderStyle.Groove;
-            form.QuestionTable.Rows[rows].Cells.Add(tc);
-            form.QuestionTable.Rows[rows].Cells[2].Text = "Status";
-            form.QuestionTable.Rows[rows].Cells[2].ForeColor = Color.White;
-            form.QuestionTable.Rows[rows].Cells[2].Font.Size = FontUnit.Medium;
-            form.QuestionTable.Rows[rows].Cells[2].HorizontalAlign = HorizontalAlign.Center;
-            form.QuestionTable.Rows[rows].Cells[2].BackColor = Color.FromArgb(8433377);
-            ++rows;
-
-
-            for (int i = 0; i < questionCount; ++i)
-            {
-                int cells = 0;
-                tr = new TableRow();
-                form.QuestionTable.Rows.Add(tr);
-
-                status = navigator.GetQuestionStatus(qas.Questions[i].Id);
-                tc = new TableCell();
-                tc.BorderStyle = BorderStyle.Groove;
-                form.QuestionTable.Rows[rows].Cells.Add(tc);
-                form.QuestionTable.Rows[rows].Cells[cells].Text += (i + 1).ToString();
-                form.QuestionTable.Rows[rows].Cells[cells].ForeColor = Color.White;
-                ++cells;
-
-                tc = new TableCell();
-                tc.BorderStyle = BorderStyle.Groove;
-                form.QuestionTable.Rows[rows].Cells.Add(tc);
-                LinkButton questoinLinkButton = new LinkButton();
-                //form.questionTable.Rows[rows].Cells[cells].Text = "<input type=\"image\" src=/" + "images/status/" + Question.Status.StatusType.GetName(typeof(Question.Status.StatusType), (int)status.status).ToString() + ".bmp"+">";
-                questoinLinkButton.Text = "<input type=\"image\" src=" + "images/status/" +
-                                          Question.Status.StatusType.GetName(typeof (Question.Status.StatusType),
-                                                                             (int) status.status).ToString() + ".gif" +
-                                          ">";
-                questoinLinkButton.Text += renderer.RenderToString(qas.Questions[i].Text);
-                questoinLinkButton.ID = i.ToString();
-                questoinLinkButton.Click += new EventHandler(questoinLinkButton_Click);
-                questoinLinkButton.ID = "questoinLinkButton" + i.ToString();
-                form.QuestionTable.Rows[rows].Cells[cells].Controls.Add(questoinLinkButton);
-                ++cells;
-
-                tc = new TableCell();
-                tc.BorderStyle = BorderStyle.Groove;
-                form.QuestionTable.Rows[rows].Cells.Add(tc);
-                switch ((int) status.status)
-                {
-                    case 0:
-                        form.QuestionTable.Rows[rows].Cells[cells].Text = "Not seen";
-                        break;
-                    case 1:
-                        form.QuestionTable.Rows[rows].Cells[cells].Text = "Not answered";
-                        break;
-                    case 2:
-                        form.QuestionTable.Rows[rows].Cells[cells].Text = "Correct";
-                        break;
-                    case 3:
-                        form.QuestionTable.Rows[rows].Cells[cells].Text = "Incorrect";
-                        break;
-                }
-                form.QuestionTable.Rows[rows].Cells[cells].ForeColor = Color.White;
-                ++rows;
-            }
+            ((IReviewFormController)_reviewWebForm.Session["IReviewFormController"]).Init(_reviewWebForm);
         }
 
         public void imageButton_Click(object sender, ImageClickEventArgs e)
@@ -566,43 +407,45 @@ namespace GMATClubTest.Web
             if (!((navigator.HasNextSet) || (navigator.HasNextQuestion)))
             {
                 navigator.CommitResult();
-                reviewWebForm.Response.Redirect("resultsWebForm.aspx");
+                _reviewWebForm.Response.Redirect("resultsWebForm.aspx");
             }
             else
             {
-                reviewWebForm.Response.Redirect("practicewebform.aspx");
+                _reviewWebForm.Response.Redirect("practicewebform.aspx");
             }
         }
 
-        private void TransitionOnSelectSet(int selectedSetNamber)
+       
+        protected void TransitionOnSelectSet(int selectedSetNamber)
         {
             if (!navigator.HasRandomSetAccess)
             {
-                reviewWebForm.ErrorLabel.Text = "Random access to quest is impossible on this test.";
+                _reviewWebForm.ErrorLabel.Text = "Random access to quest is impossible on this test.";
                 return;
             }
             if (!navigator.HasRandomQuestionAccess)
             {
-                reviewWebForm.ErrorLabel.Text = "Random access to quest is impossible on this test.";
+                _reviewWebForm.ErrorLabel.Text = "Random access to quest is impossible on this test.";
                 return;
             }
             navigator.SetActiveSet(navigator.Sets.QuestionSets[selectedSetNamber].Id);
             activSetNumber = selectedSetNamber;
         }
 
-        private void TransitionOnSelectQuestion(int questionNamber, int selectedSetNamber)
+        protected void TransitionOnSelectQuestion(int questionNamber, int selectedSetNamber)
         {
             if (!navigator.HasRandomSetAccess)
             {
-                reviewWebForm.ErrorLabel.Text = "Random access to quest is impossible on this test.";
+                _reviewWebForm.ErrorLabel.Text = "Random access to quest is impossible on this test.";
                 return;
             }
             if (!navigator.HasRandomQuestionAccess)
             {
-                reviewWebForm.ErrorLabel.Text = "Random access to quest is impossible on this test.";
+                _reviewWebForm.ErrorLabel.Text = "Random access to quest is impossible on this test.";
                 return;
             }
             navigator.SetActiveQuestion(navigator.QuestionsAnswers[selectedSetNamber].Questions[questionNamber].Id);
+            
         }
 
         private void CheckAnswerBoxOnTransitionOfQuestion()
@@ -610,8 +453,7 @@ namespace GMATClubTest.Web
             int i;
             Question.Status status;
             status = navigator.GetQuestionStatus(question.Id);
-            if (status.status == Question.Status.StatusType.NOT_SEEN || status.status == Question.Status.StatusType.SEEN
-                )
+            if (status.status == Question.Status.StatusType.NOT_SEEN || status.status == Question.Status.StatusType.SEEN)
             {
                 return;
             }
@@ -627,21 +469,7 @@ namespace GMATClubTest.Web
             }
         }
 
-        private void questoinLinkButton_Click(object sender, EventArgs e)
-        {
-            int qn = Convert.ToInt32(((LinkButton) sender).ID.Substring(18));
-            TransitionOnSelectQuestion(qn, activSetNumber);
-            GetActivQuestion();
-            reviewWebForm.Response.Redirect("practicewebform.aspx");
-        }
-
-        private void setLinkButton_Click(object sender, EventArgs e)
-        {
-            int sn;
-            sn = Convert.ToInt32(((LinkButton) sender).ID);
-            TransitionOnSelectSet(sn);
-            reviewWebForm.Response.Redirect("reviewWebForm.aspx");
-        }
+       
 
         public void PracticeWebForm_ReviewClick(PracticeGeneralWebForm form)
         {

@@ -1,13 +1,13 @@
 using System;
+using System.Collections;
 using System.ComponentModel;
 using System.Configuration;
+using System.IO;
 using System.Web;
-using System.Data;
-using System.Collections;
-using GmatClubTest.BusinessLogic;
 using AccessControl;
+using GmatClubTest.BusinessLogic;
 using log4net;
-
+using log4net.Config;
 //[assembly: log4net.Config.XmlConfigurator(ConfigFileExtension = "log4net", Watch = true)]
 
 namespace GMATClubTest.Web
@@ -28,22 +28,22 @@ namespace GMATClubTest.Web
       protected void Application_Start(Object sender, EventArgs e)
       {
          
-         log4net.Config.XmlConfigurator.Configure(new System.IO.FileInfo(Server.MapPath(".")+"/log4net.config"));
+         XmlConfigurator.Configure(new FileInfo(Server.MapPath(".")+"/log4net.config"));
          LogManager.GetLogger(typeof(Global)).Info("Application started");
       }
 
-      AccessControl.AccessManager get_access_manager
+      AccessManager get_access_manager
       {
-         get { return (AccessControl.AccessManager)Session["access_manager"]; }
+         get { return (AccessManager)Session["access_manager"]; }
       }
 
 
-      public static System.Collections.Hashtable init_managers(HttpRequest req)
+      public static Hashtable init_managers(HttpRequest req)
       {
 
          
-         System.Collections.Hashtable ret = new System.Collections.Hashtable();
-         Manager manager = Manager.CreareManagerUseSql(System.Configuration.ConfigurationManager.ConnectionStrings["gmatConnectionString"].ConnectionString);
+         Hashtable ret = new Hashtable();
+         Manager manager = Manager.CreareManagerUseSql(ConfigurationManager.ConnectionStrings["gmatConnectionString"].ConnectionString);
          manager.DataProvider.getConnection().Open();
 
          ret.Add("Manager", manager);
@@ -64,7 +64,7 @@ namespace GMATClubTest.Web
 
       protected void Session_Start(Object sender, EventArgs e)
       {
-         System.Collections.Hashtable ht = init_managers(Request);
+         Hashtable ht = init_managers(Request);
          ((AccessManager)ht["access_manager"]).SiteRoot = Server.MapPath(".");
          
          Session.Add("Manager", ht["Manager"]);

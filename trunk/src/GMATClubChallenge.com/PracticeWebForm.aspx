@@ -7,108 +7,26 @@
 		<meta content="C#" name="CODE_LANGUAGE">
 		<meta content="JavaScript" name="vs_defaultClientScript">
 		<meta content="http://schemas.microsoft.com/intellisense/ie5" name="vs_targetSchema">
-		<script language="javascript">	
-		var dateStart = new Date();
-function onStart()
-{
-	dateStart = new Date();
-	//window.setTimeout('clock();',100)
-	clock();
-}
-
-function clock() {
-  dateNow = new Date();
-  hh = dateNow.getHours() - dateStart.getHours();
- 
-  mm = dateNow.getMinutes() - dateStart.getMinutes();
-  if (mm<0)
-  {
-	hh=hh-1;
-	if (hh<0)
-	{
-		hh=hh+24;
-	}
-	mm=mm+60;
-  }
-  ss = dateNow.getSeconds() - dateStart.getSeconds();
-  if (ss<0)
-  {
-	mm=mm-1;
-	if (mm<0)
-	{
-		hh=hh-1;
-		mm=mm+60;
-		if (hh<0)
-		{
-			hh=hh+24;
-		}
-	 }
-	ss=ss+60;
-  }
-  
-  
-  rhh = document.Form1.timehh.value - hh;
-  if (rhh<0)
-  {
-	rhh=rhh+24;
-  }
-  rmm = document.Form1.timemm.value - mm;
-   if (rmm<0)
-  {
-	rhh=rhh-1;
-	if (rhh<0)
-	{
-		rhh=rhh+24;
-	}
-	rmm=rmm+60;
-  }
-  rss = document.Form1.timess.value - ss;
-  if (rss<0)
-  {
-	rmm=rmm-1;
-	if (rmm<0)
-	{
-		rhh=rhh-1;
-		rmm=rmm+60;
-		if (rhh<0)
-		{
-			rhh=rhh+24;
-		}
-	 }
-	rss=rss+60;
-  }
-  
-
-  hh = rhh;
-  mm = rmm;
-  ss = rss;
-
-  document.images['hour1'].src ="images/clock/" + Url(hh/10);
-  document.images['hour2'].src ="images/clock/" + Url(hh%10);
-  document.images['minute1'].src = "images/clock/"+ Url(mm/10);
-  document.images['minute2'].src = "images/clock/"+ Url(mm%10);
-  document.images['second1'].src = "images/clock/"+ Url(ss/10);
-  document.images['second2'].src = "images/clock/"+ Url(ss%10);
-
-  if (hh+mm+ss == 0)
-  {
-	alert("You time by this section is up!");
-	document.Form1.isAnswerConfirm.value = "sectionExit";
-	document.Form1.submit(''); 	
-  }
-  window.setTimeout("clock()",1000);
-}
-
-function Url(num)
- {
-	 num = Math.floor(num);
-	return "n" + num + ".gif";
-  }
-		</script>
+		<scripts>
+		    <script language="javascript" src="pageJS/clock.js"></script>
+		    <script language="javascript" src="pageJS/reviewFlag.js"></script>
+		    <script language="javascript">	
+    		
+		    var dateStart = new Date();
+            function onStart()
+            {
+	            dateStart = new Date();
+	            //window.setTimeout('clock();',100)
+	            clock();
+            }
+            
+		    </script>
+		</scripts>
 	</HEAD>
 	<body onload="onStart()" bgcolor="#006daa" style="text-align: center">
 		<form id="Form1" metod="post" runat="server">
-			<INPUT id="isAnswerConfirm" type="hidden" value="false" name="isAnswerConfirm">
+			<INPUT id="isAnswerConfirm" type="hidden" value="false" name="isAnswerConfirm">			
+            <asp:HiddenField ID="reviewFlag" runat="server" Value="False" />
             <table id="Table1" align="center" border="0" cellpadding="1" cellspacing="1" width="739">
                 <tr>
                     <td align="left" width="20%">
@@ -137,16 +55,26 @@ function Url(num)
                     <td rowspan="" style="height: 0px; width: 946px; text-align: right;">
                         <table>
                             <tr>
-                                <td style="vertical-align: middle; width: 17%; text-align: left; height: 44px; background-color: #80aee1;">
+                                <td style="vertical-align: middle; width: 10%; text-align: left; height: 44px; background-color: #80aee1;">
                                     <asp:Label ID="practiceNameLabel" runat="server" Text="Label" Width="100%" Font-Size="Medium" ForeColor="White"></asp:Label></td>
                                 <td style="vertical-align: top; width: 20%; text-align: right; height: 44px; background-color: #80aee1;">
-                                    <table>
+                                    <table style="width: 100%">
                                         <tr>
-                                            <td style="font-weight: bold; vertical-align: middle; color: #006daa; text-align: right">
+                                            <td style="font-weight: bold; vertical-align: middle; color: #006daa; text-align: right; width: 70%;">
                                                 <img src="TimeRemaining.gif" style="vertical-align: middle" />Time Remaining</td>
-                                            <td>
+                                            <td style="vertical-align: middle; width: 30%; text-align: center">
 									    <IMG height="21" src="images/clock/nb.gif" width="16" name="hour1">
 										<IMG height="21" src="images/clock/nb.gif" width="16" name="hour2"><IMG height="21" src="images/clock/nc.gif" width="9" name="colon"><IMG height="21" src="images/clock/nb.gif" width="16" name="minute1"><IMG height="21" src="images/clock/nb.gif" width="16" name="minute2"><IMG height="21" src="images/clock/nc.gif" width="9" name="colon"><IMG height="21" src="images/clock/nb.gif" width="16" name="second1"><IMG height="21" src="images/clock/nb.gif" width="16" name="second2"></td>
+                                        </tr>
+                                    </table>
+                                    <table>
+                                        <tr>
+                                            <td style="height: 27px">
+                                                <asp:ImageButton ID="answerCheckImageButton" runat="server" ImageUrl="~/CheckAnswer.gif" /></td>
+                                            <td style="height: 27px">
+                                                <asp:ImageButton ID="showAnswerImageButton" runat="server" ImageUrl="~/ShowAnswer.gif" /></td>
+                                            <td style="height: 27px">
+                                                <IMG src="FlagForReview.gif" onclick = "reviewFlag_Click()" style="cursor: hand" name="reviewFlagImg"/></td>
                                         </tr>
                                     </table>
                                 </td>
@@ -187,7 +115,7 @@ function Url(num)
 					<TD style="vertical-align: text-bottom; text-align: center; height: 31px; background-color: #006daa; width: 248px;">
 					</TD>
 					<TD width="5%" style="height: 31px">
-                        <asp:ImageButton ID="answerCheckImageButton" runat="server" ImageUrl="~/CheckAnswer.gif" /></TD>
+                        </TD>
 					<TD width="5%" style="height: 31px">
 						<TABLE id="Table8" cellSpacing="1" cellPadding="1" width="45" align="right" border="0">
 							<TR>

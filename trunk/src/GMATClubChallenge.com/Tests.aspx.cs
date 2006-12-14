@@ -1,38 +1,28 @@
 using System;
-using System.Data;
-using System.Configuration;
-using System.Collections;
-using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Web.UI.HtmlControls;
-using AccessControl;
-using log4net;
-using GmatClubTest.BusinessLogic;
+using System.Data.SqlClient;
 using GmatClubTest.Data;
 
 namespace GMATClubTest.Web
 {
    public partial class Tests : BasePage
    {
-      protected GmatClubTest.Data.BindedTests bts=null;
-      protected void Page_Load(object sender, EventArgs e)
+      protected BindedTests bts = null;
+       
+      protected new void Page_Load(object sender, EventArgs e)
       {
          base.Page_Load(sender,e);
       }
       
       public override void DoLoad(object sender, EventArgs e)
       {
-         ((GMATClubTest.Web.MainLayout)(Master)).setPageHead("GMAT Tests");
+         ((MainLayout)(Master)).setPageHead("GMAT Tests");
       }
 
       public void readAllContents()
       {
-         bts = new GmatClubTest.Data.BindedTests();
+         bts = new BindedTests();
          GmatClubTest.Data.BindedTestsTableAdapters.binded_testsTableAdapter a = new GmatClubTest.Data.BindedTestsTableAdapters.binded_testsTableAdapter();
-         a.SqlConnection = (System.Data.SqlClient.SqlConnection)access_manager_.Connection;
+         a.SqlConnection = (SqlConnection)access_manager_.Connection;
          a.Fill(bts.binded_tests);
       }
       public string buildContents(int idx)
@@ -74,19 +64,19 @@ namespace GMATClubTest.Web
          if (hasContents(descr)) 
             return show_descr(descr,0);
          else
-            return buildContents(System.Int32.Parse(idx.ToString()));
+            return buildContents(Int32.Parse(idx.ToString()));
       }
       
       public bool hasContents(Object descr)
       {
-         if (descr.GetType() == typeof(System.DBNull)) return false;      
+         if (descr.GetType() == typeof(DBNull)) return false;      
          string ds=do_decode(descr);
          if(ds.IndexOf("---")!=-1) return true; 
          return false;
       }
       public string show_descr(Object descr,int g)
       {
-         if (descr.GetType() == typeof(System.DBNull)) return "";
+         if (descr.GetType() == typeof(DBNull)) return "";
          string ds=do_decode(descr);
          if(ds.IndexOf("---")!=-1)
          {

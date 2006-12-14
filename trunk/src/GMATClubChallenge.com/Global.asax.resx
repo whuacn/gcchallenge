@@ -139,6 +139,9 @@
   <data name="FlagForReview" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>FlagForReview.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="FlagForReviewChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>FlagForReviewChecked.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Help" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Help.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
