@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using GmatClubTest.Data;
 
 namespace GmatClubTest.BusinessLogic
@@ -26,9 +27,49 @@ namespace GmatClubTest.BusinessLogic
         //questionId
         protected Hashtable questionToPassageCash = new Hashtable();
         protected QuestionSet passageCache = new QuestionSet();
-
+        
+        //New functionality - store reviewFlag for questions
+        //TODO: Need initialize by questions count
+        private Dictionary<QuestionIdentity, bool> flagForReview = new Dictionary<QuestionIdentity, bool>();
+        
+        /// <summary>
+        /// Question identity 
+        /// </summary>
+        private class QuestionIdentity
+        {
+            private int _setId;
+            private int _questionId;
+            public QuestionIdentity(int setId, int questionId)
+            {
+                _setId = setId;
+                _questionId = questionId;
+            }
+            
+            public int SetId { get { return _setId; } }
+            public int QuestionId { get {return _questionId; } }
+            
+            //Overide Equals for correctly comparison
+            public override bool Equals(object obj)
+            {
+                if (obj is QuestionIdentity)
+                {
+                    return
+                        _setId == (obj as QuestionIdentity).SetId &&
+                        _questionId == (obj as QuestionIdentity).QuestionId;
+                }
+                return base.Equals(obj);
+            }
+            
+            //Overide GetHashCode for correctly comparison
+            public override int GetHashCode()
+            {
+                return _setId.GetHashCode() ^ _questionId.GetHashCode();
+            }
+        }
+        
         public NavigatorSkeleton(TestSet.TestsRow test, Manager manager)
         {
+            
             this.manager = manager;
             this.test = test;
             manager.DataProvider.GetQuestionSetsByTestId(test.Id, sets);
@@ -170,6 +211,25 @@ namespace GmatClubTest.BusinessLogic
 
         public void SetUserAnswer(int answerId)
         {
+            _setUserAnswer(answerId);
+        }
+
+        public void SetUserAnswer(int answerId, bool reviewFlag)
+        {
+            _setUserAnswer(answerId);
+
+            //New functionality - store review flag
+            if (!flagForReview.ContainsKey(new QuestionIdentity(activeSetIndex, ActiveQuestion.Id)))
+            {
+                flagForReview.Add(new QuestionIdentity(activeSetIndex, ActiveQuestion.Id), reviewFlag);
+            }
+            else
+            {
+                flagForReview[new QuestionIdentity(activeSetIndex, ActiveQuestion.Id)] = reviewFlag;
+            }
+        }
+        private void _setUserAnswer(int answerId)
+        {
             CheckTime();
             QuestionAnswerSet.QuestionsRow q = ActiveQuestion;
             ResultResultDetailSet.ResultsDetailsRow row =
@@ -195,29 +255,30 @@ namespace GmatClubTest.BusinessLogic
                 row.AnswerId = answerId;
                 if (isCorrect)
                 {
-                    if (((Question.Status) questionStatus[q.Id]).status != Question.Status.StatusType.ANSWER_IS_CORRECT)
+                    if (((Question.Status)questionStatus[q.Id]).status != Question.Status.StatusType.ANSWER_IS_CORRECT)
                         setRow.Score += score;
                 }
                 else
                 {
-                    if (((Question.Status) questionStatus[q.Id]).status == Question.Status.StatusType.ANSWER_IS_CORRECT)
+                    if (((Question.Status)questionStatus[q.Id]).status == Question.Status.StatusType.ANSWER_IS_CORRECT)
                         setRow.Score -= scoreForCorrect;
                 }
             }
             else
             {
-                row =
-                    result.ResultsDetails.AddResultsDetailsRow(resultRow, q.Id, answerId,
-                                                               (byte) (ActiveQuestionIndex + 1));
+                result.ResultsDetails.AddResultsDetailsRow(resultRow, q.Id, answerId,
+                                                               (byte)(ActiveQuestionIndex + 1));
                 setRow.Score += score;
             }
 
-            ((Question.Status) questionStatus[q.Id]).status = isCorrect
+            ((Question.Status)questionStatus[q.Id]).status = isCorrect
                                                                   ? Question.Status.StatusType.ANSWER_IS_CORRECT
                                                                   : Question.Status.StatusType.ANSWER_IS_INCORRECT;
-            ((Question.Status) questionStatus[q.Id]).answeredId = answerId;
-            ((Question.Status) questionStatus[q.Id]).score = score;
+            ((Question.Status)questionStatus[q.Id]).answeredId = answerId;
+            ((Question.Status)questionStatus[q.Id]).score = score;
+            
         }
+        
 
         protected abstract double CalculateScoreOfActiveQuestion(bool isCorrect);
 

@@ -29,9 +29,16 @@ namespace GmatClubTest.BusinessLogic
       void GetPreviousQuestion(QuestionAnswerSet questionAnswerSet);
       void GetNextQuestion(QuestionAnswerSet questionAnswerSet);
       void SetUserAnswer(int answerId);
-
+       
+    /// <summary>
+    /// New functionality 
+    /// </summary>
+    /// <param name="answerId"></param>
+    /// <param name="reviewFlag"></param>
+      void SetUserAnswer(int answerId, bool reviewFlag);
+       
       void CommitResult();
-
+      
       /// <summary>
       /// Gets remeined time for current section. 
       /// Returns TimeSpan.MaxValue if time is unlimited.
