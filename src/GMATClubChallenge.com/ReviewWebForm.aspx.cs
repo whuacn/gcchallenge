@@ -92,7 +92,16 @@ namespace GMATClubTest.Web
         {
             bool b = true;
             Session.Add("IsEndTest", b);
-            ((WebTestController) Session["WebTestController"]).imageButton_Click(sender, e);
+            //((WebTestController) Session["WebTestController"]).imageButton_Click(sender, e);
+            ((IReviewFormController) Session["IReviewFormController"]).imageButton_Click(sender, e);
         }
-    }
+        protected void reviewFlagged_Click(object sender, ImageClickEventArgs e)
+        {
+            ((IReviewFormController)Session["IReviewFormController"]).reviewFlagged_Click(sender, e);
+        }
+        protected void reviewIncorrect_Click(object sender, ImageClickEventArgs e)
+        {
+            ((IReviewFormController)Session["IReviewFormController"]).reviewIncorrect_Click(sender, e);
+        }
+}
 }

@@ -1,27 +1,19 @@
 using System;
-using System.Data;
-using System.Configuration;
-using System.Collections;
-using System.Web;
-using System.Web.Security;
+using System.IO;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Web.UI.HtmlControls;
-using GmatClubTest.Web;
 using AccessControl;
 
 namespace GMATClubTest.Web
 {
-   public partial class MainLayout : System.Web.UI.MasterPage
+   public partial class MainLayout : MasterPage
    {
    
       protected void Page_Load(object sender, EventArgs e)
       {
-         access_manager_ = (AccessControl.AccessManager)(Session["access_manager"]);  
+         access_manager_ = (AccessManager)(Session["access_manager"]);  
          if(null==access_manager_)                                            
          {
-            throw new System.Exception("Access manager must be configured in start session");
+            throw new Exception("Access manager must be configured in start session");
          }
          if(""!=access_manager_.LastError && null!=access_manager_.LastError)
          {
@@ -48,7 +40,7 @@ namespace GMATClubTest.Web
       {  
          if(access_manager_.check_do("control_panel"))
          {
-            return System.IO.File.ReadAllText(access_manager_.SiteRoot+"/rc/admin_panel.rc.html");
+            return File.ReadAllText(access_manager_.SiteRoot+"/rc/admin_panel.rc.html");
          }
          return "";
       }
@@ -57,7 +49,7 @@ namespace GMATClubTest.Web
          return "<a href='Default.aspx'>Home</a> | <a href='Tests.aspx'>Tests</a> | <a href='ResultsWebForm.aspx'>Results</a> " + generateTopMenu();     
       }
       
-      protected AccessControl.AccessManager access_manager_ ;
+      protected AccessManager access_manager_ ;
       protected string onLoadScript;
       protected string pageHead;
    }

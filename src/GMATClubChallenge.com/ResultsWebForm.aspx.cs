@@ -73,7 +73,7 @@ namespace GMATClubTest.Web
 
       public override void DoLoad(object sender, EventArgs e)
       {
-         ((GMATClubTest.Web.MainLayout)(Master)).setPageHead("Tests results");
+         ((MainLayout)(Master)).setPageHead("Tests results");
       }
 
       public ResultSet getResultSet()

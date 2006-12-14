@@ -10,7 +10,6 @@
 using System;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using GmatClubTest.Web;
 
 namespace GMATClubTest.Web
 {
@@ -178,5 +177,9 @@ namespace GMATClubTest.Web
         {
             get { return practiceNameLabel; }
         }
-    }
+        protected void flagForReviewImageButton_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
+}
 }

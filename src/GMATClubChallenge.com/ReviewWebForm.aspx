@@ -43,9 +43,18 @@
 								<TD style="FONT-WEIGHT: bold; height: 71px; color: #ffffff; background-color: #026caa;" align="center">Questions:<asp:table id="questionTable" runat="server" GridLines="Both" BorderStyle="Groove" Font-Bold="True" Font-Size="Medium"></asp:table></TD>
 							</TR>
 						</TABLE>
-						<TABLE id="Table5" cellSpacing="1" cellPadding="1" align="center" border="0">
+						<TABLE id="Table5" cellSpacing="1" cellPadding="1" align="center" border="0" style="width: 156px; height: 99px">
 							<TR>
-								<TD style="width: 31px"><asp:imagebutton id="imageButton" runat="server" OnClick="imageButton_Click"></asp:imagebutton></TD>
+                                <td style="width: 32px; border-top-style: ridge; border-right-style: ridge; border-left-style: ridge;
+                                    height: 97px; border-bottom-style: ridge">
+                                    <asp:imagebutton id="imageButton" runat="server" OnClick="imageButton_Click"></asp:imagebutton></td>
+                                <td style="width: 32px; border-top-style: ridge; border-right-style: ridge; border-left-style: ridge;
+                                    height: 97px; border-bottom-style: ridge">
+                                    <asp:ImageButton ID="reviewIncorrect" runat="server" ImageUrl="~/ReviewIncorrect.gif"
+                                        OnClick="reviewIncorrect_Click" /></td>
+								<TD style="width: 32px; border-top-style: ridge; border-right-style: ridge; border-left-style: ridge; height: 97px; border-bottom-style: ridge;">
+                                    <asp:ImageButton ID="reviewFlagged" runat="server" ImageUrl="~/ReviewFlagged.gif"
+                                        OnClick="reviewFlagged_Click" /></TD>
 							</TR>
 						</TABLE>
 					</TD>
