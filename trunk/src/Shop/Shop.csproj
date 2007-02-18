@@ -92,6 +92,10 @@
       <Project>{9A61CCF6-0EA3-4954-A35D-A990E1EED338}</Project>
       <Name>AccessControl</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{42B1D3F4-4B2A-4680-89F4-E690B006BC71}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

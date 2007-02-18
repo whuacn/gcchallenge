@@ -2,6 +2,7 @@ using System;
 using System.ComponentModel;
 using System.Data;
 using System.Windows.Forms;
+using GmatClubTest.Common;
 using GmatClubTest.DbEditor.BusinessObjects;
 using GmatClubTest.DbEditor.Data;
 
@@ -615,11 +616,11 @@ namespace GmatClubTest.DbEditor
                 if (data.Tests[0].IsQuestionTypeIdNull())
                     typeLable.Text = "Mixed";
                 else
-                    typeLable.Text = QuestionType.TypeNames[data.Tests[0].QuestionTypeId];
+                    typeLable.Text = BuisinessObjects.TypeNames[data.Tests[0].QuestionTypeId];
             }
             else
             {
-                typeLable.Text = QuestionType.SubtypeNames[data.Tests[0].QuestionSubtypeId];
+                typeLable.Text = BuisinessObjects.SubtypeNames[data.Tests[0].QuestionSubtypeId];
             }
 
             DataRowCollection qs = data.QuestionSetsEx.Rows;

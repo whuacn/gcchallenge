@@ -1,51 +1,31 @@
+
+using GmatClubTest.Common;
+
 namespace GmatClubTest.Data
 {
     public abstract class Question
     {
-        public enum Type
-        {
-            Quantitative = 1,
-            Verbal = 2
-        } ;
+        //private static BuisinessObjects.Subtype _subtype;
 
-        public enum Subtype
+        public static BuisinessObjects.Subtype Subtype;
+        public static BuisinessObjects.Type Type;
+        public static BuisinessObjects.DifficultyLevel DifficultyLevel;
+       
+        public  class Status
         {
-            DataSufficiency = 1,
-            ProblemSolving = 2,
-            ReadingComprehensionPassage = 3,
-            ReadingComprehensionQuestionToPassage = 4,
-            CriticalReasoning = 5,
-            SentenceCorrection = 6
-        } ;
-
-        public enum DifficultyLevel
-        {
-            Easy = 1,
-            Medium = 2,
-            Hard = 3
-        } ;
-
-        public class Status
-        {
-            public enum StatusType
-            {
-                NOT_SEEN = 0,
-                SEEN = 1,
-                ANSWER_IS_CORRECT = 2,
-                ANSWER_IS_INCORRECT = 3
-            } ;
+            public static BuisinessObjects.StatusType StatusType;
 
             public Status()
             {
-                status = StatusType.SEEN;
+                status = BuisinessObjects.StatusType.SEEN;
             }
 
-            public Status(StatusType status)
+            public  Status(BuisinessObjects.StatusType status)
             {
                 this.status = status;
             }
 
-            public StatusType status;
+            public BuisinessObjects.StatusType status;
             public int answeredId = -1;
             public double score = 0;
         }

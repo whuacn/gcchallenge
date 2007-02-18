@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Data;
 using GmatClubTest.Data;
 
@@ -89,7 +90,36 @@ namespace GmatClubTest.BusinessLogic
             get
             {
                 if (!IsActiveSetValid) throw new InvalidOperationException("Active question set is invalid");
-                return activeQuestionIndexes[activeSetIndex] + 1 < questionsAnswers[activeSetIndex].Questions.Count;
+                if (_reviwState == ReviewState.none)
+                {
+                    return activeQuestionIndexes[activeSetIndex] + 1 < questionsAnswers[activeSetIndex].Questions.Count;
+                }
+                //New functionality
+                if(_reviwState == ReviewState.ReviewFlagged)
+                {
+                    Dictionary<QuestionIdentity, bool> questionInfo = GetQuestionInfoForReview();
+                    bool findCurren = false;
+                    foreach (KeyValuePair<QuestionIdentity, bool> keyValuePair in questionInfo)
+                    {
+                        if (!findCurren)
+                        {
+                            if (keyValuePair.Key.SetId == activeSetIndex &&
+                                keyValuePair.Key.QuestionId == ActiveQuestion.Id)
+                            {
+                                findCurren = true;
+                            }
+                        }
+                        else
+                        {
+                            if (keyValuePair.Key.SetId == activeSetIndex && keyValuePair.Value)
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                    return false;
+                }
+                return false;
             }
         }
 
@@ -98,20 +128,85 @@ namespace GmatClubTest.BusinessLogic
             get
             {
                 if (!IsActiveSetValid) throw new InvalidOperationException("Active question set is invalid");
-                return activeQuestionIndexes[activeSetIndex] > 0;
+                if (_reviwState == ReviewState.none)
+                {
+                    return activeQuestionIndexes[activeSetIndex] > 0;
+                }
+                if (_reviwState == ReviewState.ReviewFlagged)
+                {
+                    Dictionary<QuestionIdentity, bool> questionInfo = GetQuestionInfoForReview();
+                    QuestionIdentity prevQi = new QuestionIdentity(-1, -1);
+                    foreach (KeyValuePair<QuestionIdentity, bool> keyValuePair in questionInfo)
+                    {
+                        if (keyValuePair.Key.SetId == activeSetIndex &&
+                            keyValuePair.Key.QuestionId == ActiveQuestion.Id)
+                        {
+                            if (prevQi.QuestionId != -1)
+                            {
+                                return true;
+                            }
+                        }
+                        prevQi = keyValuePair.Key;
+                    }
+                }
+                return false;
             }
         }
 
         protected override void DoGetPreviousQuestion(QuestionAnswerSet questionAnswerSet)
         {
-            activeQuestionIndexes[activeSetIndex] = activeQuestionIndexes[activeSetIndex] - 1;
-            GetActiveQuestion(questionAnswerSet);
+            if (_reviwState == ReviewState.none)
+            {
+                activeQuestionIndexes[activeSetIndex] = activeQuestionIndexes[activeSetIndex] - 1;
+                GetActiveQuestion(questionAnswerSet);
+            }
+            if (_reviwState == ReviewState.ReviewFlagged)
+            {
+                Dictionary<QuestionIdentity, bool> questionInfo = GetQuestionInfoForReview();
+                QuestionIdentity prevQi = new QuestionIdentity(-1, -1);
+                foreach (KeyValuePair<QuestionIdentity, bool> keyValuePair in questionInfo)
+                {
+                    if (keyValuePair.Key.SetId == activeSetIndex &&
+                        keyValuePair.Key.QuestionId == ActiveQuestion.Id)
+                    {
+                        SetActiveQuestion(prevQi.QuestionId);
+                    }
+                    prevQi = keyValuePair.Key;
+                }
+            }
         }
 
         protected override void DoGetNextQuestion(QuestionAnswerSet questionAnswerSet)
         {
-            activeQuestionIndexes[activeSetIndex] = activeQuestionIndexes[activeSetIndex] + 1;
-            GetActiveQuestion(questionAnswerSet);
+            if (_reviwState == ReviewState.none)
+            {
+                activeQuestionIndexes[activeSetIndex] = activeQuestionIndexes[activeSetIndex] + 1;
+                GetActiveQuestion(questionAnswerSet);
+            }
+            if(_reviwState == ReviewState.ReviewFlagged)
+            {
+                Dictionary<QuestionIdentity, bool> questionInfo = GetQuestionInfoForReview();
+                bool findCurren = false;
+                foreach (KeyValuePair<QuestionIdentity, bool> keyValuePair in questionInfo)
+                {
+                    if (!findCurren)
+                    {
+                        if (keyValuePair.Key.SetId == activeSetIndex &&
+                            keyValuePair.Key.QuestionId == ActiveQuestion.Id)
+                        {
+                            findCurren = true;
+                        }
+                    }
+                    else
+                    {
+                        if (keyValuePair.Key.SetId == activeSetIndex && keyValuePair.Value)
+                        {
+                            SetActiveQuestion(keyValuePair.Key.QuestionId);
+                            break;
+                        }
+                    }
+                }
+            }
         }
 
         protected override double CalculateScoreOfActiveQuestion(bool isCorrect)

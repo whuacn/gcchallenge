@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using GmatClubTest.Common;
 using GmatClubTest.DbEditor.BusinessObjects;
 using GmatClubTest.DbEditor.Data;
 using Microsoft.Win32;
@@ -53,14 +54,17 @@ namespace GmatClubTest.DbEditor
 
         public override void SaveCurrentEdit()
         {
-            dbObject.FullDataset.QuestionsEx.FindByIdSetId(value.Id, value.SetId).DifficultyLevelId =
+            Dataset.QuestionsExRow questionRow = dbObject.FullDataset.QuestionsEx.FindByIdSetId(value.Id, value.SetId);
+            if (questionRow == null)
+            {
+                return;
+            }
+            questionRow.DifficultyLevelId =
                 difficutlyLevelcomboBox.SelectedIndex + 1;
-            dbObject.FullDataset.QuestionsEx.FindByIdSetId(value.Id, value.SetId).TypeId = typeComboBox.SelectedIndex +
-                                                                                           1;
-            dbObject.FullDataset.QuestionsEx.FindByIdSetId(value.Id, value.SetId).SubtypeId =
-                subTypecomboBox.SelectedIndex + 1;
-            dbObject.FullDataset.QuestionsEx.FindByIdSetId(value.Id, value.SetId).Text = textTextBox.Text;
-            dbObject.FullDataset.QuestionsEx.FindByIdSetId(value.Id, value.SetId).Picture = picture;
+            questionRow.TypeId = (int)typeComboBox.SelectedValue;
+            questionRow.SubtypeId = (int)subTypecomboBox.SelectedValue;
+            questionRow.Text = textTextBox.Text;
+            questionRow.Picture = picture;
             byte order = 0;
 
             for (int i = 0; i < dataSet.Answers.Count; ++i)
@@ -309,6 +313,7 @@ namespace GmatClubTest.DbEditor
             answersDataGridView.TabIndex = 11;
             answersDataGridView.CellEndEdit += new DataGridViewCellEventHandler(answersDataGridView_CellEndEdit);
             answersDataGridView.Click += new EventHandler(answersDataGridView_Click);
+            answersDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -473,12 +478,14 @@ namespace GmatClubTest.DbEditor
 
             typeComboBox.DataSource = dataSet.QuestionTypes;
             typeComboBox.DisplayMember = "Name";
-            typeComboBox.SelectedIndex = dataSet.QuestionsEx.FindByIdSetId(value.Id, value.SetId).TypeId - 1;
+            typeComboBox.ValueMember = "id";
+            typeComboBox.SelectedValue = dataSet.QuestionsEx.FindByIdSetId(value.Id, value.SetId).TypeId;
             typeComboBox.Update();
 
             subTypecomboBox.DataSource = dataSet.QuestionSubtypes;
             subTypecomboBox.DisplayMember = "Name";
-            subTypecomboBox.SelectedIndex = dataSet.QuestionsEx.FindByIdSetId(value.Id, value.SetId).SubtypeId - 1;
+            subTypecomboBox.ValueMember = "id";
+            subTypecomboBox.SelectedValue = dataSet.QuestionsEx.FindByIdSetId(value.Id, value.SetId).SubtypeId;
             subTypecomboBox.Update();
 
             if (!value.IsPictureNull())
@@ -535,7 +542,7 @@ namespace GmatClubTest.DbEditor
 
         public override String ObjectName
         {
-            get { return "question '" + QuestionType.TypeNames[((Question) dbObject).Value.TypeId] + "'"; }
+            get { return "question '" + BuisinessObjects.TypeNames[((Question)dbObject).Value.TypeId] + "'"; }
         }
 
         private void subTypecomboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -767,12 +774,12 @@ namespace GmatClubTest.DbEditor
         {
             deletedId = new int[data.Answers.Count];
             DataGridView gw = answersDataGridView;
-            int selectedRowIndex = gw.SelectedRows[0].Index;
             if (gw.SelectedRows.Count == 0)
             {
                 MessageBox.Show("No selected answer.", APP_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            int selectedRowIndex = gw.SelectedRows[0].Index;
             // “Do you really want to remove the answer?”
             if (
                 MessageBox.Show("Do you really want to remove the answer?", "Remove the answer", MessageBoxButtons.YesNo,

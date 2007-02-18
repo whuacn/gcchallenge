@@ -597,8 +597,8 @@ namespace ImportExport.Data
             }
 
             [DebuggerNonUserCode()]
-            public TestsRow AddTestsRow(string Name, bool IsPractice, string Description, int QuestionTypeId,
-                                        int QuestionSubtypeId, string GUID, int Version)
+            public TestsRow AddTestsRow(string Name, bool IsPractice, string Description, int? QuestionTypeId,
+                                        int? QuestionSubtypeId, string GUID, int Version)
             {
                 TestsRow rowTestsRow = ((TestsRow) (NewRow()));
                 rowTestsRow.ItemArray = new object[]
@@ -940,7 +940,7 @@ namespace ImportExport.Data
 
             [DebuggerNonUserCode()]
             public QuestionSetsRow AddQuestionSetsRow(string Name, string Description, int NumberOfQuestionsToPick,
-                                                      int TimeLimit, int QuestionTypeId, int QuestionSubtypeId,
+                                                      int TimeLimit, int? QuestionTypeId, int? QuestionSubtypeId,
                                                       int NumberOfQuestionsInZone1, int NumberOfQuestionsInZone2,
                                                       int NumberOfQuestionsInZone3)
             {
@@ -2700,7 +2700,7 @@ namespace ImportExport.Data
             }
 
             [DebuggerNonUserCode()]
-            public int QuestionTypeId
+            public int? QuestionTypeId
             {
                 get
                 {
@@ -2718,7 +2718,7 @@ namespace ImportExport.Data
             }
 
             [DebuggerNonUserCode()]
-            public int QuestionSubtypeId
+            public int? QuestionSubtypeId
             {
                 get
                 {

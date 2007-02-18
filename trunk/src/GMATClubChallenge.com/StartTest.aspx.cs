@@ -62,8 +62,18 @@ namespace GMATClubTest.Web
             TestSet.TestsRow tr = testSet.Tests.FindById(id);
 
             Session.Add("TestSet", testSet);
-            WebTestController webTestController = new WebTestController(tr, manager_);
-            Session.Add("WebTestController", webTestController);
+            if (tr.IsPractice)
+            {
+                PracticeFormController pc = new PracticeFormController(tr, manager_);
+                Session.Add("IPracticeFormController", pc);
+                Session.Add("WebTestController", pc as WebTestController);
+            }
+            else
+            {
+                WebTestController webTestController = new WebTestController(tr, manager_);
+                Session.Add("WebTestController", webTestController);
+            }
+           
             Response.Redirect("descriptionwebform.aspx");
          }
          catch (System.Exception) { }

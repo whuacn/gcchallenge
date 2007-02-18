@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using GmatClubTest.Common;
 using GmatClubTest.DbEditor.BusinessObjects;
 using GmatClubTest.DbEditor.Data;
 using Microsoft.Win32;
@@ -407,7 +408,7 @@ namespace GmatClubTest.DbEditor
 
         public override String ObjectName
         {
-            get { return "passage question '" + QuestionType.TypeNames[((PassageQuestion) dbObject).Value.TypeId] + "'"; }
+            get { return "passage question '" + BuisinessObjects.TypeNames[((PassageQuestion)dbObject).Value.TypeId] + "'"; }
         }
 
         public PassageQuestionEditor(PassageQuestion question) : base(question)

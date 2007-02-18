@@ -20,8 +20,8 @@ namespace GMATClubTest.Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            ((WebTestController) Session["WebTestController"]).PracticeGeneralWebForm_Init(this);
-            ((WebTestController) Session["WebTestController"]).PracticeWebForm_Load(this);
+            ((IPracticeFormController)Session["IPracticeFormController"]).GeneralInit(this);
+            ((IPracticeFormController)Session["IPracticeFormController"]).Load(this);
         }
 
         #region Web Form Designer generated code
@@ -55,32 +55,37 @@ namespace GMATClubTest.Web
 
         protected void nextImageButton_Click(object sender, ImageClickEventArgs e)
         {
-            ((WebTestController) Session["WebTestController"]).PracticeWebForm_NextButtonClick(this);
+            ((IPracticeFormController)Session["IPracticeFormController"]).NextButtonClick(this);
         }
 
         protected void prewImageButton_Click(object sender, ImageClickEventArgs e)
         {
-            ((WebTestController) Session["WebTestController"]).PracticeWebForm_PrewButtonClick(this);
+            ((IPracticeFormController)Session["IPracticeFormController"]).PrewButtonClick(this);
         }
 
         protected void answerCheckImageButton_Click(object sender, ImageClickEventArgs e)
         {
-            ((WebTestController) Session["WebTestController"]).PracticeWebForm_answerCheckClick(this);
+            ((IPracticeFormController)Session["IPracticeFormController"]).AnswerCheckClick(this);
         }
 
         protected void reviewImageButton_Click(object sender, ImageClickEventArgs e)
         {
-            ((WebTestController) Session["WebTestController"]).PracticeWebForm_ReviewClick(this);
+            ((IPracticeFormController)Session["IPracticeFormController"]).ReviewClick(this);
         }
 
         protected void answerRadioButtonList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ((WebTestController) Session["WebTestController"]).PracticeWebForm_answerSelectedIndexChanged(this, sender);
+            ((IPracticeFormController)Session["IPracticeFormController"]).AswerSelectedIndexChanged(this, sender);
         }
 
         protected void helpImageButton_Click(object sender, ImageClickEventArgs e)
         {
             ((WebTestController) Session["WebTestController"]).showHelp(this);
+        }
+
+        protected void exitImageButton_Click(object sender, ImageClickEventArgs e)
+        {
+            ((IPracticeFormController)Session["IPracticeFormController"]).Exit(this);
         }
 
         public override Image PassageImage
@@ -94,10 +99,6 @@ namespace GMATClubTest.Web
         }
 
 
-
-
-
-
         public override ImageButton ReviewImageButton
         {
             get { return reviewImageButton; }
@@ -107,10 +108,7 @@ namespace GMATClubTest.Web
         {
             get { return helpImageButton; }
         }
-
-
-
-
+        
 
         public override ImageButton AnswerCheckImageButton
         {
@@ -156,17 +154,13 @@ namespace GMATClubTest.Web
         {
             get { return timeLabel; }
         }
-
-
+        
         public override HyperLink LoginStatusHyperLink
         {
             get { return loginStatusHyperLink; }
         }
 
-        protected void exitImageButton_Click(object sender, ImageClickEventArgs e)
-        {
-            ((WebTestController) Session["WebTestController"]).PracticeGeneralWebForm_Exit(this);
-        }
+        
 
         protected void TextBox1_TextChanged(object sender, EventArgs e)
         {
