@@ -103,6 +103,14 @@
     <Reference Include="System.Xml">
       <Name>System.XML</Name>
     </Reference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{42B1D3F4-4B2A-4680-89F4-E690B006BC71}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Data\Data.csproj">
+      <Project>{41BCC868-380C-4BC1-B834-687C32E829CC}</Project>
+      <Name>Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ImportExport\ImportExport.csproj">
       <Project>{14808C81-08E2-4118-8442-BE25F7D16CC4}</Project>
       <Name>ImportExport</Name>

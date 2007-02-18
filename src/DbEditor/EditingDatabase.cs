@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Windows.Forms;
 using Crownwood.Magic.Controls;
+using GmatClubTest.Common;
 using GmatClubTest.DbEditor.BusinessObjects;
 using TabPage=Crownwood.Magic.Controls.TabPage;
 
@@ -84,7 +85,7 @@ namespace GmatClubTest.DbEditor
             if (tp == null)
             {
                 QuestionEditor e = new QuestionEditor(quetion);
-                tp = CreatePage(e, QuestionType.TypeNames[quetion.Value.TypeId]);
+                tp = CreatePage(e, BuisinessObjects.TypeNames[quetion.Value.TypeId]);
 
                 editingQuestionSets[quetion.Value.Id] = tp;
             }
@@ -102,7 +103,7 @@ namespace GmatClubTest.DbEditor
             if (tp == null)
             {
                 PassageQuestionEditor e = new PassageQuestionEditor(quetion);
-                tp = CreatePage(e, QuestionType.TypeNames[quetion.Value.TypeId]);
+                tp = CreatePage(e, BuisinessObjects.TypeNames[quetion.Value.TypeId]);
 
                 editingQuestionSets[quetion.Value.Id] = tp;
             }

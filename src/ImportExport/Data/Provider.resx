@@ -238,7 +238,7 @@
     <value>False</value>
   </metadata>
   <metadata name="testContentByTestId.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 239</value>
+    <value>17, 165</value>
   </metadata>
   <metadata name="oleDbSelectCommand3.DesignTimeVisible" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -280,7 +280,7 @@ WHERE     (TestContents.TestId = ?)</value>
     <value>17, 313</value>
   </metadata>
   <metadata name="answersByTestId.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 387</value>
+    <value>17, 350</value>
   </metadata>
   <metadata name="oleDbSelectCommand7.DesignTimeVisible" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -292,7 +292,7 @@ WHERE     (TestContents.TestId = ?)</value>
     <value>False</value>
   </metadata>
   <metadata name="passageToQuestions.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 424</value>
+    <value>17, 387</value>
   </metadata>
   <metadata name="oleDbSelectCommand5.DesignTimeVisible" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -315,7 +315,7 @@ WHERE     (Id IN
                             WHERE      (TestContents.TestId = ?)))</value>
   </data>
   <metadata name="questionsByTestId.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 165</value>
+    <value>17, 202</value>
   </metadata>
   <metadata name="oleDbSelectCommand8.DesignTimeVisible" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -336,7 +336,7 @@ WHERE     (Id IN
     <value>False</value>
   </metadata>
   <metadata name="setQuestions.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 350</value>
+    <value>17, 424</value>
   </metadata>
   <metadata name="oleDbComand1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -345,7 +345,7 @@ WHERE     (Id IN
     <value>False</value>
   </metadata>
   <metadata name="questionEditorDataAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 202</value>
+    <value>17, 239</value>
   </metadata>
   <metadata name="oleDbCommand1.DesignTimeVisible" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -386,6 +386,36 @@ WHERE     (Id IN
   <data name="oleDbCommand3.CommandText" xml:space="preserve">
     <value>UPDATE [Questions] SET [TypeId] = ?, [SubtypeId] = ?, [DifficultyLevelId] = ?, [Text] = ?, [Picture] = ? WHERE (([Id] = ?) AND ([TypeId] = ?) AND ([SubtypeId] = ?) AND ([DifficultyLevelId] = ?) AND ([Text] = ?))</value>
   </data>
+  <metadata name="questionSubtypes.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>307, 458</value>
+  </metadata>
+  <metadata name="oleDbCommand4.DesignTimeVisible" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="oleDbCommand4.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>132, 424</value>
+  </metadata>
+  <metadata name="oleDbCommand4.CommandDesignTimeVisible" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="oleDbCommand5.DesignTimeVisible" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="oleDbCommand5.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>269, 424</value>
+  </metadata>
+  <metadata name="oleDbCommand5.CommandDesignTimeVisible" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="oleDbCommand6.DesignTimeVisible" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="oleDbCommand6.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>406, 424</value>
+  </metadata>
+  <metadata name="oleDbCommand6.CommandDesignTimeVisible" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
   <metadata name="$this.TrayLargeIcon" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </metadata>

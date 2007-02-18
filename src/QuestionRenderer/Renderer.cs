@@ -5,6 +5,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
+using GmatClubTest.Common;
 using GmatClubTest.Data;
 using MathML;
 using MathML.Rendering;
@@ -90,7 +91,7 @@ namespace GmatClubTest.QuestionRenderer
         {
             ImageSet s = new ImageSet();
 
-            InitBuffer(question.SubtypeId != (int) Question.Subtype.ReadingComprehensionQuestionToPassage
+            InitBuffer(question.SubtypeId != (int) BuisinessObjects.Subtype.ReadingComprehensionQuestionToPassage
                            ? largeBuffer
                            : smallBuffer);
 
@@ -115,7 +116,7 @@ namespace GmatClubTest.QuestionRenderer
             int i = 0;
             foreach (QuestionAnswerSet.AnswersRow row in ar)
             {
-                InitBuffer(question.SubtypeId != (int) Question.Subtype.ReadingComprehensionQuestionToPassage
+                InitBuffer(question.SubtypeId != (int) BuisinessObjects.Subtype.ReadingComprehensionQuestionToPassage
                                ? largeBufferA
                                : smallBufferA);
                 RenderText(row.Text);

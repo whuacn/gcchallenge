@@ -1,7 +1,9 @@
 using System;
+using System.Data;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using GmatClubTest.Common;
 using GmatClubTest.ImportExport.Data;
 using ImportExport.Data;
 
@@ -13,8 +15,8 @@ namespace GmatClubTest.ImportExport
         private Dataset dataset = new Dataset();
         // private string fileName = "";
         //  private string serverName = "";
-        private string dbName = "GmatClubTest";
-        private string userName = "gcadmin";
+        private string dbName = "GmatClubChallenge";
+        private string userName = "re2085";
 
         public ImEx()
         {
@@ -29,7 +31,7 @@ namespace GmatClubTest.ImportExport
             // 
             if (isSQL)
             {
-                provider.ConnectToSql("Yuve", dbName, userName, "w&b3pz>#_25");
+                provider.ConnectToSql("127.0.0.1", dbName, userName, "sys1175");
             }
             else
             {
@@ -65,15 +67,18 @@ namespace GmatClubTest.ImportExport
             Dataset test = new Dataset();
             StreamReader s = new StreamReader(filePath);
             Guid guid = Guid.NewGuid();
-            test.Tests.AddTestsRow("Test from typed file(by parser v11)", true, "unknown", 1, 1, guid.ToString(), 1);
-            test.QuestionSets.AddQuestionSetsRow("Set from typed file", "unknown", 0, int.MaxValue, 1, 1, 0, 0, 0);
+            test.Tests.AddTestsRow("Test from typed file(by parser v11)", true, "unknown", null, null, guid.ToString(), 1);
+            test.QuestionSets.AddQuestionSetsRow("Set from typed file", "unknown", 0, int.MaxValue, null, null, 0, 0, 0);
             //Todo Updete Number of question
-            int correctQiestionNamber = 0;
+            int correctQiestionNamber =0;
             int curentQuestionNumber = -1;
             int numberZone1 = 0;
             int numberZone2 = 0;
             int numberZone3 = 0;
             byte curentAnswerNumber = 0;
+           
+            DataTable questionSubtypesTable = provider.GetQuestionSubtypesTable();
+                        
             while (!s.EndOfStream)
             {
                 string line = s.ReadLine();
@@ -90,6 +95,7 @@ namespace GmatClubTest.ImportExport
                     string question = "";
                     string ts = (line[line.Length - 3].ToString() + line[line.Length - 2].ToString());
                     int questDifficutly = Convert.ToInt32(ts);
+                    int questionSubType = 0;
                     switch (questDifficutly)
                     {
                         case 25:
@@ -105,12 +111,30 @@ namespace GmatClubTest.ImportExport
                             ++numberZone3;
                             break;
                     }
+
+                    //parse questionSubtype
+                    string[] splitedStrs = line.Split(',');
+                    string questionSubtype = splitedStrs[1];
+
+                    DataRow[] rows = questionSubtypesTable.Select(string.Format("name like '%{0}%'", questionSubtype.Trim()));
+                    if(rows.Length > 0)
+                    {
+                        questionSubType = (int)rows[0]["id"];
+                    }
+                    else
+                    {
+                        if (questionSubtype.Trim() == "WP")
+                        {
+                            questionSubType = (int)BuisinessObjects.Subtype.WordProblems;
+                        }
+                    }
+                   
                     while ((line == "") || (line[1] < 'A') || (line[1] > 'Z'))
                     {
                         line = s.ReadLine();
                         question += line;
                     }
-                    test.Questions.AddQuestionsRow(1, 1, questDifficutly, question, null);
+                    test.Questions.AddQuestionsRow(1, questionSubType, questDifficutly, question, null);
                     curentQuestionNumber++;
                 }
                 if (line[0] == '(')
@@ -149,6 +173,7 @@ namespace GmatClubTest.ImportExport
             test.QuestionSets[0].NumberOfQuestionsInZone1 = numberZone1;
             test.QuestionSets[0].NumberOfQuestionsInZone2 = numberZone2;
             test.QuestionSets[0].NumberOfQuestionsInZone3 = numberZone3;
+            //test.QuestionSets[0].QuestionSubtypeId = questionSubType;
             test.TestContents.AddTestContentsRow(0, 0, 0);
             for (byte i = 0; i < test.Questions.Count; ++i)
             {

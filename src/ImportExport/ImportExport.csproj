@@ -89,6 +89,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{42B1D3F4-4B2A-4680-89F4-E690B006BC71}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataProvider\DataProvider.csproj">
       <Project>{DBF7937E-CB3F-4D17-8097-648286226E0C}</Project>
       <Name>DataProvider</Name>

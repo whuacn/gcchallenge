@@ -1,4 +1,5 @@
 using System;
+using GmatClubTest.Common;
 
 namespace GmatClubTest.DbEditor.BusinessObjects
 {
@@ -8,16 +9,20 @@ namespace GmatClubTest.DbEditor.BusinessObjects
       
       public enum Subtype   
       {
-         DataSufficiency = 1, 
-         ProblemSolving = 2,
-         ReadingComprehensionPassage = 3, 
-         ReadingComprehensionQuestionToPassage = 4,
-         CriticalReasoning = 5,
-         SentenceCorrection = 6
+            ReadingComprehensionPassage = 3,
+            ReadingComprehensionQuestionToPassage = 4,
+            CriticalReasoning = 5,
+            SentenceCorrection = 6,
+            Arithmetic = 7,
+            Algebra = 8,
+            WordProblems = 9,
+            Geometry = 10,
+            Statistics = 11,
+            Probability = 12,
+            Combinations = 13
       };
 
-      public static readonly String[] TypeNames = new String[] {"Mixed", "Quantitative", "Verbal"};
-      public static readonly String[] SubtypeNames = new String[] {"Not defined", "Data Sufficiency", "Problem Solving", "", "Reading Comprehension", "Critical Reasoning", "Sentence Correction"};
+     
 
       private OptionalInteger questionTypeId;
       private OptionalInteger questionSubtypeId;
@@ -28,7 +33,7 @@ namespace GmatClubTest.DbEditor.BusinessObjects
          this.questionSubtypeId = new OptionalInteger();
       }
 
-      public QuestionType(Subtype subtype)
+       public QuestionType(BuisinessObjects.Subtype subtype)
       {
          this.questionTypeId = new OptionalInteger();
          this.questionSubtypeId = new OptionalInteger((int)subtype);
@@ -55,12 +60,21 @@ namespace GmatClubTest.DbEditor.BusinessObjects
             {
                if (!this.questionSubtypeId.HasValue) return false;
 
-               if (questionType.questionTypeId.Value == (int)Type.Quantitative)
+               if (questionType.questionTypeId.Value == (int)BuisinessObjects.Type.Quantitative)
                {
-                  return this.questionSubtypeId.Value == (int)Subtype.DataSufficiency || this.questionSubtypeId.Value == (int)Subtype.ProblemSolving;
+                   return
+                       questionSubtypeId.Value == (int) BuisinessObjects.Subtype.CriticalReasoning ||
+                       questionSubtypeId.Value == (int)BuisinessObjects.Subtype.Algebra ||
+                       questionSubtypeId.Value == (int)BuisinessObjects.Subtype.Arithmetic ||
+                       questionSubtypeId.Value == (int)BuisinessObjects.Subtype.Combinations ||
+                       questionSubtypeId.Value == (int)BuisinessObjects.Subtype.Geometry ||
+                       questionSubtypeId.Value == (int)BuisinessObjects.Subtype.Probability ||
+                       questionSubtypeId.Value == (int)BuisinessObjects.Subtype.SentenceCorrection ||
+                       questionSubtypeId.Value == (int)BuisinessObjects.Subtype.Statistics ||
+                       questionSubtypeId.Value == (int)BuisinessObjects.Subtype.WordProblems;
                } else
                {
-                  return this.questionSubtypeId.Value == (int)Subtype.ReadingComprehensionQuestionToPassage || this.questionSubtypeId.Value == (int)Subtype.CriticalReasoning || this.questionSubtypeId.Value == (int)Subtype.SentenceCorrection;
+                   return questionSubtypeId.Value == (int)BuisinessObjects.Subtype.ReadingComprehensionQuestionToPassage || questionSubtypeId.Value == (int)BuisinessObjects.Subtype.CriticalReasoning || this.questionSubtypeId.Value == (int)BuisinessObjects.Subtype.SentenceCorrection;
                }
             }
          }
@@ -92,12 +106,12 @@ namespace GmatClubTest.DbEditor.BusinessObjects
       public override string ToString()
       {
          if (questionSubtypeId.HasValue)
-            return SubtypeNames[questionSubtypeId.Value];
+             return BuisinessObjects.SubtypeNames[questionSubtypeId.Value];
 
          if (questionTypeId.HasValue)
-            return TypeNames[questionTypeId.Value];
+             return BuisinessObjects.TypeNames[questionTypeId.Value];
 
-         return TypeNames[0];
+         return BuisinessObjects.TypeNames[0];
       }
 
       public int CompareTo(object obj)

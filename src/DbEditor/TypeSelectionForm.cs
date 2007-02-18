@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Windows.Forms;
+using GmatClubTest.Common;
 using GmatClubTest.DbEditor.BusinessObjects;
 
 namespace GmatClubTest.DbEditor
@@ -19,14 +20,19 @@ namespace GmatClubTest.DbEditor
         private RadioButton radioMixed;
         private RadioButton radioQauantitative;
         private RadioButton radioVerbal;
-        private RadioButton radioDataSufficiency;
-        private RadioButton radioProblemSolving;
+        private RadioButton radioAlgebra;
+        private RadioButton radioArithmetic;
         private RadioButton radioReadingComprehension;
         private RadioButton radioSentenceCorrection;
         private RadioButton radioCriticalReasoning;
         private QuestionType baseQuestionType;
         private QuestionType questionType;
         private ListDictionary radioButtonToQuestionType = new ListDictionary();
+        private RadioButton radioStatistics;
+        private RadioButton radioProbability;
+        private RadioButton radioGeometry;
+        private RadioButton radioCombinations;
+        private RadioButton radioWordProblems;
         private ListDictionary questionTypeToRadioButton = new ListDictionary();
 
         public TypeSelectionForm()
@@ -39,18 +45,25 @@ namespace GmatClubTest.DbEditor
             radioButtonToQuestionType.Add(radioMixed, QuestionType.CreateMixed());
             radioButtonToQuestionType.Add(radioQauantitative, new QuestionType(QuestionType.Type.Quantitative));
             radioButtonToQuestionType.Add(radioVerbal, new QuestionType(QuestionType.Type.Verbal));
-            radioButtonToQuestionType.Add(radioDataSufficiency, new QuestionType(QuestionType.Subtype.DataSufficiency));
-            radioButtonToQuestionType.Add(radioProblemSolving, new QuestionType(QuestionType.Subtype.ProblemSolving));
+            radioButtonToQuestionType.Add(radioAlgebra, new QuestionType(BuisinessObjects.Subtype.Algebra));
+            radioButtonToQuestionType.Add(radioArithmetic, new QuestionType(BuisinessObjects.Subtype.Arithmetic));
+            radioButtonToQuestionType.Add(radioCombinations, new QuestionType(BuisinessObjects.Subtype.Combinations));
+            radioButtonToQuestionType.Add(radioCriticalReasoning, new QuestionType(BuisinessObjects.Subtype.CriticalReasoning));
+            radioButtonToQuestionType.Add(radioGeometry, new QuestionType(BuisinessObjects.Subtype.Geometry));
+            radioButtonToQuestionType.Add(radioProbability, new QuestionType(BuisinessObjects.Subtype.Probability));
+            radioButtonToQuestionType.Add(radioSentenceCorrection, new QuestionType(BuisinessObjects.Subtype.SentenceCorrection));
+            radioButtonToQuestionType.Add(radioStatistics, new QuestionType(BuisinessObjects.Subtype.Statistics));
+            radioButtonToQuestionType.Add(radioWordProblems, new QuestionType(BuisinessObjects.Subtype.WordProblems));
             radioButtonToQuestionType.Add(radioReadingComprehension,
-                                          new QuestionType(QuestionType.Subtype.ReadingComprehensionQuestionToPassage));
-            radioButtonToQuestionType.Add(radioCriticalReasoning,
-                                          new QuestionType(QuestionType.Subtype.CriticalReasoning));
-            radioButtonToQuestionType.Add(radioSentenceCorrection,
-                                          new QuestionType(QuestionType.Subtype.SentenceCorrection));
+                                          new QuestionType(BuisinessObjects.Subtype.ReadingComprehensionQuestionToPassage));
+            //radioButtonToQuestionType.Add(radioCriticalReasoning,
+            //                              new QuestionType(BuisinessObjects.Subtype.CriticalReasoning));
+            //radioButtonToQuestionType.Add(radioSentenceCorrection,
+            //                              new QuestionType(BuisinessObjects.Subtype.SentenceCorrection));
 
             foreach (DictionaryEntry e in radioButtonToQuestionType)
                 questionTypeToRadioButton.Add(e.Value, e.Key);
-
+            
             BaseQuestionType = QuestionType.CreateMixed();
             QuestionType = QuestionType.CreateMixed();
         }
@@ -78,31 +91,33 @@ namespace GmatClubTest.DbEditor
         /// </summary>
         private void InitializeComponent()
         {
-            System.Resources.ResourceManager resources =
-                new System.Resources.ResourceManager(typeof (TypeSelectionForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TypeSelectionForm));
             this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radioMixed = new System.Windows.Forms.RadioButton();
             this.radioQauantitative = new System.Windows.Forms.RadioButton();
             this.radioVerbal = new System.Windows.Forms.RadioButton();
-            this.radioDataSufficiency = new System.Windows.Forms.RadioButton();
-            this.radioProblemSolving = new System.Windows.Forms.RadioButton();
+            this.radioAlgebra = new System.Windows.Forms.RadioButton();
+            this.radioArithmetic = new System.Windows.Forms.RadioButton();
             this.radioReadingComprehension = new System.Windows.Forms.RadioButton();
             this.radioSentenceCorrection = new System.Windows.Forms.RadioButton();
             this.radioCriticalReasoning = new System.Windows.Forms.RadioButton();
+            this.radioCombinations = new System.Windows.Forms.RadioButton();
+            this.radioGeometry = new System.Windows.Forms.RadioButton();
+            this.radioProbability = new System.Windows.Forms.RadioButton();
+            this.radioStatistics = new System.Windows.Forms.RadioButton();
+            this.radioWordProblems = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // okButton
             // 
-            this.okButton.Anchor =
-                ((System.Windows.Forms.AnchorStyles)
-                 ((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.okButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.okButton.ImageIndex = 1;
-            this.okButton.Location = new System.Drawing.Point(85, 203);
+            this.okButton.Location = new System.Drawing.Point(223, 290);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(88, 24);
             this.okButton.TabIndex = 1;
@@ -110,13 +125,11 @@ namespace GmatClubTest.DbEditor
             // 
             // cancelButton
             // 
-            this.cancelButton.Anchor =
-                ((System.Windows.Forms.AnchorStyles)
-                 ((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.cancelButton.ImageIndex = 0;
-            this.cancelButton.Location = new System.Drawing.Point(241, 203);
+            this.cancelButton.Location = new System.Drawing.Point(317, 290);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(88, 24);
             this.cancelButton.TabIndex = 2;
@@ -124,18 +137,23 @@ namespace GmatClubTest.DbEditor
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.radioWordProblems);
+            this.groupBox1.Controls.Add(this.radioStatistics);
+            this.groupBox1.Controls.Add(this.radioProbability);
+            this.groupBox1.Controls.Add(this.radioGeometry);
+            this.groupBox1.Controls.Add(this.radioCombinations);
             this.groupBox1.Controls.Add(this.radioMixed);
             this.groupBox1.Controls.Add(this.radioQauantitative);
             this.groupBox1.Controls.Add(this.radioVerbal);
-            this.groupBox1.Controls.Add(this.radioDataSufficiency);
-            this.groupBox1.Controls.Add(this.radioProblemSolving);
+            this.groupBox1.Controls.Add(this.radioAlgebra);
+            this.groupBox1.Controls.Add(this.radioArithmetic);
             this.groupBox1.Controls.Add(this.radioReadingComprehension);
             this.groupBox1.Controls.Add(this.radioSentenceCorrection);
             this.groupBox1.Controls.Add(this.radioCriticalReasoning);
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.groupBox1.Location = new System.Drawing.Point(9, 11);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(398, 174);
+            this.groupBox1.Size = new System.Drawing.Size(398, 273);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Question Types";
@@ -170,30 +188,30 @@ namespace GmatClubTest.DbEditor
             this.radioVerbal.Text = "Verbal";
             this.radioVerbal.CheckedChanged += new System.EventHandler(this.typeCheckedChanged);
             // 
-            // radioDataSufficiency
+            // radioAlgebra
             // 
-            this.radioDataSufficiency.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.radioDataSufficiency.Location = new System.Drawing.Point(116, 63);
-            this.radioDataSufficiency.Name = "radioDataSufficiency";
-            this.radioDataSufficiency.Size = new System.Drawing.Size(101, 24);
-            this.radioDataSufficiency.TabIndex = 2;
-            this.radioDataSufficiency.Text = "Data Sufficiency";
-            this.radioDataSufficiency.CheckedChanged += new System.EventHandler(this.typeCheckedChanged);
+            this.radioAlgebra.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.radioAlgebra.Location = new System.Drawing.Point(116, 56);
+            this.radioAlgebra.Name = "radioAlgebra";
+            this.radioAlgebra.Size = new System.Drawing.Size(101, 24);
+            this.radioAlgebra.TabIndex = 2;
+            this.radioAlgebra.Text = "Algebra";
+            this.radioAlgebra.CheckedChanged += new System.EventHandler(this.typeCheckedChanged);
             // 
-            // radioProblemSolving
+            // radioArithmetic
             // 
-            this.radioProblemSolving.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.radioProblemSolving.Location = new System.Drawing.Point(116, 100);
-            this.radioProblemSolving.Name = "radioProblemSolving";
-            this.radioProblemSolving.Size = new System.Drawing.Size(96, 24);
-            this.radioProblemSolving.TabIndex = 3;
-            this.radioProblemSolving.Text = "Problem Solving";
-            this.radioProblemSolving.CheckedChanged += new System.EventHandler(this.typeCheckedChanged);
+            this.radioArithmetic.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.radioArithmetic.Location = new System.Drawing.Point(116, 86);
+            this.radioArithmetic.Name = "radioArithmetic";
+            this.radioArithmetic.Size = new System.Drawing.Size(96, 24);
+            this.radioArithmetic.TabIndex = 3;
+            this.radioArithmetic.Text = "Arithmetic";
+            this.radioArithmetic.CheckedChanged += new System.EventHandler(this.typeCheckedChanged);
             // 
             // radioReadingComprehension
             // 
             this.radioReadingComprehension.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.radioReadingComprehension.Location = new System.Drawing.Point(248, 63);
+            this.radioReadingComprehension.Location = new System.Drawing.Point(248, 56);
             this.radioReadingComprehension.Name = "radioReadingComprehension";
             this.radioReadingComprehension.Size = new System.Drawing.Size(136, 24);
             this.radioReadingComprehension.TabIndex = 5;
@@ -203,7 +221,7 @@ namespace GmatClubTest.DbEditor
             // radioSentenceCorrection
             // 
             this.radioSentenceCorrection.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.radioSentenceCorrection.Location = new System.Drawing.Point(248, 137);
+            this.radioSentenceCorrection.Location = new System.Drawing.Point(248, 116);
             this.radioSentenceCorrection.Name = "radioSentenceCorrection";
             this.radioSentenceCorrection.Size = new System.Drawing.Size(128, 24);
             this.radioSentenceCorrection.TabIndex = 7;
@@ -213,24 +231,69 @@ namespace GmatClubTest.DbEditor
             // radioCriticalReasoning
             // 
             this.radioCriticalReasoning.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.radioCriticalReasoning.Location = new System.Drawing.Point(248, 100);
+            this.radioCriticalReasoning.Location = new System.Drawing.Point(248, 86);
             this.radioCriticalReasoning.Name = "radioCriticalReasoning";
             this.radioCriticalReasoning.Size = new System.Drawing.Size(112, 24);
             this.radioCriticalReasoning.TabIndex = 6;
             this.radioCriticalReasoning.Text = "Critical Reasoning";
             this.radioCriticalReasoning.CheckedChanged += new System.EventHandler(this.typeCheckedChanged);
             // 
+            // radioCombinations
+            // 
+            this.radioCombinations.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.radioCombinations.Location = new System.Drawing.Point(116, 116);
+            this.radioCombinations.Name = "radioCombinations";
+            this.radioCombinations.Size = new System.Drawing.Size(101, 24);
+            this.radioCombinations.TabIndex = 8;
+            this.radioCombinations.Text = "Combinations";
+            // 
+            // radioGeometry
+            // 
+            this.radioGeometry.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.radioGeometry.Location = new System.Drawing.Point(116, 146);
+            this.radioGeometry.Name = "radioGeometry";
+            this.radioGeometry.Size = new System.Drawing.Size(101, 24);
+            this.radioGeometry.TabIndex = 9;
+            this.radioGeometry.Text = "Geometry";
+            // 
+            // radioProbability
+            // 
+            this.radioProbability.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.radioProbability.Location = new System.Drawing.Point(116, 176);
+            this.radioProbability.Name = "radioProbability";
+            this.radioProbability.Size = new System.Drawing.Size(101, 24);
+            this.radioProbability.TabIndex = 10;
+            this.radioProbability.Text = "Probability";
+            // 
+            // radioStatistics
+            // 
+            this.radioStatistics.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.radioStatistics.Location = new System.Drawing.Point(116, 206);
+            this.radioStatistics.Name = "radioStatistics";
+            this.radioStatistics.Size = new System.Drawing.Size(101, 24);
+            this.radioStatistics.TabIndex = 11;
+            this.radioStatistics.Text = "Statistics";
+            // 
+            // radioWordProblems
+            // 
+            this.radioWordProblems.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.radioWordProblems.Location = new System.Drawing.Point(116, 236);
+            this.radioWordProblems.Name = "radioWordProblems";
+            this.radioWordProblems.Size = new System.Drawing.Size(101, 24);
+            this.radioWordProblems.TabIndex = 12;
+            this.radioWordProblems.Text = "Word Problems";
+            // 
             // TypeSelectionForm
             // 
             this.AcceptButton = this.okButton;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(416, 244);
+            this.ClientSize = new System.Drawing.Size(417, 320);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.cancelButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Icon = ((System.Drawing.Icon) (resources.GetObject("$this.Icon")));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "TypeSelectionForm";
@@ -239,6 +302,7 @@ namespace GmatClubTest.DbEditor
             this.Text = "Select Question Type";
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
+
         }
 
         #endregion

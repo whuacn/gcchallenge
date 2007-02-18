@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using GmatClubTest.Data;
 
 namespace GmatClubTest.BusinessLogic
@@ -10,7 +11,7 @@ namespace GmatClubTest.BusinessLogic
    {
       int TotalNumberOfQuestions { get; }
       TimeSpan TotalTime { get; }
-
+      
       QuestionSetSet Sets { get; }
       bool HasRandomSetAccess { get; }
       void SetActiveSet(int setId);
@@ -36,7 +37,10 @@ namespace GmatClubTest.BusinessLogic
     /// <param name="answerId"></param>
     /// <param name="reviewFlag"></param>
       void SetUserAnswer(int answerId, bool reviewFlag);
-       
+      Dictionary<QuestionIdentity, bool> GetQuestionInfoForReview();
+
+      void SetReviewState(ReviewState reviewState);
+
       void CommitResult();
       
       /// <summary>

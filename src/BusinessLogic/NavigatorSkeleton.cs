@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using GmatClubTest.Common;
 using GmatClubTest.Data;
 
 namespace GmatClubTest.BusinessLogic
@@ -31,42 +32,8 @@ namespace GmatClubTest.BusinessLogic
         //New functionality - store reviewFlag for questions
         //TODO: Need initialize by questions count
         private Dictionary<QuestionIdentity, bool> flagForReview = new Dictionary<QuestionIdentity, bool>();
-        
-        /// <summary>
-        /// Question identity 
-        /// </summary>
-        private class QuestionIdentity
-        {
-            private int _setId;
-            private int _questionId;
-            public QuestionIdentity(int setId, int questionId)
-            {
-                _setId = setId;
-                _questionId = questionId;
-            }
-            
-            public int SetId { get { return _setId; } }
-            public int QuestionId { get {return _questionId; } }
-            
-            //Overide Equals for correctly comparison
-            public override bool Equals(object obj)
-            {
-                if (obj is QuestionIdentity)
-                {
-                    return
-                        _setId == (obj as QuestionIdentity).SetId &&
-                        _questionId == (obj as QuestionIdentity).QuestionId;
-                }
-                return base.Equals(obj);
-            }
-            
-            //Overide GetHashCode for correctly comparison
-            public override int GetHashCode()
-            {
-                return _setId.GetHashCode() ^ _questionId.GetHashCode();
-            }
-        }
-        
+        protected  ReviewState _reviwState;
+
         public NavigatorSkeleton(TestSet.TestsRow test, Manager manager)
         {
             
@@ -228,6 +195,18 @@ namespace GmatClubTest.BusinessLogic
                 flagForReview[new QuestionIdentity(activeSetIndex, ActiveQuestion.Id)] = reviewFlag;
             }
         }
+
+        public Dictionary<QuestionIdentity, bool> GetQuestionInfoForReview()
+        {
+            return flagForReview;
+        }
+
+        public void SetReviewState(ReviewState reviewState)
+        {
+            _reviwState = reviewState;
+        }
+
+
         private void _setUserAnswer(int answerId)
         {
             CheckTime();
@@ -255,12 +234,12 @@ namespace GmatClubTest.BusinessLogic
                 row.AnswerId = answerId;
                 if (isCorrect)
                 {
-                    if (((Question.Status)questionStatus[q.Id]).status != Question.Status.StatusType.ANSWER_IS_CORRECT)
+                    if (((Question.Status)questionStatus[q.Id]).status !=  BuisinessObjects.StatusType.ANSWER_IS_CORRECT)
                         setRow.Score += score;
                 }
                 else
                 {
-                    if (((Question.Status)questionStatus[q.Id]).status == Question.Status.StatusType.ANSWER_IS_CORRECT)
+                    if (((Question.Status)questionStatus[q.Id]).status == BuisinessObjects.StatusType.ANSWER_IS_CORRECT)
                         setRow.Score -= scoreForCorrect;
                 }
             }
@@ -272,8 +251,8 @@ namespace GmatClubTest.BusinessLogic
             }
 
             ((Question.Status)questionStatus[q.Id]).status = isCorrect
-                                                                  ? Question.Status.StatusType.ANSWER_IS_CORRECT
-                                                                  : Question.Status.StatusType.ANSWER_IS_INCORRECT;
+                                                                  ? BuisinessObjects.StatusType.ANSWER_IS_CORRECT
+                                                                  : BuisinessObjects.StatusType.ANSWER_IS_INCORRECT;
             ((Question.Status)questionStatus[q.Id]).answeredId = answerId;
             ((Question.Status)questionStatus[q.Id]).score = score;
             
@@ -333,7 +312,7 @@ namespace GmatClubTest.BusinessLogic
             if (questionStatus.Contains(questionId))
                 return (Question.Status) questionStatus[questionId];
 
-            return new Question.Status(Question.Status.StatusType.NOT_SEEN);
+            return new Question.Status(BuisinessObjects.StatusType.NOT_SEEN);
         }
 
         public abstract QuestionAnswerSet[] QuestionsAnswers { get; }

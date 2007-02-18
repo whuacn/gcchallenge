@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Configuration;
 using System.Drawing;
@@ -9,31 +10,48 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using GmatClubTest.BusinessLogic;
+using GmatClubTest.Common;
 using GmatClubTest.Data;
 using GMATClubTest.Web;
 
 /// <summary>
 /// Summary description for ReviewFormController
 /// </summary>
-public class ReviewFormController: WebTestController, IReviewFormController
+public class ReviewFormController: IReviewFormController
 {
     private QuestionAnswerSet _qas;
     private ReviewWebForm _reviewWebForm;
-
-    public ReviewFormController(TestSet.TestsRow testRow, Manager manager) : base(testRow, manager)
+    private WebTestController _webTestController;
+    public ReviewFormController(WebTestController webTestController)
     {
+        _webTestController = webTestController;
     }
 
     #region IReviewFormController Members
 
+    /// <summary>
+    /// End/next button click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    public void imageButton_Click(object sender, ImageClickEventArgs e)
+    {
+        throw new NotImplementedException();
+    }
 
     public void reviewFlagged_Click(object sender, ImageClickEventArgs e)
     {
         //int activeSet;
         //activeSet = Convert.ToInt32(((LinkButton)sender).ID);
-        TransitionOnSelectSet(activSetNumber);
+        //Dictionary<QuestionIdentity, bool> questionInfoForReview = _webTestController.navigator.GetQuestionInfoForReview();
+        //foreach (KeyValuePair<QuestionIdentity, bool> pair in questionInfoForReview)
+        //{
+            
+        //}
         //reviewWebForm.Response.Redirect("reviewWebForm.aspx");
         //base.TransitionOnSelectSet();
+
+        _webTestController.navigator.SetReviewState(ReviewState.ReviewFlagged);
     }
 
     public void reviewIncorrect_Click(object sender, ImageClickEventArgs e)
@@ -45,7 +63,7 @@ public class ReviewFormController: WebTestController, IReviewFormController
     public void Init(ReviewWebForm form)
     {
         _reviewWebForm = form;
-        if (!((navigator.HasNextSet) || (navigator.HasNextQuestion)))
+        if (!((_webTestController.navigator.HasNextSet) || (_webTestController.navigator.HasNextQuestion)))
         {
             form.ImageButton.ImageUrl = @"images/exitTestButton.gif";
         }
@@ -86,7 +104,7 @@ public class ReviewFormController: WebTestController, IReviewFormController
         form.SetsTable.Rows[rows].Cells[2].HorizontalAlign = HorizontalAlign.Center;
         form.SetsTable.Rows[rows].Cells[2].BackColor = Color.FromArgb(8433377);
         ++rows;
-        for (int i = 0; i < navigator.QuestionsAnswers.Length; i++)
+        for (int i = 0; i < _webTestController.navigator.QuestionsAnswers.Length; i++)
         {
             int cells = 0;
             tr = new TableRow();
@@ -105,17 +123,17 @@ public class ReviewFormController: WebTestController, IReviewFormController
             tc.BorderStyle = BorderStyle.Groove;
             form.SetsTable.Rows[rows].Cells.Add(tc);
             LinkButton setLinkButton = new LinkButton();
-            setLinkButton.Text = navigator.Sets.QuestionSets[i].Name;
+            setLinkButton.Text = _webTestController.navigator.Sets.QuestionSets[i].Name;
             setLinkButton.ID = i.ToString();
             setLinkButton.Click += new EventHandler(setLinkButton_Click);
             form.SetsTable.Rows[rows].Cells[cells].Controls.Add(setLinkButton);
             ++cells;
-            _qas = navigator.QuestionsAnswers[i];
-            questionCount = navigator.QuestionsAnswers[i].Questions.Count;
+            _qas = _webTestController.navigator.QuestionsAnswers[i];
+            questionCount = _webTestController.navigator.QuestionsAnswers[i].Questions.Count;
             double setScore = 0;
             for (int j = 0; j < questionCount; ++j)
             {
-                status = navigator.GetQuestionStatus(_qas.Questions[j].Id);
+                status = _webTestController.navigator.GetQuestionStatus(_qas.Questions[j].Id);
                 setScore += status.score;
             }
             tc = new TableCell();
@@ -127,8 +145,8 @@ public class ReviewFormController: WebTestController, IReviewFormController
             ++rows;
         }
 
-        _qas = navigator.QuestionsAnswers[activSetNumber];
-        questionCount = navigator.QuestionsAnswers[activSetNumber].Questions.Count;
+        _qas = _webTestController.navigator.QuestionsAnswers[_webTestController.activSetNumber];
+        questionCount = _webTestController.navigator.QuestionsAnswers[_webTestController.activSetNumber].Questions.Count;
 
 
         tr = new TableRow();
@@ -172,7 +190,7 @@ public class ReviewFormController: WebTestController, IReviewFormController
             tr = new TableRow();
             form.QuestionTable.Rows.Add(tr);
 
-            status = navigator.GetQuestionStatus(_qas.Questions[i].Id);
+            status = _webTestController.navigator.GetQuestionStatus(_qas.Questions[i].Id);
             tc = new TableCell();
             tc.BorderStyle = BorderStyle.Groove;
             form.QuestionTable.Rows[rows].Cells.Add(tc);
@@ -186,10 +204,10 @@ public class ReviewFormController: WebTestController, IReviewFormController
             LinkButton questoinLinkButton = new LinkButton();
             //form.questionTable.Rows[rows].Cells[cells].Text = "<input type=\"image\" src=/" + "images/status/" + Question.Status.StatusType.GetName(typeof(Question.Status.StatusType), (int)status.status).ToString() + ".bmp"+">";
             questoinLinkButton.Text = "<input type=\"image\" src=" + "images/status/" +
-                                      Question.Status.StatusType.GetName(typeof(Question.Status.StatusType),
+                                      BuisinessObjects.StatusType.GetName(typeof(BuisinessObjects.StatusType),
                                                                          (int)status.status).ToString() + ".gif" +
                                       ">";
-            questoinLinkButton.Text += renderer.RenderToString(_qas.Questions[i].Text);
+            questoinLinkButton.Text += _webTestController.renderer.RenderToString(_qas.Questions[i].Text);
             questoinLinkButton.ID = i.ToString();
             questoinLinkButton.Click += new EventHandler(questoinLinkButton_Click);
             questoinLinkButton.ID = "questoinLinkButton" + i.ToString();
@@ -225,15 +243,15 @@ public class ReviewFormController: WebTestController, IReviewFormController
     {
         int sn;
         sn = Convert.ToInt32(((LinkButton)sender).ID);
-        TransitionOnSelectSet(sn);
+        _webTestController.TransitionOnSelectSet(sn);
         _reviewWebForm.Response.Redirect("_reviewWebForm.aspx");
     }
 
     private void questoinLinkButton_Click(object sender, EventArgs e)
     {
         int qn = Convert.ToInt32(((LinkButton)sender).ID.Substring(18));
-        TransitionOnSelectQuestion(qn, activSetNumber);
-        GetActivQuestion();
+        _webTestController.TransitionOnSelectQuestion(qn, _webTestController.activSetNumber);
+        _webTestController.GetActivQuestion();
         _reviewWebForm.Response.Redirect("practicewebform.aspx");
     }
     
