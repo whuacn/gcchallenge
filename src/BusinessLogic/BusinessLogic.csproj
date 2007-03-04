@@ -101,6 +101,7 @@
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="CustomTestsLogic.cs" />
     <Compile Include="INavigator.cs">
       <SubType>Code</SubType>
     </Compile>
