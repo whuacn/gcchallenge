@@ -155,6 +155,9 @@ namespace GmatClubTest.BusinessLogic
 
         public abstract bool HasPreviousQuestion { get; }
 
+        public bool IsReviewMode = false;
+        
+
         public void GetPreviousQuestion(QuestionAnswerSet questionAnswerSet)
         {
             if (!HasPreviousQuestion) throw new InvalidOperationException("No previous question");
