@@ -71,36 +71,36 @@ WHERE     (idx = @original_idx) AND (login &lt;&gt; 'admin') AND  (login &lt;&gt
         <xs:element name="base_user_info" msprop:Generator_UserTableName="base_user_info" msprop:Generator_RowDeletedName="base_user_infoRowDeleted" msprop:Generator_RowChangedName="base_user_infoRowChanged" msprop:Generator_RowClassName="base_user_infoRow" msprop:Generator_RowChangingName="base_user_infoRowChanging" msprop:Generator_RowEvArgName="base_user_infoRowChangeEvent" msprop:Generator_RowEvHandlerName="base_user_infoRowChangeEventHandler" msprop:Generator_TableClassName="base_user_infoDataTable" msprop:Generator_TableVarName="tablebase_user_info" msprop:Generator_RowDeletingName="base_user_infoRowDeleting" msprop:Generator_TablePropName="base_user_info">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="idx" msprop:Generator_UserColumnName="idx" msprop:Generator_ColumnVarNameInTable="columnidx" msprop:Generator_ColumnPropNameInRow="idx" msprop:Generator_ColumnPropNameInTable="idxColumn" type="xs:int" />
-              <xs:element name="guididx" msprop:Generator_UserColumnName="guididx" msprop:Generator_ColumnVarNameInTable="columnguididx" msprop:Generator_ColumnPropNameInRow="guididx" msprop:Generator_ColumnPropNameInTable="guididxColumn">
+              <xs:element name="idx" msprop:Generator_UserColumnName="idx" msprop:Generator_ColumnPropNameInRow="idx" msprop:Generator_ColumnVarNameInTable="columnidx" msprop:Generator_ColumnPropNameInTable="idxColumn" type="xs:int" />
+              <xs:element name="guididx" msprop:Generator_UserColumnName="guididx" msprop:Generator_ColumnPropNameInRow="guididx" msprop:Generator_ColumnVarNameInTable="columnguididx" msprop:Generator_ColumnPropNameInTable="guididxColumn">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="36" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="login" msprop:Generator_UserColumnName="login" msprop:Generator_ColumnVarNameInTable="columnlogin" msprop:Generator_ColumnPropNameInRow="login" msprop:Generator_ColumnPropNameInTable="loginColumn">
+              <xs:element name="login" msprop:Generator_UserColumnName="login" msprop:Generator_ColumnPropNameInRow="login" msprop:Generator_ColumnVarNameInTable="columnlogin" msprop:Generator_ColumnPropNameInTable="loginColumn">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="first_name" msprop:Generator_UserColumnName="first_name" msprop:Generator_ColumnVarNameInTable="columnfirst_name" msprop:Generator_ColumnPropNameInRow="first_name" msprop:Generator_ColumnPropNameInTable="first_nameColumn" minOccurs="0">
+              <xs:element name="first_name" msprop:Generator_UserColumnName="first_name" msprop:Generator_ColumnPropNameInRow="first_name" msprop:Generator_ColumnVarNameInTable="columnfirst_name" msprop:Generator_ColumnPropNameInTable="first_nameColumn" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="192" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="last_name" msprop:Generator_UserColumnName="last_name" msprop:Generator_ColumnVarNameInTable="columnlast_name" msprop:Generator_ColumnPropNameInRow="last_name" msprop:Generator_ColumnPropNameInTable="last_nameColumn" minOccurs="0">
+              <xs:element name="last_name" msprop:Generator_UserColumnName="last_name" msprop:Generator_ColumnPropNameInRow="last_name" msprop:Generator_ColumnVarNameInTable="columnlast_name" msprop:Generator_ColumnPropNameInTable="last_nameColumn" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="192" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="email" msprop:Generator_UserColumnName="email" msprop:Generator_ColumnVarNameInTable="columnemail" msprop:Generator_ColumnPropNameInRow="email" msprop:Generator_ColumnPropNameInTable="emailColumn" minOccurs="0">
+              <xs:element name="email" msprop:Generator_UserColumnName="email" msprop:Generator_ColumnPropNameInRow="email" msprop:Generator_ColumnVarNameInTable="columnemail" msprop:Generator_ColumnPropNameInTable="emailColumn" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="192" />
@@ -115,10 +115,6 @@ WHERE     (idx = @original_idx) AND (login &lt;&gt; 'admin') AND  (login &lt;&gt
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:base_user_info" />
       <xs:field xpath="mstns:idx" />
-    </xs:unique>
-    <xs:unique name="Constraint2">
-      <xs:selector xpath=".//mstns:base_user_info" />
-      <xs:field xpath="mstns:login" />
     </xs:unique>
   </xs:element>
 </xs:schema>

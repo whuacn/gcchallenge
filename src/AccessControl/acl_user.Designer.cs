@@ -399,14 +399,11 @@ namespace AccessControl {
                 base.Columns.Add(this.columnemail);
                 this.Constraints.Add(new System.Data.UniqueConstraint("Constraint1", new System.Data.DataColumn[] {
                                 this.columnidx}, true));
-                this.Constraints.Add(new System.Data.UniqueConstraint("Constraint2", new System.Data.DataColumn[] {
-                                this.columnlogin}, false));
                 this.columnidx.AllowDBNull = false;
                 this.columnidx.Unique = true;
                 this.columnguididx.AllowDBNull = false;
                 this.columnguididx.MaxLength = 36;
                 this.columnlogin.AllowDBNull = false;
-                this.columnlogin.Unique = true;
                 this.columnlogin.MaxLength = 50;
                 this.columnfirst_name.MaxLength = 192;
                 this.columnlast_name.MaxLength = 192;

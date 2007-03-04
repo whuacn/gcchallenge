@@ -371,15 +371,12 @@ namespace AccessControl {
                 base.Columns.Add(this.columndescr);
                 this.columndeleted = new System.Data.DataColumn("deleted", typeof(bool), null, System.Data.MappingType.Element);
                 base.Columns.Add(this.columndeleted);
-                this.Constraints.Add(new System.Data.UniqueConstraint("Constraint2", new System.Data.DataColumn[] {
-                                this.columnname}, false));
                 this.Constraints.Add(new System.Data.UniqueConstraint("Constraint3", new System.Data.DataColumn[] {
                                 this.columnidx}, true));
                 this.columnidx.AutoIncrement = true;
                 this.columnidx.AllowDBNull = false;
                 this.columnidx.ReadOnly = true;
                 this.columnidx.Unique = true;
-                this.columnname.Unique = true;
                 this.columnname.MaxLength = 192;
                 this.columndescr.MaxLength = 2147483647;
                 this.ExtendedProperties.Add("Generator_TablePropName", "_acl_function");

@@ -4,7 +4,7 @@
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="gmatConnectionString" ConnectionStringObject="" IsAppSettingsProperty="True" Modifier="Assembly" Name="gmatConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.AccessControl.Properties.Settings.GlobalReference.Default.gmatConnectionString" Provider="System.Data.SqlClient">
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="gmatConnectionString" IsAppSettingsProperty="True" Modifier="Assembly" Name="gmatConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.AccessControl.Properties.Settings.GlobalReference.Default.gmatConnectionString" Provider="System.Data.SqlClient">
           </Connection>
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="GmatClubChallengeConnectionString" ConnectionStringObject="" IsAppSettingsProperty="True" Modifier="Assembly" Name="GmatClubChallengeConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.AccessControl.Properties.Settings.GlobalReference.Default.GmatClubChallengeConnectionString" Provider="System.Data.SqlClient">
           </Connection>
@@ -136,24 +136,24 @@ SET              name = @name, human_name =@human_name, nesses = @nesses, is_int
         <xs:element name="acl_property" msprop:Generator_UserTableName="acl_property" msprop:Generator_RowDeletedName="acl_propertyRowDeleted" msprop:Generator_RowChangedName="acl_propertyRowChanged" msprop:Generator_RowClassName="acl_propertyRow" msprop:Generator_RowChangingName="acl_propertyRowChanging" msprop:Generator_RowEvArgName="acl_propertyRowChangeEvent" msprop:Generator_RowEvHandlerName="acl_propertyRowChangeEventHandler" msprop:Generator_TableClassName="acl_propertyDataTable" msprop:Generator_TableVarName="tableacl_property" msprop:Generator_RowDeletingName="acl_propertyRowDeleting" msprop:Generator_TablePropName="_acl_property">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="idx" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_UserColumnName="idx" msprop:Generator_ColumnPropNameInRow="idx" msprop:Generator_ColumnVarNameInTable="columnidx" msprop:Generator_ColumnPropNameInTable="idxColumn" type="xs:int" />
-              <xs:element name="name" msprop:Generator_UserColumnName="name" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInTable="nameColumn" minOccurs="0">
+              <xs:element name="idx" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_UserColumnName="idx" msprop:Generator_ColumnVarNameInTable="columnidx" msprop:Generator_ColumnPropNameInRow="idx" msprop:Generator_ColumnPropNameInTable="idxColumn" type="xs:int" />
+              <xs:element name="name" msprop:Generator_UserColumnName="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="human_name" msprop:Generator_UserColumnName="human_name" msprop:Generator_ColumnPropNameInRow="human_name" msprop:Generator_ColumnVarNameInTable="columnhuman_name" msprop:Generator_ColumnPropNameInTable="human_nameColumn" minOccurs="0">
+              <xs:element name="human_name" msprop:Generator_UserColumnName="human_name" msprop:Generator_ColumnVarNameInTable="columnhuman_name" msprop:Generator_ColumnPropNameInRow="human_name" msprop:Generator_ColumnPropNameInTable="human_nameColumn" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="32" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="nesses" msprop:Generator_UserColumnName="nesses" msprop:Generator_ColumnPropNameInRow="nesses" msprop:Generator_ColumnVarNameInTable="columnnesses" msprop:Generator_ColumnPropNameInTable="nessesColumn" type="xs:boolean" minOccurs="0" />
-              <xs:element name="is_internal" msprop:Generator_UserColumnName="is_internal" msprop:Generator_ColumnPropNameInRow="is_internal" msprop:Generator_ColumnVarNameInTable="columnis_internal" msprop:Generator_ColumnPropNameInTable="is_internalColumn" type="xs:boolean" minOccurs="0" />
-              <xs:element name="is_user_editable" msprop:Generator_UserColumnName="is_user_editable" msprop:Generator_ColumnPropNameInRow="is_user_editable" msprop:Generator_ColumnVarNameInTable="columnis_user_editable" msprop:Generator_ColumnPropNameInTable="is_user_editableColumn" type="xs:boolean" minOccurs="0" />
+              <xs:element name="nesses" msprop:Generator_UserColumnName="nesses" msprop:Generator_ColumnVarNameInTable="columnnesses" msprop:Generator_ColumnPropNameInRow="nesses" msprop:Generator_ColumnPropNameInTable="nessesColumn" type="xs:boolean" minOccurs="0" />
+              <xs:element name="is_internal" msprop:Generator_UserColumnName="is_internal" msprop:Generator_ColumnVarNameInTable="columnis_internal" msprop:Generator_ColumnPropNameInRow="is_internal" msprop:Generator_ColumnPropNameInTable="is_internalColumn" type="xs:boolean" minOccurs="0" />
+              <xs:element name="is_user_editable" msprop:Generator_UserColumnName="is_user_editable" msprop:Generator_ColumnVarNameInTable="columnis_user_editable" msprop:Generator_ColumnPropNameInRow="is_user_editable" msprop:Generator_ColumnPropNameInTable="is_user_editableColumn" type="xs:boolean" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -162,10 +162,6 @@ SET              name = @name, human_name =@human_name, nesses = @nesses, is_int
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:acl_property" />
       <xs:field xpath="mstns:idx" />
-    </xs:unique>
-    <xs:unique name="Constraint2">
-      <xs:selector xpath=".//mstns:acl_property" />
-      <xs:field xpath="mstns:name" />
     </xs:unique>
   </xs:element>
 </xs:schema>

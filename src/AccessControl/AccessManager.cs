@@ -36,11 +36,20 @@ namespace AccessControl
          }
       }
       
+      
       public int UserId
       {
          get
          {
             return user_idx_;
+         }
+      }
+      
+      public Guid UserGuid
+      {
+         get
+         {
+            return user_guididx_;
          }
       }
       
@@ -159,8 +168,8 @@ namespace AccessControl
          }
          
          cmd.ExecuteNonQuery();
-
       }
+      
       public bool has_login(string login)
       {
          SqlCommand cmd=build_command_(String.Format("select guididx from acl_user where login='{0}';", login));
@@ -319,6 +328,11 @@ inner join acl_function on (acl_function_grants.func_idx=acl_function.idx and (a
       {
          set_pwd(guididx, "empty");
          return "empty";
+      }
+
+      public void set_pwd_current(string new_pwd)
+      {
+         set_pwd(UserGuid, new_pwd);
       }
 
       public void set_pwd(System.Guid guididx, string new_pwd)
@@ -596,7 +610,7 @@ guididx, name,value));
             else
             {
                int pidx=Int32.Parse(values[0]);
-               if(pidx==-1)
+               if(pidx==-1 || pidx==0)
                {
                   add_prop(guididx,kn,values[1]);
                }
@@ -880,6 +894,32 @@ inner join acl_group           on (acl_function_grants.group_idx=acl_group.idx a
          SqlCommand ins = build_command_(
          String.Format("insert into acl_function_grants (group_idx,func_idx) values({0},{1});", group_idx, function_idx));   
          if(ins.ExecuteNonQuery()!=1) throw new System.Exception("Can't grant access");
+      }
+      
+      public void grant_access_to_function(string name)
+      {
+
+         SqlCommand del=build_command_(
+         String.Format(
+         @"
+         delete from acl_user_group_membership where group_idx=(select idx from acl_group where name='{0}') and user_idx={1};
+         insert into acl_user_group_membership (user_idx,group_idx) select {1},idx from acl_group where name='{0}';
+         "
+         , name,
+         user_idx_));
+         del.ExecuteNonQuery();
+      }
+
+      public void revoke_access_to_function(string name)
+      {
+         SqlCommand del = build_command_(
+         String.Format(
+         @"
+         delete from acl_user_group_membership where group_idx=(select idx from acl_group where name='{0}') and user_idx={1};
+         "
+         , name,
+         user_idx_));
+         del.ExecuteNonQuery();
       }
       
       

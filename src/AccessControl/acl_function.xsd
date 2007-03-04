@@ -65,7 +65,7 @@ WHERE     (idx = @Original_idx) AND (name &lt;&gt; 'all')</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="GmatClubChallengeConnectionString (Settings)" DbObjectName="GmatClubChallenge.dbo.acl_function" DbObjectType="Table" GenerateShortCommands="True" GeneratorSourceName="HasFunction" Modifier="Public" Name="HasFunction" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetDataBy3" UserSourceName="HasFunction">
+              <DbSource ConnectionRef="GmatClubChallengeConnectionString (Settings)" DbObjectName="GmatClubChallenge.dbo.acl_function" DbObjectType="Table" GenerateShortCommands="True" GeneratorSourceName="HasFunction" Modifier="Public" Name="HasFunction" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetDataBy1" UserSourceName="HasFunction">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="True">
                     <CommandText>SELECT idx FROM acl_function where name=@name;</CommandText>
@@ -76,7 +76,7 @@ WHERE     (idx = @Original_idx) AND (name &lt;&gt; 'all')</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="GmatClubChallengeConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="True" GeneratorSourceName="InsertFunction" Modifier="Public" Name="InsertFunction" QueryType="Scalar" ScalarCallRetval="System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetDataBy1" UserSourceName="InsertFunction">
+              <DbSource ConnectionRef="GmatClubChallengeConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="True" GeneratorSourceName="InsertFunction" Modifier="Public" Name="InsertFunction" QueryType="Scalar" ScalarCallRetval="System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetDataBy2" UserSourceName="InsertFunction">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="True">
                     <CommandText>INSERT INTO [dbo].[acl_function] ([name], [descr],[deleted]) VALUES (@name, @descr,1);
@@ -104,7 +104,7 @@ SELECT idx, name, descr, deleted FROM acl_function WHERE (idx = SCOPE_IDENTITY()
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="GmatClubChallengeConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="True" GeneratorSourceName="UpdateFunction" Modifier="Public" Name="UpdateFunction" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetDataBy2" UserSourceName="UpdateFunction">
+              <DbSource ConnectionRef="GmatClubChallengeConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="True" GeneratorSourceName="UpdateFunction" Modifier="Public" Name="UpdateFunction" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetDataBy3" UserSourceName="UpdateFunction">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="True">
                     <CommandText>UPDATE    acl_function
@@ -134,31 +134,27 @@ SET              descr = @descr, name = @name where idx=@Original_idx</CommandTe
         <xs:element name="acl_function" msprop:Generator_UserTableName="acl_function" msprop:Generator_RowDeletedName="acl_functionRowDeleted" msprop:Generator_RowChangedName="acl_functionRowChanged" msprop:Generator_RowClassName="acl_functionRow" msprop:Generator_RowChangingName="acl_functionRowChanging" msprop:Generator_RowEvArgName="acl_functionRowChangeEvent" msprop:Generator_RowEvHandlerName="acl_functionRowChangeEventHandler" msprop:Generator_TableClassName="acl_functionDataTable" msprop:Generator_TableVarName="tableacl_function" msprop:Generator_RowDeletingName="acl_functionRowDeleting" msprop:Generator_TablePropName="_acl_function">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="idx" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_UserColumnName="idx" msprop:Generator_ColumnPropNameInRow="idx" msprop:Generator_ColumnVarNameInTable="columnidx" msprop:Generator_ColumnPropNameInTable="idxColumn" type="xs:int" />
-              <xs:element name="name" msprop:Generator_UserColumnName="name" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInTable="nameColumn" minOccurs="0">
+              <xs:element name="idx" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_UserColumnName="idx" msprop:Generator_ColumnVarNameInTable="columnidx" msprop:Generator_ColumnPropNameInRow="idx" msprop:Generator_ColumnPropNameInTable="idxColumn" type="xs:int" />
+              <xs:element name="name" msprop:Generator_UserColumnName="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="192" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="descr" msprop:Generator_UserColumnName="descr" msprop:Generator_ColumnPropNameInRow="descr" msprop:Generator_ColumnVarNameInTable="columndescr" msprop:Generator_ColumnPropNameInTable="descrColumn" minOccurs="0">
+              <xs:element name="descr" msprop:Generator_UserColumnName="descr" msprop:Generator_ColumnVarNameInTable="columndescr" msprop:Generator_ColumnPropNameInRow="descr" msprop:Generator_ColumnPropNameInTable="descrColumn" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2147483647" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="deleted" msprop:Generator_UserColumnName="deleted" msprop:Generator_ColumnPropNameInRow="deleted" msprop:Generator_ColumnVarNameInTable="columndeleted" msprop:Generator_ColumnPropNameInTable="deletedColumn" type="xs:boolean" minOccurs="0" />
+              <xs:element name="deleted" msprop:Generator_UserColumnName="deleted" msprop:Generator_ColumnVarNameInTable="columndeleted" msprop:Generator_ColumnPropNameInRow="deleted" msprop:Generator_ColumnPropNameInTable="deletedColumn" type="xs:boolean" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
       </xs:choice>
     </xs:complexType>
-    <xs:unique name="Constraint2">
-      <xs:selector xpath=".//mstns:acl_function" />
-      <xs:field xpath="mstns:name" />
-    </xs:unique>
     <xs:unique name="Constraint3" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:acl_function" />
       <xs:field xpath="mstns:idx" />

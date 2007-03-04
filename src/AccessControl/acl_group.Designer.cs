@@ -399,8 +399,6 @@ namespace AccessControl {
                 base.Columns.Add(this.columndeleted);
                 this.Constraints.Add(new System.Data.UniqueConstraint("Constraint1", new System.Data.DataColumn[] {
                                 this.columnidx}, true));
-                this.Constraints.Add(new System.Data.UniqueConstraint("Constraint2", new System.Data.DataColumn[] {
-                                this.columnname}, false));
                 this.columnidx.AutoIncrement = true;
                 this.columnidx.AllowDBNull = false;
                 this.columnidx.ReadOnly = true;
@@ -408,7 +406,6 @@ namespace AccessControl {
                 this.columnguididx.AllowDBNull = false;
                 this.columngrouplevel.AllowDBNull = false;
                 this.columnname.AllowDBNull = false;
-                this.columnname.Unique = true;
                 this.columnname.MaxLength = 100;
                 this.columndescr.MaxLength = 2147483647;
                 this.ExtendedProperties.Add("Generator_TablePropName", "_acl_group");
