@@ -26,8 +26,19 @@ namespace Shop.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=SHARK\\toothsql;Initial Catalog=GmatClubChallenge;Integrated Security=" +
-            "True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=SHARK\\toothsql;Initial Catalog=GmatClubChallenge;Persist Security Inf" +
+            "o=True;User ID=re2085;Password=sys1157")]
+        public string GCString {
+            get {
+                return ((string)(this["GCString"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=SHARK\\toothsql;Initial Catalog=GmatClubChallenge;Persist Security Inf" +
+            "o=True;User ID=re2085;Password=sys1157")]
         public string GmatClubChallengeConnectionString {
             get {
                 return ((string)(this["GmatClubChallengeConnectionString"]));

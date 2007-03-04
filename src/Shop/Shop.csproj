@@ -28,12 +28,30 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=1.2.9.0, Culture=neutral, PublicKeyToken=b32731d11ce58905">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Thirdparty\bin\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="binded_tests.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>binded_tests.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="pdf_download.cs">
+      <DependentUpon>pdf_download.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="pdf_download.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>pdf_download.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.cs" />
     <Compile Include="ShopManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -57,9 +75,44 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>shop_item.xsd</DependentUpon>
     </Compile>
+    <Compile Include="shop_sold_item.cs">
+      <DependentUpon>shop_sold_item.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="shop_sold_item.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>shop_sold_item.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="shop_transaction.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>shop_transaction.xsd</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="binded_tests.xsc">
+      <DependentUpon>binded_tests.xsd</DependentUpon>
+    </None>
+    <None Include="binded_tests.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>binded_tests.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="binded_tests.xss">
+      <DependentUpon>binded_tests.xsd</DependentUpon>
+    </None>
+    <None Include="pdf_download.xsc">
+      <DependentUpon>pdf_download.xsd</DependentUpon>
+    </None>
+    <None Include="pdf_download.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>pdf_download.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="pdf_download.xss">
+      <DependentUpon>pdf_download.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -85,6 +138,28 @@
     </None>
     <None Include="shop_item.xss">
       <DependentUpon>shop_item.xsd</DependentUpon>
+    </None>
+    <None Include="shop_sold_item.xsc">
+      <DependentUpon>shop_sold_item.xsd</DependentUpon>
+    </None>
+    <None Include="shop_sold_item.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>shop_sold_item.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="shop_sold_item.xss">
+      <DependentUpon>shop_sold_item.xsd</DependentUpon>
+    </None>
+    <None Include="shop_transaction.xsc">
+      <DependentUpon>shop_transaction.xsd</DependentUpon>
+    </None>
+    <None Include="shop_transaction.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>shop_transaction.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="shop_transaction.xss">
+      <DependentUpon>shop_transaction.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

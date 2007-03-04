@@ -1,4 +1,5 @@
-﻿namespace Shop {
+﻿using System;
+namespace Shop {
 
 
    partial class shop_item
@@ -18,6 +19,14 @@ namespace Shop.shop_itemTableAdapters
       {
          get { return this.Connection; }
          set { this.Connection = value; }
+      }
+      
+      public static string get_item_name(System.Data.SqlClient.SqlConnection SqlConnection,int idx)
+      {
+         System.Data.SqlClient.SqlCommand cmd=SqlConnection.CreateCommand();
+         cmd.CommandText=String.Format("select name from shop_item where idx={0};",idx);
+         
+         return cmd.ExecuteScalar().ToString();
       }
    };
 }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema id="shop_item" targetNamespace="http://tempuri.org/shop_item.xsd" xmlns:mstns="http://tempuri.org/shop_item.xsd" xmlns="http://tempuri.org/shop_item.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+<xs:schema  id="shop_item" targetNamespace="http://tempuri.org/shop_item.xsd" xmlns:mstns="http://tempuri.org/shop_item.xsd" xmlns="http://tempuri.org/shop_item.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="GmatClubChallengeConnectionString" ConnectionStringObject="" IsAppSettingsProperty="True" Modifier="Assembly" Name="GmatClubChallengeConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Shop.Properties.Settings.GlobalReference.Default.GmatClubChallengeConnectionString" Provider="System.Data.SqlClient">
           </Connection>
@@ -13,7 +13,8 @@
               <DbSource ConnectionRef="GmatClubChallengeConnectionString (Settings)" DbObjectName="GmatClubChallenge.dbo.shop_item" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="False" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="False" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="True">
-                    <CommandText>SELECT idx, guididx, name, item_group_idx, parent_idx, item_price, amount, descr, image,rdr FROM dbo.shop_item</CommandText>
+                    <CommandText>SELECT     idx, guididx, name, item_group_idx, parent_idx, item_price, amount, descr, image, rdr, expires_after, full_price, limit
+FROM         shop_item</CommandText>
                     <Parameters>
                     </Parameters>
                   </DbCommand>
@@ -31,9 +32,12 @@
               <Mapping SourceColumn="descr" DataSetColumn="descr" />
               <Mapping SourceColumn="image" DataSetColumn="image" />
               <Mapping SourceColumn="rdr" DataSetColumn="rdr" />
+              <Mapping SourceColumn="expires_after" DataSetColumn="expires_after" />
+              <Mapping SourceColumn="full_price" DataSetColumn="full_price" />
+              <Mapping SourceColumn="limit" DataSetColumn="limit" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="GmatClubChallengeConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="True" GeneratorSourceName="DeleteItem" Modifier="Public" Name="DeleteItem" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetDataBy" UserSourceName="DeleteItem">
+              <DbSource ConnectionRef="GmatClubChallengeConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="True" GeneratorSourceName="DeleteQuery" Modifier="Public" Name="DeleteQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetDataBy" UserSourceName="DeleteQuery">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="True">
                     <CommandText>DELETE FROM [dbo].[shop_item] WHERE ([idx] = @Original_idx);</CommandText>
@@ -44,87 +48,31 @@
                   </DbCommand>
                 </DeleteCommand>
               </DbSource>
-              <DbSource ConnectionRef="GmatClubChallengeConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="True" GeneratorSourceName="InsertItem" Modifier="Public" Name="InsertItem" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetDataBy1" UserSourceName="InsertItem">
-                <InsertCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="True">
-                    <CommandText>INSERT INTO [dbo].[shop_item] ([guididx], [name], [item_group_idx], [parent_idx], [item_price], [amount], [descr], [image]) VALUES (@guididx, @name, @item_group_idx, @parent_idx, @item_price, @amount, @descr, @image);
-SELECT idx, guididx, name, item_group_idx, parent_idx, item_price, amount, descr, image FROM shop_item WHERE (idx = SCOPE_IDENTITY())</CommandText>
-                    <Parameters>
-                      <Parameter AllowDbNull="False" AutogeneratedName="guididx" ColumnName="guididx" DataSourceName="GmatClubChallenge.dbo.shop_item" DataTypeServer="uniqueidentifier" DbType="Guid" Direction="Input" ParameterName="@guididx" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="16" SourceColumn="guididx" SourceColumnNullMapping="False" SourceVersion="Current">
-                      </Parameter>
-                      <Parameter AllowDbNull="True" AutogeneratedName="name" ColumnName="name" DataSourceName="GmatClubChallenge.dbo.shop_item" DataTypeServer="varchar(50)" DbType="AnsiString" Direction="Input" ParameterName="@name" Precision="0" ProviderType="VarChar" Scale="0" Size="50" SourceColumn="name" SourceColumnNullMapping="False" SourceVersion="Current">
-                      </Parameter>
-                      <Parameter AllowDbNull="True" AutogeneratedName="item_group_idx" ColumnName="item_group_idx" DataSourceName="GmatClubChallenge.dbo.shop_item" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@item_group_idx" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="item_group_idx" SourceColumnNullMapping="False" SourceVersion="Current">
-                      </Parameter>
-                      <Parameter AllowDbNull="True" AutogeneratedName="parent_idx" ColumnName="parent_idx" DataSourceName="GmatClubChallenge.dbo.shop_item" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@parent_idx" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="parent_idx" SourceColumnNullMapping="False" SourceVersion="Current">
-                      </Parameter>
-                      <Parameter AllowDbNull="True" AutogeneratedName="item_price" ColumnName="item_price" DataSourceName="GmatClubChallenge.dbo.shop_item" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@item_price" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="item_price" SourceColumnNullMapping="False" SourceVersion="Current">
-                      </Parameter>
-                      <Parameter AllowDbNull="True" AutogeneratedName="amount" ColumnName="amount" DataSourceName="GmatClubChallenge.dbo.shop_item" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@amount" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="amount" SourceColumnNullMapping="False" SourceVersion="Current">
-                      </Parameter>
-                      <Parameter AllowDbNull="True" AutogeneratedName="descr" ColumnName="descr" DataSourceName="GmatClubChallenge.dbo.shop_item" DataTypeServer="text" DbType="AnsiString" Direction="Input" ParameterName="@descr" Precision="0" ProviderType="Text" Scale="0" Size="2147483647" SourceColumn="descr" SourceColumnNullMapping="False" SourceVersion="Current">
-                      </Parameter>
-                      <Parameter AllowDbNull="True" AutogeneratedName="image" ColumnName="image" DataSourceName="GmatClubChallenge.dbo.shop_item" DataTypeServer="varchar(50)" DbType="AnsiString" Direction="Input" ParameterName="@image" Precision="0" ProviderType="VarChar" Scale="0" Size="50" SourceColumn="image" SourceColumnNullMapping="False" SourceVersion="Current">
-                      </Parameter>
-                    </Parameters>
-                  </DbCommand>
-                </InsertCommand>
+              <DbSource ConnectionRef="GmatClubChallengeConnectionString (Settings)" DbObjectName="GmatClubChallenge.dbo.shop_item" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByIdx" GenerateMethods="Both" GenerateShortCommands="True" GeneratorGetMethodName="GetRowByIdx" GeneratorSourceName="FillByIdx" GetMethodModifier="Public" GetMethodName="GetRowByIdx" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetRowByIdx" UserSourceName="FillByIdx">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="True">
-                    <CommandText>INSERT INTO shop_item
-                      (guididx, name, item_group_idx, parent_idx, item_price, amount, descr, image, rdr)
-VALUES     (@guididx,@name,@item_group_idx,@parent_idx,@item_price,@amount,@descr,@image,@rdr); 
-SELECT idx, guididx, name, item_group_idx, parent_idx, item_price, amount, descr, image FROM shop_item WHERE (idx = SCOPE_IDENTITY())</CommandText>
+                    <CommandText>SELECT     idx, guididx, name, item_group_idx, parent_idx, item_price, amount, descr, image, rdr, expires_after, full_price, limit
+FROM         shop_item where idx=@idx;</CommandText>
                     <Parameters>
-                      <Parameter AllowDbNull="False" AutogeneratedName="guididx" ColumnName="guididx" DataSourceName="GmatClubChallenge.dbo.shop_item" DataTypeServer="uniqueidentifier" DbType="Guid" Direction="Input" ParameterName="@guididx" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="16" SourceColumn="guididx" SourceColumnNullMapping="False" SourceVersion="Current">
-                      </Parameter>
-                      <Parameter AllowDbNull="True" AutogeneratedName="name" ColumnName="name" DataSourceName="GmatClubChallenge.dbo.shop_item" DataTypeServer="varchar(50)" DbType="AnsiString" Direction="Input" ParameterName="@name" Precision="0" ProviderType="VarChar" Scale="0" Size="50" SourceColumn="name" SourceColumnNullMapping="False" SourceVersion="Current">
-                      </Parameter>
-                      <Parameter AllowDbNull="True" AutogeneratedName="item_group_idx" ColumnName="item_group_idx" DataSourceName="GmatClubChallenge.dbo.shop_item" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@item_group_idx" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="item_group_idx" SourceColumnNullMapping="False" SourceVersion="Current">
-                      </Parameter>
-                      <Parameter AllowDbNull="True" AutogeneratedName="parent_idx" ColumnName="parent_idx" DataSourceName="GmatClubChallenge.dbo.shop_item" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@parent_idx" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="parent_idx" SourceColumnNullMapping="False" SourceVersion="Current">
-                      </Parameter>
-                      <Parameter AllowDbNull="True" AutogeneratedName="item_price" ColumnName="item_price" DataSourceName="GmatClubChallenge.dbo.shop_item" DataTypeServer="money" DbType="Currency" Direction="Input" ParameterName="@item_price" Precision="0" ProviderType="Money" Scale="0" Size="8" SourceColumn="item_price" SourceColumnNullMapping="False" SourceVersion="Current">
-                      </Parameter>
-                      <Parameter AllowDbNull="True" AutogeneratedName="amount" ColumnName="amount" DataSourceName="GmatClubChallenge.dbo.shop_item" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@amount" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="amount" SourceColumnNullMapping="False" SourceVersion="Current">
-                      </Parameter>
-                      <Parameter AllowDbNull="True" AutogeneratedName="descr" ColumnName="descr" DataSourceName="GmatClubChallenge.dbo.shop_item" DataTypeServer="text" DbType="AnsiString" Direction="Input" ParameterName="@descr" Precision="0" ProviderType="Text" Scale="0" Size="2147483647" SourceColumn="descr" SourceColumnNullMapping="False" SourceVersion="Current">
-                      </Parameter>
-                      <Parameter AllowDbNull="True" AutogeneratedName="image" ColumnName="image" DataSourceName="GmatClubChallenge.dbo.shop_item" DataTypeServer="varchar(50)" DbType="AnsiString" Direction="Input" ParameterName="@image" Precision="0" ProviderType="VarChar" Scale="0" Size="50" SourceColumn="image" SourceColumnNullMapping="False" SourceVersion="Current">
-                      </Parameter>
-                      <Parameter AllowDbNull="True" AutogeneratedName="rdr" ColumnName="rdr" DataSourceName="GmatClubChallenge.dbo.shop_item" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@rdr" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="rdr" SourceColumnNullMapping="False" SourceVersion="Current">
+                      <Parameter AllowDbNull="False" AutogeneratedName="idx" ColumnName="idx" DataSourceName="GmatClubChallenge.dbo.shop_item" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@idx" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="idx" SourceColumnNullMapping="False" SourceVersion="Current">
                       </Parameter>
                     </Parameters>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="GmatClubChallengeConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="True" GeneratorSourceName="UpdateItem" Modifier="Public" Name="UpdateItem" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetDataBy2" UserSourceName="UpdateItem">
-                <SelectCommand>
+              <DbSource ConnectionRef="GmatClubChallengeConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="True" GeneratorSourceName="InsertQuery" Modifier="Public" Name="InsertQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetDataBy1" UserSourceName="InsertQuery">
+                <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="True">
-                    <CommandText>UPDATE    shop_item
-SET              name = @name, item_price = @item_price, amount = @amount, rdr = @rdr
-WHERE     (idx = @Original_idx);  
-SELECT idx, guididx, name, item_group_idx, parent_idx, item_price, amount, descr, image, rdr FROM shop_item WHERE (idx = @Original_idx)</CommandText>
+                    <CommandText>INSERT INTO [dbo].[shop_item] ([guididx], [name], [item_group_idx], [parent_idx], [item_price], [amount], [descr], [image], [rdr], [expires_after], [full_price],[limit]) VALUES (@guididx, @name, @item_group_idx, @parent_idx, @item_price, @amount, @descr, @image, @rdr, @expires_after, @full_price,@limit);
+SELECT idx, guididx, name, item_group_idx, parent_idx, item_price, amount, descr, image, rdr, expires_after, full_price FROM shop_item WHERE (idx = SCOPE_IDENTITY())</CommandText>
                     <Parameters>
+                      <Parameter AllowDbNull="False" AutogeneratedName="guididx" ColumnName="guididx" DataSourceName="GmatClubChallenge.dbo.shop_item" DataTypeServer="uniqueidentifier" DbType="Guid" Direction="Input" ParameterName="@guididx" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="16" SourceColumn="guididx" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
                       <Parameter AllowDbNull="True" AutogeneratedName="name" ColumnName="name" DataSourceName="GmatClubChallenge.dbo.shop_item" DataTypeServer="varchar(50)" DbType="AnsiString" Direction="Input" ParameterName="@name" Precision="0" ProviderType="VarChar" Scale="0" Size="50" SourceColumn="name" SourceColumnNullMapping="False" SourceVersion="Current">
                       </Parameter>
-                      <Parameter AllowDbNull="True" AutogeneratedName="item_price" ColumnName="item_price" DataSourceName="GmatClubChallenge.dbo.shop_item" DataTypeServer="money" DbType="Currency" Direction="Input" ParameterName="@item_price" Precision="0" ProviderType="Money" Scale="0" Size="8" SourceColumn="item_price" SourceColumnNullMapping="False" SourceVersion="Current">
+                      <Parameter AllowDbNull="True" AutogeneratedName="item_group_idx" ColumnName="item_group_idx" DataSourceName="GmatClubChallenge.dbo.shop_item" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@item_group_idx" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="item_group_idx" SourceColumnNullMapping="False" SourceVersion="Current">
                       </Parameter>
-                      <Parameter AllowDbNull="True" AutogeneratedName="amount" ColumnName="amount" DataSourceName="GmatClubChallenge.dbo.shop_item" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@amount" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="amount" SourceColumnNullMapping="False" SourceVersion="Current">
-                      </Parameter>
-                      <Parameter AllowDbNull="True" AutogeneratedName="rdr" ColumnName="rdr" DataSourceName="GmatClubChallenge.dbo.shop_item" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@rdr" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="rdr" SourceColumnNullMapping="False" SourceVersion="Current">
-                      </Parameter>
-                      <Parameter AllowDbNull="False" AutogeneratedName="Original_idx" ColumnName="idx" DataSourceName="GmatClubChallenge.dbo.shop_item" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Original_idx" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="idx" SourceColumnNullMapping="False" SourceVersion="Original">
-                      </Parameter>
-                    </Parameters>
-                  </DbCommand>
-                </SelectCommand>
-                <UpdateCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="True">
-                    <CommandText>UPDATE [dbo].[shop_item] SET  [name] = @name,[item_price] = @item_price, [amount] = @amount, [descr] = @descr, [image] = @image , [rdr] = @rdr WHERE ([idx] = @Original_idx);
-SELECT idx, guididx, name, item_group_idx, parent_idx, item_price, amount, descr, image, rdr FROM shop_item WHERE (idx = @Original_idx)</CommandText>
-                    <Parameters>
-                      <Parameter AllowDbNull="True" AutogeneratedName="name" ColumnName="name" DataSourceName="GmatClubChallenge.dbo.shop_item" DataTypeServer="varchar(50)" DbType="AnsiString" Direction="Input" ParameterName="@name" Precision="0" ProviderType="VarChar" Scale="0" Size="50" SourceColumn="name" SourceColumnNullMapping="False" SourceVersion="Current">
+                      <Parameter AllowDbNull="True" AutogeneratedName="parent_idx" ColumnName="parent_idx" DataSourceName="GmatClubChallenge.dbo.shop_item" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@parent_idx" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="parent_idx" SourceColumnNullMapping="False" SourceVersion="Current">
                       </Parameter>
                       <Parameter AllowDbNull="True" AutogeneratedName="item_price" ColumnName="item_price" DataSourceName="GmatClubChallenge.dbo.shop_item" DataTypeServer="money" DbType="Currency" Direction="Input" ParameterName="@item_price" Precision="0" ProviderType="Money" Scale="0" Size="8" SourceColumn="item_price" SourceColumnNullMapping="False" SourceVersion="Current">
                       </Parameter>
@@ -135,6 +83,37 @@ SELECT idx, guididx, name, item_group_idx, parent_idx, item_price, amount, descr
                       <Parameter AllowDbNull="True" AutogeneratedName="image" ColumnName="image" DataSourceName="GmatClubChallenge.dbo.shop_item" DataTypeServer="varchar(50)" DbType="AnsiString" Direction="Input" ParameterName="@image" Precision="0" ProviderType="VarChar" Scale="0" Size="50" SourceColumn="image" SourceColumnNullMapping="False" SourceVersion="Current">
                       </Parameter>
                       <Parameter AllowDbNull="True" AutogeneratedName="rdr" ColumnName="rdr" DataSourceName="GmatClubChallenge.dbo.shop_item" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@rdr" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="rdr" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="expires_after" ColumnName="expires_after" DataSourceName="GmatClubChallenge.dbo.shop_item" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@expires_after" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="expires_after" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="full_price" ColumnName="full_price" DataSourceName="GmatClubChallenge.dbo.shop_item" DataTypeServer="money" DbType="Currency" Direction="Input" ParameterName="@full_price" Precision="0" ProviderType="Money" Scale="0" Size="8" SourceColumn="full_price" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="limit" ColumnName="limit" DataSourceName="GmatClubChallenge.dbo.shop_item" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@limit" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="limit" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+              </DbSource>
+              <DbSource ConnectionRef="GmatClubChallengeConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="True" GeneratorSourceName="UpdateItem" Modifier="Public" Name="UpdateItem" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetDataBy2" UserSourceName="UpdateItem">
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="True">
+                    <CommandText>UPDATE    shop_item
+SET              name = @name,  item_price = @item_price, amount = @amount, rdr = @rdr, expires_after = @expires_after, full_price = @full_price, limit=@limit
+WHERE     (idx = @Original_idx)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="True" AutogeneratedName="name" ColumnName="name" DataSourceName="GmatClubChallenge.dbo.shop_item" DataTypeServer="varchar(50)" DbType="AnsiString" Direction="Input" ParameterName="@name" Precision="0" ProviderType="VarChar" Scale="0" Size="50" SourceColumn="name" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="item_price" ColumnName="item_price" DataSourceName="GmatClubChallenge.dbo.shop_item" DataTypeServer="money" DbType="Currency" Direction="Input" ParameterName="@item_price" Precision="0" ProviderType="Money" Scale="0" Size="8" SourceColumn="item_price" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="amount" ColumnName="amount" DataSourceName="GmatClubChallenge.dbo.shop_item" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@amount" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="amount" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="rdr" ColumnName="rdr" DataSourceName="GmatClubChallenge.dbo.shop_item" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@rdr" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="rdr" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="expires_after" ColumnName="expires_after" DataSourceName="GmatClubChallenge.dbo.shop_item" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@expires_after" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="expires_after" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="full_price" ColumnName="full_price" DataSourceName="GmatClubChallenge.dbo.shop_item" DataTypeServer="money" DbType="Currency" Direction="Input" ParameterName="@full_price" Precision="0" ProviderType="Money" Scale="0" Size="8" SourceColumn="full_price" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="limit" ColumnName="limit" DataSourceName="GmatClubChallenge.dbo.shop_item" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@limit" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="limit" SourceColumnNullMapping="False" SourceVersion="Current">
                       </Parameter>
                       <Parameter AllowDbNull="False" AutogeneratedName="Original_idx" ColumnName="idx" DataSourceName="GmatClubChallenge.dbo.shop_item" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Original_idx" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="idx" SourceColumnNullMapping="False" SourceVersion="Original">
                       </Parameter>
@@ -156,27 +135,27 @@ SELECT idx, guididx, name, item_group_idx, parent_idx, item_price, amount, descr
         <xs:element name="shop_item" msprop:Generator_UserTableName="shop_item" msprop:Generator_RowDeletedName="shop_itemRowDeleted" msprop:Generator_RowChangedName="shop_itemRowChanged" msprop:Generator_RowClassName="shop_itemRow" msprop:Generator_RowChangingName="shop_itemRowChanging" msprop:Generator_RowEvArgName="shop_itemRowChangeEvent" msprop:Generator_RowEvHandlerName="shop_itemRowChangeEventHandler" msprop:Generator_TableClassName="shop_itemDataTable" msprop:Generator_TableVarName="tableshop_item" msprop:Generator_RowDeletingName="shop_itemRowDeleting" msprop:Generator_TablePropName="_shop_item">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="idx" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_UserColumnName="idx" msprop:Generator_ColumnVarNameInTable="columnidx" msprop:Generator_ColumnPropNameInRow="idx" msprop:Generator_ColumnPropNameInTable="idxColumn" type="xs:int" />
-              <xs:element name="guididx" msdata:DataType="System.Guid, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_UserColumnName="guididx" msprop:Generator_ColumnVarNameInTable="columnguididx" msprop:Generator_ColumnPropNameInRow="guididx" msprop:Generator_ColumnPropNameInTable="guididxColumn" type="xs:string" />
-              <xs:element name="name" msprop:Generator_UserColumnName="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" minOccurs="0">
+              <xs:element name="idx" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_UserColumnName="idx" msprop:Generator_ColumnPropNameInRow="idx" msprop:Generator_ColumnVarNameInTable="columnidx" msprop:Generator_ColumnPropNameInTable="idxColumn" type="xs:int" />
+              <xs:element name="guididx" msdata:DataType="System.Guid, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_UserColumnName="guididx" msprop:Generator_ColumnPropNameInRow="guididx" msprop:Generator_ColumnVarNameInTable="columnguididx" msprop:Generator_ColumnPropNameInTable="guididxColumn" type="xs:string" />
+              <xs:element name="name" msprop:Generator_UserColumnName="name" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInTable="nameColumn" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="item_group_idx" msprop:Generator_UserColumnName="item_group_idx" msprop:Generator_ColumnVarNameInTable="columnitem_group_idx" msprop:Generator_ColumnPropNameInRow="item_group_idx" msprop:Generator_ColumnPropNameInTable="item_group_idxColumn" type="xs:int" minOccurs="0" />
-              <xs:element name="parent_idx" msprop:Generator_UserColumnName="parent_idx" msprop:Generator_ColumnVarNameInTable="columnparent_idx" msprop:Generator_ColumnPropNameInRow="parent_idx" msprop:Generator_ColumnPropNameInTable="parent_idxColumn" type="xs:int" minOccurs="0" />
-              <xs:element name="item_price" msprop:Generator_UserColumnName="item_price" msprop:Generator_ColumnVarNameInTable="columnitem_price" msprop:Generator_ColumnPropNameInRow="item_price" msprop:Generator_ColumnPropNameInTable="item_priceColumn" type="xs:decimal" minOccurs="0" />
-              <xs:element name="amount" msprop:Generator_UserColumnName="amount" msprop:Generator_ColumnVarNameInTable="columnamount" msprop:Generator_ColumnPropNameInRow="amount" msprop:Generator_ColumnPropNameInTable="amountColumn" type="xs:int" minOccurs="0" />
-              <xs:element name="descr" msprop:Generator_UserColumnName="descr" msprop:Generator_ColumnVarNameInTable="columndescr" msprop:Generator_ColumnPropNameInRow="descr" msprop:Generator_ColumnPropNameInTable="descrColumn" minOccurs="0">
+              <xs:element name="item_group_idx" msprop:Generator_UserColumnName="item_group_idx" msprop:Generator_ColumnPropNameInRow="item_group_idx" msprop:Generator_ColumnVarNameInTable="columnitem_group_idx" msprop:Generator_ColumnPropNameInTable="item_group_idxColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="parent_idx" msprop:Generator_UserColumnName="parent_idx" msprop:Generator_ColumnPropNameInRow="parent_idx" msprop:Generator_ColumnVarNameInTable="columnparent_idx" msprop:Generator_ColumnPropNameInTable="parent_idxColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="item_price" msprop:Generator_UserColumnName="item_price" msprop:Generator_ColumnPropNameInRow="item_price" msprop:Generator_ColumnVarNameInTable="columnitem_price" msprop:Generator_ColumnPropNameInTable="item_priceColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="amount" msprop:Generator_UserColumnName="amount" msprop:Generator_ColumnPropNameInRow="amount" msprop:Generator_ColumnVarNameInTable="columnamount" msprop:Generator_ColumnPropNameInTable="amountColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="descr" msprop:Generator_UserColumnName="descr" msprop:Generator_ColumnPropNameInRow="descr" msprop:Generator_ColumnVarNameInTable="columndescr" msprop:Generator_ColumnPropNameInTable="descrColumn" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2147483647" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="image" msprop:Generator_UserColumnName="image" msprop:Generator_ColumnVarNameInTable="columnimage" msprop:Generator_ColumnPropNameInRow="image" msprop:Generator_ColumnPropNameInTable="imageColumn" minOccurs="0">
+              <xs:element name="image" msprop:Generator_UserColumnName="image" msprop:Generator_ColumnPropNameInRow="image" msprop:Generator_ColumnVarNameInTable="columnimage" msprop:Generator_ColumnPropNameInTable="imageColumn" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
@@ -184,6 +163,9 @@ SELECT idx, guididx, name, item_group_idx, parent_idx, item_price, amount, descr
                 </xs:simpleType>
               </xs:element>
               <xs:element name="rdr" msprop:Generator_UserColumnName="rdr" msprop:Generator_ColumnPropNameInRow="rdr" msprop:Generator_ColumnVarNameInTable="columnrdr" msprop:Generator_ColumnPropNameInTable="rdrColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="expires_after" msprop:Generator_UserColumnName="expires_after" msprop:Generator_ColumnPropNameInRow="expires_after" msprop:Generator_ColumnVarNameInTable="columnexpires_after" msprop:Generator_ColumnPropNameInTable="expires_afterColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="full_price" msprop:Generator_UserColumnName="full_price" msprop:Generator_ColumnPropNameInRow="full_price" msprop:Generator_ColumnVarNameInTable="columnfull_price" msprop:Generator_ColumnPropNameInTable="full_priceColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="limit" msprop:Generator_UserColumnName="limit" msprop:Generator_ColumnPropNameInRow="limit" msprop:Generator_ColumnVarNameInTable="columnlimit" msprop:Generator_ColumnPropNameInTable="limitColumn" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -192,10 +174,6 @@ SELECT idx, guididx, name, item_group_idx, parent_idx, item_price, amount, descr
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:shop_item" />
       <xs:field xpath="mstns:idx" />
-    </xs:unique>
-    <xs:unique name="Constraint2">
-      <xs:selector xpath=".//mstns:shop_item" />
-      <xs:field xpath="mstns:name" />
     </xs:unique>
   </xs:element>
   <xs:annotation>

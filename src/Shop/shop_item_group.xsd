@@ -77,8 +77,8 @@ WHERE     idx = @Original_idx;
         <xs:element name="shop_item_group" msprop:Generator_UserTableName="shop_item_group" msprop:Generator_RowDeletedName="shop_item_groupRowDeleted" msprop:Generator_RowChangedName="shop_item_groupRowChanged" msprop:Generator_RowClassName="shop_item_groupRow" msprop:Generator_RowChangingName="shop_item_groupRowChanging" msprop:Generator_RowEvArgName="shop_item_groupRowChangeEvent" msprop:Generator_RowEvHandlerName="shop_item_groupRowChangeEventHandler" msprop:Generator_TableClassName="shop_item_groupDataTable" msprop:Generator_TableVarName="tableshop_item_group" msprop:Generator_RowDeletingName="shop_item_groupRowDeleting" msprop:Generator_TablePropName="_shop_item_group">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="idx" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_UserColumnName="idx" msprop:Generator_ColumnPropNameInRow="idx" msprop:Generator_ColumnVarNameInTable="columnidx" msprop:Generator_ColumnPropNameInTable="idxColumn" type="xs:int" />
-              <xs:element name="name" msprop:Generator_UserColumnName="name" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInTable="nameColumn" minOccurs="0">
+              <xs:element name="idx" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_UserColumnName="idx" msprop:Generator_ColumnVarNameInTable="columnidx" msprop:Generator_ColumnPropNameInRow="idx" msprop:Generator_ColumnPropNameInTable="idxColumn" type="xs:int" />
+              <xs:element name="name" msprop:Generator_UserColumnName="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
