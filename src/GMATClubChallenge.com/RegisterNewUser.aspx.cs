@@ -25,6 +25,7 @@ namespace GMATClubTest.Web
       }
       protected void submit_Click(object sender, EventArgs e)
       {
+         if (!lgnreq.IsValid || !cpr.IsValid || !pwdreq.IsValid) return;
          System.Collections.Hashtable ht = new System.Collections.Hashtable();
          for (int i = 0; i < propsview.Rows.Count; ++i)
          {
@@ -32,6 +33,7 @@ namespace GMATClubTest.Web
                    ((TextBox)propsview.Rows[i].Cells[3].FindControl("value_box")).Text);
          }
          
+
 
          try
          {

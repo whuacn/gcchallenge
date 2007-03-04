@@ -25,6 +25,7 @@ namespace GMATClubTest.Web
       
          access_manager_ = (AccessControl.AccessManager)(Session["access_manager"]);
          manager_ = (GmatClubTest.BusinessLogic.Manager)(Session["manager"]);
+         connection_ = (System.Data.SqlClient.SqlConnection)(manager_.DataProvider.getConnection());
          
 
          // check if user perfom a login or logoff
@@ -45,6 +46,7 @@ namespace GMATClubTest.Web
             if(""!=fn_ && null!=fn_)          
             {
                access_manager_.can_do(fn_);
+               LogManager.GetLogger("access_control").WarnFormat("Access granted for '{0}' to {1}", access_manager_.UserLogin, fn_);
                on_access_granted();
             }
             try
@@ -53,16 +55,13 @@ namespace GMATClubTest.Web
             }
             catch(System.Exception eee)
             {
-               Response.Redirect("error.aspx");
+               show_error_(eee,true);
             }
          }
          catch(System.Exception ee)
          {
             LogManager.GetLogger("access_control").WarnFormat("Access Denied for '{0}' to {1}", access_manager_.UserLogin, fn_);
-            if(!on_access_denied(ee.Message))
-            {
-               Response.Redirect("Default.aspx");
-            }
+            show_error_(ee,false);
          }
       }
 
@@ -111,6 +110,22 @@ namespace GMATClubTest.Web
       {
          //throw std::ru
       }
+
+      protected void show_error_(System.Exception ee,bool trace)
+      {
+         logger.ErrorFormat("Error: {0}",ee.Message);
+         logger.ErrorFormat("   at: {0}",ee.StackTrace);
+
+         Session["error_message"]=ee.Message;
+
+         Session["error_stack"] = "";
+         if(trace)
+         {
+            Session["error_stack"]=ee.StackTrace;
+         }
+         
+         Response.Redirect("Error.aspx");
+      }
       
       
       protected string current_function_="";
@@ -118,6 +133,7 @@ namespace GMATClubTest.Web
       protected string onLoadScript="";
       protected AccessControl.AccessManager access_manager_ = null;
       protected GmatClubTest.BusinessLogic.Manager manager_ = null; 
+      protected System.Data.SqlClient.SqlConnection connection_=null;
       
       protected log4net.ILog logger = null;
    }

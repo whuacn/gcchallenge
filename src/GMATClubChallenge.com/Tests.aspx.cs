@@ -41,16 +41,17 @@ namespace GMATClubTest.Web
                {
                   if (!i.IschidxNull())
                   {
-                     ret += String.Format("<a href='22'>{1}</a><hr style='height: 1px'/><div style='font-size: 8pt;'>{2}</div><br />", i.chidx, i.ch_name, show_descr(i.IsdescrNull() ? "" : i.descr, 0));
+                     ret += String.Format("<a href='javascript:on_shop_item_click({3},\"group\",-1);'>{1}</a><div style='font-size: 8pt;'>{2}</div><hr style='height: 1px'/>", i.chidx, i.ch_name, show_descr(i.IsdescrNull() ? "" : i.descr, 0), i.chidx);
                   }
                }
-               if(i.type==2)
+               if(i.type==2 || i.type==3)
                {
                   if(!i.IschidxNull())
                   {
-                     ret+=String.Format("<a href='starttest.aspx?testid={0}'>{1}</a><br/>",i.chidx,i.ch_name);
+                     ret += String.Format("<a href='javascript:on_shop_item_click({0},\"{3}\",{2});'>{1}</a><br/>", i.chidx, i.ch_name,i.idx,i.type==2?"test":"download");
                   }
                }
+
             }   
             
          }
