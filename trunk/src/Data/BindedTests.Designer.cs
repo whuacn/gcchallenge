@@ -748,7 +748,7 @@ namespace GmatClubTest.Data.BindedTestsTableAdapters {
             this._commandCollection = new System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT     binded_tests.*\r\nFROM         binded_tests";
+            this._commandCollection[0].CommandText = "SELECT     binded_tests.*\r\nFROM         binded_tests order by type,name,idx;";
             this._commandCollection[0].CommandType = System.Data.CommandType.Text;
         }
         
