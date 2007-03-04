@@ -7,6 +7,9 @@ namespace AccessControl {
 
    partial class acl_function
    {
+      partial class acl_functionDataTable
+      {
+      }
 
       public static void can_set_name(IDbConnection c, int idx, string new_name)
       {

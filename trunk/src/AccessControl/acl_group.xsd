@@ -69,7 +69,7 @@ WHERE     (name = @name)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="GmatClubChallengeConnectionString (Settings)" DbObjectName="GmatClubChallenge.dbo.acl_group" DbObjectType="Table" GenerateShortCommands="True" GeneratorSourceName="HasGroup" Modifier="Public" Name="HasGroup" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetDataBy4" UserSourceName="HasGroup">
+              <DbSource ConnectionRef="GmatClubChallengeConnectionString (Settings)" DbObjectName="GmatClubChallenge.dbo.acl_group" DbObjectType="Table" GenerateShortCommands="True" GeneratorSourceName="HasGroup" Modifier="Public" Name="HasGroup" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetDataBy2" UserSourceName="HasGroup">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="True">
                     <CommandText>SELECT idx FROM acl_group where name=@name;</CommandText>
@@ -80,7 +80,7 @@ WHERE     (name = @name)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="GmatClubChallengeConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="True" GeneratorSourceName="InsertGroup" Modifier="Public" Name="InsertGroup" QueryType="Scalar" ScalarCallRetval="System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetDataBy2" UserSourceName="InsertGroup">
+              <DbSource ConnectionRef="GmatClubChallengeConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="True" GeneratorSourceName="InsertGroup" Modifier="Public" Name="InsertGroup" QueryType="Scalar" ScalarCallRetval="System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetDataBy3" UserSourceName="InsertGroup">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="True">
                     <CommandText>INSERT INTO [acl_group] ([guididx], [grouplevel], [name], [descr],[deleted]) VALUES (@guididx, @grouplevel, @name, @descr,0);
@@ -116,7 +116,7 @@ SELECT idx, guididx, grouplevel, name, descr,deleted FROM acl_group WHERE (idx =
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="GmatClubChallengeConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="True" GeneratorSourceName="UpdateGroup" Modifier="Public" Name="UpdateGroup" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetDataBy3" UserSourceName="UpdateGroup">
+              <DbSource ConnectionRef="GmatClubChallengeConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="True" GeneratorSourceName="UpdateGroup" Modifier="Public" Name="UpdateGroup" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetDataBy4" UserSourceName="UpdateGroup">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="True">
                     <CommandText>UPDATE    acl_group
@@ -150,24 +150,24 @@ SELECT idx, guididx, grouplevel, name, descr FROM acl_group WHERE (idx = @Origin
         <xs:element name="acl_group" msprop:Generator_UserTableName="acl_group" msprop:Generator_RowDeletedName="acl_groupRowDeleted" msprop:Generator_RowChangedName="acl_groupRowChanged" msprop:Generator_RowClassName="acl_groupRow" msprop:Generator_RowChangingName="acl_groupRowChanging" msprop:Generator_RowEvArgName="acl_groupRowChangeEvent" msprop:Generator_RowEvHandlerName="acl_groupRowChangeEventHandler" msprop:Generator_TableClassName="acl_groupDataTable" msprop:Generator_TableVarName="tableacl_group" msprop:Generator_RowDeletingName="acl_groupRowDeleting" msprop:Generator_TablePropName="_acl_group">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="idx" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_UserColumnName="idx" msprop:Generator_ColumnPropNameInRow="idx" msprop:Generator_ColumnVarNameInTable="columnidx" msprop:Generator_ColumnPropNameInTable="idxColumn" type="xs:int" />
-              <xs:element name="guididx" msdata:DataType="System.Guid, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_UserColumnName="guididx" msprop:Generator_ColumnPropNameInRow="guididx" msprop:Generator_ColumnVarNameInTable="columnguididx" msprop:Generator_ColumnPropNameInTable="guididxColumn" type="xs:string" />
-              <xs:element name="grouplevel" msprop:Generator_UserColumnName="grouplevel" msprop:Generator_ColumnPropNameInRow="grouplevel" msprop:Generator_ColumnVarNameInTable="columngrouplevel" msprop:Generator_ColumnPropNameInTable="grouplevelColumn" type="xs:int" />
-              <xs:element name="name" msprop:Generator_UserColumnName="name" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInTable="nameColumn">
+              <xs:element name="idx" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_UserColumnName="idx" msprop:Generator_ColumnVarNameInTable="columnidx" msprop:Generator_ColumnPropNameInRow="idx" msprop:Generator_ColumnPropNameInTable="idxColumn" type="xs:int" />
+              <xs:element name="guididx" msdata:DataType="System.Guid, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_UserColumnName="guididx" msprop:Generator_ColumnVarNameInTable="columnguididx" msprop:Generator_ColumnPropNameInRow="guididx" msprop:Generator_ColumnPropNameInTable="guididxColumn" type="xs:string" />
+              <xs:element name="grouplevel" msprop:Generator_UserColumnName="grouplevel" msprop:Generator_ColumnVarNameInTable="columngrouplevel" msprop:Generator_ColumnPropNameInRow="grouplevel" msprop:Generator_ColumnPropNameInTable="grouplevelColumn" type="xs:int" />
+              <xs:element name="name" msprop:Generator_UserColumnName="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="100" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="descr" msprop:Generator_UserColumnName="descr" msprop:Generator_ColumnPropNameInRow="descr" msprop:Generator_ColumnVarNameInTable="columndescr" msprop:Generator_ColumnPropNameInTable="descrColumn" minOccurs="0">
+              <xs:element name="descr" msprop:Generator_UserColumnName="descr" msprop:Generator_ColumnVarNameInTable="columndescr" msprop:Generator_ColumnPropNameInRow="descr" msprop:Generator_ColumnPropNameInTable="descrColumn" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2147483647" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="deleted" msprop:Generator_UserColumnName="deleted" msprop:Generator_ColumnPropNameInRow="deleted" msprop:Generator_ColumnVarNameInTable="columndeleted" msprop:Generator_ColumnPropNameInTable="deletedColumn" type="xs:boolean" minOccurs="0" />
+              <xs:element name="deleted" msprop:Generator_UserColumnName="deleted" msprop:Generator_ColumnVarNameInTable="columndeleted" msprop:Generator_ColumnPropNameInRow="deleted" msprop:Generator_ColumnPropNameInTable="deletedColumn" type="xs:boolean" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -176,10 +176,6 @@ SELECT idx, guididx, grouplevel, name, descr FROM acl_group WHERE (idx = @Origin
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:acl_group" />
       <xs:field xpath="mstns:idx" />
-    </xs:unique>
-    <xs:unique name="Constraint2">
-      <xs:selector xpath=".//mstns:acl_group" />
-      <xs:field xpath="mstns:name" />
     </xs:unique>
   </xs:element>
 </xs:schema>
