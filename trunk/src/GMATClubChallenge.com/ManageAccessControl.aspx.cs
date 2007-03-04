@@ -27,6 +27,11 @@ namespace GMATClubTest.Web
       
       public override void DoLoad(object sender, EventArgs e)
       {
+         usersgrid.PageSize = 90;
+         groupsgrid.PageSize = 90;
+         funcsgrid.PageSize = 90;
+         propsgrid.PageSize = 90;
+
          if (null != Session["created_flag"]) created_flag = ((Boolean)Session["created_flag"]);
          switchTool(Request["panel"]);
 
@@ -234,7 +239,7 @@ namespace GMATClubTest.Web
          if (e.NewValues["name"].Equals("new_group"))
          {
             e.Cancel = true;
-            gridError("Can't save user with 'new_one' login");
+            gridError("Can't save group with 'new_group' name");
             return;
          }
          try
@@ -258,6 +263,7 @@ namespace GMATClubTest.Web
          if(created_flag)
          {
             Session.Remove("created_flag");
+            created_flag = false;
             current_ods().DeleteParameters[0].DefaultValue = ((GridView)sender).DataKeys[e.RowIndex].Value.ToString();
             current_ods().Delete();
             ((GridView)sender).DataBind();
@@ -303,6 +309,35 @@ namespace GMATClubTest.Web
       {
          AccessControl.acl_propertyTableAdapters.acl_propertyTableAdapter inst = (AccessControl.acl_propertyTableAdapters.acl_propertyTableAdapter)e.ObjectInstance;
          inst.SqlConnection = (System.Data.SqlClient.SqlConnection)access_manager_.Connection;
+      }
+      
+      protected void dso_Updated(object sender, ObjectDataSourceStatusEventArgs e)
+      {
+         if (null != e.Exception)
+         {
+            if(e.Exception.InnerException.Message.IndexOf("")!=-1)
+            {
+               grid_error_label.Text = "Duplicate name";
+               grid_error_label.Visible = true;
+               e.ExceptionHandled = true;
+
+            }
+         }
+      }
+      protected void usersgrid_RowDeleted(object sender, GridViewDeletedEventArgs e)
+      {
+         if (e.Exception != null)
+         {
+            e.ExceptionHandled = true;
+            if (e.Exception.InnerException.Message.IndexOf("FK_acl_session_acl_user") != -1)
+            {
+               base.show_error_(new System.Exception("User session exist's so user can't be deleted<br/>Please logof this user first"), false);
+            }
+            else
+            {
+               
+            }
+         }
       }
 }
 }

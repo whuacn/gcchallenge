@@ -8,13 +8,14 @@
 
 <table width="100%" border="0">
 <tr><td style="height: 18px">
-   <asp:HyperLink ID="m_users" runat="server" NavigateUrl="ManageAccessControl.aspx?panel=users">[Users]</asp:HyperLink>
+   <asp:HyperLink ID="m_users" runat="server" NavigateUrl="ManageAccessControl.aspx?panel=users"><asp:Image ID="Image1" runat="server" ImageUrl="i/user.gif" />[Users]</asp:HyperLink>
    |
-   <asp:HyperLink ID="m_groups" runat="server" NavigateUrl="ManageAccessControl.aspx?panel=groups">[Groups]</asp:HyperLink>
+   <asp:HyperLink ID="m_groups" runat="server" NavigateUrl="ManageAccessControl.aspx?panel=groups"><asp:Image ID="Image2" runat="server" ImageUrl="i/users.gif" />[Groups]</asp:HyperLink>
    |
-   <asp:HyperLink ID="m_functions" runat="server" NavigateUrl="ManageAccessControl.aspx?panel=functions">[Functions]</asp:HyperLink>
+   <asp:HyperLink ID="m_functions" runat="server" NavigateUrl="ManageAccessControl.aspx?panel=functions"><asp:Image ID="Image3" runat="server" ImageUrl="i/function.gif" />[Functions]</asp:HyperLink>
    |
    <asp:HyperLink ID="m_prop" runat="server" NavigateUrl="ManageAccessControl.aspx?panel=properties">[Properties]</asp:HyperLink>   
+   
    <hr width="100%" style="height: 1px;"/>
    <asp:Panel ID="grid_error_panel" runat="server" Height="20px" Visible="False" Width="100%">
       <asp:Label ID="grid_error_label" runat="server" ForeColor="Red"></asp:Label></asp:Panel>
@@ -22,7 +23,7 @@
 
 <div id="users" style="display: <% =panel_styles[0] %> ;">
        <asp:ObjectDataSource ID="users" runat="server" OldValuesParameterFormatString="original_{0}" OnInserting="users_Inserting"
-          SelectMethod="GetData" TypeName="AccessControl.acl_userTableAdapters.base_user_infoTableAdapter" InsertMethod="InsertUserAdv" DeleteMethod="DeleteUser" UpdateMethod="UpdateUserAdv" OnObjectCreated="users_ObjectCreated">
+          SelectMethod="GetData" TypeName="AccessControl.acl_userTableAdapters.base_user_infoTableAdapter" InsertMethod="InsertUserAdv" DeleteMethod="DeleteUser" UpdateMethod="UpdateUserAdv" OnObjectCreated="users_ObjectCreated" OnUpdated="dso_Updated">
           <InsertParameters>
              <asp:Parameter Name="guididx" Type="String" />
              <asp:Parameter Name="login" Type="String" />
@@ -42,7 +43,7 @@
              <asp:Parameter Name="Original_idx" Type="Int32" />
           </UpdateParameters>
        </asp:ObjectDataSource>
-       <asp:GridView ID="usersgrid" runat="server" AutoGenerateColumns="False" DataKeyNames="idx"  DataSourceID="users" AllowPaging="True" AllowSorting="True" CaptionAlign="Left" PageSize="20" EditRowStyle-BackColor="AliceBlue" OnRowUpdating="usersgrid_RowUpdating" OnRowCancelingEdit="row_RowCancelingEdit" OnRowUpdated="row_Updated" Width="100%">
+       <asp:GridView ID="usersgrid" runat="server" AutoGenerateColumns="False" DataKeyNames="idx"  DataSourceID="users" AllowPaging="True" AllowSorting="True" CaptionAlign="Left" PageSize="20" EditRowStyle-BackColor="AliceBlue" OnRowUpdating="usersgrid_RowUpdating" OnRowCancelingEdit="row_RowCancelingEdit" OnRowUpdated="row_Updated" Width="100%" OnRowDeleted="usersgrid_RowDeleted">
           <Columns>
              <asp:CommandField ShowEditButton="True" />
              <asp:CommandField ShowDeleteButton="True" />
@@ -86,7 +87,7 @@
 
 
 <div id="groups" style="display: <% =panel_styles[1] %> ;">
-<asp:ObjectDataSource ID="groups" runat="server" DeleteMethod="DeleteGroup" InsertMethod="InsertGroup" OldValuesParameterFormatString="original_{0}" SelectMethod="GetData" TypeName="AccessControl.acl_groupTableAdapters.acl_groupTableAdapter" UpdateMethod="UpdateGroup" OnInserting="groups_Inserting" OnObjectCreated="groups_ObjectCreated">
+<asp:ObjectDataSource ID="groups" runat="server" DeleteMethod="DeleteGroup" InsertMethod="InsertGroup" OldValuesParameterFormatString="original_{0}" SelectMethod="GetData" TypeName="AccessControl.acl_groupTableAdapters.acl_groupTableAdapter" UpdateMethod="UpdateGroup" OnInserting="groups_Inserting" OnObjectCreated="groups_ObjectCreated" OnUpdated="dso_Updated">
    <DeleteParameters>
       <asp:Parameter Name="Original_idx" Type="Int32" />
    </DeleteParameters>
@@ -135,7 +136,7 @@
 <div id="funcs" style="display: <% =panel_styles[2] %> ;">
    <asp:ObjectDataSource ID="funcs" runat="server" DeleteMethod="DeleteFunction" InsertMethod="InsertFunction"
       OldValuesParameterFormatString="original_{0}" OnInserting="funcs_Inserting" SelectMethod="GetData"
-      TypeName="AccessControl.acl_functionTableAdapters.acl_functionTableAdapter" UpdateMethod="UpdateFunction" OnObjectCreated="funcs_ObjectCreated">
+      TypeName="AccessControl.acl_functionTableAdapters.acl_functionTableAdapter" UpdateMethod="UpdateFunction" OnObjectCreated="funcs_ObjectCreated" OnUpdated="dso_Updated">
       <DeleteParameters>
          <asp:Parameter Name="Original_idx" Type="Int32" />
       </DeleteParameters>
@@ -173,7 +174,7 @@
 <div id="props" style="display: <% =panel_styles[3] %> ;">
    <asp:ObjectDataSource ID="props" runat="server" DeleteMethod="DeleteProperty" InsertMethod="InsertPropertyAdv"
       OldValuesParameterFormatString="original_{0}" SelectMethod="GetData" TypeName="AccessControl.acl_propertyTableAdapters.acl_propertyTableAdapter"
-      UpdateMethod="UpdateProperty" OnInserting="props_Inserting" OnObjectCreated="props_ObjectCreated">
+      UpdateMethod="UpdateProperty" OnInserting="props_Inserting" OnObjectCreated="props_ObjectCreated" OnUpdated="dso_Updated">
       <DeleteParameters>
          <asp:Parameter Name="Original_idx" Type="Int32" />
       </DeleteParameters>

@@ -46,7 +46,7 @@ namespace GMATClubTest.Web
       }
       public string topMenu()
       {
-         return "<a href='Default.aspx'>Home</a> | <a href='Tests.aspx'>Tests</a> | <a href='ResultsWebForm.aspx'>Results</a> " + generateTopMenu();     
+         return "<a href='Default.aspx'>Home</a> | <a href='Tests.aspx'>Tests</a> | <a href='CustomTestsForm.aspx'>Custom GMAT tests</a>" + generateTopMenu();     
       }
       
       protected AccessManager access_manager_ ;

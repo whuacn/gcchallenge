@@ -10,9 +10,19 @@
    <asp:Label ID="errorLabel" runat="server" Font-Bold="True" ForeColor="Red" Text="Label"
       Visible="False"></asp:Label><br />
    Login &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;<asp:TextBox ID="login" runat="server" CssClass="itt"></asp:TextBox>
-   <asp:HyperLink ID="chl" runat="server" CssClass="itt" NavigateUrl="javascript: do_check_login();">Check login</asp:HyperLink><br />
+   <asp:HyperLink ID="chl" runat="server" CssClass="itt" NavigateUrl="javascript: do_check_login();">Check login</asp:HyperLink>
+   <asp:RequiredFieldValidator ID="lgnreq" runat="server" ControlToValidate="login"
+      ErrorMessage="Login Required"></asp:RequiredFieldValidator><br />
    Password&nbsp;
-   <asp:TextBox ID="pwd" runat="server" CssClass="itt" TextMode="Password"></asp:TextBox><br />
+   <asp:TextBox ID="pwd" runat="server" CssClass="itt" TextMode="Password"></asp:TextBox>
+   <asp:CompareValidator ID="cpr" runat="server" ControlToCompare="pwd_check" ControlToValidate="pwd"
+      ErrorMessage="Passwords not equal"></asp:CompareValidator>
+   <asp:RequiredFieldValidator ID="pwdreq" runat="server" ControlToValidate="pwd"
+      ErrorMessage="Password can't be empty"></asp:RequiredFieldValidator><br />
+   Password&nbsp;
+   <asp:TextBox ID="pwd_check" runat="server" CssClass="itt" TextMode="Password"></asp:TextBox>
+   again<br />
+   <br />
    &nbsp;
    &nbsp;&nbsp;
    

@@ -113,7 +113,34 @@ namespace GmatClubTest.Web
                context.Response.Write(Shop.ShopManager.apply_contents(conn_, context.Request, am,tr));
                processed = true;
             }
-            
+            if ("ShopManager::item_click" == function)
+            {
+               context.Response.Write(Shop.ShopManager.item_click(conn_, context.Request, am, tr,"StartTest.aspx?idx={0}&type={1}&pkg_idx={2}","ajax:PayItem.aspx?idx={0}&type={1}&pkg_idx={2}"));
+               processed = true;
+            }
+            if ("UserManager::show_user_basket" == function)
+            {
+               context.Response.Write(Shop.ShopManager.show_user_basket(conn_, context.Request, am, tr));
+               processed = true;
+            }
+
+            if ("ShopManager::delete_bought_items" == function)
+            {
+               context.Response.Write(Shop.ShopManager.delete_bought_items(conn_, context.Request, am, tr));
+               processed = true;
+            }
+            if ("ShopManager::purchase_items" == function)
+            {
+               context.Response.Write(Shop.ShopManager.purchase_items(conn_, context.Request, am, tr));
+               processed = true;
+            }
+            if ("CustomTestsLogic::list_questions" == function)
+            {
+               context.Response.ContentType="text/xml";
+               context.Response.Write(GmatClubTest.BusinessLogic.CustomTestsLogic.list_tests(conn_));
+               processed = true;
+            }
+
             //tr.Commit();
             am.Transaction=null;
             if(!processed) throw new System.Exception("No such handler:" + function);
