@@ -164,6 +164,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>QuestionAnswerSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="QuestionSet.cs">
+      <DependentUpon>QuestionSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="QuestionSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -221,6 +224,7 @@
     <None Include="BindedTests.xss">
       <DependentUpon>BindedTests.xsd</DependentUpon>
     </None>
+    <None Include="ClassDiagram1.cd" />
     <None Include="PassageToQuestionSet.xsc">
       <DependentUpon>PassageToQuestionSet.xsd</DependentUpon>
     </None>
