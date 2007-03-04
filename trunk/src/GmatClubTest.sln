@@ -1,29 +1,65 @@
 Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual Studio 2005
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogic", "BusinessLogic\BusinessLogic.csproj", "{A97069E2-8E61-4279-8056-793432FA023A}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
 	ProjectSection(ProjectDependencies) = postProject
 		{9A61CCF6-0EA3-4954-A35D-A990E1EED338} = {9A61CCF6-0EA3-4954-A35D-A990E1EED338}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataProvider", "DataProvider\DataProvider.csproj", "{DBF7937E-CB3F-4D17-8097-648286226E0C}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{F9A17CC0-FF77-4C11-9616-E9ADD1D36A8F}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{41BCC868-380C-4BC1-B834-687C32E829CC}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuestionRenderer", "QuestionRenderer\QuestionRenderer.csproj", "{9AB869C1-D70C-48BE-9D63-F3566DB773D2}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnexpectedExceptionDialog", "UnexpectedExceptionDialog\UnexpectedExceptionDialog.csproj", "{0B1E203A-568E-4D0D-960E-DF3D42F3D06B}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbEditor", "DbEditor\DbEditor.csproj", "{D77B0A50-09A2-4DB6-AA51-4221F1871841}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImportExport", "ImportExport\ImportExport.csproj", "{14808C81-08E2-4118-8442-BE25F7D16CC4}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "DbEditorSetup", "DbEditorSetup\DbEditorSetup.vdproj", "{3D73C2BA-0AD3-440C-91C3-C41741BFFF47}"
-EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "C:\...\GMATClubChallenge.com\", "GMATClubChallenge.com\", "{1CDB4AFA-9C0E-44BA-8758-2BA02BA005EA}"
 	ProjectSection(WebsiteProperties) = preProject
-		ProjectReferences = "{A97069E2-8E61-4279-8056-793432FA023A}|BusinessLogic.dll;{9AB869C1-D70C-48BE-9D63-F3566DB773D2}|QuestionRenderer.dll;{9A61CCF6-0EA3-4954-A35D-A990E1EED338}|AccessControl.dll;{E2A82915-B88C-4201-9E60-21BE7D7BA8AF}|Shop.dll;{F6F32704-97E0-4006-A474-5A9729C6B1B4}|FredCK.FCKeditorV2.dll;"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "C:\...\GMATClubChallenge.com\", "GMATClubChallenge.com", "{1CDB4AFA-9C0E-44BA-8758-2BA02BA005EA}"
+	ProjectSection(WebsiteProperties) = preProject
+		ProjectReferences = "{A97069E2-8E61-4279-8056-793432FA023A}|BusinessLogic.dll;{9AB869C1-D70C-48BE-9D63-F3566DB773D2}|QuestionRenderer.dll;{9A61CCF6-0EA3-4954-A35D-A990E1EED338}|AccessControl.dll;{E2A82915-B88C-4201-9E60-21BE7D7BA8AF}|Shop.dll;{F6F32704-97E0-4006-A474-5A9729C6B1B4}|FredCK.FCKeditorV2.dll;{42B1D3F4-4B2A-4680-89F4-E690B006BC71}|Common.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/GMATClubChallenge.com"
 		Debug.AspNetCompiler.PhysicalPath = "GMATClubChallenge.com\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\GMATClubChallenge.com\"
@@ -42,19 +78,35 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "C:\...\GMATClubChallenge.co
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccessControl", "AccessControl\AccessControl.csproj", "{9A61CCF6-0EA3-4954-A35D-A990E1EED338}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
 	ProjectSection(ProjectDependencies) = postProject
 		{41BCC868-380C-4BC1-B834-687C32E829CC} = {41BCC868-380C-4BC1-B834-687C32E829CC}
 		{DBF7937E-CB3F-4D17-8097-648286226E0C} = {DBF7937E-CB3F-4D17-8097-648286226E0C}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop", "Shop\Shop.csproj", "{E2A82915-B88C-4201-9E60-21BE7D7BA8AF}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
 	ProjectSection(ProjectDependencies) = postProject
 		{9A61CCF6-0EA3-4954-A35D-A990E1EED338} = {9A61CCF6-0EA3-4954-A35D-A990E1EED338}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FredCK.FCKeditorV2", "FCKeditor\dll\FredCK.FCKeditorV2.csproj", "{F6F32704-97E0-4006-A474-5A9729C6B1B4}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{42B1D3F4-4B2A-4680-89F4-E690B006BC71}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
