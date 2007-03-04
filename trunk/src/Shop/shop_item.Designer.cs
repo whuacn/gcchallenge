@@ -251,6 +251,12 @@ namespace Shop {
             
             private System.Data.DataColumn columnrdr;
             
+            private System.Data.DataColumn columnexpires_after;
+            
+            private System.Data.DataColumn columnfull_price;
+            
+            private System.Data.DataColumn columnlimit;
+            
             [System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public shop_itemDataTable() {
                 this.TableName = "shop_item";
@@ -352,6 +358,27 @@ namespace Shop {
             }
             
             [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public System.Data.DataColumn expires_afterColumn {
+                get {
+                    return this.columnexpires_after;
+                }
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public System.Data.DataColumn full_priceColumn {
+                get {
+                    return this.columnfull_price;
+                }
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public System.Data.DataColumn limitColumn {
+                get {
+                    return this.columnlimit;
+                }
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -380,7 +407,7 @@ namespace Shop {
             }
             
             [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public shop_itemRow Addshop_itemRow(System.Guid guididx, string name, int item_group_idx, shop_itemRow parentshop_itemRowByFK_shop_item_type_shop_item_type, decimal item_price, int amount, string descr, string image, int rdr) {
+            public shop_itemRow Addshop_itemRow(System.Guid guididx, string name, int item_group_idx, shop_itemRow parentshop_itemRowByFK_shop_item_type_shop_item_type, decimal item_price, int amount, string descr, string image, int rdr, int expires_after, decimal full_price, int limit) {
                 shop_itemRow rowshop_itemRow = ((shop_itemRow)(this.NewRow()));
                 rowshop_itemRow.ItemArray = new object[] {
                         null,
@@ -392,7 +419,10 @@ namespace Shop {
                         amount,
                         descr,
                         image,
-                        rdr};
+                        rdr,
+                        expires_after,
+                        full_price,
+                        limit};
                 this.Rows.Add(rowshop_itemRow);
                 return rowshop_itemRow;
             }
@@ -432,6 +462,9 @@ namespace Shop {
                 this.columndescr = base.Columns["descr"];
                 this.columnimage = base.Columns["image"];
                 this.columnrdr = base.Columns["rdr"];
+                this.columnexpires_after = base.Columns["expires_after"];
+                this.columnfull_price = base.Columns["full_price"];
+                this.columnlimit = base.Columns["limit"];
             }
             
             [System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -456,16 +489,19 @@ namespace Shop {
                 base.Columns.Add(this.columnimage);
                 this.columnrdr = new System.Data.DataColumn("rdr", typeof(int), null, System.Data.MappingType.Element);
                 base.Columns.Add(this.columnrdr);
+                this.columnexpires_after = new System.Data.DataColumn("expires_after", typeof(int), null, System.Data.MappingType.Element);
+                base.Columns.Add(this.columnexpires_after);
+                this.columnfull_price = new System.Data.DataColumn("full_price", typeof(decimal), null, System.Data.MappingType.Element);
+                base.Columns.Add(this.columnfull_price);
+                this.columnlimit = new System.Data.DataColumn("limit", typeof(int), null, System.Data.MappingType.Element);
+                base.Columns.Add(this.columnlimit);
                 this.Constraints.Add(new System.Data.UniqueConstraint("Constraint1", new System.Data.DataColumn[] {
                                 this.columnidx}, true));
-                this.Constraints.Add(new System.Data.UniqueConstraint("Constraint2", new System.Data.DataColumn[] {
-                                this.columnname}, false));
                 this.columnidx.AutoIncrement = true;
                 this.columnidx.AllowDBNull = false;
                 this.columnidx.ReadOnly = true;
                 this.columnidx.Unique = true;
                 this.columnguididx.AllowDBNull = false;
-                this.columnname.Unique = true;
                 this.columnname.MaxLength = 50;
                 this.columndescr.MaxLength = 2147483647;
                 this.columnimage.MaxLength = 50;
@@ -707,6 +743,51 @@ namespace Shop {
             }
             
             [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public int expires_after {
+                get {
+                    try {
+                        return ((int)(this[this.tableshop_item.expires_afterColumn]));
+                    }
+                    catch (System.InvalidCastException e) {
+                        throw new System.Data.StrongTypingException("The value for column \'expires_after\' in table \'shop_item\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableshop_item.expires_afterColumn] = value;
+                }
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public decimal full_price {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableshop_item.full_priceColumn]));
+                    }
+                    catch (System.InvalidCastException e) {
+                        throw new System.Data.StrongTypingException("The value for column \'full_price\' in table \'shop_item\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableshop_item.full_priceColumn] = value;
+                }
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public int limit {
+                get {
+                    try {
+                        return ((int)(this[this.tableshop_item.limitColumn]));
+                    }
+                    catch (System.InvalidCastException e) {
+                        throw new System.Data.StrongTypingException("The value for column \'limit\' in table \'shop_item\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableshop_item.limitColumn] = value;
+                }
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public shop_itemRow shop_itemRowParent {
                 get {
                     return ((shop_itemRow)(this.GetParentRow(this.Table.ParentRelations["FK_shop_item_type_shop_item_type"])));
@@ -794,6 +875,36 @@ namespace Shop {
             [System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public void SetrdrNull() {
                 this[this.tableshop_item.rdrColumn] = System.Convert.DBNull;
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool Isexpires_afterNull() {
+                return this.IsNull(this.tableshop_item.expires_afterColumn);
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void Setexpires_afterNull() {
+                this[this.tableshop_item.expires_afterColumn] = System.Convert.DBNull;
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool Isfull_priceNull() {
+                return this.IsNull(this.tableshop_item.full_priceColumn);
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void Setfull_priceNull() {
+                this[this.tableshop_item.full_priceColumn] = System.Convert.DBNull;
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IslimitNull() {
+                return this.IsNull(this.tableshop_item.limitColumn);
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetlimitNull() {
+                this[this.tableshop_item.limitColumn] = System.Convert.DBNull;
             }
             
             [System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -929,22 +1040,25 @@ namespace Shop.shop_itemTableAdapters {
             tableMapping.ColumnMappings.Add("descr", "descr");
             tableMapping.ColumnMappings.Add("image", "image");
             tableMapping.ColumnMappings.Add("rdr", "rdr");
+            tableMapping.ColumnMappings.Add("expires_after", "expires_after");
+            tableMapping.ColumnMappings.Add("full_price", "full_price");
+            tableMapping.ColumnMappings.Add("limit", "limit");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Shop.Properties.Settings.Default.GmatClubChallengeConnectionString;
+            this._connection.ConnectionString = global::Shop.Properties.Settings.Default.GCString;
         }
         
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitCommandCollection() {
-            this._commandCollection = new System.Data.SqlClient.SqlCommand[4];
+            this._commandCollection = new System.Data.SqlClient.SqlCommand[5];
             this._commandCollection[0] = new System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT idx, guididx, name, item_group_idx, parent_idx, item_price, amount, descr," +
-                " image,rdr FROM dbo.shop_item";
+            this._commandCollection[0].CommandText = "SELECT     idx, guididx, name, item_group_idx, parent_idx, item_price, amount, de" +
+                "scr, image, rdr, expires_after, full_price, limit\r\nFROM         shop_item";
             this._commandCollection[0].CommandType = System.Data.CommandType.Text;
             this._commandCollection[1] = new System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
@@ -953,32 +1067,42 @@ namespace Shop.shop_itemTableAdapters {
             this._commandCollection[1].Parameters.Add(new System.Data.SqlClient.SqlParameter("@Original_idx", System.Data.SqlDbType.Int, 4, System.Data.ParameterDirection.Input, 0, 0, "idx", System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[2] = new System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = @"INSERT INTO shop_item
-                      (guididx, name, item_group_idx, parent_idx, item_price, amount, descr, image, rdr)
-VALUES     (@guididx,@name,@item_group_idx,@parent_idx,@item_price,@amount,@descr,@image,@rdr); 
-SELECT idx, guididx, name, item_group_idx, parent_idx, item_price, amount, descr, image FROM shop_item WHERE (idx = SCOPE_IDENTITY())";
+            this._commandCollection[2].CommandText = "SELECT     idx, guididx, name, item_group_idx, parent_idx, item_price, amount, de" +
+                "scr, image, rdr, expires_after, full_price, limit\r\nFROM         shop_item where " +
+                "idx=@idx;";
             this._commandCollection[2].CommandType = System.Data.CommandType.Text;
-            this._commandCollection[2].Parameters.Add(new System.Data.SqlClient.SqlParameter("@guididx", System.Data.SqlDbType.UniqueIdentifier, 16, System.Data.ParameterDirection.Input, 0, 0, "guididx", System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new System.Data.SqlClient.SqlParameter("@name", System.Data.SqlDbType.VarChar, 50, System.Data.ParameterDirection.Input, 0, 0, "name", System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new System.Data.SqlClient.SqlParameter("@item_group_idx", System.Data.SqlDbType.Int, 4, System.Data.ParameterDirection.Input, 0, 0, "item_group_idx", System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new System.Data.SqlClient.SqlParameter("@parent_idx", System.Data.SqlDbType.Int, 4, System.Data.ParameterDirection.Input, 0, 0, "parent_idx", System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new System.Data.SqlClient.SqlParameter("@item_price", System.Data.SqlDbType.Money, 8, System.Data.ParameterDirection.Input, 0, 0, "item_price", System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new System.Data.SqlClient.SqlParameter("@amount", System.Data.SqlDbType.Int, 4, System.Data.ParameterDirection.Input, 0, 0, "amount", System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new System.Data.SqlClient.SqlParameter("@descr", System.Data.SqlDbType.Text, 2147483647, System.Data.ParameterDirection.Input, 0, 0, "descr", System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new System.Data.SqlClient.SqlParameter("@image", System.Data.SqlDbType.VarChar, 50, System.Data.ParameterDirection.Input, 0, 0, "image", System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new System.Data.SqlClient.SqlParameter("@rdr", System.Data.SqlDbType.Int, 4, System.Data.ParameterDirection.Input, 0, 0, "rdr", System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new System.Data.SqlClient.SqlParameter("@idx", System.Data.SqlDbType.Int, 4, System.Data.ParameterDirection.Input, 0, 0, "idx", System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = @"UPDATE    shop_item
-SET              name = @name, item_price = @item_price, amount = @amount, rdr = @rdr
-WHERE     (idx = @Original_idx);  
-SELECT idx, guididx, name, item_group_idx, parent_idx, item_price, amount, descr, image, rdr FROM shop_item WHERE (idx = @Original_idx)";
+            this._commandCollection[3].CommandText = @"INSERT INTO [dbo].[shop_item] ([guididx], [name], [item_group_idx], [parent_idx], [item_price], [amount], [descr], [image], [rdr], [expires_after], [full_price],[limit]) VALUES (@guididx, @name, @item_group_idx, @parent_idx, @item_price, @amount, @descr, @image, @rdr, @expires_after, @full_price,@limit);
+SELECT idx, guididx, name, item_group_idx, parent_idx, item_price, amount, descr, image, rdr, expires_after, full_price FROM shop_item WHERE (idx = SCOPE_IDENTITY())";
             this._commandCollection[3].CommandType = System.Data.CommandType.Text;
+            this._commandCollection[3].Parameters.Add(new System.Data.SqlClient.SqlParameter("@guididx", System.Data.SqlDbType.UniqueIdentifier, 16, System.Data.ParameterDirection.Input, 0, 0, "guididx", System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3].Parameters.Add(new System.Data.SqlClient.SqlParameter("@name", System.Data.SqlDbType.VarChar, 50, System.Data.ParameterDirection.Input, 0, 0, "name", System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new System.Data.SqlClient.SqlParameter("@item_group_idx", System.Data.SqlDbType.Int, 4, System.Data.ParameterDirection.Input, 0, 0, "item_group_idx", System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new System.Data.SqlClient.SqlParameter("@parent_idx", System.Data.SqlDbType.Int, 4, System.Data.ParameterDirection.Input, 0, 0, "parent_idx", System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3].Parameters.Add(new System.Data.SqlClient.SqlParameter("@item_price", System.Data.SqlDbType.Money, 8, System.Data.ParameterDirection.Input, 0, 0, "item_price", System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3].Parameters.Add(new System.Data.SqlClient.SqlParameter("@amount", System.Data.SqlDbType.Int, 4, System.Data.ParameterDirection.Input, 0, 0, "amount", System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new System.Data.SqlClient.SqlParameter("@descr", System.Data.SqlDbType.Text, 2147483647, System.Data.ParameterDirection.Input, 0, 0, "descr", System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new System.Data.SqlClient.SqlParameter("@image", System.Data.SqlDbType.VarChar, 50, System.Data.ParameterDirection.Input, 0, 0, "image", System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3].Parameters.Add(new System.Data.SqlClient.SqlParameter("@rdr", System.Data.SqlDbType.Int, 4, System.Data.ParameterDirection.Input, 0, 0, "rdr", System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[3].Parameters.Add(new System.Data.SqlClient.SqlParameter("@Original_idx", System.Data.SqlDbType.Int, 4, System.Data.ParameterDirection.Input, 0, 0, "idx", System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new System.Data.SqlClient.SqlParameter("@expires_after", System.Data.SqlDbType.Int, 4, System.Data.ParameterDirection.Input, 0, 0, "expires_after", System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new System.Data.SqlClient.SqlParameter("@full_price", System.Data.SqlDbType.Money, 8, System.Data.ParameterDirection.Input, 0, 0, "full_price", System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new System.Data.SqlClient.SqlParameter("@limit", System.Data.SqlDbType.Int, 4, System.Data.ParameterDirection.Input, 0, 0, "limit", System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4] = new System.Data.SqlClient.SqlCommand();
+            this._commandCollection[4].Connection = this.Connection;
+            this._commandCollection[4].CommandText = "UPDATE    shop_item\r\nSET              name = @name,  item_price = @item_price, am" +
+                "ount = @amount, rdr = @rdr, expires_after = @expires_after, full_price = @full_p" +
+                "rice, limit=@limit\r\nWHERE     (idx = @Original_idx)";
+            this._commandCollection[4].CommandType = System.Data.CommandType.Text;
+            this._commandCollection[4].Parameters.Add(new System.Data.SqlClient.SqlParameter("@name", System.Data.SqlDbType.VarChar, 50, System.Data.ParameterDirection.Input, 0, 0, "name", System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new System.Data.SqlClient.SqlParameter("@item_price", System.Data.SqlDbType.Money, 8, System.Data.ParameterDirection.Input, 0, 0, "item_price", System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new System.Data.SqlClient.SqlParameter("@amount", System.Data.SqlDbType.Int, 4, System.Data.ParameterDirection.Input, 0, 0, "amount", System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new System.Data.SqlClient.SqlParameter("@rdr", System.Data.SqlDbType.Int, 4, System.Data.ParameterDirection.Input, 0, 0, "rdr", System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new System.Data.SqlClient.SqlParameter("@expires_after", System.Data.SqlDbType.Int, 4, System.Data.ParameterDirection.Input, 0, 0, "expires_after", System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new System.Data.SqlClient.SqlParameter("@full_price", System.Data.SqlDbType.Money, 8, System.Data.ParameterDirection.Input, 0, 0, "full_price", System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new System.Data.SqlClient.SqlParameter("@limit", System.Data.SqlDbType.Int, 4, System.Data.ParameterDirection.Input, 0, 0, "limit", System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new System.Data.SqlClient.SqlParameter("@Original_idx", System.Data.SqlDbType.Int, 4, System.Data.ParameterDirection.Input, 0, 0, "idx", System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1005,8 +1129,32 @@ SELECT idx, guididx, name, item_group_idx, parent_idx, item_price, amount, descr
         
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [System.ComponentModel.DataObjectMethodAttribute(System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByIdx(shop_item.shop_itemDataTable dataTable, int idx) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(idx));
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [System.ComponentModel.DataObjectMethodAttribute(System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual shop_item.shop_itemDataTable GetRowByIdx(int idx) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(idx));
+            shop_item.shop_itemDataTable dataTable = new shop_item.shop_itemDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [System.ComponentModel.DataObjectMethodAttribute(System.ComponentModel.DataObjectMethodType.Delete, false)]
-        public virtual int DeleteItem(int Original_idx) {
+        public virtual int DeleteQuery(int Original_idx) {
             System.Data.SqlClient.SqlCommand command = this.CommandCollection[1];
             command.Parameters[0].Value = ((int)(Original_idx));
             System.Data.ConnectionState previousConnectionState = command.Connection.State;
@@ -1028,8 +1176,9 @@ SELECT idx, guididx, name, item_group_idx, parent_idx, item_price, amount, descr
         
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int InsertItem(System.Guid guididx, string name, System.Nullable<int> item_group_idx, System.Nullable<int> parent_idx, System.Nullable<decimal> item_price, System.Nullable<int> amount, string descr, string image, System.Nullable<int> rdr) {
-            System.Data.SqlClient.SqlCommand command = this.CommandCollection[2];
+        [System.ComponentModel.DataObjectMethodAttribute(System.ComponentModel.DataObjectMethodType.Insert, false)]
+        public virtual int InsertQuery(System.Guid guididx, string name, System.Nullable<int> item_group_idx, System.Nullable<int> parent_idx, System.Nullable<decimal> item_price, System.Nullable<int> amount, string descr, string image, System.Nullable<int> rdr, System.Nullable<int> expires_after, System.Nullable<decimal> full_price, System.Nullable<int> limit) {
+            System.Data.SqlClient.SqlCommand command = this.CommandCollection[3];
             command.Parameters[0].Value = ((System.Guid)(guididx));
             if ((name == null)) {
                 command.Parameters[1].Value = System.DBNull.Value;
@@ -1079,6 +1228,24 @@ SELECT idx, guididx, name, item_group_idx, parent_idx, item_price, amount, descr
             else {
                 command.Parameters[8].Value = System.DBNull.Value;
             }
+            if ((expires_after.HasValue == true)) {
+                command.Parameters[9].Value = ((int)(expires_after.Value));
+            }
+            else {
+                command.Parameters[9].Value = System.DBNull.Value;
+            }
+            if ((full_price.HasValue == true)) {
+                command.Parameters[10].Value = ((decimal)(full_price.Value));
+            }
+            else {
+                command.Parameters[10].Value = System.DBNull.Value;
+            }
+            if ((limit.HasValue == true)) {
+                command.Parameters[11].Value = ((int)(limit.Value));
+            }
+            else {
+                command.Parameters[11].Value = System.DBNull.Value;
+            }
             System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & System.Data.ConnectionState.Open) 
                         != System.Data.ConnectionState.Open)) {
@@ -1098,8 +1265,9 @@ SELECT idx, guididx, name, item_group_idx, parent_idx, item_price, amount, descr
         
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int UpdateItem(string name, System.Nullable<decimal> item_price, System.Nullable<int> amount, System.Nullable<int> rdr, int Original_idx) {
-            System.Data.SqlClient.SqlCommand command = this.CommandCollection[3];
+        [System.ComponentModel.DataObjectMethodAttribute(System.ComponentModel.DataObjectMethodType.Update, false)]
+        public virtual int UpdateItem(string name, System.Nullable<decimal> item_price, System.Nullable<int> amount, System.Nullable<int> rdr, System.Nullable<int> expires_after, System.Nullable<decimal> full_price, System.Nullable<int> limit, int Original_idx) {
+            System.Data.SqlClient.SqlCommand command = this.CommandCollection[4];
             if ((name == null)) {
                 command.Parameters[0].Value = System.DBNull.Value;
             }
@@ -1124,7 +1292,25 @@ SELECT idx, guididx, name, item_group_idx, parent_idx, item_price, amount, descr
             else {
                 command.Parameters[3].Value = System.DBNull.Value;
             }
-            command.Parameters[4].Value = ((int)(Original_idx));
+            if ((expires_after.HasValue == true)) {
+                command.Parameters[4].Value = ((int)(expires_after.Value));
+            }
+            else {
+                command.Parameters[4].Value = System.DBNull.Value;
+            }
+            if ((full_price.HasValue == true)) {
+                command.Parameters[5].Value = ((decimal)(full_price.Value));
+            }
+            else {
+                command.Parameters[5].Value = System.DBNull.Value;
+            }
+            if ((limit.HasValue == true)) {
+                command.Parameters[6].Value = ((int)(limit.Value));
+            }
+            else {
+                command.Parameters[6].Value = System.DBNull.Value;
+            }
+            command.Parameters[7].Value = ((int)(Original_idx));
             System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & System.Data.ConnectionState.Open) 
                         != System.Data.ConnectionState.Open)) {

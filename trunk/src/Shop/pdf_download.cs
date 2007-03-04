@@ -1,6 +1,6 @@
-﻿namespace Shop.shop_item_groupTableAdapters
+﻿namespace Shop.pdf_downloadTableAdapters
 {
-   public partial class shop_item_groupTableAdapter
+   public partial class pdf_downloadTableAdapter
    {
       public System.Data.SqlClient.SqlConnection SqlConnection
       {
@@ -14,10 +14,10 @@
 namespace Shop {
 
 
-   partial class shop_item_group
+   partial class pdf_download
    {
 
-      partial class shop_item_groupDataTable
+      partial class pdf_downloadDataTable
       {
       }
    }
