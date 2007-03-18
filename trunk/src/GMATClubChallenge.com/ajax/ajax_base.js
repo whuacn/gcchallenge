@@ -11,11 +11,13 @@ else if (window.ActiveXObject)
 return objXMLHttp;
 }
 
-var http = getHTTPObject();
+
 
 
 function exec_http_req(remote_handler,vars,handler)
 {
+   var http = getHTTPObject();
+
    var url = "handler.ajx.aspx?handler_name="+encodeURI(remote_handler);
    var h_part="";
    if(null!=vars)
