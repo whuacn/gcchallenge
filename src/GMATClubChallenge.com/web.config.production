@@ -11,7 +11,7 @@
         </appSettings>
         <system.web>
                 <httpHandlers>
-                        <add verb="GET" path="*.ajx" type="GmatClubTest.Web.AjaxRequestHandler"/>
+                        <add verb="GET" path="*.ajx.aspx" type="GmatClubTest.Web.AjaxRequestHandler"/>
                 </httpHandlers>
 
                 <roleManager enabled="true"/>
@@ -83,7 +83,7 @@
         <system.net>
                 <mailSettings>
                         <smtp from="undead">
-                                <network host="mail.malva.ua" password="#lude" userName="undead"/>
+                                <network host="" password="" userName="undead"/>
                         </smtp>
                 </mailSettings>
         </system.net>

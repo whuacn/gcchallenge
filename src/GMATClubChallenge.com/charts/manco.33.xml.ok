@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Charts>
+        <ComponentLayout BorderSize="0">
+                <Frame>
+                        <Top></Top>
+                        <Middle>
+                                <Fill Color="FF7688DD" 
+                                        IsHatch="False" 
+                                        GradientType="Vertical" 
+                                        ShowShadow="False" 
+                                        GradientColor="FFCBD1F5">
+                                        
+                                        <Border Type="None" 
+                                                Color="FF7688DD" 
+                                                Width="1" 
+                                                CornerRadius="20" />
+                                </Fill>
+                        </Middle>
+                        <Bottom></Bottom>
+                </Frame>
+        </ComponentLayout>
+        <Chart>
+                <Layout Type="Area">
+                        <Legend Placement="TopLeft">
+                                <Style Color="FF000000">
+                                        <Font Name="Arial" 
+                                                Size="8" 
+                                                Bold="True" 
+                                                Italic="False" 
+                                                Strikeout="False" 
+                                                Underline="False" />
+                                        <Fill Color="00FFFFFF" 
+                                                IsHatch="False" 
+                                                GradientType="None" 
+                                                ShowShadow="False" />
+                                </Style>
+                        </Legend>
+                        <PlotArea>
+                                <Fill Color="007688DD" />
+                        </PlotArea>
+                        <ScaleAndGrid AxisColor="FF0061C1" AxisWidth="1" TickLength="1">
+                                <Scale MinorUnit="1" />
+                                <Grid CategoryMajor="True" 
+                                        CategoryMajorColor="FF000000" 
+                                        CategoryMinor="False" 
+                                        CategoryMinorColor="FF00FFFF"
+                                        ValueMajor="True" 
+                                        ValueMajorColor="FF000000" 
+                                        ValueMinor="False" 
+                                        ValueMinorColor="FF000000"
+                                        ZeroLineColor="FFFF0000">
+                                </Grid>
+                        </ScaleAndGrid>
+                        <Element BorderWidth="0" 
+                                BorderColor="White" 
+                                ShowValues="True" 
+                                RoundPercentTo="0.01" />
+                        <DataGrid Show="False" ShowHorizontal="True">
+                                <Style Color="Blue">
+                                        <Fill Color="White">
+                                                <Border Type="Rectangle3D" Color="Gray" Width="2"/>
+                                        </Fill>
+                                </Style>
+                        </DataGrid>
+                        <Categories>
+                                <Title Text="" Align="Center">
+                                        <Style Color="FF0061C1">
+                                                <Font Name="Arial" 
+                                                        Size="12" 
+                                                        Bold="True" 
+                                                        Italic="False" 
+                                                        Strikeout="False" 
+                                                        Underline="False" />
+                                        </Style>
+                                </Title>
+                                <Label Escapement="0">
+                                        <Style Color="FF0061C1">
+                                                <Font Name="Arial" 
+                                                        Size="10" 
+                                                        Bold="True" 
+                                                        Italic="False" 
+                                                        Strikeout="False" 
+                                                        Underline="False" />
+                                        </Style>
+                                </Label>
+                                <Tooltip Format="Tooltip for a {0}: {1}, {2}%" />
+                                <Category Name="Cat1"><Title Text="1"/></Category>
+                                <Category Name="Cat2"><Title Text="2"/></Category>
+                                <Category Name="Cat3"><Title Text="3"/></Category>
+                                <Category Name="Cat4"><Title Text="4"/></Category>
+                                <Category Name="Cat5"><Title Text="5"/></Category>
+                                <Category Name="Cat6"><Title Text="6"/></Category>
+                                <Category Name="Cat7"><Title Text="7"/></Category>
+                                <Category Name="Cat8"><Title Text="8"/></Category>
+                        </Categories>
+                        <SeriesList>
+                                <Series Name="Ser1">
+                                        <ScaleAndGrid>
+                                                <Scale/>
+                                                <Grid ZeroLineColor="00FFFFFF">
+                                                </Grid>
+                                        </ScaleAndGrid>
+                                        <Title Text="Series 1">
+                                                <Style>
+                                                        <Fill Color="#7FA00000" ShowShadow="True">
+                                                                <Border Color="FFA00000" 
+                                                                        Width="0" 
+                                                                        Type="RoundedRectangle3D" 
+                                                                        CornerRadius="6" />
+                                                        </Fill>
+                                                </Style>
+                                        </Title>
+                                </Series>
+                        </SeriesList>
+                        <Values>
+                                <Label Escapement="0">
+                                        <Style Color="FF0061C1">
+                                                <Font Name="Arial" 
+                                                        Size="7" 
+                                                        Bold="True" 
+                                                        Italic="False" 
+                                                        Strikeout="False" 
+                                                        Underline="False" />
+                                        </Style>
+                                </Label>
+                                <ElementLabel Escapement="0">
+                                        <Style Color="#FFFFFFFF">
+                                                <Font Name="Arial" 
+                                                        Size="8" 
+                                                        Bold="True" 
+                                                        Italic="False" 
+                                                        Strikeout="False" 
+                                                        Underline="False" />
+                                        </Style>
+                                </ElementLabel>
+                                <Tooltip Format="Tooltip for a {0}, {1}: {2}, {3}%" />
+                        </Values>
+                        <ChartSpecific>
+                                <Area LineWidth="1" SplineTension="0.5" ShowDataPoints="True" />
+                                <Doughnut InnerRadius="50" />
+                                <Funnel Type="Width" TrunkWidth="20" TrunkHeight="20"/>
+                                <Line LineWidth="1" SplineTension="0.5" ShowDataPoints="True" />
+                                <StepLine LineWidth="1" ShowDataPoints="True" />
+                        </ChartSpecific>
+                </Layout>
+                <Data>
+                        <Value Series="Ser1" Category="Cat1" Value="15"/>
+                        <Value Series="Ser1" Category="Cat2" Value="2"/>
+                        <Value Series="Ser1" Category="Cat3" Value="12"/>
+                        <Value Series="Ser1" Category="Cat4" Value="10"/>
+                        <Value Series="Ser1" Category="Cat5" Value="12"/>
+                        <Value Series="Ser1" Category="Cat6" Value="12"/>
+                        <Value Series="Ser1" Category="Cat7" Value="12"/>
+                </Data>
+        </Chart>
+</Charts>

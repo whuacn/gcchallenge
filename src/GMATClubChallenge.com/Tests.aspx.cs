@@ -32,30 +32,33 @@ namespace GMATClubTest.Web
          {
             readAllContents();   
          }
-         string ret="";
+         string ret = "<table cellpadding='0' cellspacing='0' border='0' width='100%'><tr><td width='100%'>&nbsp;</td><td width='90'>&nbsp;</td></tr>";
          foreach(BindedTests.binded_testsRow i in bts.binded_tests)
          {
+            
             if(i.idx==idx)
             {
+               ret += "<tr>";
                if(i.type==1)
                {
                   if (!i.IschidxNull())
                   {
-                     ret += String.Format("<a href='javascript:on_shop_item_click({3},\"group\",-1);'>{1}</a><div style='font-size: 8pt;'>{2}</div><hr style='height: 1px'/>", i.chidx, i.ch_name, show_descr(i.IsdescrNull() ? "" : i.descr, 0), i.chidx);
+                     ret += String.Format("<td colspan='2'><a href='javascript:on_shop_item_click({3},\"group\",-1);'>{1}</a><div style='font-size: 8pt;'>{2}</div><hr style='height: 1px'/></td>", i.chidx, i.ch_name, show_descr(i.IsdescrNull() ? "" : i.descr, 0), i.chidx);
                   }
                }
                if(i.type==2 || i.type==3)
                {
                   if(!i.IschidxNull())
                   {
-                     ret += String.Format("<a href='javascript:on_shop_item_click({0},\"{3}\",{2});'>{1}</a><br/>", i.chidx, i.ch_name,i.idx,i.type==2?"test":"download");
+                     ret += String.Format("<td><a href='javascript:on_shop_item_click({0},\"{3}\",{2});'>{1}</a></td><td valign='top'>{4}</td>", i.chidx, i.ch_name, i.idx, i.type == 2 ? "test" : "download",i.type==2?rdrawer.draw(i.chidx,i.rating):"&nbsp;");
                   }
                }
-
-            }   
+               ret += "</tr>";
+            }
             
          }
 
+         ret+="</table>";
          return ret;
          
       }
@@ -97,6 +100,7 @@ namespace GMATClubTest.Web
       {
          return "show_tests";
       }
+      protected RatingDrawer rdrawer=new RatingDrawer(false);
 
    }
 }

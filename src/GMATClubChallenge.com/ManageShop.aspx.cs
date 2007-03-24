@@ -21,6 +21,8 @@ namespace GMATClubTest.Web
       public override void DoLoad(object sender, EventArgs e)
       {
          if (null != Session["created_flag"]) created_flag = ((Boolean)Session["created_flag"]);
+         
+         
          usersgrid.PageSize = 90;
          errorText.Visible = false;
          curpanel=Request["panel"];
@@ -31,7 +33,7 @@ namespace GMATClubTest.Web
          curpanel_idx=getPanelIdx(curpanel);
          switchPanel();
          ((GMATClubTest.Web.MainLayout)(Master)).setPageHead("Shop manager - " + annotation(curpanel));
-         
+
          if(!IsPostBack)
          {
             if(null!=Request["q"]) 
@@ -234,6 +236,12 @@ namespace GMATClubTest.Web
          Shop.pdf_downloadTableAdapters.pdf_downloadTableAdapter inst = (Shop.pdf_downloadTableAdapters.pdf_downloadTableAdapter)e.ObjectInstance;
          inst.SqlConnection = connection_;
       }
+      protected void usersDso_ObjectCreated(object sender, ObjectDataSourceEventArgs e)
+      {
+         AccessControl.acl_userTableAdapters.base_user_infoTableAdapter inst = (AccessControl.acl_userTableAdapters.base_user_infoTableAdapter)e.ObjectInstance;
+         inst.SqlConnection = connection_;
+      }
+      
       protected void row_Updated(object sender, ObjectDataSourceStatusEventArgs e)
       {
 

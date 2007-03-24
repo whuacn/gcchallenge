@@ -39,6 +39,7 @@ namespace GMATClubTest.Web
                                        {
                                           return;
                                        }
+         Session["UserId"] = access_manager_.UserId;
          string fn_ = current_function_name();                                       
          try
          {
@@ -53,10 +54,15 @@ namespace GMATClubTest.Web
             {
                DoLoad(sender, e);
             }
+            
             catch(System.Exception eee)
             {
                show_error_(eee,true);
             }
+         }
+         catch(System.Threading.ThreadAbortException ee)
+         {
+         
          }
          catch(System.Exception ee)
          {
@@ -65,10 +71,15 @@ namespace GMATClubTest.Web
          }
       }
 
-      public virtual void on_logon() { manager_.UserId = access_manager_.UserId; }
+      public virtual void on_logon() 
+      {
+         Session["UserId"] = access_manager_.UserId;
+         manager_.UserId = access_manager_.UserId; 
+      }
 
       public virtual bool on_logof() 
       {
+         Session["UserId"] = null;
          manager_.UserId = access_manager_.UserId;
          
          string logoff_page = System.Configuration.ConfigurationManager.AppSettings["AccessManager.ByePage"];

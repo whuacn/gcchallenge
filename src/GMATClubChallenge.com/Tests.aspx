@@ -1,4 +1,7 @@
 <%@ Page Language="C#" MasterPageFile="~/MainLayout.master" AutoEventWireup="true" CodeFile="Tests.aspx.cs" Inherits="GMATClubTest.Web.Tests" Title="Tests" %>
+<asp:Content ID="Content3" ContentPlaceHolderID="add_js" Runat="Server">
+<script type="text/javascript" language="javascript" src="js/rate_it.js"></script>
+</asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="content" Runat="Server">
 <script type="text/javascript">
 function on_shop_item_click(idx,type,pkg)
@@ -76,7 +79,7 @@ function on_shop_item_click(idx,type,pkg)
    <asp:SqlDataSource ID="data" runat="server" ConnectionString="<%$ ConnectionStrings:gmatConnectionString %>"
       SelectCommand="SELECT [name], [idx], [guididx], [descr], [rdr] FROM [shop_item] where rdr!=-1 ORDER BY [rdr]">
    </asp:SqlDataSource>
-   &nbsp;&nbsp;
+   &nbsp;&nbsp;&nbsp;&nbsp;
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ajax_windows" Runat="Server">
       <div style="width:500px; visibility:hidden; background-color: #FFFBB7; border: solid 1px #C3C1A8; text-align: left;" id="cnt" >

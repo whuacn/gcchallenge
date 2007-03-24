@@ -22,7 +22,13 @@ namespace GMATClubTest.Web
    {
       protected void Page_Load(object sender, EventArgs e)
       {
-         apanel = (Request["panel"] != null) ? Request["panel"].ToString() : "tests";
+         testsTaken = 0;
+         exercises = 0;
+         math = 0;
+         verbal = 0;
+         overall = 0;
+
+         apanel = (Request["panel"] != null) ? Request["panel"].ToString() : "main";
 
          base.Page_Load(sender, e);
         
@@ -32,28 +38,17 @@ namespace GMATClubTest.Web
       }
       public override void DoLoad(object sender, EventArgs e)
       {
-         if (apanel == "profile") ((GMATClubTest.Web.MainLayout)(Master)).setPageHead("User profile");
+         if (apanel == "main") ((GMATClubTest.Web.MainLayout)(Master)).setPageHead("User: "+access_manager_.UserLogin);
+         if (apanel == "profile") ((GMATClubTest.Web.MainLayout)(Master)).setPageHead("User profile (" + access_manager_.UserLogin+") ");
          if (apanel == "tests") ((GMATClubTest.Web.MainLayout)(Master)).setPageHead("Bought items");
          if (apanel == "results") ((GMATClubTest.Web.MainLayout)(Master)).setPageHead("User results");
-         
       }
 
       
-      protected void showTests()
-      {
-         ta.SqlConnection = base.connection_;
-         ta.FillByOwner(sold_items._shop_sold_item, access_manager_.UserGuid);
-         sold_items_sorted=Shop.ShopManager.sort_sold_items(sold_items);
-         gvTests.DataSource = sold_items_sorted;
-         gvTests.DataBind();
-
-         pTests.Visible = true;
-
-      }
-
 
       public override string current_function_name()
       {
+         if(apanel=="main") return "user_total";
          if(apanel=="profile") return "manage_profile";
          if(apanel=="results") return "show_results";
          if(apanel=="tests")   return "show_user_bought";
@@ -62,9 +57,15 @@ namespace GMATClubTest.Web
 
       protected void showPanel(string name)
       {
+         pMain.Visible = false;
          pResults.Visible = false;
          pTests.Visible = false;
          pProfile.Visible = false;
+         
+         if("main" == name)
+         {
+            showMain();   
+         }         
          if ("tests" == name)
          {
             showTests();
@@ -110,6 +111,29 @@ namespace GMATClubTest.Web
       /// ///////////////////////////////////////////////////////////////////
       /// 
 
+      protected void showMain()
+      {
+         pMain.Visible=true;
+         try
+         {
+            resultsGrid2.DataBind();
+         }
+         catch
+         { }
+         
+      }
+      
+      protected void showTests()
+      {
+         ta.SqlConnection = base.connection_;
+         ta.FillByOwner(sold_items._shop_sold_item, access_manager_.UserGuid);
+         sold_items_sorted = Shop.ShopManager.sort_sold_items(sold_items);
+         gvTests.DataSource = sold_items_sorted;
+         gvTests.DataBind();
+
+         pTests.Visible = true;
+      }
+      
       protected void showResults()
       {
          if (!IsPostBack)
@@ -134,7 +158,7 @@ namespace GMATClubTest.Web
                Session["IsEndTest"] = false;
                int resId = resultsSet.Results[resultsSet.Results.Count - 1].Id;
                Session.Add("resultId", resId);
-               Session["pageSender"] = "ResultsWebForm.aspx";
+               Session["pageSender"] = "ManagePersonal.aspx?panel=results";
                Response.Redirect("ResultDetailsWebForm.aspx");
                return;
             }
@@ -227,7 +251,7 @@ namespace GMATClubTest.Web
          int i = ((DataGrid)(sender)).SelectedIndex;
          int resId = resultsSet.Results[i].Id;
          Session.Add("resultId", resId);
-         Session["pageSender"] = "resultsWebForm.aspx";
+         Session["pageSender"] = "ManagePersonal.aspx?panel=results";
          Response.Redirect("resultDetailsWebForm.aspx");
       }
 
@@ -291,6 +315,12 @@ namespace GMATClubTest.Web
       Shop.shop_sold_itemTableAdapters.shop_sold_itemTableAdapter ta = new Shop.shop_sold_itemTableAdapters.shop_sold_itemTableAdapter();
       Shop.shop_sold_item sold_items = new Shop.shop_sold_item();
       Shop.shop_sold_item sold_items_sorted = new Shop.shop_sold_item();
+      
+      protected int testsTaken;
+      protected int exercises;
+      protected int math;
+      protected int verbal;
+      protected int overall;
 
       
       protected void chgPwd_Click(object sender, EventArgs e)
@@ -326,6 +356,44 @@ namespace GMATClubTest.Web
             base.show_error_(ee, true);
          }
 
+      }
+      protected void tinyResGv_SelectedIndexChanged(object sender, EventArgs e)
+      {
+
+      }
+      protected void ctView_RowCommand(object sender, GridViewCommandEventArgs e)
+      {
+         string nme=e.CommandName;
+         int i = Convert.ToInt32(e.CommandArgument);
+         int idx = Int32.Parse(((Label)ctView.Rows[i].Cells[0].FindControl("id_lbl")).Text);
+
+         if(nme=="edt")
+         {
+            Response.Redirect(String.Format("CreateCustomTest.aspx?idx={0}",idx));      
+         }
+         
+         if(nme=="del")
+         {
+            if(CustomTestsLogic.is_owner(idx,access_manager_))
+            {
+               CustomTestsLogic.del_test(((System.Data.SqlClient.SqlConnection)access_manager_.Connection), idx);
+               ctView.DataBind();
+            }
+
+         }
+      }
+      protected void OnResultSelect_Click(object sender, EventArgs e)
+      {
+
+      }
+      protected void resultsGrid2_SelectedIndexChanged(object sender, EventArgs e)
+      {
+         int i=((GridView)(sender)).SelectedIndex;
+         int resId=Int32.Parse(((Label)((GridView)(sender)).Rows[i].Cells[0].FindControl("idlbl")).Text);
+         
+         Session.Add("resultId", resId);
+         Session["pageSender"] = "ManagePersonal.aspx?panel=main";
+         Response.Redirect("resultDetailsWebForm.aspx");
       }
 }
 }

@@ -1,11 +1,147 @@
 <%@ Page Language="C#" MasterPageFile="~/MainLayout.master" AutoEventWireup="true" CodeFile="ManagePersonal.aspx.cs" Inherits="GMATClubTest.Web.ManagePersonal" Title="User profile" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="content" Runat="Server">
    &nbsp;
+   <asp:HyperLink ID="lMain" runat="server" NavigateUrl="ManagePersonal.aspx?panel=main">[Main]</asp:HyperLink>
+   |
    <asp:HyperLink ID="lTests" runat="server" NavigateUrl="ManagePersonal.aspx?panel=tests">[Active tests]</asp:HyperLink>
    |
    <asp:HyperLink ID="lProfile" runat="server" NavigateUrl="ManagePersonal.aspx?panel=profile">[Profile settings]</asp:HyperLink>
    |
-   <asp:HyperLink ID="lResults" runat="server" NavigateUrl="ManagePersonal.aspx?panel=results">[Results]</asp:HyperLink>
+   <asp:HyperLink ID="lResults" runat="server" NavigateUrl="ManagePersonal.aspx?panel=results">[Results]</asp:HyperLink>&nbsp;
+   <asp:Panel ID="pMain" runat="server" Height="50px" Width="100%">
+      <b>Main:</b>
+      <table border="1" cellspacing="0" cellpadding="0" width="100%" >
+      	<tr>
+      		<td width="50%" valign="top" style="height: 158px">
+               <asp:GridView ID="resultsGrid2" runat="server" AutoGenerateColumns="False"
+                  DataKeyNames="mid" DataSourceID="shortResults" Width="100%" OnSelectedIndexChanged="resultsGrid2_SelectedIndexChanged">
+                  <Columns>
+                     <asp:TemplateField HeaderText="Id" SortExpression="Id" Visible="False">
+                        <ItemTemplate>
+                           <asp:Label ID="idlbl" runat="server" Text='<% # DataBinder.Eval(Container.DataItem,"mid") %>'></asp:Label>
+                        </ItemTemplate>
+                     </asp:TemplateField>
+                        
+                     <asp:ButtonField  HeaderText="Review your results" CommandName="Select" SortExpression="Name" DataTextField="Name"  >
+                        <ItemStyle CssClass="itt" Width="250px" />
+                     </asp:ButtonField>
+                     <asp:TemplateField HeaderText="At" SortExpression="met">
+                        <ItemTemplate>
+                           <asp:Label ID="Label1" runat="server" Text='<%# ((DateTime)DataBinder.Eval(Container.DataItem,"met")).Date.ToShortDateString() %>'></asp:Label>
+                        </ItemTemplate>
+                     </asp:TemplateField>
+                     <asp:TemplateField HeaderText="Score" SortExpression="Result">
+                        <ItemTemplate>
+                           <asp:Label ID="Label2" runat="server" Text='<%# (bool)DataBinder.Eval(Container.DataItem,"IsPractice")==false?(DataBinder.Eval(Container.DataItem,"Result")+"th"):(DataBinder.Eval(Container.DataItem,"max_score")+"/"+DataBinder.Eval(Container.DataItem,"q_cnt")) %>'></asp:Label>
+                        </ItemTemplate>
+                     </asp:TemplateField>
+                  </Columns>
+                  <HeaderStyle BackColor="LightSteelBlue" />
+                  <AlternatingRowStyle BackColor="#C0C0FF" />
+               </asp:GridView>
+               <asp:SqlDataSource 
+               ID="shortResults" runat="server" 
+               ConnectionString="<%$ ConnectionStrings:gmatConnectionString %>" 
+               ProviderName="<%$ ConnectionStrings:gmatConnectionString.ProviderName %>" 
+               SelectCommand="SELECT TOP 4 results.mid, results.met, Tests.IsPractice, Tests.Name, results.ge * 100 / results.all_cnt AS Result, results.max_score, q_cnt.value AS q_cnt FROM (SELECT Results_3.TestId AS tid, MAX(all_res.cnt) AS all_cnt, COUNT(1) AS ge, MAX(us.max_score) AS max_score, MAX(us.mid) AS mid, MAX(us.met) AS met FROM Results AS Results_3 INNER JOIN (SELECT MAX(EndTime) AS met, MAX(Id) AS mid, MAX(Score) AS max_score, TestId FROM Results AS Results_1 WHERE (UserId = @UserId) GROUP BY TestId) AS us ON us.TestId = Results_3.TestId AND us.max_score >= Results_3.Score INNER JOIN (SELECT TestId, COUNT(1) AS cnt FROM Results AS Results_2 GROUP BY TestId) AS all_res ON all_res.TestId = Results_3.TestId GROUP BY Results_3.TestId) AS results INNER JOIN Tests ON results.tid = Tests.Id INNER JOIN (SELECT TestContents.TestId AS id, SUM(QuestionSets.NumberOfQuestionsToPick) AS value FROM TestContents INNER JOIN QuestionSets ON TestContents.QuestionSetId = QuestionSets.Id GROUP BY TestContents.TestId) AS q_cnt ON q_cnt.id = Tests.Id ORDER BY results.mid DESC">
+                  <SelectParameters>
+                     <asp:SessionParameter Name="UserId" SessionField="UserId" />
+                  </SelectParameters>
+               </asp:SqlDataSource>
+               &nbsp;<b>Custom tests</b>
+               <asp:GridView ID="ctView" runat="server" AutoGenerateColumns="False" DataKeyNames="Id"
+                  DataSourceID="customTests" Width="100%" Font-Bold="False" GridLines="None" OnRowCommand="ctView_RowCommand">
+                  <Columns>
+                     <asp:TemplateField HeaderText="Id" InsertVisible="False" SortExpression="Id" Visible="False">
+                        <ItemTemplate>
+                           <asp:Label ID="id_lbl" runat="server" Text='<%# Bind("Id") %>'></asp:Label>
+                        </ItemTemplate>
+                     </asp:TemplateField>
+                     <asp:TemplateField HeaderText="Name" SortExpression="Name">
+                        <ItemStyle Width="200px" />
+                        <ItemTemplate>
+                           <asp:HyperLink ID="HyperLink1" runat="server" Text='<%# Bind("Name") %>' NavigateUrl='<%# "StartTest.aspx?idx="+DataBinder.Eval(Container.DataItem,"Id")+"&type=test&pkg_idx=-1" %>'></asp:HyperLink>
+                        </ItemTemplate>
+                     </asp:TemplateField>
+                     <asp:TemplateField HeaderText="Created" SortExpression="created">
+                        <ItemTemplate>
+                           <asp:Label ID="Label1" runat="server" Text='<%# ((DateTime)DataBinder.Eval(Container.DataItem,"created")).Date.ToShortDateString() %>'></asp:Label>
+                        </ItemTemplate>
+                        <ItemStyle Width="80px" />
+                     </asp:TemplateField>
+                     <asp:TemplateField HeaderText="Rating" SortExpression="rating">
+                        <ItemTemplate>
+                           <asp:Image ID="img_rate" runat="server" ImageUrl='<%# "Rating.aspx?r="+DataBinder.Eval(Container.DataItem,"rating") %>'></asp:Image>
+                        </ItemTemplate>
+                     </asp:TemplateField>
+                     <asp:ButtonField Text="[edit]" CommandName="edt" />
+                     <asp:ButtonField Text="[del]" CommandName="del"/>
+                  </Columns>
+                  <HeaderStyle Font-Bold="True" />
+               </asp:GridView>
+               <asp:SqlDataSource ID="customTests" runat="server" ConnectionString="<%$ ConnectionStrings:gmatConnectionString %>"
+                  SelectCommand="SELECT     Tests.Id, Tests.Name, Tests.rating, CustomTests.created&#13;&#10;FROM         CustomTests INNER JOIN&#13;&#10;                      Tests ON CustomTests.test_id = Tests.Id&#13;&#10;WHERE     (CustomTests.author = @UserId)">
+                  <SelectParameters>
+                     <asp:SessionParameter Name="UserId" SessionField="UserId" />
+                  </SelectParameters>
+               </asp:SqlDataSource>
+               
+               <asp:HyperLink ID="create_ct" runat="server" NavigateUrl="CreateCustomTest.aspx">[Create custom Test]</asp:HyperLink>
+               <hr style="width:100%; height:1 px" />
+               <B>Mistake Analysis (All Tests and Exercises)<br />
+               </B>&nbsp;<asp:SqlDataSource ID="mistakes" runat="server" ConnectionString="<%$ ConnectionStrings:gmatConnectionString %>"
+                  SelectCommand="SELECT correct_answers * 100 / (CASE WHEN all_answers = 0 OR all_answers IS NULL THEN 1 ELSE all_answers END) AS Value, Name FROM (SELECT COUNT(Answers.Id) AS all_answers, SUM(CASE WHEN Answers.IsCorrect = 1 THEN 1 ELSE 0 END) AS correct_answers, QuestionSubtypes.Name FROM Results RIGHT OUTER JOIN ResultsDetails ON Results.Id = ResultsDetails.ResultId RIGHT OUTER JOIN Answers ON ResultsDetails.AnswerId = Answers.Id RIGHT OUTER JOIN Questions ON Answers.QuestionId = Questions.Id RIGHT OUTER JOIN QuestionSubtypes ON Questions.SubtypeId = QuestionSubtypes.Id WHERE (Results.UserId = @UserId) OR (Results.UserId IS NULL) GROUP BY QuestionSubtypes.Name) AS tt ORDER BY Name">
+                  <SelectParameters>
+                     <asp:SessionParameter Name="UserId" SessionField="UserId" />
+                  </SelectParameters>
+               </asp:SqlDataSource>
+               <asp:GridView ID="mistakesGv" runat="server" DataSourceID="mistakes" Width="100%" AutoGenerateColumns="False" GridLines="Horizontal" ShowHeader="False">
+                  <Columns>
+                     <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name">
+                        <ItemStyle Width="60%" />
+                     </asp:BoundField>
+                     <asp:TemplateField HeaderText="Value" InsertVisible="False" SortExpression="Value">
+                        <ItemTemplate>
+                           <asp:Image ID="img_prc" runat="server" ImageUrl='<%# "ProgressBar.aspx?w=150&h=20&p="+DataBinder.Eval(Container.DataItem,"Value") %>'></asp:Image>
+                        </ItemTemplate>
+                     </asp:TemplateField>
+                  </Columns>
+               
+               </asp:GridView>
+               <br />
+               <br />
+               <br />
+               
+               
+               </td>
+      		<td width="50%" valign="top" style="height: 158px">
+               <asp:GridView ID="tinyResGv" runat="server" AutoGenerateColumns="False" DataSourceID="tinyResults"
+                  OnSelectedIndexChanged="tinyResGv_SelectedIndexChanged" Width="100%">
+                  <Columns>
+                     <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name">
+                        <ItemStyle Width="250px" />
+                     </asp:BoundField>
+                     <asp:BoundField DataField="Expr1" HeaderText="Value" ReadOnly="True" SortExpression="Expr1" />
+                  </Columns>
+                  <HeaderStyle BackColor="LightSteelBlue" />
+                  <AlternatingRowStyle BackColor="#C0C0FF" />
+               </asp:GridView>
+               <asp:SqlDataSource ID="tinyResults" runat="server" ConnectionString="<%$ ConnectionStrings:gmatConnectionString %>"
+                  SelectCommand="SELECT Name, COALESCE (Result, 0) AS Expr1 FROM (SELECT 100 AS rdr, QuestionTypes.Name, AVG(results.ge * 100 / results.all_cnt) AS Result FROM (SELECT Results_3.TestId AS tid, MAX(all_res.cnt) AS all_cnt, COUNT(1) AS ge, MAX(us.max_score) AS max_score, MAX(us.mid) AS mid FROM Results AS Results_3 INNER JOIN (SELECT MAX(Id) AS mid, MAX(Score) AS max_score, TestId FROM Results AS Results_1 WHERE (UserId = @UserId) GROUP BY TestId) AS us ON us.TestId = Results_3.TestId AND us.max_score >= Results_3.Score INNER JOIN (SELECT TestId, COUNT(1) AS cnt FROM Results AS Results_2 GROUP BY TestId) AS all_res ON all_res.TestId = Results_3.TestId GROUP BY Results_3.TestId) AS results INNER JOIN Tests ON results.tid = Tests.Id INNER JOIN (SELECT TestContents.TestId AS id, SUM(QuestionSets.NumberOfQuestionsToPick) AS value FROM TestContents INNER JOIN QuestionSets ON TestContents.QuestionSetId = QuestionSets.Id GROUP BY TestContents.TestId) AS q_cnt ON q_cnt.id = Tests.Id INNER JOIN QuestionTypes ON Tests.QuestionTypeId = QuestionTypes.Id GROUP BY QuestionTypes.Name UNION SELECT 1 AS rdr, 'Tests Taken' AS Expr1, COUNT(1) AS Result FROM Results AS Results_4 INNER JOIN Tests AS Tests_1 ON Tests_1.Id = Results_4.TestId AND Results_4.UserId = @UserId UNION SELECT 2 AS rdr, 'Exercises' AS Expr1, SUM(CASE WHEN Tests_1.isPractice = 1 THEN 1 ELSE 0 END) AS Result FROM Results AS Results_4 INNER JOIN Tests AS Tests_1 ON Tests_1.Id = Results_4.TestId AND Results_4.UserId = @UserId) AS trs ORDER BY rdr">
+                  <SelectParameters>
+                     <asp:SessionParameter Name="UserId" SessionField="UserId" />
+                  </SelectParameters>
+               </asp:SqlDataSource>
+               <asp:Image ID="mathImage" runat="server" Height="160px" ImageUrl="UserChart.aspx?w=370&h=160&t=1" Width="370px" />
+               <hr style="width:100%; height: 1px;" />
+               <asp:Image ID="Image2" runat="server" Height="160px" ImageUrl="UserChart.aspx?w=370&h=160&t=2" Width="370px" />
+               <hr style="width:100%; height: 1px;" />
+               <asp:Image ID="Image3" runat="server" Height="160px" ImageUrl="UserChart.aspx?w=370&h=160&t=3" Width="370px" />
+               </td>
+      	</tr>
+      </table>
+   </asp:Panel>
+   
    <asp:Panel ID="pTests" runat="server" Height="50px" Width="100%">
       <b>Active tests:</b><asp:GridView ID="gvTests" runat="server" AutoGenerateColumns="False" CellPadding="0" Width="100%">
          <Columns>
