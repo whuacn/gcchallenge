@@ -247,7 +247,7 @@ namespace GMATClubTest.Web
             if (!((navigator.HasNextSet) || (navigator.HasNextQuestion)))
             {
                 navigator.CommitResult();
-                _reviewWebForm.Response.Redirect("resultsWebForm.aspx");
+                _reviewWebForm.Response.Redirect("ManagePersonal.aspx?panel=results");
             }
             else
             {

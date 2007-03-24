@@ -118,7 +118,7 @@
    &nbsp;<asp:ObjectDataSource ID="usersDso" runat="server" DeleteMethod="DeleteUser"
          InsertMethod="InsertUserAdv" OldValuesParameterFormatString="original_{0}" 
          SelectMethod="GetData"
-         TypeName="AccessControl.acl_userTableAdapters.base_user_infoTableAdapter" UpdateMethod="UpdateUserAdv">
+         TypeName="AccessControl.acl_userTableAdapters.base_user_infoTableAdapter" UpdateMethod="UpdateUserAdv" OnObjectCreated="usersDso_ObjectCreated">
          <InsertParameters>
             <asp:Parameter Name="guididx" Type="String" />
             <asp:Parameter Name="login" Type="String" />

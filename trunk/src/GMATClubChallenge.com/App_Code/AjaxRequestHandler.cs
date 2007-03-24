@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
+using System.Data.SqlClient;
 using System.Text;
 using System.Web;
 using System.Web.SessionState ;
 using GmatClubTest.BusinessLogic;
+
 using AccessControl;
 using Shop;
 using GmatClubTest.Web;
@@ -134,21 +136,58 @@ namespace GmatClubTest.Web
                context.Response.Write(Shop.ShopManager.purchase_items(conn_, context.Request, am, tr));
                processed = true;
             }
+            if ("CustomTestsLogic::list_types" == function)
+            {
+               context.Response.ContentType = "text/xml";
+               context.Response.Write(GmatClubTest.BusinessLogic.CustomTestsLogic.list_types(conn_));
+               processed = true;
+            }
+            if ("CustomTestsLogic::list_subtypes" == function)
+            {
+               context.Response.ContentType = "text/xml";
+               context.Response.Write(GmatClubTest.BusinessLogic.CustomTestsLogic.list_subtypes(conn_));
+               processed = true;
+            }
+            
             if ("CustomTestsLogic::list_questions" == function)
             {
                context.Response.ContentType="text/xml";
                context.Response.Write(GmatClubTest.BusinessLogic.CustomTestsLogic.list_tests(conn_));
                processed = true;
             }
-
-            //tr.Commit();
+            if ("CustomTestsLogic::list_q_in_test" == function)
+            {
+               context.Response.ContentType="text/plain";
+               context.Response.Write(GmatClubTest.BusinessLogic.CustomTestsLogic.list_q_in_test(conn_,context.Request));
+               processed = true;
+            }
+            if ("CustomTestsLogic::create_test" == function)
+            {
+               context.Response.ContentType = "text/plain";
+               context.Response.Write(GmatClubTest.BusinessLogic.CustomTestsLogic.create_test(conn_, context.Request,am));
+               processed = true;            
+            }
+            if ("StatisticCollector::updateResults" == function)
+            {
+               context.Response.ContentType = "text/plain";
+               context.Response.Write(GmatClubTest.BusinessLogic.StatisticCollector.updateResults((SqlConnection)conn_));
+               processed = true;            
+            }
+            if ("StatisticCollector::rate_it" == function)
+            {
+               context.Response.ContentType = "text/plain";
+               context.Response.Write(GmatClubTest.BusinessLogic.StatisticCollector.rate_it((SqlConnection)conn_, context.Request));
+               processed = true;
+            }
+            
             am.Transaction=null;
             if(!processed) throw new System.Exception("No such handler:" + function);
          }
-         catch(System.Exception ee)
+            catch(System.Exception ee)
          {
             if(null!=tr) tr.Rollback();
-            am.Transaction = null;            
+            am.Transaction = null;
+            context.Response.ContentType = "text/plain";
             context.Response.Write("error: "+ee.Message);
          }
       }

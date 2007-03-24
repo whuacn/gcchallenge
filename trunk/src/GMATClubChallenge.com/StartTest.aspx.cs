@@ -34,7 +34,14 @@ namespace GMATClubTest.Web
          base.Page_Load(sender,e);
 
 
+
          ((GMATClubTest.Web.MainLayout)(Master)).setPageHead("Starting Test...");
+         
+         if(CustomTestsLogic.is_custom(idx,access_manager_))
+         {
+            DoTestById(idx);
+         }
+         else
          {
             try
             {
@@ -70,6 +77,10 @@ namespace GMATClubTest.Web
       {
       }
 
+      public override string current_function_name()
+      {
+         return "Common_Page";
+      }
       public override void on_access_granted()
       {
 

@@ -136,7 +136,7 @@ public class PracticeFormController : WebTestController , IPracticeFormControlle
                 navigator.CommitResult();
 
                 form.Session.Add("IsEndTest", true);
-                form.Response.Redirect("resultsWebForm.aspx");
+                form.Response.Redirect("ManagePersonal.aspx?panel=results");
             }
         }
     }
