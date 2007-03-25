@@ -16,7 +16,9 @@ function handle_rate_click(where)
 {
    
    var idx=where.alt;
-   var new_vote=event.offsetX*100/80;
+   var s=event.offsetX*100/80;
+   var new_vote=s.toString().split('.')[0];
+   
    exec_http_req(
       "StatisticCollector::rate_it", new Array("idx",idx,"vote",new_vote),
       function(error,http)

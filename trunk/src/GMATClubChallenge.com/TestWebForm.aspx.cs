@@ -41,6 +41,11 @@ namespace GMATClubTest.Web
 
         protected void Page_Load(object sender, EventArgs e)
         {
+           if (null == Session["WebTestController"])
+           {
+              Response.Redirect("Default.aspx");
+           }
+
             status = Request["isAnswerConfirm"];
 
             ((WebTestController) Session["WebTestController"]).TestWebForm_Init(this);

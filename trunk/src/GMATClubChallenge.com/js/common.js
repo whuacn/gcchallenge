@@ -32,8 +32,7 @@ function show_ajax_window(left_offset)
       elt.style.top=dragger.mouseY +'px';
       elt.style.position='absolute';
       elt.style.visibility='';
-      elt.style.zIndex=100;
-      
+//      elt.style.zIndex=10;      
       show_close_button(dragger.mouseX,dragger.mouseY);
 }
 

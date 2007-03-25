@@ -17,11 +17,21 @@ namespace GMATClubTest.Web
    {
       protected void Page_Load(object sender, EventArgs e)
       {
+         if(null == ((GMATClubTest.Web.WebTestController)Session["WebTestController"]))
+         {
+            Response.Redirect("Default.aspx");
+         }
          base.Page_Load(sender, e);
+      }
+
+      public override string current_function_name()
+      {
+         return "Common_Page";
       }
 
       public override void DoLoad(object sender, EventArgs e)
       {
+         
          if (!IsPostBack)
          {
             ((GMATClubTest.Web.WebTestController)Session["WebTestController"]).PrepareDescription(this);

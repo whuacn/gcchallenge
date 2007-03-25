@@ -21,7 +21,7 @@ namespace GMATClubTest.Web
          {
             view.Visible=false;
             adm_view.Visible=true;
-            custom_tests.SelectCommand = "select * from [custom_tests]";
+            custom_tests.SelectCommand = "select * from [custom_tests]  where (mistakes=0 or mistakes is null) ";
          }
          if(!IsPostBack)
          {
@@ -33,16 +33,16 @@ namespace GMATClubTest.Web
                String.Format("select * from [custom_tests] where (name like '%{0}%' or description like '%{0}%')", Request["q"]);
                if (access_manager_.UserMainRole != "admins")
                {
-                  custom_tests.SelectCommand+=" and ( hidden=0 or hidden is null )";   
+                  custom_tests.SelectCommand+=" and ( hidden=0 or hidden is null ) and (mistakes=0 or mistakes is null) ";   
                }
             }
             else
             {
                search_str.Text ="";
-               custom_tests.SelectCommand ="select * from [custom_tests]";
+               custom_tests.SelectCommand = "select * from [custom_tests]   where (mistakes=0 or mistakes is null) ";
                if (access_manager_.UserMainRole != "admins")
                {
-                  custom_tests.SelectCommand+=" where ( hidden=0 or hidden is null );";   
+                  custom_tests.SelectCommand += " select * from [custom_tests]  where ( hidden=0 or hidden is null ) and (mistakes=0 or mistakes is null);";   
                }
             }
          }

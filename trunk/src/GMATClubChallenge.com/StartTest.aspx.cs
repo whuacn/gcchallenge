@@ -66,7 +66,7 @@ namespace GMATClubTest.Web
             {
                DoPdfDownload(idx);
             }
-            else if ("group" == type)
+            else if ("group" == type)                         
             {
                DoSelectTest(idx);
             }
