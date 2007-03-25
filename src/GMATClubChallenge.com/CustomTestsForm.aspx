@@ -20,7 +20,7 @@
       or tricky - it is your choice! (Note: You need to have access to ALL tests.)<br />
       <br />
       <asp:SqlDataSource ID="custom_tests" runat="server" ConnectionString="<%$ ConnectionStrings:gmatConnectionString %>"
-         SelectCommand="SELECT * from [custom_tests] WHERE (hidden = 0) OR (hidden IS NULL)" OnUpdating="custom_tests_Updating" UpdateCommand="update customtests set hidden=@hidden,enabled=@enabled where Test_Id=@Id">
+         SelectCommand="SELECT * from [custom_tests] WHERE (hidden = 0 OR hidden IS NULL) and (mistakes=0 or mistakes is null)" OnUpdating="custom_tests_Updating" UpdateCommand="update customtests set hidden=@hidden,enabled=@enabled where Test_Id=@Id" DeleteCommand="delete from customtests where Test_Id=@Id; delete from questionsets where id in (select questionsetid from TestContents where testid=@Id); delete from tests where Id=@Id;" >
          <UpdateParameters>
             <asp:Parameter Name="hidden" />
             <asp:Parameter Name="enabled" />
@@ -48,9 +48,16 @@
                <ItemTemplate>
                <%# rdrawer.draw((int)DataBinder.Eval(Container.DataItem, "Id"), (int)DataBinder.Eval(Container.DataItem, "rating"))%>
                </ItemTemplate>
+               <ItemStyle Width="110" />
             </asp:TemplateField>
-            <asp:BoundField DataField="questions" HeaderText="Questions" SortExpression="questions" />
-            <asp:BoundField DataField="created" HeaderText="Created" SortExpression="created" />
+            <asp:BoundField DataField="questions" HeaderText="Size" SortExpression="questions" />
+            <asp:TemplateField SortExpression="created" HeaderText="Created">
+               <ItemTemplate>
+                  <asp:Label ID="created" runat="server" Text='<%# ((DateTime)(DataBinder.Eval(Container.DataItem,"created"))).ToShortDateString() %>'  />
+               </ItemTemplate>
+               <ItemStyle Width="80" />
+            </asp:TemplateField>
+            
             <asp:BoundField DataField="login" HeaderText="Creator" SortExpression="login" />
          </Columns>
          <HeaderStyle BackColor="#E0E0E0" />
@@ -71,19 +78,26 @@
                </ItemTemplate>
             </asp:TemplateField>
             <asp:BoundField DataField="Description" HeaderText="Description" SortExpression="Description" ReadOnly="True">
-               <ItemStyle Width="200" />
+               <ItemStyle Width="200px" />
             </asp:BoundField>
             <asp:TemplateField HeaderText="Rating" SortExpression="rating">
                <ItemTemplate>
                   <%# rdrawer.draw((int)DataBinder.Eval(Container.DataItem, "Id"), (int)DataBinder.Eval(Container.DataItem, "rating"))%>
                </ItemTemplate>
+               <ItemStyle Width="110" />
             </asp:TemplateField>
             <asp:BoundField DataField="questions" HeaderText="Size" SortExpression="questions" ReadOnly="True"/>
-            <asp:BoundField DataField="created" HeaderText="Created" SortExpression="created" ReadOnly="True"/>
+            <asp:TemplateField SortExpression="created" HeaderText="Created">
+               <ItemTemplate>
+                  <asp:Label ID="created" runat="server" Text='<%# ((DateTime)(DataBinder.Eval(Container.DataItem,"created"))).ToShortDateString() %>'  />
+               </ItemTemplate>
+               <ItemStyle Width="80" />
+            </asp:TemplateField>
             <asp:BoundField DataField="login" HeaderText="Creator" SortExpression="login" ReadOnly="True"/>
             <asp:CheckBoxField DataField="enabled" HeaderText="Enabled" SortExpression="enabled" />
             <asp:CheckBoxField DataField="hidden" HeaderText="Hidden" SortExpression="hidden" />
             <asp:CommandField ShowEditButton="True" />
+            <asp:CommandField ShowDeleteButton="True" />
          </Columns>
          <HeaderStyle BackColor="#E0E0E0" />
          <AlternatingRowStyle BackColor="Transparent" />

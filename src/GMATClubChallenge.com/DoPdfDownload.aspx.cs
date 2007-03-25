@@ -21,5 +21,9 @@ namespace GMATClubTest.Web
       {
          ((GMATClubTest.Web.MainLayout)(Master)).setPageHead("Staring PDF Download....");      
       }
+      public override string current_function_name()
+      {
+         return "Common_Page";
+      }
    }
 }

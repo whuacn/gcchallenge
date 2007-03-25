@@ -395,5 +395,6 @@ namespace GMATClubTest.Web
          Session["pageSender"] = "ManagePersonal.aspx?panel=main";
          Response.Redirect("resultDetailsWebForm.aspx");
       }
+      protected static RatingDrawer rdrawer=new RatingDrawer(false,false);
 }
 }

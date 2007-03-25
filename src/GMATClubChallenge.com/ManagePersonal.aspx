@@ -1,4 +1,99 @@
 <%@ Page Language="C#" MasterPageFile="~/MainLayout.master" AutoEventWireup="true" CodeFile="ManagePersonal.aspx.cs" Inherits="GMATClubTest.Web.ManagePersonal" Title="User profile" %>
+<asp:Content ID="Content3" ContentPlaceHolderID="add_js" Runat="Server">
+<link rel="stylesheet" type="text/css" media="all" href="calendar-blue.css" title="winter" />
+   <script type="text/javascript" language="javascript" src="js/calendar_stripped.js"></script>
+   <script type="text/javascript" language="javascript" src="js/lang/calendar-en.js"></script>
+   <script type="text/javascript" language="javascript" src="js/calendar-setup_stripped.js"></script>
+
+<script type="text/javascript" language="javascript" src="js/rate_it.js"></script>
+<script type="text/javascript" language="javascript">
+
+function validate_date(name,c)
+{
+   if(c==null)
+   {
+      alert("Date control not found. Reload page and try again");
+      return false;
+   };
+   var a=c.value.split('/');
+   if(a.length!=3)
+   {
+       alert("Incorrect '"+name+"' date provided");   
+       return false;
+   };
+   return true;   
+};
+function start_mistakes(code,name)
+{
+   
+   var fr=document.getElementById('fr_date');
+   var to=document.getElementById('to_date');
+   if(validate_date("from",fr) && validate_date("to",to))
+   {
+      document.getElementById("cnt").style.visibility='hidden';
+      var str="MistakesTest.aspx?fr="+fr.value+"&to="+to.value+"&type="+code+"&name="+name;      
+      window.location=str;
+      
+   };
+};
+function myMistakes(code,name)
+{
+
+   var data=
+   "<br/>All Your mistakes within selected period "+
+   "<br/> will be provided to You as a single test.<br/>"+
+   "<table border='0'>"+
+   "<tr><td>From: </td><td><input id='fr_date' type='text' size='18' value='' class='itt'/> <img src='i/cal.gif' id='sh_c_1' style='cursor: pointer;'/></td></tr>"+
+   "<tr><td>To:</td><td><input id='to_date' type='text' size='18' value='' class='itt'/> <img src='i/cal.gif' id='sh_c_2' style='cursor: pointer;'/></td></tr>"+
+   "<tr><td><a href='javascript: start_mistakes("+code+",\""+name+"\");'>[Start test]</a></td><td>&nbsp;</td></tr></table>";
+   
+   show_data(data);
+   
+    function catcalc1(cal) {
+        var date = cal.date;
+        var time = date.getTime()
+        // use the _other_ field
+        var field = document.getElementById("fr_date");
+        var date2 = new Date(time);
+        field.value = date2.print("%m/%d/%Y");
+    }
+    Calendar.setup({
+        inputField     :    "fr_date",   // id of the input field
+        ifFormat       :    "%m/%d/%Y",       // format of the input field
+        showsTime      :    false,
+        timeFormat     :    "24",
+        eventName      :    "click",
+        onUpdate       :    catcalc1,
+        button         :    "sh_c_1"
+    });
+    
+    function catcalc2(cal) {
+        var date = cal.date;
+        var time = date.getTime()
+        // use the _other_ field
+        var field = document.getElementById("to_date");
+        var date2 = new Date(time);
+        field.value = date2.print("%m/%d/%Y");
+    }
+    Calendar.setup({
+        inputField     :    "to_date",   // id of the input field
+        ifFormat       :    "%m/%d/%Y",       // format of the input field
+        showsTime      :    false,
+        timeFormat     :    "24",
+        eventName      :    "click",
+        onUpdate       :    catcalc2,
+        button         :    "sh_c_2"
+    });
+    
+
+   
+   
+   show_ajax_window(0);   
+};
+
+</script>
+</asp:Content>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="content" Runat="Server">
    &nbsp;
    <asp:HyperLink ID="lMain" runat="server" NavigateUrl="ManagePersonal.aspx?panel=main">[Main]</asp:HyperLink>
@@ -48,7 +143,9 @@
                      <asp:SessionParameter Name="UserId" SessionField="UserId" />
                   </SelectParameters>
                </asp:SqlDataSource>
-               &nbsp;<b>Custom tests</b>
+                                           
+               <b>Custom tests:</b>
+               <br /><br />
                <asp:GridView ID="ctView" runat="server" AutoGenerateColumns="False" DataKeyNames="Id"
                   DataSourceID="customTests" Width="100%" Font-Bold="False" GridLines="None" OnRowCommand="ctView_RowCommand">
                   <Columns>
@@ -71,7 +168,7 @@
                      </asp:TemplateField>
                      <asp:TemplateField HeaderText="Rating" SortExpression="rating">
                         <ItemTemplate>
-                           <asp:Image ID="img_rate" runat="server" ImageUrl='<%# "Rating.aspx?r="+DataBinder.Eval(Container.DataItem,"rating") %>'></asp:Image>
+                           <%# rdrawer.draw((int)DataBinder.Eval(Container.DataItem, "Id"), (int)DataBinder.Eval(Container.DataItem, "rating"))%>
                         </ItemTemplate>
                      </asp:TemplateField>
                      <asp:ButtonField Text="[edit]" CommandName="edt" />
@@ -86,20 +183,26 @@
                   </SelectParameters>
                </asp:SqlDataSource>
                
+               <br />
                <asp:HyperLink ID="create_ct" runat="server" NavigateUrl="CreateCustomTest.aspx">[Create custom Test]</asp:HyperLink>
+               <br /><br />
                <hr style="width:100%; height:1 px" />
-               <B>Mistake Analysis (All Tests and Exercises)<br />
-               </B>&nbsp;<asp:SqlDataSource ID="mistakes" runat="server" ConnectionString="<%$ ConnectionStrings:gmatConnectionString %>"
-                  SelectCommand="SELECT correct_answers * 100 / (CASE WHEN all_answers = 0 OR all_answers IS NULL THEN 1 ELSE all_answers END) AS Value, Name FROM (SELECT COUNT(Answers.Id) AS all_answers, SUM(CASE WHEN Answers.IsCorrect = 1 THEN 1 ELSE 0 END) AS correct_answers, QuestionSubtypes.Name FROM Results RIGHT OUTER JOIN ResultsDetails ON Results.Id = ResultsDetails.ResultId RIGHT OUTER JOIN Answers ON ResultsDetails.AnswerId = Answers.Id RIGHT OUTER JOIN Questions ON Answers.QuestionId = Questions.Id RIGHT OUTER JOIN QuestionSubtypes ON Questions.SubtypeId = QuestionSubtypes.Id WHERE (Results.UserId = @UserId) OR (Results.UserId IS NULL) GROUP BY QuestionSubtypes.Name) AS tt ORDER BY Name">
+               <br />
+               <B>Mistake Analysis (All Tests and Exercises)<br /></B>
+               <b><a href="javascript: myMistakes(-1,'all')">[Start "My mistakes test"]</a></b>
+               &nbsp;<asp:SqlDataSource ID="mistakes" runat="server" ConnectionString="<%$ ConnectionStrings:gmatConnectionString %>"
+                  SelectCommand="SELECT correct_answers * 100 / (CASE WHEN all_answers = 0 OR all_answers IS NULL THEN 1 ELSE all_answers END) AS Value, Name, Id FROM (SELECT COUNT(Answers.Id) AS all_answers, SUM(CASE WHEN Answers.IsCorrect = 1 THEN 1 ELSE 0 END) AS correct_answers, QuestionSubtypes.Name,QuestionSubtypes.Id as Id FROM Results RIGHT OUTER JOIN ResultsDetails ON Results.Id = ResultsDetails.ResultId RIGHT OUTER JOIN Answers ON ResultsDetails.AnswerId = Answers.Id RIGHT OUTER JOIN Questions ON Answers.QuestionId = Questions.Id RIGHT OUTER JOIN QuestionSubtypes ON Questions.SubtypeId = QuestionSubtypes.Id WHERE (Results.UserId = @UserId) OR (Results.UserId IS NULL) GROUP BY QuestionSubtypes.Name,QuestionSubtypes.Id ) AS tt ORDER BY Name">
                   <SelectParameters>
                      <asp:SessionParameter Name="UserId" SessionField="UserId" />
                   </SelectParameters>
                </asp:SqlDataSource>
                <asp:GridView ID="mistakesGv" runat="server" DataSourceID="mistakes" Width="100%" AutoGenerateColumns="False" GridLines="Horizontal" ShowHeader="False">
                   <Columns>
-                     <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name">
-                        <ItemStyle Width="60%" />
-                     </asp:BoundField>
+                     <asp:TemplateField HeaderText="Name" InsertVisible="False" SortExpression="Name">
+                        <ItemTemplate>
+                           <a href='<%# "javascript: myMistakes("+DataBinder.Eval(Container.DataItem,"Id")+",\""+ DataBinder.Eval(Container.DataItem,"Name") + "\");" %> '> <%# DataBinder.Eval(Container.DataItem,"Name") %>  </a>
+                        </ItemTemplate>
+                     </asp:TemplateField>
                      <asp:TemplateField HeaderText="Value" InsertVisible="False" SortExpression="Value">
                         <ItemTemplate>
                            <asp:Image ID="img_prc" runat="server" ImageUrl='<%# "ProgressBar.aspx?w=150&h=20&p="+DataBinder.Eval(Container.DataItem,"Value") %>'></asp:Image>
@@ -307,5 +410,10 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ajax_windows" Runat="Server">
+      <div style="width:500px; visibility:hidden; background-color: #FFFBB7; border: solid 1px #C3C1A8; text-align: left;" id="cnt" >
+         <img id='close_id' style='cursor: pointer; border: none; 0pt;' src='i/x.gif' height='15' width='15' alt='Close' onclick="javascript: document.getElementById('cnt').style.visibility='hidden'; return false;"/>
+         <div id="c_place" style="border: none; 2px; "></div>
+         <div id="op_e_place" style="border: none; 2px;  color: red;"></div>
+    </div>
 </asp:Content>
 

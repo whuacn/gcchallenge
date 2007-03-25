@@ -18,7 +18,14 @@ namespace GMATClubTest.Web
       public RatingDrawer(bool showp)
       {
          shp=showp;
+         active=true;
       }
+      public RatingDrawer(bool showp,bool act)
+      {
+         shp = showp;
+         active = act;
+      }
+      
       public string draw(int Id,int rating)
       {
          
@@ -26,8 +33,7 @@ namespace GMATClubTest.Web
          @"
          <table cellpadding='0' cellspacing='0' border='0' width='100%'>
          <tr><td width='80'>
-         <img width='80' height='16' alt='{0}' ID='i_rate_{0}'  
-         onclick='javascript: handle_rate_click(this);' 
+         <img width='80' height='16' alt='{0}' ID='i_rate_{0}' {3}
          onmouseout='javascript: handle_rate_out(this);' 
          onmousemove='javascript: handle_rate_move(this,{2});' 
          style='cursor: pointer;' src='i/stars/stars{1}.gif'/></td>
@@ -35,9 +41,13 @@ namespace GMATClubTest.Web
          <div ID='i_rate_{0}_div' style='display:inline; text-align: right;' >&nbsp;</div></td>
          </tr>                  
          </table>"
-         ,Id,(int)(rating+9)/10,shp?1:0);
+         ,Id
+         ,(int)(rating+9)/10
+         ,shp?1:0
+         ,active?"onclick='javascript: handle_rate_click(this);'":" ");
          //Rating.aspx?r={1}
       }
       protected bool shp;
+      protected bool active;
    }
 }

@@ -18,10 +18,13 @@
 <asp:contentplaceholder id="add_js" runat="server"></asp:contentplaceholder>
 <link rel="stylesheet" type="text/css" media="all" href="styles.css" title="winter" />
 <script language="javascript" type="text/javascript">
+
+document.onmousemove = getMouseXY;
+
 function on_load()
 {
    <% = onLoadScript %>
-   document.onmousemove = getMouseXY;
+   
 }
 </script>
 </head>
