@@ -30,7 +30,7 @@ function handle_rate_click(where)
          else
          {
 
-            var str=((parseInt(http.ResponseText)+9)/10).toString();
+            var str=((parseInt(http.responseText)+9)/10).toString();
             where.src="i/stars/stars"+str.split('.')[0]+".gif";
          }
       });
