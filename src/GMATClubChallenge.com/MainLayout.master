@@ -51,7 +51,8 @@ function on_load()
     <td width="61%" valign="top" align="left">
     <table width="750" class="borderr" border="0" cellspacing="10" cellpadding="0">
         <tr>
-          <td width="99%" valign="top"><table width="100%" border="0" cellpadding="5" cellspacing="1">
+          <td width="99%" valign="top">
+             <table width="100%" border="0" cellpadding="5" cellspacing="1">
               <tr>
                 <td height="22" valign="middle" bgcolor="#B7C6FF"><div align="center"><strong> 
                 <% = pageHead %>
@@ -66,10 +67,9 @@ function on_load()
 <asp:contentplaceholder id="content" runat="server">
 
 <!--content here-->
-
+         
 </asp:contentplaceholder>
  </form>
-
     </td>
     <td width="160" valign="top" class="borderl"><img alt='' src="blank.gif" width="160" height="1" />
     <% = access_manager_.show_login_status_box() %>

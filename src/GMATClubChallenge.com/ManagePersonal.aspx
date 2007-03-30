@@ -103,7 +103,8 @@ function myMistakes(code,name)
    <asp:HyperLink ID="lProfile" runat="server" NavigateUrl="ManagePersonal.aspx?panel=profile">[Profile settings]</asp:HyperLink>
    |
    <asp:HyperLink ID="lResults" runat="server" NavigateUrl="ManagePersonal.aspx?panel=results">[Results]</asp:HyperLink>&nbsp;
-   <asp:Panel ID="pMain" runat="server" Height="50px" Width="100%">
+
+   <asp:Panel ID="pMain" runat="server" Width="100%">
       <b>Main:</b>
       <table border="1" cellspacing="0" cellpadding="0" width="100%" >
       	<tr>
@@ -188,7 +189,7 @@ function myMistakes(code,name)
                <br /><br />
                <hr style="width:100%; height:1 px" />
                <br />
-               <B>Mistake Analysis (All Tests and Exercises)<br /></B>
+               <b>Mistake Analysis (All Tests and Exercises)<br /></b>
                <b><a href="javascript: myMistakes(-1,'all')">[Start "My mistakes test"]</a></b>
                &nbsp;<asp:SqlDataSource ID="mistakes" runat="server" ConnectionString="<%$ ConnectionStrings:gmatConnectionString %>"
                   SelectCommand="SELECT correct_answers * 100 / (CASE WHEN all_answers = 0 OR all_answers IS NULL THEN 1 ELSE all_answers END) AS Value, Name, Id FROM (SELECT COUNT(Answers.Id) AS all_answers, SUM(CASE WHEN Answers.IsCorrect = 1 THEN 1 ELSE 0 END) AS correct_answers, QuestionSubtypes.Name,QuestionSubtypes.Id as Id FROM Results RIGHT OUTER JOIN ResultsDetails ON Results.Id = ResultsDetails.ResultId RIGHT OUTER JOIN Answers ON ResultsDetails.AnswerId = Answers.Id RIGHT OUTER JOIN Questions ON Answers.QuestionId = Questions.Id RIGHT OUTER JOIN QuestionSubtypes ON Questions.SubtypeId = QuestionSubtypes.Id WHERE (Results.UserId = @UserId) OR (Results.UserId IS NULL) GROUP BY QuestionSubtypes.Name,QuestionSubtypes.Id ) AS tt ORDER BY Name">
@@ -245,7 +246,7 @@ function myMistakes(code,name)
       </table>
    </asp:Panel>
    
-   <asp:Panel ID="pTests" runat="server" Height="50px" Width="100%">
+   <asp:Panel ID="pTests" runat="server" Width="100%">
       <b>Active tests:</b><asp:GridView ID="gvTests" runat="server" AutoGenerateColumns="False" CellPadding="0" Width="100%">
          <Columns>
             <asp:BoundField DataField="idx" Visible="False"  />
@@ -282,7 +283,7 @@ function myMistakes(code,name)
       </asp:GridView>
       &nbsp;&nbsp;
    </asp:Panel>
-   <asp:Panel ID="pProfile" runat="server" Height="50px" Visible="False" Width="100%">
+   <asp:Panel ID="pProfile" runat="server" Visible="False" Width="100%">
       <strong>Profile:</strong>
       <br />
       Login &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;<asp:TextBox ID="login" runat="server" CssClass="itt"
@@ -337,7 +338,9 @@ function myMistakes(code,name)
       </asp:GridView>      
       <br />
       &nbsp;<asp:LinkButton ID="save" runat="server" OnClick="save_Click" CausesValidation="False">Save changes</asp:LinkButton></asp:Panel>
-   <asp:Panel ID="pResults" runat="server" Height="50px" Visible="False" Width="100%">
+      
+
+   <asp:Panel ID="pResults" runat="server" Visible="False" Width="100%">
    <table width="100%">
    <tr>
    <td valign="top">
@@ -405,15 +408,13 @@ function myMistakes(code,name)
    </table>
    </td></tr>
    </table>   
-   
    </asp:Panel>
-
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ajax_windows" Runat="Server">
       <div style="width:500px; visibility:hidden; background-color: #FFFBB7; border: solid 1px #C3C1A8; text-align: left;" id="cnt" >
-         <img id='close_id' style='cursor: pointer; border: none; 0pt;' src='i/x.gif' height='15' width='15' alt='Close' onclick="javascript: document.getElementById('cnt').style.visibility='hidden'; return false;"/>
-         <div id="c_place" style="border: none; 2px; "></div>
-         <div id="op_e_place" style="border: none; 2px;  color: red;"></div>
+         <img id='close_id' style='cursor: pointer; border: none; 0 pt;' src='i/x.gif' height='15' width='15' alt='Close' onclick="javascript: document.getElementById('cnt').style.visibility='hidden'; return false;"/>
+         <div id="c_place" style="border: none; 2 px; "></div>
+         <div id="op_e_place" style="border: none; 2 px;  color: red;"></div>
     </div>
 </asp:Content>
 
