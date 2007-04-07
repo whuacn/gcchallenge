@@ -4,6 +4,22 @@
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="content" Runat="Server">
 <script type="text/javascript">
+function show_pay_window(t)
+{
+   var http = getHTTPObject();
+   http.open("GET", t, true);
+   http.setRequestHeader("If-Modified-Since", "Sat, 1 Jan 2000 00:00:00 GMT");
+   http.onreadystatechange = function()
+   {      
+      if(http.readyState == 4) 
+      {
+         show_data(http.responseText);      
+         show_ajax_window(0);
+      }
+   }
+   http.send(null);  
+}
+
 function on_shop_item_click(idx,type,pkg)
 {
    exec_http_req("ShopManager::item_click", Array("idx",idx,"type",type,"pkg_idx",pkg),function (error,http) 
@@ -40,17 +56,7 @@ function on_shop_item_click(idx,type,pkg)
          }
          else
          {
-            http.open("GET", t, true);
-            http.setRequestHeader("If-Modified-Since", "Sat, 1 Jan 2000 00:00:00 GMT");
-            http.onreadystatechange = function()
-            {      
-               if(http.readyState == 4) 
-               {
-                  show_data(http.responseText);      
-                  show_ajax_window(0);
-               }
-            }
-            http.send(null);  
+            show_pay_window(t);
          }
       }
    });   
