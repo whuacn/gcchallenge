@@ -30,7 +30,10 @@ function on_shop_item_click(idx,type,pkg)
             aj=true;
          }
          var iof=window.location.pathname.lastIndexOf("/",window.location.pathname.length);
+         
          var npn=window.location.pathname.substr(0,iof+1)+t;
+         
+         
          if(false==aj)
          {
             window.location.pathname=npn;

@@ -1,285 +1,254 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Charts>
-        <ComponentLayout BorderSize="0">
+        <ComponentLayout BorderSize="0" ShadowShift="6" Manco.Chart.LoadMode="Override">
                 <Frame>
-                        <Top></Top>
-                        <Middle>
-                                <Fill Color="FF7688DD" 
-                                        IsHatch="False" 
-                                        GradientType="Vertical" 
-                                        ShowShadow="True" 
-                                        GradientColor="FFCBD1F5">
-                                        
-                                        <Border Type="RoundedRectangle" 
-                                                Color="FF7688DD" 
-                                                Width="1" 
-                                                CornerRadius="20" />
+                        <Top />
+                        <Middle Name="" LeftImage="" CenterImage="" RightImage="" Bottom="" Top="">
+                                <Fill Color="FFF4FAFF" GradientColor="EBCBD1F5" GradientType="None" IsHatch="False" HatchStyle="Horizontal" Image="" ShowShadow="False">
+                                        <Border Type="None" Color="FF7688DD" Width="1" CornerRadius="20" />
                                 </Fill>
                         </Middle>
-                        <Bottom></Bottom>
+                        <Bottom />
                 </Frame>
                 <Titles Docking="Relative" Location="10">
-                        <Title Text="Manco.Chart.Demo Application" Align="Right">
-                                <Style Color="FFFFFF00">
-                                        <Font Name="Arial" Size="12" Bold="True" />
+                        <Title Text="GMAT Club rating" Align="Right">
+                                <Style Color="FF000040">
+                                        <Font Name="Arial" Size="9,75" Bold="True" Italic="False" Strikeout="False" Underline="False" />
                                 </Style>
                         </Title>
                 </Titles>
-                <Footers Docking="Relative" Location="10">
-                        <Title Text="Manco.Chart v3.5">
+                <Footers Docking="Relative" Location="17">
+                        <Title Text="" Align="Left">
                                 <Style Color="FF000000">
-                                        <Font Name="Arial" Size="10" Bold="True"/>
+                                        <Font Name="Arial" Size="8,25" Bold="True" Italic="False" Strikeout="False" Underline="False" />
                                 </Style>
                         </Title>
                 </Footers>
         </ComponentLayout>
         <Chart>
-                <Layout Type="Column">
+                <Layout Type="Line" X="0" Y="0" Width="100" Height="100" Manco.Chart.LoadMode="Override">
                         <Legend Placement="LeftMiddle">
                                 <Style Color="FF000000">
-                                        <Font Name="Arial" 
-                                                Size="10" 
-                                                Bold="True" 
-                                                Italic="False" 
-                                                Strikeout="False" 
-                                                Underline="False" />
-                                        <Fill Color="00FFFFFF" 
-                                                IsHatch="False" 
-                                                GradientType="None" 
-                                                ShowShadow="False" />
+                                        <Font Name="Arial" Size="8,25" Bold="False" Italic="False" Strikeout="False" Underline="False" />
+                                        <Fill Color="00FFFFFF" GradientColor="00FFFFFF" GradientType="None" IsHatch="False" HatchStyle="Horizontal" Image="" ShowShadow="False">
+                                                <Border Type="None" Color="Red" Width="2" CornerRadius="1" />
+                                        </Fill>
                                 </Style>
                         </Legend>
                         <PlotArea>
-                                <Fill Color="007688DD" />
+                                <Fill Color="007688DD" GradientColor="00FFFFFF" GradientType="None" IsHatch="False" HatchStyle="Horizontal" Image="" ShowShadow="False">
+                                        <Border Type="None" Color="00FFFFFF" Width="0" CornerRadius="1" />
+                                </Fill>
                         </PlotArea>
                         <ScaleAndGrid AxisColor="FF0061C1" AxisWidth="2" TickLength="5">
-                                <Scale MinorUnit="1" />
-                                <Grid CategoryMajor="True" 
-                                        CategoryMajorColor="FF00FFFF" 
-                                        CategoryMinor="False" 
-                                        CategoryMinorColor="FF00FFFF"
-                                        ValueMajor="True" 
-                                        ValueMajorColor="FF00FF00" 
-                                        ValueMinor="False" 
-                                        ValueMinorColor="FF00FF00"
-                                        ZeroLineColor="FFFF0000">
+                                <Scale Max="100" Min="0" MajorUnit="0" MinorUnit="1" />
+                                <Grid CategoryMajor="False" CategoryMinor="False" ValueMajor="True" ValueMinor="False" CategoryMajorColor="FF000040" CategoryMinorColor="FF00FFFF" ValueMajorColor="30800000" ValueMinorColor="FF00FF00" ZeroLineColor="F5FF8000">
+                                        <CategoryBands />
+                                        <ValueBands />
                                 </Grid>
                         </ScaleAndGrid>
-                        <Element BorderWidth="0" 
-                                BorderColor="White" 
-                                ShowValues="True" 
-                                RoundPercentTo="0.01" />
-                        <DataGrid Show="False" ShowHorizontal="True">
-                                <Style Color="Blue">
-                                        <Fill Color="White">
-                                                <Border Type="Rectangle3D" Color="Gray" Width="2"/>
-                                        </Fill>
-                                </Style>
-                        </DataGrid>
+                        <Element ShowShadow="False" ShowValues="True" ShowPercentages="False" Gap="0" UseSeriesColor="False">
+                                <ElementLabel Escapement="0" Format="{0:F2}" PercentagesFormat="{0:F1}%" CombinationFormat="{0:F2}, {0:F1}%">
+                                        <Style Color="FF000000">
+                                                <Font Name="Arial" Size="8" Bold="False" Italic="False" Strikeout="False" Underline="False" />
+                                        </Style>
+                                </ElementLabel>
+                                <Border Type="None" Color="00FFFFFF" Width="0" CornerRadius="1" />
+                        </Element>
                         <Categories>
-                                <Title Text="Category Title" Align="Center">
+                                <Title Text="Time line" Align="Left">
                                         <Style Color="FF0061C1">
-                                                <Font Name="Arial" 
-                                                        Size="12" 
-                                                        Bold="True" 
-                                                        Italic="False" 
-                                                        Strikeout="False" 
-                                                        Underline="False" />
+                                                <Font Name="Arial" Size="9,75" Bold="True" Italic="False" Strikeout="False" Underline="False" />
                                         </Style>
                                 </Title>
-                                <Label Escapement="0">
+                                <Label Escapement="0" Format="{0}">
                                         <Style Color="FF0061C1">
-                                                <Font Name="Arial" 
-                                                        Size="10" 
-                                                        Bold="True" 
-                                                        Italic="False" 
-                                                        Strikeout="False" 
-                                                        Underline="False" />
+                                                <Font Name="Arial" Size="10" Bold="True" Italic="False" Strikeout="False" Underline="False" />
                                         </Style>
                                 </Label>
                                 <Tooltip Format="Tooltip for a {0}: {1}, {2}%" />
-                                <Category Name="Cat1">
-                                        <Title Text="Category 1">
-                                                <Style>
-                                                        <Fill Color="#7FA00000" ShowShadow="True">
-                                                                <Border Color="FFA00000" 
-                                                                        Width="1" 
-                                                                        Type="RoundedRectangle3D" 
-                                                                        CornerRadius="6" />
+                                <Category Name="Cat1" ChartType="Column" OwnAxis="False" Format="{0}" ShowLabel="True" Manco.Chart.LoadMode="Override">
+                                        <Title Text="Category 1" Align="Center">
+                                                <Style Color="00FFFFFF">
+                                                        <Font Name="Arial" Size="8,25" Bold="False" Italic="False" Strikeout="False" Underline="False" />
+                                                        <Fill Color="7FA00000" GradientColor="00FFFFFF" GradientType="None" IsHatch="False" HatchStyle="Horizontal" Image="" ShowShadow="True">
+                                                                <Border Type="RoundedRectangle3D" Color="FFA00000" Width="1" CornerRadius="6" />
                                                         </Fill>
                                                 </Style>
                                         </Title>
                                 </Category>
-                                <Category Name="Cat2">
-                                        <Title Text="Category 2">
-                                                <Style>
-                                                        <Fill Color="#7F00A000" ShowShadow="True">
-                                                                <Border Color="FF00A000" 
-                                                                        Width="1" 
-                                                                        Type="RoundedRectangle3D" 
-                                                                        CornerRadius="6" />
+                                <Category Name="Cat2" ChartType="Column" OwnAxis="False" Format="{0}" ShowLabel="True" Manco.Chart.LoadMode="Override">
+                                        <Title Text="Category 2" Align="Center">
+                                                <Style Color="00FFFFFF">
+                                                        <Font Name="Arial" Size="8,25" Bold="False" Italic="False" Strikeout="False" Underline="False" />
+                                                        <Fill Color="7F00A000" GradientColor="00FFFFFF" GradientType="None" IsHatch="False" HatchStyle="Horizontal" Image="" ShowShadow="True">
+                                                                <Border Type="RoundedRectangle3D" Color="FF00A000" Width="1" CornerRadius="6" />
                                                         </Fill>
                                                 </Style>
                                         </Title>
                                 </Category>
-                                <Category Name="Cat3">
-                                        <Title Text="Category 3">
-                                                <Style>
-                                                        <Fill Color="#7F0000A0" ShowShadow="True">
-                                                                <Border Color="FF0000A0" 
-                                                                        Width="1" 
-                                                                        Type="RoundedRectangle3D" 
-                                                                        CornerRadius="6" />
+                                <Category Name="Cat3" ChartType="Column" OwnAxis="False" Format="{0}" ShowLabel="True" Manco.Chart.LoadMode="Override">
+                                        <Title Text="Category 3" Align="Center">
+                                                <Style Color="00FFFFFF">
+                                                        <Font Name="Arial" Size="8,25" Bold="False" Italic="False" Strikeout="False" Underline="False" />
+                                                        <Fill Color="7F0000A0" GradientColor="00FFFFFF" GradientType="None" IsHatch="False" HatchStyle="Horizontal" Image="" ShowShadow="True">
+                                                                <Border Type="RoundedRectangle3D" Color="FF0000A0" Width="1" CornerRadius="6" />
                                                         </Fill>
                                                 </Style>
                                         </Title>
                                 </Category>
-                                <Category Name="Cat4">
-                                        <Title Text="Category 4">
-                                                <Style>
-                                                        <Fill Color="#7FA00060" ShowShadow="True">
-                                                                <Border Color="FFA00060" Width="1" Type="RoundedRectangle3D" CornerRadius="6" />
+                                <Category Name="Cat4" ChartType="Column" OwnAxis="False" Format="{0}" ShowLabel="True" Manco.Chart.LoadMode="Override">
+                                        <Title Text="Category 4" Align="Center">
+                                                <Style Color="00FFFFFF">
+                                                        <Font Name="Arial" Size="8,25" Bold="False" Italic="False" Strikeout="False" Underline="False" />
+                                                        <Fill Color="7FA00060" GradientColor="00FFFFFF" GradientType="None" IsHatch="False" HatchStyle="Horizontal" Image="" ShowShadow="True">
+                                                                <Border Type="RoundedRectangle3D" Color="FFA00060" Width="1" CornerRadius="6" />
                                                         </Fill>
                                                 </Style>
                                         </Title>
                                 </Category>
-                                <Category Name="Cat5">
-                                        <Title Text="Category 4">
-                                                <Style>
-                                                        <Fill Color="#7FA00060" ShowShadow="True">
-                                                                <Border Color="FFA00060" Width="1" Type="RoundedRectangle3D" CornerRadius="6" />
+                                <Category Name="Category_4" OwnAxis="False" Format="{0}" ShowLabel="True" Manco.Chart.LoadMode="Override">
+                                        <Title Text="cat 5" Align="Center">
+                                                <Style Color="00FFFFFF">
+                                                        <Font Name="Arial" Size="8,25" Bold="False" Italic="False" Strikeout="False" Underline="False" />
+                                                        <Fill Color="FF0000FF" GradientColor="00FFFFFF" GradientType="None" IsHatch="False" HatchStyle="Horizontal" Image="" ShowShadow="False">
+                                                                <Border Type="None" Color="00FFFFFF" Width="0" CornerRadius="1" />
                                                         </Fill>
                                                 </Style>
                                         </Title>
                                 </Category>
-
+                                <Category Name="Category_5" OwnAxis="False" Format="{0}" ShowLabel="True" Manco.Chart.LoadMode="Override">
+                                        <Title Text="" Align="Center">
+                                                <Style Color="00FFFFFF">
+                                                        <Font Name="Arial" Size="8,25" Bold="False" Italic="False" Strikeout="False" Underline="False" />
+                                                        <Fill Color="FF00FF00" GradientColor="00FFFFFF" GradientType="None" IsHatch="False" HatchStyle="Horizontal" Image="" ShowShadow="False">
+                                                                <Border Type="None" Color="00FFFFFF" Width="0" CornerRadius="1" />
+                                                        </Fill>
+                                                </Style>
+                                        </Title>
+                                </Category>
+                                <Category Name="Category_6" OwnAxis="False" Format="{0}" ShowLabel="True" Manco.Chart.LoadMode="Override">
+                                        <Title Text="" Align="Center">
+                                                <Style Color="00FFFFFF">
+                                                        <Font Name="Arial" Size="8,25" Bold="False" Italic="False" Strikeout="False" Underline="False" />
+                                                        <Fill Color="FFFF0000" GradientColor="00FFFFFF" GradientType="None" IsHatch="False" HatchStyle="Horizontal" Image="" ShowShadow="False">
+                                                                <Border Type="None" Color="00FFFFFF" Width="0" CornerRadius="1" />
+                                                        </Fill>
+                                                </Style>
+                                        </Title>
+                                </Category>
+                                <Category Name="Category_7" OwnAxis="False" Format="{0}" ShowLabel="True" Manco.Chart.LoadMode="Override">
+                                        <Title Text="" Align="Center">
+                                                <Style Color="00FFFFFF">
+                                                        <Font Name="Arial" Size="8,25" Bold="False" Italic="False" Strikeout="False" Underline="False" />
+                                                        <Fill Color="FF00FFFF" GradientColor="00FFFFFF" GradientType="None" IsHatch="False" HatchStyle="Horizontal" Image="" ShowShadow="False">
+                                                                <Border Type="None" Color="00FFFFFF" Width="0" CornerRadius="1" />
+                                                        </Fill>
+                                                </Style>
+                                        </Title>
+                                </Category>
                         </Categories>
                         <SeriesList>
-                                <Title Text="Series Title" Align="Center">
+                                <Title Text="" Align="Left">
                                         <Style Color="FF0061C1">
-                                                <Font Name="Arial" 
-                                                        Size="12" 
-                                                        Bold="True" 
-                                                        Italic="False" 
-                                                        Strikeout="False" 
-                                                        Underline="False" />
+                                                <Font Name="Arial" Size="12" Bold="True" Italic="False" Strikeout="False" Underline="False" />
                                         </Style>
                                 </Title>
-                                <Label Escapement="0">
-                                        <Style Color="#FF0061C1">
-                                                <Font Name="Arial" 
-                                                        Size="10" 
-                                                        Bold="True" 
-                                                        Italic="False" 
-                                                        Strikeout="False" 
-                                                        Underline="False" />
+                                <Label Escapement="0" Format="{0}">
+                                        <Style Color="FF0061C1">
+                                                <Font Name="Arial" Size="10" Bold="True" Italic="False" Strikeout="False" Underline="False" />
                                         </Style>
                                 </Label>
                                 <Tooltip Format="Tooltip for a {0}: {1}, {2}%" />
-                                <Series Name="Ser1">
-                                        <ScaleAndGrid>
-                                                <Scale/>
-                                                <Grid ZeroLineColor="00FFFFFF">
-                                                </Grid>
-                                        </ScaleAndGrid>
-                                        <Title Text="Series 1">
-                                                <Style>
-                                                        <Fill Color="#7FA00000" ShowShadow="True">
-                                                                <Border Color="FFA00000" 
-                                                                        Width="1" 
-                                                                        Type="RoundedRectangle3D" 
-                                                                        CornerRadius="6" />
+                                <Series Name="Ser1" OwnAxis="False" Format="{0}" ShowLabel="True" Manco.Chart.LoadMode="Override">
+                                        <Title Text="Series 1" Align="Center">
+                                                <Style Color="00FFFFFF">
+                                                        <Font Name="Arial" Size="10" Bold="False" Italic="False" Strikeout="False" Underline="False" />
+                                                        <Fill Color="7FA00000" GradientColor="00FFFFFF" GradientType="None" IsHatch="False" HatchStyle="Horizontal" Image="" ShowShadow="True">
+                                                                <Border Type="RoundedRectangle3D" Color="FFA00000" Width="1" CornerRadius="6" />
                                                         </Fill>
                                                 </Style>
                                         </Title>
+                                        <ScaleAndGrid AxisColor="Black" AxisWidth="2" TickLength="10">
+                                                <Scale MajorUnit="0" MinorUnit="0" />
+                                                <Grid CategoryMajor="False" CategoryMinor="False" ValueMajor="False" ValueMinor="False" CategoryMajorColor="80808080" CategoryMinorColor="80808080" ValueMajorColor="80808080" ValueMinorColor="80808080" ZeroLineColor="00FFFFFF">
+                                                        <CategoryBands />
+                                                        <ValueBands />
+                                                </Grid>
+                                        </ScaleAndGrid>
                                 </Series>
                         </SeriesList>
                         <Values>
-                                <Title Text="Values Title" Align="Center">
+                                <Title Text="Results" Align="Center">
                                         <Style Color="FF0061C1">
-                                                <Font Name="Arial" 
-                                                        Size="12" 
-                                                        Bold="True" 
-                                                        Italic="False" 
-                                                        Strikeout="False" 
-                                                        Underline="False" />
+                                                <Font Name="Arial" Size="9,75" Bold="True" Italic="False" Strikeout="False" Underline="False" />
                                         </Style>
                                 </Title>
-                                <Label Escapement="0">
+                                <Label Escapement="0" Format="{0}">
                                         <Style Color="FF0061C1">
-                                                <Font Name="Arial" 
-                                                        Size="10" 
-                                                        Bold="True" 
-                                                        Italic="False" 
-                                                        Strikeout="False" 
-                                                        Underline="False" />
+                                                <Font Name="Arial" Size="10" Bold="True" Italic="False" Strikeout="False" Underline="False" />
                                         </Style>
                                 </Label>
-                                <ElementLabel Escapement="0">
-                                        <Style Color="#FFFFFFFF">
-                                                <Font Name="Arial" 
-                                                        Size="8" 
-                                                        Bold="True" 
-                                                        Italic="False" 
-                                                        Strikeout="False" 
-                                                        Underline="False" />
-                                        </Style>
-                                </ElementLabel>
                                 <Tooltip Format="Tooltip for a {0}, {1}: {2}, {3}%" />
                         </Values>
                         <ChartSpecific>
-                                <Area LineWidth="2" SplineTension="0.5" ShowDataPoints="True" />
-                                <Doughnut InnerRadius="50" />
-                                <Funnel Type="Width" TrunkWidth="20" TrunkHeight="20"/>
-                                <Line LineWidth="4" SplineTension="0.5" ShowDataPoints="True" />
+                                <Area LineWidth="0" ShowDataPoints="True" SplineTension="0.5" />
+                                <Line LineWidth="2" ShowDataPoints="True" SplineTension="0.5" />
                                 <StepLine LineWidth="4" ShowDataPoints="True" />
-                                <Pie3D MaxRadius="1.5" />
-                                <Pyramid3D MaxRadius="1.5" />
-                                <FinancialBar Color="FF00A000" 
-                                        Width="2" 
-                                        CategoryLow="Low" 
-                                        CategoryHigh="High" 
-                                        CategoryOpen="Open" 
-                                        CategoryClose="Close"/>
-                                <JapaneseCandlestick ShadowColor="FF00A000" 
-                                        ShadowWidth="2" 
-                                        CategoryLow="Low" 
-                                        CategoryHigh="High" 
-                                        CategoryOpen="Open" 
-                                        CategoryClose="Close">
-                                        <WhiteFill Color="#FFFF0000" />
-                                        <BlackFill Color="#FF00FFFF" />
+                                <FinancialBar SeriesLow="0" SeriesOpen="1" SeriesClose="2" SeriesHigh="3" Color="FF00A000" Width="2" />
+                                <JapaneseCandlestick SeriesLow="0" SeriesOpen="1" SeriesClose="2" SeriesHigh="3" ShadowColor="FF00A000" ShadowWidth="2">
+                                        <WhiteFill Color="FFFF0000" GradientColor="00FFFFFF" GradientType="None" IsHatch="False" HatchStyle="Horizontal" Image="" ShowShadow="False">
+                                                <Border Type="None" Color="00FFFFFF" Width="0" CornerRadius="1" />
+                                        </WhiteFill>
+                                        <BlackFill Color="FF00FFFF" GradientColor="00FFFFFF" GradientType="None" IsHatch="False" HatchStyle="Horizontal" Image="" ShowShadow="False">
+                                                <Border Type="None" Color="00FFFFFF" Width="0" CornerRadius="1" />
+                                        </BlackFill>
                                 </JapaneseCandlestick>
+                                <Pie3D MaxRadius="1.5" MinAngle="0" />
+                                <Pyramid3D MaxRadius="1.5" MinHeight="0" />
+                                <Doughnut InnerRadius="50" MinAngle="0" />
+                                <Bubble MinRadius="4" MaxRadius="25" DefaultShape="Circle" />
+                                <Funnel Type="Width" TrunkWidth="20" TrunkHeight="20" MinHeight="0" />
+                                <Kagi LineWidth="2" ShowDataPoints="False" ThickColor="Red" ThinColor="Blue" ReversalAmount="0.1" IsPercentage="True" />
+                                <Renko BoxSize="1">
+                                        <WhiteFill Color="Red" GradientColor="00FFFFFF" GradientType="None" IsHatch="False" HatchStyle="Horizontal" Image="" ShowShadow="False">
+                                                <Border Type="None" Color="00FFFFFF" Width="0" CornerRadius="1" />
+                                        </WhiteFill>
+                                        <BlackFill Color="Blue" GradientColor="00FFFFFF" GradientType="None" IsHatch="False" HatchStyle="Horizontal" Image="" ShowShadow="False">
+                                                <Border Type="None" Color="00FFFFFF" Width="0" CornerRadius="1" />
+                                        </BlackFill>
+                                </Renko>
+                                <CircularGauge SweepAngleStart="80" SweepAngleLength="20" BandWidth="20">
+                                        <Pointer Type="Triangle" Width="8" />
+                                        <PinPoint Radius="20">
+                                                <Fill Color="00FFFFFF" GradientColor="00FFFFFF" GradientType="None" IsHatch="False" HatchStyle="Horizontal" Image="" ShowShadow="False">
+                                                        <Border Type="None" Color="00FFFFFF" Width="0" CornerRadius="1" />
+                                                </Fill>
+                                        </PinPoint>
+                                </CircularGauge>
+                                <Pyramid MinHeight="0" />
+                                <Pie MinAngle="0" />
                         </ChartSpecific>
-                        <Parameters3D Multisampling="True" 
-                                JitterEnabled="False" 
-                                JitterLevel="15" 
-                                UseBoxShape="False"
-                                Clustered="False" 
-                                Depth="0.3" 
-                                OffscreenRendering="True">
-                                <Lightings>
-                                        <Lighting Type="Directional" 
-                                                DirectionX="-0.5" 
-                                                DirectionY="0" 
-                                                DirectionZ="1" 
-                                                Color="FFFFFFFF" />
-                                        <Lighting Type="Directional" 
-                                                DirectionX="1" 
-                                                DirectionY="1" 
-                                                DirectionZ="0" 
-                                                Color="FFFFFFFF" />
+                        <Parameters3D Clustered="False" ShapeType="Polyhedron" PolyhedronEdges="6" JitterEnabled="False" JitterLevel="15" Depth="0.3" Distance="0.06" TextExtrusion="0.01">
+                                <Lightings Manco.Chart.LoadMode="Override">
+                                        <Lighting Color="FFFFFFFF" DirectionX="-0.5" DirectionY="0" DirectionZ="1" DirectionW="0" />
+                                        <Lighting Color="FFFFFFFF" DirectionX="1" DirectionY="1" DirectionZ="0" DirectionW="0" />
                                 </Lightings>
-                                <Transformation RotationX="0" 
-                                        RotationY="0" 
-                                        RotationZ="0" 
-                                        TranslateX="0" 
-                                        TranslateY="0" 
-                                        TranslateZ="0" />
-                                <CoordinatePlane BoxHeight="0.01" 
-                                        Width="3.5" 
-                                        Color="8000FF00" />
+                                <Transformation TranslateX="0" TranslateY="0" TranslateZ="0" TranslateW="0" RotationX="0" RotationY="0" RotationZ="0" RotationW="0" />
+                                <CoordinatePlane Color="8000FF00" Height="3" Width="3.5" BoxHeight="0.01" />
                         </Parameters3D>
+                        <DataGrid Show="False" ShowHeader="False" ShowHorizontal="True" ShowVertical="False" LegendInside="False" LegendLocation="Left" Format="{0:F2}">
+                                <Style Color="Blue">
+                                        <Font Name="Arial" Size="10" Bold="False" Italic="False" Strikeout="False" Underline="False" />
+                                        <Fill Color="White" GradientColor="00FFFFFF" GradientType="None" IsHatch="False" HatchStyle="Horizontal" Image="" ShowShadow="False">
+                                                <Border Type="Rectangle3D" Color="Gray" Width="2" CornerRadius="1" />
+                                        </Fill>
+                                </Style>
+                                <HeaderStyle Color="Brown">
+                                        <Font Name="Arial" Size="10" Bold="False" Italic="False" Strikeout="False" Underline="False" />
+                                </HeaderStyle>
+                        </DataGrid>
+                        <AnnotationList />
                 </Layout>
         </Chart>
 </Charts>

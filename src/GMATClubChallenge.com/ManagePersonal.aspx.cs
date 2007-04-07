@@ -34,6 +34,8 @@ namespace GMATClubTest.Web
         
 
          showPanel(apanel);
+         img1 += ("&rnd=" + new Random(new DateTime().Second).NextDouble());
+         img2 += ("&rnd=" + new Random(new DateTime().Second).NextDouble());
 
       }
       public override void DoLoad(object sender, EventArgs e)
@@ -396,5 +398,8 @@ namespace GMATClubTest.Web
          Response.Redirect("resultDetailsWebForm.aspx");
       }
       protected static RatingDrawer rdrawer=new RatingDrawer(false,false);
+      
+      public static string img1="UserChart.aspx?w=370&h=240&t=1";
+      public static string img2="UserChart.aspx?w=370&h=240&t=2";
 }
 }

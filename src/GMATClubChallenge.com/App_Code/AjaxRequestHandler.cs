@@ -54,7 +54,10 @@ namespace GmatClubTest.Web
             
             //tr=conn_.BeginTransaction();
             
-            am.can_do(function);
+            if(function!="StatisticCollector::updateResults")
+            {
+               am.can_do(function);
+            }
             //am.Transaction=tr;
             
             bool processed=false;
