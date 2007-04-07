@@ -108,7 +108,7 @@ function myMistakes(code,name)
       <b>Main:</b>
       <table border="1" cellspacing="0" cellpadding="0" width="100%" >
       	<tr>
-      		<td width="50%" valign="top" style="height: 158px">
+      		<td width="50%" valign="top">
                <asp:GridView ID="resultsGrid2" runat="server" AutoGenerateColumns="False"
                   DataKeyNames="mid" DataSourceID="shortResults" Width="100%" OnSelectedIndexChanged="resultsGrid2_SelectedIndexChanged">
                   <Columns>
@@ -218,7 +218,7 @@ function myMistakes(code,name)
                
                
                </td>
-      		<td width="50%" valign="top" style="height: 158px">
+      		<td width="50%" valign="top">
                <asp:GridView ID="tinyResGv" runat="server" AutoGenerateColumns="False" DataSourceID="tinyResults"
                   OnSelectedIndexChanged="tinyResGv_SelectedIndexChanged" Width="100%">
                   <Columns>
@@ -236,11 +236,10 @@ function myMistakes(code,name)
                      <asp:SessionParameter Name="UserId" SessionField="UserId" />
                   </SelectParameters>
                </asp:SqlDataSource>
-               <asp:Image ID="mathImage" runat="server" Height="160px" ImageUrl="UserChart.aspx?w=370&h=160&t=1" Width="370px" />
+               <img  height="240px" src="<%= img1 %>" Width="370" />
                <hr style="width:100%; height: 1px;" />
-               <asp:Image ID="Image2" runat="server" Height="160px" ImageUrl="UserChart.aspx?w=370&h=160&t=2" Width="370px" />
-               <hr style="width:100%; height: 1px;" />
-               <asp:Image ID="Image3" runat="server" Height="160px" ImageUrl="UserChart.aspx?w=370&h=160&t=3" Width="370px" />
+               <img height="240" src="<%= img2 %>" width="370" />
+               
                </td>
       	</tr>
       </table>
