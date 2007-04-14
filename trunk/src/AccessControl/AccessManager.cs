@@ -262,6 +262,8 @@ namespace AccessControl
          user_idx_=-1;
          user_guididx_=Guid.Empty;
          login_name_="";
+         user_groups_=null;
+         
          SqlCommand insertCmd = build_command_(String.Format("delete from acl_session where guididx='{0}';", ctx_));
          insertCmd.ExecuteNonQuery();
       }
