@@ -26,8 +26,8 @@ namespace AccessControl.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.\\SQLEXPRESS;AttachDbFilename=C:\\savis\\dc_db_work\\GmatClubTest_Data.M" +
-            "DF;Integrated Security=True;Connect Timeout=30;User Instance=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=SHARK\\t1oothsql;Initial Catalog=GmatClubChallenge;Persist Security In" +
+            "fo=True;User ID=re2085;Password=sys1157")]
         public string GmatClubChallengeConnectionString {
             get {
                 return ((string)(this["GmatClubChallengeConnectionString"]));
