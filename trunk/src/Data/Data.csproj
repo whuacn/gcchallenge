@@ -185,6 +185,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>QuestionSetsResultDetailsSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="QuestionSubTypes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuestionSubTypes.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QuestionTypes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuestionTypes.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ResultResultDetailSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -224,7 +234,6 @@
     <None Include="BindedTests.xss">
       <DependentUpon>BindedTests.xsd</DependentUpon>
     </None>
-    <None Include="ClassDiagram1.cd" />
     <None Include="PassageToQuestionSet.xsc">
       <DependentUpon>PassageToQuestionSet.xsd</DependentUpon>
     </None>
@@ -273,6 +282,28 @@
     </None>
     <None Include="QuestionSetsResultDetailsSet.xsx">
       <DependentUpon>QuestionSetsResultDetailsSet.xsd</DependentUpon>
+    </None>
+    <None Include="QuestionSubTypes.xsc">
+      <DependentUpon>QuestionSubTypes.xsd</DependentUpon>
+    </None>
+    <None Include="QuestionSubTypes.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QuestionSubTypes.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="QuestionSubTypes.xss">
+      <DependentUpon>QuestionSubTypes.xsd</DependentUpon>
+    </None>
+    <None Include="QuestionTypes.xsc">
+      <DependentUpon>QuestionTypes.xsd</DependentUpon>
+    </None>
+    <None Include="QuestionTypes.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QuestionTypes.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="QuestionTypes.xss">
+      <DependentUpon>QuestionTypes.xsd</DependentUpon>
     </None>
     <None Include="ResultResultDetailSet.xsc">
       <DependentUpon>ResultResultDetailSet.xsd</DependentUpon>

@@ -236,6 +236,8 @@ namespace GmatClubTest.Data {
             
             private System.Data.DataColumn columndescr;
             
+            private System.Data.DataColumn columnrating;
+            
             [System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public binded_testsDataTable() {
                 this.TableName = "binded_tests";
@@ -309,6 +311,13 @@ namespace GmatClubTest.Data {
             }
             
             [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public System.Data.DataColumn ratingColumn {
+                get {
+                    return this.columnrating;
+                }
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -337,7 +346,7 @@ namespace GmatClubTest.Data {
             }
             
             [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public binded_testsRow Addbinded_testsRow(int idx, string name, int chidx, string ch_name, int type, string descr) {
+            public binded_testsRow Addbinded_testsRow(int idx, string name, int chidx, string ch_name, int type, string descr, int rating) {
                 binded_testsRow rowbinded_testsRow = ((binded_testsRow)(this.NewRow()));
                 rowbinded_testsRow.ItemArray = new object[] {
                         idx,
@@ -345,7 +354,8 @@ namespace GmatClubTest.Data {
                         chidx,
                         ch_name,
                         type,
-                        descr};
+                        descr,
+                        rating};
                 this.Rows.Add(rowbinded_testsRow);
                 return rowbinded_testsRow;
             }
@@ -375,6 +385,7 @@ namespace GmatClubTest.Data {
                 this.columnch_name = base.Columns["ch_name"];
                 this.columntype = base.Columns["type"];
                 this.columndescr = base.Columns["descr"];
+                this.columnrating = base.Columns["rating"];
             }
             
             [System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -391,6 +402,8 @@ namespace GmatClubTest.Data {
                 base.Columns.Add(this.columntype);
                 this.columndescr = new System.Data.DataColumn("descr", typeof(string), null, System.Data.MappingType.Element);
                 base.Columns.Add(this.columndescr);
+                this.columnrating = new System.Data.DataColumn("rating", typeof(int), null, System.Data.MappingType.Element);
+                base.Columns.Add(this.columnrating);
                 this.columnidx.AllowDBNull = false;
                 this.columnidx.ReadOnly = true;
                 this.columnname.MaxLength = 50;
@@ -572,6 +585,21 @@ namespace GmatClubTest.Data {
             }
             
             [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public int rating {
+                get {
+                    try {
+                        return ((int)(this[this.tablebinded_tests.ratingColumn]));
+                    }
+                    catch (System.InvalidCastException e) {
+                        throw new System.Data.StrongTypingException("The value for column \'rating\' in table \'binded_tests\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablebinded_tests.ratingColumn] = value;
+                }
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public bool IsnameNull() {
                 return this.IsNull(this.tablebinded_tests.nameColumn);
             }
@@ -609,6 +637,16 @@ namespace GmatClubTest.Data {
             [System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public void SetdescrNull() {
                 this[this.tablebinded_tests.descrColumn] = System.Convert.DBNull;
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsratingNull() {
+                return this.IsNull(this.tablebinded_tests.ratingColumn);
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetratingNull() {
+                this[this.tablebinded_tests.ratingColumn] = System.Convert.DBNull;
             }
         }
         
@@ -734,13 +772,15 @@ namespace GmatClubTest.Data.BindedTestsTableAdapters {
             tableMapping.ColumnMappings.Add("chidx", "chidx");
             tableMapping.ColumnMappings.Add("ch_name", "ch_name");
             tableMapping.ColumnMappings.Add("type", "type");
+            tableMapping.ColumnMappings.Add("rating", "rating");
+            tableMapping.ColumnMappings.Add("descr", "descr");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::GmatClubTest.Data.Properties.Settings.Default.GmatClubChallengeConnectionString;
+            this._connection.ConnectionString = global::GmatClubTest.Data.Properties.Settings.Default.GmatClubChallengeConnectionString1;
         }
         
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -748,7 +788,8 @@ namespace GmatClubTest.Data.BindedTestsTableAdapters {
             this._commandCollection = new System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT     binded_tests.*\r\nFROM         binded_tests order by type,name,idx;";
+            this._commandCollection[0].CommandText = "SELECT idx, name, chidx, ch_name, type, rating, descr FROM binded_tests ORDER BY " +
+                "type, name, idx";
             this._commandCollection[0].CommandType = System.Data.CommandType.Text;
         }
         
