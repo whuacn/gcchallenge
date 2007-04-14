@@ -80,9 +80,14 @@
     <Reference Include="System.Data">
       <Name>System.Data</Name>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml">
       <Name>System.XML</Name>
     </Reference>
+    <ProjectReference Include="..\AccessControl\AccessControl.csproj">
+      <Project>{9A61CCF6-0EA3-4954-A35D-A990E1EED338}</Project>
+      <Name>AccessControl</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{42B1D3F4-4B2A-4680-89F4-E690B006BC71}</Project>
       <Name>Common</Name>
@@ -114,14 +119,43 @@
     <Compile Include="PracticeNavigator.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="QuestionIdentity.cs" />
     <Compile Include="ReviewState.cs" />
+    <Compile Include="StatisticCollector.cs" />
     <Compile Include="TestNavigator.cs">
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TestsDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TestsDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="TimeIsUpException.cs">
       <SubType>Code</SubType>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="TestsDataSet.xsc">
+      <DependentUpon>TestsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="TestsDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TestsDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="TestsDataSet.xss">
+      <DependentUpon>TestsDataSet.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
