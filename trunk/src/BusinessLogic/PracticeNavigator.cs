@@ -12,6 +12,7 @@ namespace GmatClubTest.BusinessLogic
     {
         private QuestionAnswerSet[] questionsAnswers;
         private int[] activeQuestionIndexes;
+        private Explanations.ExplanationsDataTable _explanationsDataTable;
 
         public PracticeNavigator(TestSet.TestsRow test, Manager manager) : base(test, manager)
         {
@@ -36,6 +37,8 @@ namespace GmatClubTest.BusinessLogic
                 activeQuestionIndexes[i] = -1;
                 questionsAnswers[i] = new QuestionAnswerSet();
                 manager.DataProvider.GetQuestionsAnswersByQuestionSetId(set.Id, questionsAnswers[i]);
+
+                _explanationsDataTable = manager.DataProvider.GetExplanations(test.Id);
 
                 if (questionsAnswers[i].Questions.Count < set.NumberOfQuestionsToPick)
                     throw new Exception(
@@ -83,6 +86,9 @@ namespace GmatClubTest.BusinessLogic
                 totalTime = new TimeSpan(0, timeMin, 0);
             else
                 totalTime = TimeSpan.MaxValue;
+
+            SetActiveSet(sets.QuestionSets[0].Id);
+            SetActiveQuestion(questionsAnswers[0].Questions[0].Id);
         }
 
         public override bool HasNextQuestion
@@ -94,31 +100,15 @@ namespace GmatClubTest.BusinessLogic
                 {
                     return activeQuestionIndexes[activeSetIndex] + 1 < questionsAnswers[activeSetIndex].Questions.Count;
                 }
-                //New functionality
-                if(_reviwState == ReviewState.ReviewFlagged)
+                if (_reviwState == ReviewState.ReviewFlagged)
                 {
-                    Dictionary<QuestionIdentity, bool> questionInfo = GetQuestionInfoForReview();
-                    bool findCurren = false;
-                    foreach (KeyValuePair<QuestionIdentity, bool> keyValuePair in questionInfo)
-                    {
-                        if (!findCurren)
-                        {
-                            if (keyValuePair.Key.SetId == activeSetIndex &&
-                                keyValuePair.Key.QuestionId == ActiveQuestion.Id)
-                            {
-                                findCurren = true;
-                            }
-                        }
-                        else
-                        {
-                            if (keyValuePair.Key.SetId == activeSetIndex && keyValuePair.Value)
-                            {
-                                return true;
-                            }
-                        }
-                    }
-                    return false;
+                    return QuestionInfoForReview.flaged.Count > 0;
                 }
+                if (_reviwState == ReviewState.ReviewIncorrect)
+                {
+                    return QuestionInfoForReview.incorrect.Count > 0;
+                }
+
                 return false;
             }
         }
@@ -134,23 +124,93 @@ namespace GmatClubTest.BusinessLogic
                 }
                 if (_reviwState == ReviewState.ReviewFlagged)
                 {
-                    Dictionary<QuestionIdentity, bool> questionInfo = GetQuestionInfoForReview();
-                    QuestionIdentity prevQi = new QuestionIdentity(-1, -1);
-                    foreach (KeyValuePair<QuestionIdentity, bool> keyValuePair in questionInfo)
+                    QuestionIdentity cirrentQuestionIde = new QuestionIdentity(sets.QuestionSets[activeSetIndex].Id, ActiveQuestion.Id);
+                    for(int i = 0; i < QuestionInfoForReview.flaged.Count; i++)
                     {
-                        if (keyValuePair.Key.SetId == activeSetIndex &&
-                            keyValuePair.Key.QuestionId == ActiveQuestion.Id)
+                        if(QuestionInfoForReview.flaged[i] == cirrentQuestionIde)
                         {
-                            if (prevQi.QuestionId != -1)
-                            {
+                            if (i > 0)
                                 return true;
-                            }
                         }
-                        prevQi = keyValuePair.Key;
                     }
+                    return false;
+                }
+                if (_reviwState == ReviewState.ReviewIncorrect)
+                {
+                    QuestionIdentity cirrentQuestionIde = new QuestionIdentity(sets.QuestionSets[activeSetIndex].Id, ActiveQuestion.Id);
+                    for (int i = 0; i < QuestionInfoForReview.incorrect.Count; i++)
+                    {
+                        if (QuestionInfoForReview.incorrect[i] == cirrentQuestionIde)
+                        {
+                            if (i > 0)
+                                return true;
+                        }
+                    }
+                    return false;
                 }
                 return false;
             }
+        }
+
+        private List<QuestionIdentity> GetQuestionIdentityCollection()
+        {
+            List<QuestionIdentity> questionIdentityCollection;
+            switch (_reviwState)
+            {
+                case ReviewState.ReviewIncorrect:
+                    questionIdentityCollection = QuestionInfoForReview.incorrect;
+                    break;
+                case ReviewState.ReviewFlagged:
+                    questionIdentityCollection = QuestionInfoForReview.flaged;
+                    break;
+                default:
+                    throw new ApplicationException("Not supported ReviewState");
+            }
+            return questionIdentityCollection;
+        }
+
+        private QuestionIdentity GetPreviousReviewQuestion()
+        {
+            List<QuestionIdentity> questionIdentityCollection = GetQuestionIdentityCollection();
+
+            QuestionIdentity cirrentQuestionIde = new QuestionIdentity(sets.QuestionSets[activeSetIndex].Id, ActiveQuestion.Id);
+            for (int i = 0; i < questionIdentityCollection.Count; i++)
+            {
+                if (questionIdentityCollection[i] == cirrentQuestionIde)
+                {
+                    if (i > 0)
+                    {
+                        return questionIdentityCollection[i - 1];
+                    }
+                    else
+                    {
+                        return questionIdentityCollection[0];
+                    }
+                }
+            }
+            throw new ApplicationException("Unknoun error.");
+        }
+
+        private QuestionIdentity GetNextReviewQuestion()
+        {
+            List<QuestionIdentity> questionIdentityCollection = GetQuestionIdentityCollection();
+
+            QuestionIdentity cirrentQuestionIde = new QuestionIdentity(sets.QuestionSets[activeSetIndex].Id, ActiveQuestion.Id);
+            for (int i = 0; i < questionIdentityCollection.Count; i++)
+            {
+                if (questionIdentityCollection[i] == cirrentQuestionIde)
+                {
+                    if (i + 1 < questionIdentityCollection.Count)
+                    {
+                        return questionIdentityCollection[i + 1];
+                    }
+                }
+            }
+            if (questionIdentityCollection.Count > 0)
+            {
+                return questionIdentityCollection[0];
+            }
+            throw new ApplicationException("Unknoun error.");
         }
 
         protected override void DoGetPreviousQuestion(QuestionAnswerSet questionAnswerSet)
@@ -160,19 +220,10 @@ namespace GmatClubTest.BusinessLogic
                 activeQuestionIndexes[activeSetIndex] = activeQuestionIndexes[activeSetIndex] - 1;
                 GetActiveQuestion(questionAnswerSet);
             }
-            if (_reviwState == ReviewState.ReviewFlagged)
+            if (_reviwState == ReviewState.ReviewFlagged || _reviwState == ReviewState.ReviewIncorrect)
             {
-                Dictionary<QuestionIdentity, bool> questionInfo = GetQuestionInfoForReview();
-                QuestionIdentity prevQi = new QuestionIdentity(-1, -1);
-                foreach (KeyValuePair<QuestionIdentity, bool> keyValuePair in questionInfo)
-                {
-                    if (keyValuePair.Key.SetId == activeSetIndex &&
-                        keyValuePair.Key.QuestionId == ActiveQuestion.Id)
-                    {
-                        SetActiveQuestion(prevQi.QuestionId);
-                    }
-                    prevQi = keyValuePair.Key;
-                }
+                SetActiveQuestion(GetPreviousReviewQuestion().QuestionId);
+                GetActiveQuestion(questionAnswerSet);
             }
         }
 
@@ -183,29 +234,10 @@ namespace GmatClubTest.BusinessLogic
                 activeQuestionIndexes[activeSetIndex] = activeQuestionIndexes[activeSetIndex] + 1;
                 GetActiveQuestion(questionAnswerSet);
             }
-            if(_reviwState == ReviewState.ReviewFlagged)
+            if (_reviwState == ReviewState.ReviewFlagged || _reviwState == ReviewState.ReviewIncorrect)
             {
-                Dictionary<QuestionIdentity, bool> questionInfo = GetQuestionInfoForReview();
-                bool findCurren = false;
-                foreach (KeyValuePair<QuestionIdentity, bool> keyValuePair in questionInfo)
-                {
-                    if (!findCurren)
-                    {
-                        if (keyValuePair.Key.SetId == activeSetIndex &&
-                            keyValuePair.Key.QuestionId == ActiveQuestion.Id)
-                        {
-                            findCurren = true;
-                        }
-                    }
-                    else
-                    {
-                        if (keyValuePair.Key.SetId == activeSetIndex && keyValuePair.Value)
-                        {
-                            SetActiveQuestion(keyValuePair.Key.QuestionId);
-                            break;
-                        }
-                    }
-                }
+                SetActiveQuestion(GetNextReviewQuestion().QuestionId);
+                GetActiveQuestion(questionAnswerSet);
             }
         }
 
@@ -222,6 +254,11 @@ namespace GmatClubTest.BusinessLogic
         protected override QuestionAnswerSet.QuestionsRow ActiveQuestion
         {
             get { return questionsAnswers[activeSetIndex].Questions[activeQuestionIndexes[activeSetIndex]]; }
+        }
+
+        public override Explanations.ExplanationsDataTable GetExplanations()
+        {
+            throw new Exception("The method or operation is not implemented.");
         }
 
         protected override int ActiveQuestionIndex
@@ -260,7 +297,10 @@ namespace GmatClubTest.BusinessLogic
 
         public override bool HasRandomQuestionAccess
         {
-            get { return true; }
+            get
+            {
+                return true;
+            }
         }
 
         public override void DoSetActiveQuestion(int questionId)
@@ -279,6 +319,15 @@ namespace GmatClubTest.BusinessLogic
             if (index == -1) throw new Exception(String.Format("No question {0}", questionId));
 
             activeQuestionIndexes[activeSetIndex] = index;
+        }
+
+        public override string GetExplanation()
+        {
+            string explanation =
+                _explanationsDataTable.FindBysetIdquestionId(sets.QuestionSets[activeSetIndex].Id, ActiveQuestion.Id).
+                    explanation;
+
+            return explanation;
         }
     }
 }

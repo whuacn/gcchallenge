@@ -23,7 +23,7 @@
 						<asp:label id="errorLabel" runat="server" ForeColor="Red"></asp:label></TD>
 					<TD align="left" width="20%">
 						<P><asp:hyperlink id="adminHyperLink" runat="server" NavigateUrl="GMATClubChallenge/LoginWebForm.aspx" Visible="False">Admin login</asp:hyperlink></P>
-						<P><asp:hyperlink id="loginStatusHyperLink" runat="server" Visible="False">[loginStatusHyperLink]</asp:hyperlink></P>
+						<P><asp:hyperlink id="loginStatusHyperLink" runat="server" Visible="False" ForeColor="White">[loginStatusHyperLink]</asp:hyperlink></P>
 					</TD>
 				</TR>
 			</TABLE>
@@ -33,26 +33,26 @@
 					<TD>
 						<TABLE id="Table4" cellSpacing="1" cellPadding="1" width="100%" align="center" border="0" style="background-color: #026caa">
 							<TR>
-								<TD style="FONT-WEIGHT: bold; background-color: #026caa; color: #ffffff; height: 71px;" align="center">Sets:<asp:table id="setsTable" runat="server" GridLines="Both" BorderStyle="Groove" Font-Bold="True" Font-Size="Medium">
+								<TD style="FONT-WEIGHT: bold; background-color: #026caa; color: #ffffff; height: 71px;" align="center">Sets:<asp:table id="setsTable" runat="server" GridLines="Both" BorderStyle="Groove" Font-Bold="True" Font-Size="Medium" ForeColor="White">
 										<asp:TableRow runat="server">
 											<asp:TableCell runat="server"></asp:TableCell>
 										</asp:TableRow>
 									</asp:table></TD>
 							</TR>
 							<TR>
-								<TD style="FONT-WEIGHT: bold; height: 71px; color: #ffffff; background-color: #026caa;" align="center">Questions:<asp:table id="questionTable" runat="server" GridLines="Both" BorderStyle="Groove" Font-Bold="True" Font-Size="Medium"></asp:table></TD>
+								<TD style="FONT-WEIGHT: bold; height: 71px; color: #ffffff; background-color: #026caa;" align="center">Questions:<asp:table id="questionTable" runat="server" GridLines="Both" BorderStyle="Groove" Font-Bold="True" Font-Size="Medium" ForeColor="White"></asp:table></TD>
 							</TR>
 						</TABLE>
-						<TABLE id="Table5" cellSpacing="1" cellPadding="1" align="center" border="0" style="width: 156px; height: 99px">
+						<TABLE id="Table5" cellSpacing="1" cellPadding="1" align="center" border="0">
 							<TR>
                                 <td style="width: 32px; border-top-style: ridge; border-right-style: ridge; border-left-style: ridge;
-                                    height: 97px; border-bottom-style: ridge">
+                                    height: 52px; border-bottom-style: ridge">
                                     <asp:imagebutton id="imageButton" runat="server" OnClick="imageButton_Click"></asp:imagebutton></td>
                                 <td style="width: 32px; border-top-style: ridge; border-right-style: ridge; border-left-style: ridge;
-                                    height: 97px; border-bottom-style: ridge">
+                                    height: 52px; border-bottom-style: ridge">
                                     <asp:ImageButton ID="reviewIncorrect" runat="server" ImageUrl="~/ReviewIncorrect.gif"
                                         OnClick="reviewIncorrect_Click" /></td>
-								<TD style="width: 32px; border-top-style: ridge; border-right-style: ridge; border-left-style: ridge; height: 97px; border-bottom-style: ridge;">
+								<TD style="width: 32px; border-top-style: ridge; border-right-style: ridge; border-left-style: ridge; height: 52px; border-bottom-style: ridge;">
                                     <asp:ImageButton ID="reviewFlagged" runat="server" ImageUrl="~/ReviewFlagged.gif"
                                         OnClick="reviewFlagged_Click" /></TD>
 							</TR>

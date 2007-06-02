@@ -138,16 +138,16 @@
       <LastGenOutput>TestQuestionSetSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
-    <Compile Include="AboutForm.cs">
+    <Compile Include="Forms\AboutForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AboutForm.Designer.cs">
+    <Compile Include="Forms\AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AnswersEditorForm.cs">
+    <Compile Include="Forms\AnswersEditorForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AnswersEditorForm.Designer.cs">
+    <Compile Include="Forms\AnswersEditorForm.Designer.cs">
       <DependentUpon>AnswersEditorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ApplicationController.cs">
@@ -220,43 +220,49 @@
     <Compile Include="BusinessObjects\VerbalSets.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CreateNewQuestionSetForm.cs">
+    <Compile Include="Forms\CreateNewQuestionSetForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CreateNewQuestionSetForm.Designer.cs">
+    <Compile Include="Forms\CreateNewQuestionSetForm.Designer.cs">
       <DependentUpon>CreateNewQuestionSetForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CreateNewTestForm.cs">
+    <Compile Include="Forms\CreateNewTestForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CreateNewTestForm.Designer.cs">
+    <Compile Include="Forms\CreateNewTestForm.Designer.cs">
       <DependentUpon>CreateNewTestForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="HelpForm.cs">
+    <Compile Include="Forms\EplanationForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PassageQuestionEditor.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="Forms\EplanationForm.Designer.cs">
+      <DependentUpon>EplanationForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="QuestionEditor.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="SelectAnswerForm.cs">
+    <Compile Include="Forms\HelpForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SelectAnswerForm.Designer.cs">
+    <Compile Include="Views\PassageQuestionEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\QuestionEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\SelectAnswerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SelectAnswerForm.Designer.cs">
       <DependentUpon>SelectAnswerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="SelectPassageQuestionForm.cs">
+    <Compile Include="Forms\SelectPassageQuestionForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SelectPassageQuestionForm.Designer.cs">
+    <Compile Include="Forms\SelectPassageQuestionForm.Designer.cs">
       <DependentUpon>SelectPassageQuestionForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CreateNewQuestionForm.cs">
+    <Compile Include="Forms\CreateNewQuestionForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CreateNewQuestionForm.Designer.cs">
+    <Compile Include="Forms\CreateNewQuestionForm.Designer.cs">
       <DependentUpon>CreateNewQuestionForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Data\Dataset.cs">
@@ -275,34 +281,34 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TestQuestionSetSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="EditConnectionForm.cs">
+    <Compile Include="Forms\EditConnectionForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="EditingDatabase.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Editor.cs">
+    <Compile Include="Views\Editor.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ExportTestForm.cs">
+    <Compile Include="Forms\ExportTestForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ExportTestForm.Designer.cs">
+    <Compile Include="Forms\ExportTestForm.Designer.cs">
       <DependentUpon>ExportTestForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ImportTestForm.cs">
+    <Compile Include="Forms\ImportTestForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ImportTestForm.Designer.cs">
+    <Compile Include="Forms\ImportTestForm.Designer.cs">
       <DependentUpon>ImportTestForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="InputPasswordForm.cs">
+    <Compile Include="Forms\InputPasswordForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.cs">
+    <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProcessingForm.cs">
+    <Compile Include="Forms\ProcessingForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
@@ -315,22 +321,22 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="QuestionSetEditor.cs">
+    <Compile Include="Views\QuestionSetEditor.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="SelectQuestionForm.cs">
+    <Compile Include="Forms\SelectQuestionForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SelectQuestionForm.Designer.cs">
+    <Compile Include="Forms\SelectQuestionForm.Designer.cs">
       <DependentUpon>SelectQuestionForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="SelectSet.cs">
+    <Compile Include="Forms\SelectSet.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SelectSet.Designer.cs">
+    <Compile Include="Forms\SelectSet.Designer.cs">
       <DependentUpon>SelectSet.cs</DependentUpon>
     </Compile>
-    <Compile Include="TestEditor.cs">
+    <Compile Include="Views\TestEditor.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Tree\Clipboard.cs">
@@ -354,7 +360,7 @@
     <Compile Include="Tree\Tree.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="TypeSelectionForm.cs">
+    <Compile Include="Forms\TypeSelectionForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <None Include="app.config" />
@@ -383,74 +389,79 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <EmbeddedResource Include="AboutForm.resx">
+    <EmbeddedResource Include="Forms\AboutForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AnswersEditorForm.resx">
+    <EmbeddedResource Include="Forms\AnswersEditorForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>AnswersEditorForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CreateNewQuestionSetForm.resx">
+    <EmbeddedResource Include="Forms\CreateNewQuestionSetForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>CreateNewQuestionSetForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CreateNewTestForm.resx">
+    <EmbeddedResource Include="Forms\CreateNewTestForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>CreateNewTestForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HelpForm.resx">
+    <EmbeddedResource Include="Forms\EplanationForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>EplanationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\HelpForm.resx">
       <DependentUpon>HelpForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="PassageQuestionEditor.resx">
+    <EmbeddedResource Include="Views\PassageQuestionEditor.resx">
       <SubType>Designer</SubType>
       <DependentUpon>PassageQuestionEditor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="QuestionEditor.resx">
+    <EmbeddedResource Include="Views\QuestionEditor.resx">
       <SubType>Designer</SubType>
       <DependentUpon>QuestionEditor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SelectAnswerForm.resx">
+    <EmbeddedResource Include="Forms\SelectAnswerForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>SelectAnswerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SelectPassageQuestionForm.resx">
+    <EmbeddedResource Include="Forms\SelectPassageQuestionForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>SelectPassageQuestionForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CreateNewQuestionForm.resx">
+    <EmbeddedResource Include="Forms\CreateNewQuestionForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>CreateNewQuestionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Data\Provider.resx">
       <DependentUpon>Provider.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditConnectionForm.resx">
+    <EmbeddedResource Include="Forms\EditConnectionForm.resx">
       <DependentUpon>EditConnectionForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Editor.resx">
+    <EmbeddedResource Include="Views\Editor.resx">
       <DependentUpon>Editor.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="ExportTestForm.resx">
+    <EmbeddedResource Include="Forms\ExportTestForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>ExportTestForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ImportTestForm.resx">
+    <EmbeddedResource Include="Forms\ImportTestForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>ImportTestForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="InputPasswordForm.resx">
+    <EmbeddedResource Include="Forms\InputPasswordForm.resx">
       <DependentUpon>InputPasswordForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
+    <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProcessingForm.resx">
+    <EmbeddedResource Include="Forms\ProcessingForm.resx">
       <DependentUpon>ProcessingForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -459,19 +470,19 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="QuestionSetEditor.resx">
+    <EmbeddedResource Include="Views\QuestionSetEditor.resx">
       <DependentUpon>QuestionSetEditor.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="SelectQuestionForm.resx">
+    <EmbeddedResource Include="Forms\SelectQuestionForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>SelectQuestionForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SelectSet.resx">
+    <EmbeddedResource Include="Forms\SelectSet.resx">
       <SubType>Designer</SubType>
       <DependentUpon>SelectSet.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TestEditor.resx">
+    <EmbeddedResource Include="Views\TestEditor.resx">
       <DependentUpon>TestEditor.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -481,7 +492,7 @@
     <EmbeddedResource Include="Tree\Tree.resx">
       <DependentUpon>Tree.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TypeSelectionForm.resx">
+    <EmbeddedResource Include="Forms\TypeSelectionForm.resx">
       <DependentUpon>TypeSelectionForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>

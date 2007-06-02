@@ -31,11 +31,7 @@ namespace GMATClubTest.Web
 
       public override void DoLoad(object sender, EventArgs e)
       {
-         
-         if (!IsPostBack)
-         {
-            ((GMATClubTest.Web.WebTestController)Session["WebTestController"]).PrepareDescription(this);
-         }
+        ((GMATClubTest.Web.WebTestController)Session["WebTestController"]).PrepareDescription(this);
       }
 
       

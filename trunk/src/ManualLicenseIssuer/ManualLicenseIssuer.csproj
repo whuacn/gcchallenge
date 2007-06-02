@@ -118,6 +118,7 @@
     </Compile>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="ManualLicenseIssuer.exe.manifest">
       <SubType>Form</SubType>

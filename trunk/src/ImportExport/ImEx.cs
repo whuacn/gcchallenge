@@ -5,14 +5,16 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using GmatClubTest.Common;
 using GmatClubTest.ImportExport.Data;
+using ImportExport;
 using ImportExport.Data;
 
 namespace GmatClubTest.ImportExport
 {
     public class ImEx : IDisposable
     {
-        private Provider provider;
+        private Provider2 provider;
         private Dataset dataset = new Dataset();
+        private Provider propv1;
         // private string fileName = "";
         //  private string serverName = "";
         private string dbName = "GmatClubChallenge";
@@ -20,7 +22,8 @@ namespace GmatClubTest.ImportExport
 
         public ImEx()
         {
-            provider = new Provider();
+            provider = new Provider2();
+            propv1 = new Provider();
         }
 
         private static string DB_FILE_NAME = "GmatClubTest.mdb";
@@ -53,7 +56,7 @@ namespace GmatClubTest.ImportExport
 
         public void DeleteOldTest(int testId)
         {
-            provider.DeleteOldTest(testId);
+            //provider.DeleteOldTest(testId);
         }
 
         ~ImEx()
@@ -64,20 +67,21 @@ namespace GmatClubTest.ImportExport
 
         public void ImportFromTextFile(string filePath)
         {
-            Dataset test = new Dataset();
+            DataSet2 test = new DataSet2();
             StreamReader s = new StreamReader(filePath);
             Guid guid = Guid.NewGuid();
-            test.Tests.AddTestsRow("Test from typed file(by parser v11)", true, "unknown", null, null, guid.ToString(), 1);
-            test.QuestionSets.AddQuestionSetsRow("Set from typed file", "unknown", 0, int.MaxValue, null, null, 0, 0, 0);
+            test.Tests.AddTestsRow("Test from typed file(by parser v11)", true, "unknown", 3, 3, guid.ToString(), 1, 0);
+            test.QuestionSets.AddQuestionSetsRow("Set from typed file", "unknown", 0, int.MaxValue, 3, 3, 0, 0, 0);
             //Todo Updete Number of question
-            int correctQiestionNamber =0;
+            int correctQiestionNamber = 0;
             int curentQuestionNumber = -1;
             int numberZone1 = 0;
             int numberZone2 = 0;
             int numberZone3 = 0;
             byte curentAnswerNumber = 0;
            
-            DataTable questionSubtypesTable = provider.GetQuestionSubtypesTable();
+          
+            DataTable questionSubtypesTable = propv1.GetQuestionSubtypesTable();
                         
             while (!s.EndOfStream)
             {
@@ -167,6 +171,16 @@ namespace GmatClubTest.ImportExport
                             break;
                         }
                     }
+                    string explanation = string.Empty;
+                    while(line != null && line != string.Empty)
+                    {
+                        explanation += line;
+                        line = s.ReadLine();
+                    }
+                    if(!string.IsNullOrEmpty(explanation))
+                    {
+                        test.explanations.AddexplanationsRow(curentQuestionNumber, explanation);
+                    }
                 }
             }
             test.QuestionSets[0].NumberOfQuestionsToPick = test.Questions.Count;
@@ -184,7 +198,7 @@ namespace GmatClubTest.ImportExport
 
         public void ExportTest(int testId, string filePath)
         {
-            provider.GetTestById(dataset, testId);
+            propv1.GetTestById(dataset, testId);
             IFormatter formatter = new BinaryFormatter();
             Stream stream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None);
             formatter.Serialize(stream, dataset);
@@ -197,7 +211,7 @@ namespace GmatClubTest.ImportExport
         public void ExportTestOnNewTheader()
 
         {
-            provider.GetTestById(dataset, theadTestId);
+            propv1.GetTestById(dataset, theadTestId);
             IFormatter formatter = new BinaryFormatter();
             Stream stream = new FileStream(theadFilePath, FileMode.Create, FileAccess.Write, FileShare.None);
             formatter.Serialize(stream, dataset);
@@ -215,7 +229,7 @@ namespace GmatClubTest.ImportExport
             Stream stream = new FileStream(theadFilePath, FileMode.Open, FileAccess.Read, FileShare.Read);
             dataset = (Dataset) formatter.Deserialize(stream);
             stream.Close();
-            provider.SetTest(dataset);
+            propv1.SetTest(dataset);
         }
 
         public void ImportTest(string filePath)
@@ -225,12 +239,12 @@ namespace GmatClubTest.ImportExport
             dataset = (Dataset) formatter.Deserialize(stream);
             stream.Close();
 
-            provider.SetTest(dataset);
+            propv1.SetTest(dataset);
         }
 
         public void Dispose()
         {
-            provider.Dispose();
+            propv1.Dispose();
         }
     }
 }

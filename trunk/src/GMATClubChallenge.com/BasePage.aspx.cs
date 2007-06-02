@@ -1,19 +1,15 @@
 using System;
-using System.Data;
 using System.Configuration;
-using System.Collections;
-using System.Web;
-using System.Web.Security;
+using System.Data.SqlClient;
+using System.Threading;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Web.UI.HtmlControls;
 using AccessControl;
+using GmatClubTest.BusinessLogic;
 using log4net;
 
 namespace GMATClubTest.Web
 {
-   public partial class BasePage : System.Web.UI.Page, AccessControl.IStatusHandler
+   public partial class BasePage : Page, IStatusHandler
    {
       protected BasePage ()
       {
@@ -23,9 +19,9 @@ namespace GMATClubTest.Web
       protected void Page_Load(object sender, EventArgs e)
       {
       
-         access_manager_ = (AccessControl.AccessManager)(Session["access_manager"]);
-         manager_ = (GmatClubTest.BusinessLogic.Manager)(Session["manager"]);
-         connection_ = (System.Data.SqlClient.SqlConnection)(manager_.DataProvider.getConnection());
+         access_manager_ = (AccessManager)(Session["access_manager"]);
+         manager_ = (Manager)(Session["manager"]);
+         connection_ = (SqlConnection)(manager_.DataProvider.getConnection());
          
 
          // check if user perfom a login or logoff
@@ -33,7 +29,7 @@ namespace GMATClubTest.Web
          if(!access_manager_.manage_session(
                                         Request,
                                         Response,
-                                        System.Configuration.ConfigurationManager.AppSettings["AccessManager.Cookie"],
+                                        ConfigurationManager.AppSettings["AccessManager.Cookie"],
                                         this
                                        ))
                                        {
@@ -55,16 +51,16 @@ namespace GMATClubTest.Web
                DoLoad(sender, e);
             }
             
-            catch(System.Exception eee)
+            catch(Exception eee)
             {
                show_error_(eee,true);
             }
          }
-         catch(System.Threading.ThreadAbortException ee)
+         catch(ThreadAbortException ee)
          {
          
          }
-         catch(System.Exception ee)
+         catch(Exception ee)
          {
             LogManager.GetLogger("access_control").WarnFormat("Access Denied for '{0}' to {1}", access_manager_.UserLogin, fn_);
             show_error_(ee,false);
@@ -82,7 +78,7 @@ namespace GMATClubTest.Web
          Session["UserId"] = null;
          manager_.UserId = access_manager_.UserId;
          
-         string logoff_page = System.Configuration.ConfigurationManager.AppSettings["AccessManager.ByePage"];
+         string logoff_page = ConfigurationManager.AppSettings["AccessManager.ByePage"];
          if (null == logoff_page || "" == logoff_page)
          {
             Response.Redirect("/");
@@ -122,7 +118,7 @@ namespace GMATClubTest.Web
          //throw std::ru
       }
 
-      protected void show_error_(System.Exception ee,bool trace)
+      protected void show_error_(Exception ee,bool trace)
       {
          logger.ErrorFormat("Error: {0}",ee.Message);
          logger.ErrorFormat("   at: {0}",ee.StackTrace);
@@ -142,11 +138,11 @@ namespace GMATClubTest.Web
       protected string current_function_="";
       protected string login_error_ = "";
       protected string onLoadScript="";
-      protected AccessControl.AccessManager access_manager_ = null;
-      protected GmatClubTest.BusinessLogic.Manager manager_ = null; 
-      protected System.Data.SqlClient.SqlConnection connection_=null;
+      protected AccessManager access_manager_ = null;
+      protected Manager manager_ = null; 
+      protected SqlConnection connection_=null;
       
-      protected log4net.ILog logger = null;
+      protected ILog logger = null;
    }
 
 }

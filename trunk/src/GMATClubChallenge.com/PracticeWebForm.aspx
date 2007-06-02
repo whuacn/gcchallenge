@@ -18,15 +18,16 @@
 	            dateStart = new Date();
 	            //window.setTimeout('clock();',100)
 	            clock();
-            }
-            
+	            initReviewFlag();
+            }          
+
 		    </script>
 		</scripts>
 	</HEAD>
 	<body onload="onStart()" bgcolor="#006daa" style="text-align: center">
 		<form id="Form1" metod="post" runat="server">
-			<INPUT id="isAnswerConfirm" type="hidden" value="false" name="isAnswerConfirm">			
-            <asp:HiddenField ID="reviewFlag" runat="server" Value="False" />
+            &nbsp;<asp:HiddenField ID="reviewFlag" runat="server" Value="False" />
+            <asp:HiddenField ID="isAnswerConfirm" runat="server" Value="False" />
             <table id="Table1" align="center" border="0" cellpadding="1" cellspacing="1" width="739">
                 <tr>
                     <td align="left" width="20%">
@@ -50,14 +51,14 @@
             </table>
 			<%=clockHiddenParam%>
 			<HR width="100%" noShade SIZE="1" style="color: white">
-			<TABLE id="Table2" cellSpacing="1" cellPadding="1" width="660" align="center" border="0" style="border-top-style: ridge; border-right-style: ridge; border-left-style: ridge; border-bottom-style: ridge">
+			<TABLE id="Table2" cellSpacing="0" cellPadding="0" width="665" align="center" border="0" style="border-top-style: ridge; border-right-style: ridge; border-left-style: ridge; border-bottom-style: ridge">
                 <tr>
                     <td rowspan="" style="height: 0px; width: 946px; text-align: right;">
                         <table>
                             <tr>
-                                <td style="vertical-align: middle; width: 10%; text-align: left; height: 44px; background-color: #80aee1;">
+                                <td style="vertical-align: middle; width: 12%; text-align: left; background-color: #80aee1;">
                                     <asp:Label ID="practiceNameLabel" runat="server" Text="Label" Width="100%" Font-Size="Medium" ForeColor="White"></asp:Label></td>
-                                <td style="vertical-align: top; width: 20%; text-align: right; height: 44px; background-color: #80aee1;">
+                                <td style="vertical-align: top; width: 20%; text-align: right; background-color: #80aee1;" rowspan="">
                                     <table style="width: 100%">
                                         <tr>
                                             <td style="font-weight: bold; vertical-align: middle; color: #006daa; text-align: right; width: 70%;">
@@ -67,38 +68,68 @@
 										<IMG height="21" src="images/clock/nb.gif" width="16" name="hour2"><IMG height="21" src="images/clock/nc.gif" width="9" name="colon"><IMG height="21" src="images/clock/nb.gif" width="16" name="minute1"><IMG height="21" src="images/clock/nb.gif" width="16" name="minute2"><IMG height="21" src="images/clock/nc.gif" width="9" name="colon"><IMG height="21" src="images/clock/nb.gif" width="16" name="second1"><IMG height="21" src="images/clock/nb.gif" width="16" name="second2"></td>
                                         </tr>
                                     </table>
-                                    <table>
+                                    <table cellpadding="0" cellspacing="0">
                                         <tr>
+                                            <td>
+                                                </td>
                                             <td style="height: 27px">
-                                                <asp:ImageButton ID="answerCheckImageButton" runat="server" ImageUrl="~/CheckAnswer.gif" /></td>
-                                            <td style="height: 27px">
-                                                <asp:ImageButton ID="showAnswerImageButton" runat="server" ImageUrl="~/ShowAnswer.gif" /></td>
+                                                </td>
+                                            <td style="height: 27px; width: 1px;">
+                                                </td>
                                             <td style="height: 27px">
                                                 <IMG src="FlagForReview.gif" onclick = "reviewFlag_Click()" style="cursor: hand" name="reviewFlagImg"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <asp:ImageButton ID="answerCheckImageButton" runat="server" ImageUrl="~/CheckAnswer.gif" Visible="False" /></td>
+                                            <td>
+                                                <asp:ImageButton ID="showAnswerImageButton" runat="server" ImageUrl="~/ShowAnswer.gif" Visible="False" /></td>
+                                            <td style="height: 27px; width: 1px;">
+                                            </td>
+                                            <td>
+                                                <asp:ImageButton ID="explainAnswer" runat="server" ImageUrl="~/ExplainAnswer.gif" O Visible="False" OnClick="explainAnswer_Click" /></td>
                                         </tr>
                                     </table>
                                 </td>
                             </tr>
                         </table>
-                    </td>
-                </tr>				
-					<TD style="width: 946px; height: 103px"><asp:panel id="Panel" runat="server" Width="100%" BackColor="White" BorderColor="White">
-							<TABLE id="Table11" cellSpacing="1" cellPadding="1" width="650" border="0">
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                            <tr>
+                                <td>
+                                    <asp:Panel ID="questionTextPanel" runat="server" BackColor="White" BorderColor="White"
+                                        BorderWidth="1px" GroupingText="Question" Height="100%">
+							<TABLE id="Table11" cellSpacing="0" cellPadding="0" width="100%" border="0">
+                                <tr>
 								
-									<TD style="height: 55px">
+									<TD style="background-color: white; height: 69px;">
 										<asp:Panel id="questionPanel" runat="server">
 											<asp:Image id="questionImage" runat="server"></asp:Image>
 										</asp:Panel></TD>
-									<TD style="height: 55px">
+									<TD style="background-color: white; height: 69px;" colspan="">
 										<asp:Panel id="passagePanel" runat="server">
 											<asp:Image id="passageImage" runat="server"></asp:Image>
 										</asp:Panel></TD>
+                                </tr>
 								
 							</TABLE>
+                                    </asp:Panel>
+                                            <asp:Panel id="explanationPanel" runat="server" BackColor="White" BorderColor="White" Width="100%" GroupingText="Explanation" BorderWidth="1px">
+                                                <asp:Image ID="explanationImage" runat="server" />
+                                            </asp:Panel>
+                                <asp:panel id="Panel" runat="server" Width="100%" BackColor="White" BorderColor="White" BorderWidth="1px" GroupingText="Answers">
 							<asp:RadioButtonList id="answerRadioButtonList" runat="server" onselectedindexchanged = "answerRadioButtonList_SelectedIndexChanged"></asp:RadioButtonList>
-						</asp:panel></TD>				
+						</asp:panel>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>				
+                <tr>
+                    <td rowspan="1" style="width: 946px; height: 0px; text-align: right">
+                    </td>
+                </tr>
 			</TABLE>
-			<TABLE id="Table4" cellSpacing="1" cellPadding="1" align="center" border="0" style="width: 662px;">
+			<TABLE id="Table4" cellSpacing="1" cellPadding="1" align="center" border="0" style="width: 665px;">
 				<TR>
 					<TD style="height: 31px; width: 9%;">
 						<TABLE id="Table5" cellSpacing="1" cellPadding="1" width="45" align="left" border="0">

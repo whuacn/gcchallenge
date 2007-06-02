@@ -1,0 +1,17 @@
+2007-06-02 03:18:06,733 GMATClubTest.Web.Global - [3320] INFO  GMATClubTest.Web.Global - Application started
+2007-06-02 03:18:06,759 GMATClubTest.Web.Global - [3808] INFO  GMATClubTest.Web.Global - Thread started
+2007-06-02 03:18:08,180 GMATClubTest.Web.Global - [3808] INFO  GMATClubTest.Web.Global - Upgrade statistic command send. Response: 4 statistic rows updated
+2007-06-02 03:18:14,569 access_control - [3320] WARN  access_control - Access granted for 'admin' to Common_Page
+2007-06-02 03:18:15,347 access_control - [3840] WARN  access_control - Access granted for 'admin' to Common_Page
+2007-06-02 03:18:17,929 access_control - [3320] WARN  access_control - Access granted for 'admin' to Common_Page
+2007-06-02 03:18:20,381 access_control - [3320] WARN  access_control - Access granted for 'admin' to Common_Page
+2007-06-02 03:19:00,665 GMATClubTest.Web.Global - [3808] INFO  GMATClubTest.Web.Global - Upgrade statistic command send. Response: 4 statistic rows updated
+2007-06-02 03:19:15,131 access_control - [3320] WARN  access_control - Access granted for 'admin' to show_details
+2007-06-02 03:19:26,762 access_control - [3320] WARN  access_control - Access granted for 'admin' to show_details
+2007-06-02 03:20:23,602 access_control - [3320] WARN  access_control - Access granted for 'admin' to show_results
+2007-06-02 03:20:27,899 GMATClubTest.Web.Global - [3808] INFO  GMATClubTest.Web.Global - Upgrade statistic command send. Response: 4 statistic rows updated
+2007-06-02 03:20:29,046 access_control - [3320] WARN  access_control - Access granted for 'admin' to show_details
+2007-06-02 03:20:36,605 access_control - [3320] WARN  access_control - Access granted for 'admin' to show_details
+2007-06-02 03:20:42,532 access_control - [3320] WARN  access_control - Access granted for 'admin' to show_results
+2007-06-02 03:21:00,712 GMATClubTest.Web.Global - [3808] INFO  GMATClubTest.Web.Global - Upgrade statistic command send. Response: 4 statistic rows updated
+2007-06-02 03:21:15,489 GMATClubTest.Web.Global - [3840] INFO  GMATClubTest.Web.Global - Application ended

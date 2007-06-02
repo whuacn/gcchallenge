@@ -84,7 +84,7 @@ namespace GMATClubTest.Web
             {
                LogManager.GetLogger(typeof(Global)).Info("Erro: " + e.Message);
             }
-             System.Threading.Thread.Sleep(2000);   
+            System.Threading.Thread.Sleep(2000);   
          }
       
       }

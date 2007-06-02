@@ -27,7 +27,8 @@ namespace GmatClubTest.DataProvider
         
       void GetResults(int userId, DateTime beginTime, DateTime endTime, ResultSet  results);
       void GetQuestionSetsResultDetailsSet(int resultId, QuestionSetsResultDetailsSet questionSetsResultsDetailsEx);
-      
+
+       Explanations.ExplanationsDataTable GetExplanations(int testId);
 
       IDbConnection getConnection();
 

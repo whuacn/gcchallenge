@@ -1,14 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Configuration;
 using System.Drawing;
-using System.Web;
-using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Web.UI.HtmlControls;
 using GmatClubTest.BusinessLogic;
 using GmatClubTest.Common;
 using GmatClubTest.Data;
@@ -41,22 +34,16 @@ public class ReviewFormController: IReviewFormController
 
     public void reviewFlagged_Click(object sender, ImageClickEventArgs e)
     {
-        //int activeSet;
-        //activeSet = Convert.ToInt32(((LinkButton)sender).ID);
-        //Dictionary<QuestionIdentity, bool> questionInfoForReview = _webTestController.navigator.GetQuestionInfoForReview();
-        //foreach (KeyValuePair<QuestionIdentity, bool> pair in questionInfoForReview)
-        //{
-            
-        //}
-        //reviewWebForm.Response.Redirect("reviewWebForm.aspx");
-        //base.TransitionOnSelectSet();
-
         _webTestController.navigator.SetReviewState(ReviewState.ReviewFlagged);
+        _webTestController.navigator.SetFirstReviewQuestion();
+        _reviewWebForm.Response.Redirect("practiceWebForm.aspx");
+
     }
 
     public void reviewIncorrect_Click(object sender, ImageClickEventArgs e)
     {
-        throw new Exception("The method or operation is not implemented.");
+        _webTestController.navigator.SetReviewState(ReviewState.ReviewIncorrect);
+        _reviewWebForm.Response.Redirect("practiceWebForm.aspx");
     }
 
 
@@ -115,6 +102,7 @@ public class ReviewFormController: IReviewFormController
             tc.BorderStyle = BorderStyle.Groove;
             form.SetsTable.Rows[rows].Cells.Add(tc);
             form.SetsTable.Rows[rows].Cells[cells].Text = (i + 1).ToString();
+            //form.SetsTable.Rows[rows].Cells[cells].Font.Size = FontUnit.XSmall;
             form.SetsTable.Rows[rows].Cells[cells].ForeColor = Color.White;
             ++cells;
             tc = new TableCell();
@@ -124,6 +112,7 @@ public class ReviewFormController: IReviewFormController
             form.SetsTable.Rows[rows].Cells.Add(tc);
             LinkButton setLinkButton = new LinkButton();
             setLinkButton.Text = _webTestController.navigator.Sets.QuestionSets[i].Name;
+            setLinkButton.ForeColor = Color.White;
             setLinkButton.ID = i.ToString();
             setLinkButton.Click += new EventHandler(setLinkButton_Click);
             form.SetsTable.Rows[rows].Cells[cells].Controls.Add(setLinkButton);
@@ -202,6 +191,7 @@ public class ReviewFormController: IReviewFormController
             tc.BorderStyle = BorderStyle.Groove;
             form.QuestionTable.Rows[rows].Cells.Add(tc);
             LinkButton questoinLinkButton = new LinkButton();
+            questoinLinkButton.ForeColor = Color.White;
             //form.questionTable.Rows[rows].Cells[cells].Text = "<input type=\"image\" src=/" + "images/status/" + Question.Status.StatusType.GetName(typeof(Question.Status.StatusType), (int)status.status).ToString() + ".bmp"+">";
             questoinLinkButton.Text = "<input type=\"image\" src=" + "images/status/" +
                                       BuisinessObjects.StatusType.GetName(typeof(BuisinessObjects.StatusType),
@@ -211,6 +201,7 @@ public class ReviewFormController: IReviewFormController
             questoinLinkButton.ID = i.ToString();
             questoinLinkButton.Click += new EventHandler(questoinLinkButton_Click);
             questoinLinkButton.ID = "questoinLinkButton" + i.ToString();
+            questoinLinkButton.Font.Size = FontUnit.Small;
             form.QuestionTable.Rows[rows].Cells[cells].Controls.Add(questoinLinkButton);
             ++cells;
 
@@ -249,6 +240,7 @@ public class ReviewFormController: IReviewFormController
 
     private void questoinLinkButton_Click(object sender, EventArgs e)
     {
+        _webTestController.navigator.SetReviewState(ReviewState.none);
         int qn = Convert.ToInt32(((LinkButton)sender).ID.Substring(18));
         _webTestController.TransitionOnSelectQuestion(qn, _webTestController.activSetNumber);
         _webTestController.GetActivQuestion();

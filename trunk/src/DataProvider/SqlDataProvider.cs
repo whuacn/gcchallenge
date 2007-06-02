@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Data;
+using GmatClubTest.Data.ExplanationsTableAdapters;
 
 namespace GmatClubTest.DataProvider
 {
@@ -34,6 +35,7 @@ namespace GmatClubTest.DataProvider
         private SqlDataAdapter adapterAnswersByQuestionSetId;
         private SqlCommand sqlSelectAnswersByQuestionSetId;
         private SqlDataAdapter adapterResultsByUserIdTimeRange;
+        private ExplanationsTableAdapter explanationsTableAdapter;
 
         private SqlCommand sqlSelectCommand2;
         private SqlCommand sqlInsertCommand8;
@@ -89,30 +91,30 @@ namespace GmatClubTest.DataProvider
         /// </summary>
         private Container components = null;
 
-        public SqlDataProvider(IContainer container)
+        public SqlDataProvider(IContainer container):this()
         {
             ///
             /// Required for Windows.Forms Class Composition Designer support
             ///
             container.Add(this);
-            InitializeComponent();
-
-            Init();
+            
         }
 
-        public SqlDataProvider()
+        public SqlDataProvider() 
         {
             ///
             /// Required for Windows.Forms Class Composition Designer support
             ///
             InitializeComponent();
-
+            
             Init();
         }
 
         private void Init()
         {
             DataSource = dataSource;
+            explanationsTableAdapter = new ExplanationsTableAdapter();
+            explanationsTableAdapter.Connection = sqlConnection;
         }
 
         /// <summary> 
@@ -203,6 +205,14 @@ namespace GmatClubTest.DataProvider
             if (password.Length != 0)
                 sqlConnection.ConnectionString = sqlConnection.ConnectionString + ";Password=" + password;
            }
+        }
+
+        protected override ExplanationsTableAdapter ExplanationsTableAdapter
+        {
+            get
+            {
+                return explanationsTableAdapter;
+            }
         }
 
         protected override DbDataAdapter AdapterUsers

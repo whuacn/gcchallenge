@@ -77,6 +77,7 @@
     <Reference Include="System">
       <Name>System</Name>
     </Reference>
+    <Reference Include="System.configuration" />
     <Reference Include="System.Data">
       <Name>System.Data</Name>
     </Reference>
@@ -125,11 +126,6 @@
       <LastGenOutput>ResultSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="TestSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>TestSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </Content>
     <Compile Include="AnswerSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -145,6 +141,30 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BindedTests.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Explanations.cs">
+      <DependentUpon>Explanations.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Explanations.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Explanations.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="TestSet.cs">
+      <DependentUpon>TestSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="TestSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TestSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="TestSet_.cs">
+      <DependentUpon>TestSet_.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="TestSet_.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TestSet_.xsd</DependentUpon>
     </Compile>
     <Compile Include="PassageToQuestionSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -205,14 +225,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResultSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="TestSet.cs">
-      <DependentUpon>TestSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="TestSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TestSet.xsd</DependentUpon>
-    </Compile>
     <None Include="AnswerSet.xsc">
       <DependentUpon>AnswerSet.xsd</DependentUpon>
     </None>
@@ -233,6 +245,39 @@
     </None>
     <None Include="BindedTests.xss">
       <DependentUpon>BindedTests.xsd</DependentUpon>
+    </None>
+    <None Include="Explanations.xsc">
+      <DependentUpon>Explanations.xsd</DependentUpon>
+    </None>
+    <None Include="Explanations.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Explanations.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Explanations.xss">
+      <DependentUpon>Explanations.xsd</DependentUpon>
+    </None>
+    <None Include="TestSet.xsc">
+      <DependentUpon>TestSet.xsd</DependentUpon>
+    </None>
+    <None Include="TestSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TestSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="TestSet.xss">
+      <DependentUpon>TestSet.xsd</DependentUpon>
+    </None>
+    <None Include="TestSet_.xsc">
+      <DependentUpon>TestSet_.xsd</DependentUpon>
+    </None>
+    <None Include="TestSet_.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TestSet_.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="TestSet_.xss">
+      <DependentUpon>TestSet_.xsd</DependentUpon>
     </None>
     <None Include="PassageToQuestionSet.xsc">
       <DependentUpon>PassageToQuestionSet.xsd</DependentUpon>
@@ -322,15 +367,6 @@
     </None>
     <None Include="ResultSet.xsx">
       <DependentUpon>ResultSet.xsd</DependentUpon>
-    </None>
-    <None Include="TestSet.xsc">
-      <DependentUpon>TestSet.xsd</DependentUpon>
-    </None>
-    <None Include="TestSet.xss">
-      <DependentUpon>TestSet.xsd</DependentUpon>
-    </None>
-    <None Include="TestSet.xsx">
-      <DependentUpon>TestSet.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

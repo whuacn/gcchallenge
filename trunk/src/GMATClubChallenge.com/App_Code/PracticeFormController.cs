@@ -1,24 +1,16 @@
 using System;
-using System.Data;
-using System.Configuration;
 using System.Drawing.Imaging;
-using System.Web;
-using System.Web.Security;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Web.UI.HtmlControls;
 using GmatClubTest.BusinessLogic;
 using GmatClubTest.Common;
-using GMATClubTest.Web;
 using GmatClubTest.Data;
+using GMATClubTest.Web;
 
 /// <summary>
 /// Summary description for PracticeFormController
 /// </summary>
 public class PracticeFormController : WebTestController , IPracticeFormController
 {
-
 
     public PracticeFormController(TestSet.TestsRow testRow, Manager manager)
         : base(testRow, manager)
@@ -34,11 +26,11 @@ public class PracticeFormController : WebTestController , IPracticeFormControlle
     {
         practicelWebForm = form;
         practicelWebForm.clockHiddenParam += "<INPUT id=\"timehh\" type=\"hidden\" value=\"" +
-                                             navigator.RemainedTime.Hours.ToString() + "\" name=\"timehh\">";
+                                             navigator.RemainedTime.Hours + "\" name=\"timehh\">";
         practicelWebForm.clockHiddenParam += "<INPUT id=\"timemm\" type=\"hidden\" value=\"" +
-                                             navigator.RemainedTime.Minutes.ToString() + "\" name=\"timemm\">";
+                                             navigator.RemainedTime.Minutes + "\" name=\"timemm\">";
         practicelWebForm.clockHiddenParam += "<INPUT id=\"timess\" type=\"hidden\" value=\"" +
-                                             navigator.RemainedTime.Seconds.ToString() + "\" name=\"timess\">";
+                                             navigator.RemainedTime.Seconds + "\" name=\"timess\">";
 
         if (practicelWebForm.IsPostBack)
         {
@@ -54,7 +46,26 @@ public class PracticeFormController : WebTestController , IPracticeFormControlle
     /// <param name="practicelWebForm"></param>
     private  void Init(PracticeGeneralWebForm practicelWebForm)
     {
-        //GetNextQuestion();
+        GetActivQuestion();
+
+        practicelWebForm.ReviewFlag.Value = bool.FalseString;
+
+        if (navigator.ReviewState == ReviewState.ReviewFlagged || navigator.ReviewState == ReviewState.ReviewIncorrect)
+        {
+            practicelWebForm.ExplanationPanel.Visible = false;
+            practicelWebForm.EplainAnswerImageButton.Visible = true;
+            practicelWebForm.ShowAnswerImageButton.Visible = true;
+            practicelWebForm.AnswerCheckImageButton.Visible = true;
+     
+        }
+        else
+        {
+            practicelWebForm.ExplanationPanel.Visible = false;
+            practicelWebForm.EplainAnswerImageButton.Visible = false;
+            practicelWebForm.ShowAnswerImageButton.Visible = false;
+            practicelWebForm.ShowAnswerImageButton.Visible = false;
+            practicelWebForm.AnswerCheckImageButton.Visible = false;
+        }
 
         loginStatusHyperLink.Text = "Log out...";
         loginStatusHyperLink.NavigateUrl = "loginWebForm.aspx";
@@ -75,13 +86,13 @@ public class PracticeFormController : WebTestController , IPracticeFormControlle
             //practicelWebForm.PassageImage.Visible = true;
             practicelWebForm.PassageImage.Visible = true;
             imageSet.Question.Save(
-                mapPath + @"\images\Question&AnswerTempPictures\" + questionGUID.ToString() + ".gif",
+                mapPath + @"\images\Question&AnswerTempPictures\" + questionGUID + ".gif",
                 ImageFormat.Gif);
             practicelWebForm.QuestionImage.ImageUrl = @"images/Question&AnswerTempPictures/" +
-                                                      questionGUID.ToString() + ".gif";
+                                                      questionGUID + ".gif";
             (renderer.RenderPasssageToQuestion(navigator.GetPasssageToQuestion(question.Id))).Save(
-                mapPath + @"\images\Question&AnswerTempPictures\" + passageGUID.ToString() + ".gif", ImageFormat.Gif);
-            practicelWebForm.PassageImage.ImageUrl = @"images/Question&AnswerTempPictures/" + passageGUID.ToString() +
+                mapPath + @"\images\Question&AnswerTempPictures\" + passageGUID + ".gif", ImageFormat.Gif);
+            practicelWebForm.PassageImage.ImageUrl = @"images/Question&AnswerTempPictures/" + passageGUID +
                                                      ".gif";
             PrepareAndRenderAnswers();
         }
@@ -104,7 +115,6 @@ public class PracticeFormController : WebTestController , IPracticeFormControlle
         {
             practicelWebForm.PrewImageButton.Enabled = true;
         }
-
     }
 
    
@@ -115,13 +125,20 @@ public class PracticeFormController : WebTestController , IPracticeFormControlle
     /// <param name="form"></param>
     public void NextButtonClick(PracticeGeneralWebForm form)
     {
-        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
         int id = questionAnswerSet.Answers[selectedAnswer].Id;
-        //TODO: Review flag!
-        navigator.SetUserAnswer(id, true);
-        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+        navigator.SetUserAnswer(id, Convert.ToBoolean(form.ReviewFlag.Value));
+
+        if (navigator.ReviewState == ReviewState.ReviewFlagged || navigator.ReviewState == ReviewState.ReviewIncorrect)
+        {
+            if (!navigator.HasNextQuestion)
+            {
+                form.Response.Redirect("reviewWebForm.aspx");
+            }
+        }
+
         if (navigator.HasNextQuestion)
         {
+            GetNextQuestion();
             Init(form);
         }
         else
@@ -216,13 +233,25 @@ public class PracticeFormController : WebTestController , IPracticeFormControlle
     public void Exit(PracticeGeneralWebForm form)
     {
         navigator.CommitResult();
-        form.Response.Redirect("mainWebForm.aspx");
+        form.Session.Add("IsEndTest", true);
+        form.Response.Redirect("ManagePersonal.aspx?panel=results");
+    }
+
+    public void ExplainAnswer(PracticeGeneralWebForm form)
+    {
+        Init(form);
+        practicelWebForm.ExplanationPanel.Visible = true;
+        System.Drawing.Image explanatio = renderer.Render(navigator.GetExplanation());
+        Guid explanatioGuid = Guid.NewGuid();
+        string pathInWebServer = @"images\Question&AnswerTempPictures\" + explanatioGuid + ".gif";
+        string fullPath = mapPath + "\\" + pathInWebServer;
+        explanatio.Save(fullPath, ImageFormat.Gif);
+        practicelWebForm.ExplanationImage.ImageUrl = pathInWebServer.Replace("\\", "/");
     }
 
 
     public void GeneralInit(PracticeGeneralWebForm practicelWebForm)
     {
-        GetNextQuestion();
         answerRadioButtonList = practicelWebForm.AnswerRadioButtonList;
         statusLabel = practicelWebForm.StatusLabel;
         timeLabel = practicelWebForm.TimeLabel;
@@ -233,7 +262,7 @@ public class PracticeFormController : WebTestController , IPracticeFormControlle
             DeletePicturesFiles();
         }
 
-        switch (practicelWebForm.status)
+        switch (practicelWebForm.IsAnsverConfirm)
         {
             case "NONE":
                 break;

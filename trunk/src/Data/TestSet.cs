@@ -1,6 +1,7 @@
 ﻿namespace GmatClubTest.Data {
-    
-    
-    public partial class TestSet {
+
+
+    partial class TestSet
+    {
     }
 }

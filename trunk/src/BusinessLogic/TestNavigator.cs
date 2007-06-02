@@ -134,6 +134,11 @@ namespace GmatClubTest.BusinessLogic
             get { return activeQuestionIndex < totalQuestions - 1; }
         }
 
+        public override Explanations.ExplanationsDataTable GetExplanations()
+        {
+            throw new Exception("The method or operation is not implemented.");
+        }
+
         protected override double CalculateScoreOfActiveQuestion(bool isCorrect)
         {
             lastIsCorrect = isCorrect;
@@ -213,5 +218,10 @@ namespace GmatClubTest.BusinessLogic
         }
 
         #endregion
+
+        public override string GetExplanation()
+        {
+            throw new ApplicationException("Explanation are not bound resources in test.");
+        }
     }
 }

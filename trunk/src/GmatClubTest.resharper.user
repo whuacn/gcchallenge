@@ -1,0 +1,416 @@
+<Configuration>
+  <CompletionStatisticsManager>
+    <ItemStatistics item="Qualified:GMATClubTest.Web.WebTestController">
+      <Item value="navigator" priority="3" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:TKey">
+      <Item value="SetId" priority="1" />
+      <Item value="NumberOfQuestionsToPick" priority="0" />
+      <Item value="QuestionId" priority="3" />
+      <Item value="NumberOfQuestionsInZone3" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Data.OleDb.OleDbDataAdapter">
+      <Item value="Fill" priority="2" />
+      <Item value="SelectCommand" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Windows.Forms.TextBox">
+      <Item value="Text" priority="2" />
+      <Item value="Enabled" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Data.SqlClient.SqlCommand">
+      <Item value="Connection" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:ImportExport.DataSet2TableAdapters.TestContentsTableAdapter">
+      <Item value="Connection" priority="0" />
+      <Item value="Update" priority="0" />
+      <Item value="ClearBeforeFill" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:ImportExport.DataSet2TableAdapters.QuestionSetsTableAdapter">
+      <Item value="Update" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Boolean">
+      <Item value="FalseString" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.Generic.List&lt;GmatClubTest.BusinessLogic.QuestionIdentity&gt;">
+      <Item value="Remove" priority="0" />
+      <Item value="Add" priority="0" />
+      <Item value="Contains" priority="0" />
+      <Item value="Count" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Data.DataTable">
+      <Item value="Select" priority="0" />
+      <Item value="PrimaryKey" priority="1" />
+      <Item value="Columns" priority="3" />
+      <Item value="NewRow" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Web.UI.WebControls.View">
+      <Item value="Visible" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Object">
+      <Item value="Equals" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:ImportExport.DataSet2.explanationsDataTable">
+      <Item value="AcceptChanges" priority="0" />
+      <Item value="AddexplanationsRow" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@GmatClubTest">
+      <Item value="Data" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:GmatClubTest.BusinessLogic.Manager">
+      <Item value="DataProvider" priority="0" />
+      <Item value="RunTest" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:GmatClubTest.DbEditor.Data.Dataset.QuestionsExRow">
+      <Item value="explanation" priority="2" />
+      <Item value="Id" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Data.DataRow[]">
+      <Item value="Length" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:GmatClubTest.DbEditor.Forms.EplanationForm">
+      <Item value="ShowDialog" priority="0" />
+      <Item value="EplanationText" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:GmatClubTest.BusinessLogic.QuestionInfoForReview">
+      <Item value="incorrect" priority="7" />
+      <Item value="flaged" priority="5" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:GmatClubTest.BusinessLogic.INavigator">
+      <Item value="GetQuestionForReview" priority="0" />
+      <Item value="GetNextQuestion" priority="0" />
+      <Item value="SetFirstReviewQuestion" priority="1" />
+      <Item value="GetActiveQuestion" priority="0" />
+      <Item value="HasNextQuestion" priority="0" />
+      <Item value="GetNextSet" priority="0" />
+      <Item value="ReviewState" priority="2" />
+      <Item value="GetExplanation" priority="0" />
+      <Item value="SetActiveSet" priority="0" />
+      <Item value="SetReviewState" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@GmatClubTest.Data.Question.Subtype">
+      <Item value="ReadingComprehensionQuestionToPassage" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:GmatClubTest.Data.TestSet.TestsRow">
+      <Item value="Id" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Data.SqlClient.SqlConnection">
+      <Item value="BeginTransaction" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:GmatClubTest.DataProvider.IDataProvider">
+      <Item value="GetQuestionsAnswersByQuestionSetId" priority="0" />
+      <Item value="GetExplanations" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:ImportExport.DataSet2.TestContentsDataTable">
+      <Item value="Rows" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.String">
+      <Item value="Format" priority="0" />
+      <Item value="IsNullOrEmpty" priority="0" />
+      <Item value="Empty" priority="6" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.Generic.KeyValuePair&lt;GmatClubTest.BusinessLogic.QuestionIdentity,bool&gt;">
+      <Item value="Key" priority="1" />
+      <Item value="Value" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@">
+      <Item value="SetId" priority="0" />
+      <Item value="_questionId" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.Generic.KeyValuePair&lt;System.Data.DataRow,int&gt;">
+      <Item value="Key" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Windows.Forms.Button">
+      <Item value="Size" priority="0" />
+      <Item value="Location" priority="0" />
+      <Item value="Enabled" priority="0" />
+      <Item value="Name" priority="0" />
+      <Item value="Click" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Windows.Forms.ProgressBar">
+      <Item value="Step" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Windows.Forms.ComboBox">
+      <Item value="SelectedItem" priority="3" />
+      <Item value="ValueMember" priority="0" />
+      <Item value="SelectedValue" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:GmatClubTest.Data.Explanations.ExplanationsDataTable">
+      <Item value="FindBysetIdquestionId" priority="0" />
+      <Item value="Rows" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:ImportExport.Data.Dataset">
+      <Item value="QuestionSets" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:GmatClubTest.Data.QuestionSetSet.QuestionSetsRow">
+      <Item value="Id" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:GMATClubTest.Web.Migrated_PracticeGeneralWebForm">
+      <Item value="Server" priority="0" />
+      <Item value="Session" priority="0" />
+      <Item value="TimeLabel" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Windows.Forms.DialogResult">
+      <Item value="No" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Web.UI.WebControls.LinkButton">
+      <Item value="ForeColor" priority="0" />
+      <Item value="Font" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:GmatClubTest.Data.QuestionSetSet">
+      <Item value="QuestionSets" priority="4" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@GmatClubTest.Data.Question">
+      <Item value="Type" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.Generic.Dictionary&lt;GmatClubTest.BusinessLogic.QuestionIdentity,bool&gt;">
+      <Item value="ContainsKey" priority="0" />
+      <Item value="Remove" priority="0" />
+      <Item value="Add" priority="0" />
+      <Item value="Values" priority="0" />
+      <Item value="Count" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:GmatClubTest.Data.ResultResultDetailSet.ResultsDetailsOfSetsRow">
+      <Item value="QuestionSetId" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.Generic.KeyValuePair&lt;ImportExport.DataSet2.QuestionSetsRow,int&gt;">
+      <Item value="Value" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Web.UI.WebControls.ViewCollection">
+      <Item value="IndexOf" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Web.UI.WebControls.FontInfo">
+      <Item value="Size" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:ImportExport.DataSet2">
+      <Item value="QuestionSets" priority="2" />
+      <Item value="SetsToQuestions" priority="1" />
+      <Item value="PassagesToQuestions" priority="0" />
+      <Item value="TestContents" priority="0" />
+      <Item value="explanations" priority="1" />
+      <Item value="Questions" priority="0" />
+      <Item value="Tests" priority="1" />
+      <Item value="Answers" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:GmatClubTest.Data.QuestionAnswerSet.QuestionsRow">
+      <Item value="Id" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@Common.BuisinessObjects">
+      <Item value="StatusType" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:GmatClubTest.QuestionRenderer.Renderer">
+      <Item value="RenderToString" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Exception">
+      <Item value="Data" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@GmatClubTest.Data.Explanations">
+      <Item value="ExplanationsDataTable" priority="2" />
+      <Item value="ExplanationsRow" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:ImportExport.DataSet2.SetsToQuestionsDataTable">
+      <Item value="Select" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Drawing.Image">
+      <Item value="Save" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@GmatClubTest.Common.BuisinessObjects+Subtype">
+      <Item value="WordProblems" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Web.UI.WebControls.MultiView">
+      <Item value="Views" priority="2" />
+      <Item value="SetActiveView" priority="0" />
+      <Item value="Visible" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Web.UI.WebControls.HiddenField">
+      <Item value="Value" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Data.DataRowCollection">
+      <Item value="Count" priority="0" />
+      <Item value="Find" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Web.HttpResponse">
+      <Item value="Redirect" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:ImportExport.DataSet2.QuestionSetsDataTable">
+      <Item value="Rows" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:ImportExport.Data.Dataset.QuestionSetsRow">
+      <Item value="AcceptChanges" priority="0" />
+      <Item value="Name" priority="0" />
+      <Item value="Delete" priority="0" />
+      <Item value="QuestionTypeId" priority="0" />
+      <Item value="Description" priority="0" />
+      <Item value="TimeLimit" priority="0" />
+      <Item value="NumberOfQuestionsToPick" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Data.DataColumnCollection">
+      <Item value="Add" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Data.SqlClient.SqlTransaction">
+      <Item value="Commit" priority="0" />
+      <Item value="Rollback" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:GmatClubTest.ImportExport.Data.Provider">
+      <Item value="GetQuestionSubtypesTable" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Web.SessionState.HttpSessionState">
+      <Item value="Add" priority="1" />
+      <Item value="Abandon" priority="0" />
+      <Item value="Contents" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:ImportExport.DataSet2TableAdapters.TestsTableAdapter">
+      <Item value="Connection" priority="1" />
+      <Item value="Update" priority="1" />
+      <Item value="Site" priority="0" />
+      <Item value="Fill" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Web.UI.WebControls.Panel">
+      <Item value="Visible" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:GMATClubTest.Web.PracticeGeneralWebForm">
+      <Item value="NextImageButton" priority="1" />
+      <Item value="ExplanationPanel" priority="0" />
+      <Item value="IsAnsverConfirm" priority="0" />
+      <Item value="QuestionMultiView" priority="0" />
+      <Item value="ReviewImageButton" priority="0" />
+      <Item value="ExplainationView" priority="2" />
+      <Item value="ExplanationImage" priority="0" />
+      <Item value="ReviewFlag" priority="1" />
+      <Item value="ExplainationImage" priority="1" />
+      <Item value="EplainAnswerImageButton" priority="0" />
+      <Item value="AnswerCheckImageButton" priority="0" />
+      <Item value="ShowAnswerImageButton" priority="1" />
+      <Item value="Response" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Web.UI.WebControls.ImageButton">
+      <Item value="ValidationGroup" priority="0" />
+      <Item value="Visible" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@GmatClubTest.Data">
+      <Item value="Explanations" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.Queue">
+      <Item value="Contains" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.Generic.Dictionary&lt;System.Data.DataRow,int&gt;">
+      <Item value="Add" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Web.UI.WebControls.Image">
+      <Item value="ImageUrl" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:ImportExport.DataSet2.QuestionSetsRow">
+      <Item value="NumberOfQuestionsToPick" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:ImportExport.Data.Dataset.QuestionSetsDataTable">
+      <Item value="NewRow" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:GmatClubTest.Data.Explanations">
+      <Item value="_Explanations" priority="3" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:GmatClubTest.Data.ResultResultDetailSet.ResultsDetailsRow">
+      <Item value="QuestionId" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@GmatClubTest.Data.Question+Subtype">
+      <Item value="Statistics" priority="0" />
+      <Item value="Algebra" priority="0" />
+      <Item value="Probability" priority="0" />
+      <Item value="SentenceCorrection" priority="0" />
+      <Item value="Geometry" priority="0" />
+      <Item value="Combinations" priority="0" />
+      <Item value="WordProblems" priority="0" />
+      <Item value="Arithmetic" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:string">
+      <Item value="Trim" priority="1" />
+      <Item value="Insert" priority="0" />
+      <Item value="Split" priority="2" />
+      <Item value="Contains" priority="0" />
+      <Item value="Replace" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:object">
+      <Item value="Equals" priority="0" />
+      <Item value="GetType" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Windows.Forms.DataGridView">
+      <Item value="SelectionMode" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:GmatClubTest.Data.ExplanationsTableAdapters.ExplanationsTableAdapter">
+      <Item value="GetData" priority="0" />
+      <Item value="Site" priority="0" />
+      <Item value="Connection" priority="1" />
+    </ItemStatistics>
+  </CompletionStatisticsManager>
+  <EditorManager>
+    <RecentFiles>
+      <File id="1CDB4AFA-9C0E-44BA-8758-2BA02BA005EA/d:pageJS/f:clock.js" caret="1365" scrollPosition="0|45" />
+      <File id="1CDB4AFA-9C0E-44BA-8758-2BA02BA005EA/f:PracticeWebForm.aspx" caret="1137" scrollPosition="0|0" />
+      <File id="1CDB4AFA-9C0E-44BA-8758-2BA02BA005EA/d:App_Code/f:ReviewFormController.cs" caret="884" scrollPosition="0|12" />
+      <File id="1CDB4AFA-9C0E-44BA-8758-2BA02BA005EA/f:StartTest.aspx.cs" caret="4389" scrollPosition="0|130" />
+      <File id="A97069E2-8E61-4279-8056-793432FA023A/f:Manager.cs" caret="318" scrollPosition="0|0" />
+      <File id="A97069E2-8E61-4279-8056-793432FA023A/f:PracticeNavigator.cs" caret="569" scrollPosition="0|0" />
+      <File id="1CDB4AFA-9C0E-44BA-8758-2BA02BA005EA/f:MainLayout.master.cs" caret="729" scrollPosition="0|6" />
+      <File id="1CDB4AFA-9C0E-44BA-8758-2BA02BA005EA/d:App_Code/d:Migrated/f:Stub_PracticeWebForm_aspx_cs.cs" caret="1196" scrollPosition="0|20" />
+      <File id="41BCC868-380C-4BC1-B834-687C32E829CC/f:Explanations.Designer.cs" caret="26796" scrollPosition="0|512" />
+      <File id="1CDB4AFA-9C0E-44BA-8758-2BA02BA005EA/d:App_Code/f:AjaxRequestHandler.cs" caret="939" scrollPosition="0|0" />
+      <File id="1CDB4AFA-9C0E-44BA-8758-2BA02BA005EA/f:DescriptionWebForm.aspx.cs" caret="1559" scrollPosition="0|12" />
+      <File id="A97069E2-8E61-4279-8056-793432FA023A/f:QuestionIdentity.cs" caret="158" scrollPosition="0|0" />
+      <File id="A97069E2-8E61-4279-8056-793432FA023A/f:INavigator.cs" caret="1372" scrollPosition="0|21" />
+      <File id="9AB869C1-D70C-48BE-9D63-F3566DB773D2/f:Renderer.cs" caret="3515" scrollPosition="0|85" />
+      <File id="DBF7937E-CB3F-4D17-8097-648286226E0C/f:BaseDataProvider.cs" caret="10463" scrollPosition="0|318" />
+      <File id="1CDB4AFA-9C0E-44BA-8758-2BA02BA005EA/f:PracticeWebForm.aspx.cs" caret="6285" scrollPosition="0|172" />
+      <File id="1CDB4AFA-9C0E-44BA-8758-2BA02BA005EA/d:App_Code/d:FormInterface's/f:IPracticeFormController.cs" caret="324" scrollPosition="0|0" />
+      <File id="A97069E2-8E61-4279-8056-793432FA023A/f:NavigatorSkeleton.cs" caret="14156" scrollPosition="0|344" />
+      <File id="1CDB4AFA-9C0E-44BA-8758-2BA02BA005EA/d:App_Code/f:PracticeFormController.cs" caret="9748" scrollPosition="0|251" />
+      <File id="1CDB4AFA-9C0E-44BA-8758-2BA02BA005EA/d:App_Code/d:Migrated/f:Stub_TestWebForm_aspx_cs.cs" caret="773" scrollPosition="0|0" />
+      <File id="1CDB4AFA-9C0E-44BA-8758-2BA02BA005EA/d:.svn/d:text-base/f:ResultDetailsWebForm.aspx.cs.svn-base" caret="6107" scrollPosition="0|149" />
+      <File id="1CDB4AFA-9C0E-44BA-8758-2BA02BA005EA/f:Tests.aspx" caret="0" scrollPosition="0|0" />
+      <File id="1CDB4AFA-9C0E-44BA-8758-2BA02BA005EA/d:.svn/d:text-base/f:ManagePersonal.aspx.cs.svn-base" caret="1754" scrollPosition="0|40" />
+      <File id="1CDB4AFA-9C0E-44BA-8758-2BA02BA005EA/d:logs/f:log.log.1" caret="1316" scrollPosition="0|0" />
+      <File id="1CDB4AFA-9C0E-44BA-8758-2BA02BA005EA/d:App_Code/f:Global.asax.cs" caret="4398" scrollPosition="0|118" />
+      <File id="1CDB4AFA-9C0E-44BA-8758-2BA02BA005EA/d:App_Code/f:WebTestController.cs" caret="13077" scrollPosition="0|330" />
+      <File id="1CDB4AFA-9C0E-44BA-8758-2BA02BA005EA/f:Tests.aspx.cs" caret="3365" scrollPosition="0|76" />
+      <File id="1CDB4AFA-9C0E-44BA-8758-2BA02BA005EA/f:ResultDetailsWebForm.aspx.cs" caret="6412" scrollPosition="0|56" />
+      <File id="1CDB4AFA-9C0E-44BA-8758-2BA02BA005EA/f:BasePage.aspx.cs" caret="1424" scrollPosition="0|21" />
+      <File id="1CDB4AFA-9C0E-44BA-8758-2BA02BA005EA/f:ManagePersonal.aspx.cs" caret="1617" scrollPosition="0|38" />
+    </RecentFiles>
+  </EditorManager>
+  <FileStructureView>
+    <AutoScrollToSource>False</AutoScrollToSource>
+    <TrackCaretLocation>False</TrackCaretLocation>
+  </FileStructureView>
+  <NAntValidationSettings>
+    <NAntPath value="" />
+  </NAntValidationSettings>
+  <ReFormatCode>
+    <ReorderMembers>False</ReorderMembers>
+    <OptimizeUsings>True</OptimizeUsings>
+    <RemoveRedundantThis>True</RemoveRedundantThis>
+    <ShortenReferences>True</ShortenReferences>
+  </ReFormatCode>
+  <SettingsComponent>
+    <string />
+    <integer />
+    <boolean>
+      <setting name="JetBrains.ReSharper.CodeView.FindUsages.FindClassDialog.checkBoxFindInheritors">False</setting>
+      <setting name="JetBrains.ReSharper.CodeView.FindUsages.FindClassDialog.checkBoxFindMemberUsages">False</setting>
+      <setting name="JetBrains.ReSharper.CodeView.FindUsages.FindClassDialog.checkBoxFindUsages">True</setting>
+      <setting name="JetBrains.ReSharper.CodeView.FindUsages.FindClassDialog.checkBoxSearchLibraries">False</setting>
+      <setting name="JetBrains.ReSharper.CodeView.FindUsages.FindInterfaceDialog.checkBoxExtendingInterfaces">False</setting>
+      <setting name="JetBrains.ReSharper.CodeView.FindUsages.FindInterfaceDialog.checkBoxFindInheritors">True</setting>
+      <setting name="JetBrains.ReSharper.CodeView.FindUsages.FindInterfaceDialog.checkBoxFindMemberUsages">False</setting>
+      <setting name="JetBrains.ReSharper.CodeView.FindUsages.FindInterfaceDialog.checkBoxFindUsages">False</setting>
+      <setting name="JetBrains.ReSharper.CodeView.FindUsages.FindInterfaceDialog.checkBoxSearchLibraries">False</setting>
+      <setting name="JetBrains.ReSharper.CodeView.FindUsages.FindMemberDialog.checkBoxSearchLibraries">False</setting>
+      <setting name="JetBrains.ReSharper.CodeView.FindUsages.FindMethodDialog.checkBoxFindInheritors">True</setting>
+      <setting name="JetBrains.ReSharper.CodeView.FindUsages.FindMethodDialog.checkBoxFindUsages">False</setting>
+      <setting name="JetBrains.ReSharper.CodeView.FindUsages.FindMethodDialog.checkBoxOverloaded">False</setting>
+      <setting name="JetBrains.ReSharper.CodeView.FindUsages.FindMethodDialog.checkBoxSearchLibraries">False</setting>
+    </boolean>
+  </SettingsComponent>
+  <SharedSolutionDisabledTemplatesManager>
+    <DisabledTemplates />
+  </SharedSolutionDisabledTemplatesManager>
+  <UserSolutionDisabledTemplatesManager>
+    <DisabledTemplates />
+  </UserSolutionDisabledTemplatesManager>
+</Configuration>

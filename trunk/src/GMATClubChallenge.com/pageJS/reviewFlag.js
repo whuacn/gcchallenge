@@ -13,3 +13,16 @@
         document.images['reviewFlagImg'].src = "FlagForReview.gif";
     }
 }
+function initReviewFlag()
+{
+
+    if(document.Form1.reviewFlag.value == "False")
+    {       
+        document.images['reviewFlagImg'].src = "FlagForReview.gif";
+    }
+    else
+    {
+        document.images['reviewFlagImg'].src = "FlagForReviewChecked.gif";     
+    }
+
+}
