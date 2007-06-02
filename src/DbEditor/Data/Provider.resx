@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <metadata name="connection.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 54</value>
+    <value>17, 56</value>
   </metadata>
   <metadata name="allTestsAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 91</value>
+    <value>17, 95</value>
   </metadata>
   <metadata name="oleDbDeleteCommand2.DesignTimeVisible" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -166,7 +166,7 @@
     <value>UPDATE Tests SET Name = ?, IsPractice = ?, Description = ?, QuestionTypeId = ?, QuestionSubtypeId = ?, [GUID] = ?, Version = ? WHERE (Id = ?) AND ([GUID] = ? OR ? IS NULL AND [GUID] IS NULL) AND (IsPractice = ?) AND (Name = ?) AND (QuestionSubtypeId = ? OR ? IS NULL AND QuestionSubtypeId IS NULL) AND (QuestionTypeId = ? OR ? IS NULL AND QuestionTypeId IS NULL) AND (Version = ?)</value>
   </data>
   <metadata name="allTestContentsAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 128</value>
+    <value>17, 134</value>
   </metadata>
   <metadata name="oleDbDeleteCommand3.DesignTimeVisible" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -205,7 +205,7 @@
     <value>False</value>
   </metadata>
   <metadata name="testById.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 165</value>
+    <value>17, 173</value>
   </metadata>
   <metadata name="oleDbDeleteCommand1.DesignTimeVisible" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -250,7 +250,7 @@
     <value>UPDATE Tests SET Description = ?, [GUID] = ?, IsPractice = ?, Name = ?, QuestionSubtypeId = ?, QuestionTypeId = ?, Version = ? WHERE (Id = ?) AND ([GUID] = ? OR ? IS NULL AND [GUID] IS NULL) AND (IsPractice = ?) AND (Name = ?) AND (QuestionSubtypeId = ? OR ? IS NULL AND QuestionSubtypeId IS NULL) AND (QuestionTypeId = ? OR ? IS NULL AND QuestionTypeId IS NULL) AND (Version = ?)</value>
   </data>
   <metadata name="questionSetsExByTestId.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 202</value>
+    <value>17, 212</value>
   </metadata>
   <metadata name="oleDbSelectCommand6.DesignTimeVisible" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -265,7 +265,7 @@
     <value>SELECT QuestionSets.Description, QuestionSets.Id, QuestionSets.Name, QuestionSets.NumberOfQuestionsInZone1, QuestionSets.NumberOfQuestionsInZone2, QuestionSets.NumberOfQuestionsInZone3, QuestionSets.NumberOfQuestionsToPick, QuestionSets.QuestionSubtypeId, QuestionSets.QuestionTypeId, QuestionSets.TimeLimit, TestContents.TestId, TestContents.QuestionSetOrder FROM (QuestionSets INNER JOIN TestContents ON QuestionSets.Id = TestContents.QuestionSetId) WHERE (TestContents.TestId = ?) ORDER BY TestContents.QuestionSetOrder</value>
   </data>
   <metadata name="questionSetById.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 276</value>
+    <value>17, 290</value>
   </metadata>
   <metadata name="oleDbSelectCommand7.DesignTimeVisible" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -297,10 +297,10 @@ FROM         (QuestionSets INNER JOIN
 ORDER BY TestContents.QuestionSetOrder</value>
   </data>
   <metadata name="oleDbConnection1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 387</value>
+    <value>17, 329</value>
   </metadata>
   <metadata name="allQuestionSetsExAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 424</value>
+    <value>17, 446</value>
   </metadata>
   <metadata name="oleDbDeleteCommand4.DesignTimeVisible" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -348,7 +348,7 @@ ORDER BY TestContents.QuestionSetOrder</value>
     <value>False</value>
   </metadata>
   <metadata name="allQuestionSetsAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 535</value>
+    <value>17, 485</value>
   </metadata>
   <metadata name="oleDbSelectCommand8.DesignTimeVisible" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -360,17 +360,21 @@ ORDER BY TestContents.QuestionSetOrder</value>
     <value>False</value>
   </metadata>
   <data name="oleDbSelectCommand8.CommandText" xml:space="preserve">
-    <value>SELECT     Questions.Id, Questions.TypeId, Questions.SubtypeId, Questions.DifficultyLevelId, Questions.[Text], Questions.Picture, SetsToQuestions.SetId, 
-                      SetsToQuestions.QuestionOrder, SetsToQuestions.QuestionZone, SetsToQuestions.QuestionId
-FROM         (((Questions INNER JOIN
-                      SetsToQuestions ON Questions.Id = SetsToQuestions.QuestionId) INNER JOIN
-                      QuestionSets ON SetsToQuestions.SetId = QuestionSets.Id) INNER JOIN
-                      TestContents ON QuestionSets.Id = TestContents.QuestionSetId)
-WHERE     (TestContents.TestId = ?)
+    <value>SELECT        Questions.Id, Questions.TypeId, Questions.SubtypeId, Questions.DifficultyLevelId, Questions.Text, Questions.Picture, SetsToQuestions.SetId, 
+                         SetsToQuestions.QuestionOrder, SetsToQuestions.QuestionZone, SetsToQuestions.QuestionId, explanations.explanation
+FROM            Questions INNER JOIN
+                         SetsToQuestions ON Questions.Id = SetsToQuestions.QuestionId INNER JOIN
+                         QuestionSets ON SetsToQuestions.SetId = QuestionSets.Id INNER JOIN
+                         TestContents ON QuestionSets.Id = TestContents.QuestionSetId LEFT OUTER JOIN
+                         explanations ON Questions.Id = explanations.questionId
+WHERE        (TestContents.TestId = ?)
 ORDER BY SetsToQuestions.QuestionOrder</value>
   </data>
+  <metadata name="oleDbConnection2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>354, 953</value>
+  </metadata>
   <metadata name="questionsExByTestId.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 646</value>
+    <value>17, 563</value>
   </metadata>
   <metadata name="oleDbSelectCommand9.DesignTimeVisible" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -387,7 +391,7 @@ FROM         PassagesToQuestions INNER JOIN
                       Questions ON PassagesToQuestions.PassageQuestionId = Questions.Id</value>
   </data>
   <metadata name="passagesEx.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 313</value>
+    <value>17, 407</value>
   </metadata>
   <metadata name="oleDbSelectCommand10.DesignTimeVisible" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -426,7 +430,7 @@ FROM         PassagesToQuestions INNER JOIN
     <value>False</value>
   </metadata>
   <metadata name="difficultyLevelDataAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 683</value>
+    <value>17, 641</value>
   </metadata>
   <metadata name="oleDbSelectCommand11.DesignTimeVisible" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -465,7 +469,7 @@ FROM         PassagesToQuestions INNER JOIN
     <value>False</value>
   </metadata>
   <metadata name="questionSubtypesDataAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 461</value>
+    <value>17, 602</value>
   </metadata>
   <metadata name="oleDbSelectCommand12.DesignTimeVisible" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -504,7 +508,7 @@ FROM         PassagesToQuestions INNER JOIN
     <value>False</value>
   </metadata>
   <metadata name="questionTypesDataAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 720</value>
+    <value>17, 680</value>
   </metadata>
   <metadata name="oleDbSelectCommand13.DesignTimeVisible" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -543,27 +547,28 @@ FROM         PassagesToQuestions INNER JOIN
     <value>False</value>
   </metadata>
   <metadata name="passageToQuestionDataAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 757</value>
+    <value>17, 797</value>
   </metadata>
   <metadata name="questionsExBySetId.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 572</value>
+    <value>17, 758</value>
   </metadata>
   <metadata name="oleDbCommand1.DesignTimeVisible" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </metadata>
   <metadata name="oleDbCommand1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
+    <value>206, 953</value>
   </metadata>
   <metadata name="oleDbCommand1.CommandDesignTimeVisible" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </metadata>
   <data name="oleDbCommand1.CommandText" xml:space="preserve">
-    <value>SELECT     Questions.Id, Questions.TypeId, Questions.SubtypeId, Questions.DifficultyLevelId, Questions.[Text], Questions.Picture, SetsToQuestions.SetId, 
-                      SetsToQuestions.QuestionOrder, SetsToQuestions.QuestionZone, SetsToQuestions.QuestionId
-FROM         ((Questions INNER JOIN
-                      SetsToQuestions ON Questions.Id = SetsToQuestions.QuestionId) INNER JOIN
-                      QuestionSets ON SetsToQuestions.SetId = QuestionSets.Id)
-WHERE     (QuestionSets.Id = ?)
+    <value>SELECT        Questions.Id, Questions.TypeId, Questions.SubtypeId, Questions.DifficultyLevelId, Questions.Text, Questions.Picture, SetsToQuestions.SetId, 
+                         SetsToQuestions.QuestionOrder, SetsToQuestions.QuestionZone, SetsToQuestions.QuestionId, explanations.explanation
+FROM            Questions INNER JOIN
+                         SetsToQuestions ON Questions.Id = SetsToQuestions.QuestionId INNER JOIN
+                         QuestionSets ON SetsToQuestions.SetId = QuestionSets.Id LEFT OUTER JOIN
+                         explanations ON Questions.Id = explanations.questionId
+WHERE        (QuestionSets.Id = ?)
 ORDER BY SetsToQuestions.QuestionOrder</value>
   </data>
   <metadata name="oleDbSelectCommand14.DesignTimeVisible" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -606,10 +611,10 @@ ORDER BY SetsToQuestions.QuestionOrder</value>
     <value>False</value>
   </metadata>
   <metadata name="allQuestionsDataAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 831</value>
+    <value>17, 875</value>
   </metadata>
   <metadata name="questionSetsExBySetId.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 868</value>
+    <value>17, 914</value>
   </metadata>
   <metadata name="oleDbDeleteCommand.DesignTimeVisible" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -663,7 +668,7 @@ WHERE     (Id = ?)</value>
     <value>UPDATE `QuestionSets` SET `Description` = ?, `Name` = ?, `NumberOfQuestionsInZone1` = ?, `NumberOfQuestionsInZone2` = ?, `NumberOfQuestionsInZone3` = ?, `NumberOfQuestionsToPick` = ?, `QuestionSubtypeId` = ?, `QuestionTypeId` = ?, `TimeLimit` = ? WHERE ((`Id` = ?) AND ((? = 1 AND `Name` IS NULL) OR (`Name` = ?)) AND ((? = 1 AND `NumberOfQuestionsInZone1` IS NULL) OR (`NumberOfQuestionsInZone1` = ?)) AND ((? = 1 AND `NumberOfQuestionsInZone2` IS NULL) OR (`NumberOfQuestionsInZone2` = ?)) AND ((? = 1 AND `NumberOfQuestionsInZone3` IS NULL) OR (`NumberOfQuestionsInZone3` = ?)) AND ((? = 1 AND `NumberOfQuestionsToPick` IS NULL) OR (`NumberOfQuestionsToPick` = ?)) AND ((? = 1 AND `QuestionSubtypeId` IS NULL) OR (`QuestionSubtypeId` = ?)) AND ((? = 1 AND `QuestionTypeId` IS NULL) OR (`QuestionTypeId` = ?)) AND ((? = 1 AND `TimeLimit` IS NULL) OR (`TimeLimit` = ?)))</value>
   </data>
   <metadata name="passagesExBySetId.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 239</value>
+    <value>17, 251</value>
   </metadata>
   <metadata name="oleDbCommand3.DesignTimeVisible" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -683,7 +688,7 @@ FROM         (((SetsToQuestions INNER JOIN
 WHERE     (TestContents.QuestionSetId = ?)</value>
   </data>
   <metadata name="allQuestionsExDataAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 609</value>
+    <value>17, 719</value>
   </metadata>
   <metadata name="oleDbCommand4.DesignTimeVisible" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -703,7 +708,7 @@ FROM         ((Questions INNER JOIN
 ORDER BY SetsToQuestions.QuestionOrder</value>
   </data>
   <metadata name="questionEditDataAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 905</value>
+    <value>17, 953</value>
   </metadata>
   <metadata name="oleDbCommand5.DesignTimeVisible" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -742,7 +747,7 @@ ORDER BY SetsToQuestions.QuestionOrder</value>
     <value>False</value>
   </metadata>
   <metadata name="answersDataAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 350</value>
+    <value>17, 368</value>
   </metadata>
   <metadata name="oleDbCommand9.DesignTimeVisible" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -781,7 +786,7 @@ ORDER BY SetsToQuestions.QuestionOrder</value>
     <value>False</value>
   </metadata>
   <metadata name="passageQuestions.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 498</value>
+    <value>17, 524</value>
   </metadata>
   <metadata name="oleDbCommand13.DesignTimeVisible" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -823,7 +828,7 @@ ORDER BY SetsToQuestions.QuestionOrder</value>
     <value>UPDATE [Questions] SET [TypeId] = ?, [SubtypeId] = ?, [DifficultyLevelId] = ?, [Text] = ?, [Picture] = ? WHERE (([Id] = ?) AND ([TypeId] = ?) AND ([SubtypeId] = ?) AND ([DifficultyLevelId] = ?) AND ([Text] = ?))</value>
   </data>
   <metadata name="questionExById.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 794</value>
+    <value>17, 836</value>
   </metadata>
   <metadata name="oleDbCommand17.DesignTimeVisible" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>

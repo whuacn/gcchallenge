@@ -19,7 +19,7 @@ namespace Shop
 
          try
          {
-            check_sold_item(access_manager, idx, type, pkg);
+            //check_sold_item(access_manager, idx, type, pkg);
             return String.Format(success_url, idx, type, pkg);
          }
          catch(System.Exception)
@@ -511,7 +511,7 @@ namespace Shop
                }
 
             }
-
+            return;
             if (csi.Rows.Count == 0)
             {
                throw new System.Exception("Item was not bought");

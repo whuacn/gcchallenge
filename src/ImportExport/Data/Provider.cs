@@ -205,14 +205,12 @@ namespace GmatClubTest.ImportExport.Data
                 //oleC.ExecuteNonQuery();
                 //oleC.Dispose();
                 questionEditorDataAdapter.InsertCommand.Connection = connection;
-                if (test.Questions[i].TypeId != null)
-                {
-                    questionEditorDataAdapter.InsertCommand.Parameters["TypeId"].Value = test.Questions[i].TypeId;
-                }
-                if (test.Questions[i].SubtypeId != null)
-                {
-                    questionEditorDataAdapter.InsertCommand.Parameters["SubtypeId"].Value = test.Questions[i].SubtypeId;
-                }
+               
+                questionEditorDataAdapter.InsertCommand.Parameters["TypeId"].Value = test.Questions[i].TypeId;
+                
+               
+                questionEditorDataAdapter.InsertCommand.Parameters["SubtypeId"].Value = test.Questions[i].SubtypeId;
+                
                 questionEditorDataAdapter.InsertCommand.Parameters["DifficultyLevelId"].Value =
                     test.Questions[i].DifficultyLevelId;
                 questionEditorDataAdapter.InsertCommand.Parameters["Text"].Value = test.Questions[i].Text;

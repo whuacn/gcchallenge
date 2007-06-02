@@ -59,9 +59,14 @@ public interface IPracticeFormController
     void AswerSelectedIndexChanged(PracticeGeneralWebForm form, object sender);
 
     /// <summary>
-    /// End tes
+    /// End test
     /// </summary>
     /// <param name="form"></param>
     void Exit(PracticeGeneralWebForm form);
 
+    /// <summary>
+    /// Show explaination
+    /// </summary>
+    /// <param name="form"></param>
+    void ExplainAnswer(PracticeGeneralWebForm form);
 }

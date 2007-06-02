@@ -1,20 +1,13 @@
 using System;
-using System.Data;
-using System.Configuration;
-using System.Collections;
-using System.Web;
-using System.Web.Security;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Web.UI.HtmlControls;
+using System.Xml;
 using Manco.Chart;
 using Manco.Chart.Data;
-using System.Drawing;
-using System.Xml;
-using System.IO;
 
-public partial class DrawChart : System.Web.UI.Page
+public partial class DrawChart : Page
 {
    protected void Page_Load(object sender, EventArgs e)
    {
@@ -71,7 +64,7 @@ public partial class DrawChart : System.Web.UI.Page
 
 
       MemoryStream imageStream = new MemoryStream();
-      control.Image.Save(imageStream, System.Drawing.Imaging.ImageFormat.Png);
+      control.Image.Save(imageStream, ImageFormat.Png);
 
 
       // return byte array to caller with image type

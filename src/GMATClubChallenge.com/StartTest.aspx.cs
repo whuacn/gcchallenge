@@ -1,23 +1,17 @@
 using System;
-using System.Data;
-using System.Configuration;
 using System.Collections;
-using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Web.UI.HtmlControls;
 using GmatClubTest.BusinessLogic;
+using Shop;
+using Shop.shop_itemTableAdapters;
+using Shop.shop_sold_itemTableAdapters;
 using GmatClubTest.Data;
-using GmatClubTest.Web;
 
 namespace GMATClubTest.Web
 {
 
    public partial class StartTest : BasePage
    {
-      protected void Page_Load(object sender, EventArgs e)
+      protected new void Page_Load(object sender, EventArgs e)
       {
          
          try
@@ -27,7 +21,7 @@ namespace GMATClubTest.Web
             pkg_idx = Int32.Parse(Request["pkg_idx"].ToString());
             if (type == "group") pkg_idx = idx;
          }
-         catch (System.Exception )
+         catch (Exception )
          {
             Response.Redirect("Tests.aspx");
          }
@@ -35,7 +29,7 @@ namespace GMATClubTest.Web
 
 
 
-         ((GMATClubTest.Web.MainLayout)(Master)).setPageHead("Starting Test...");
+         ((MainLayout)(Master)).setPageHead("Starting Test...");
          
          if(CustomTestsLogic.is_custom(idx,access_manager_))
          {
@@ -45,9 +39,9 @@ namespace GMATClubTest.Web
          {
             try
             {
-               Shop.ShopManager.check_sold_item(access_manager_, idx, type, pkg_idx);
+               ShopManager.check_sold_item(access_manager_, idx, type, pkg_idx);
             }
-            catch(System.Exception ee)
+            catch(Exception ee)
             {
                denied.Visible=true;
                deniedLbl.Text=ee.Message;
@@ -96,16 +90,16 @@ namespace GMATClubTest.Web
 
       private void DoSelectTest(int idx)
       {
-         System.Collections.ArrayList arr=Shop.ShopManager.get_item_cont_by_idx(connection_,null,idx);   
+         ArrayList arr=ShopManager.get_item_cont_by_idx(connection_,null,idx);   
          string ret="";
          resources.Visible=true;
          ta.SqlConnection=connection_;
          ta.FillByIdx(sh_it,idx);
 
 
-         Shop.shop_sold_itemTableAdapters.shop_sold_itemTableAdapter si_ta = new Shop.shop_sold_itemTableAdapters.shop_sold_itemTableAdapter();
+         shop_sold_itemTableAdapter si_ta = new shop_sold_itemTableAdapter();
          si_ta.SqlConnection = connection_;
-         Shop.shop_sold_item.shop_sold_itemDataTable si = si_ta.GetByItt(idx,Shop.ShopManager.type2code("group"),access_manager_.UserGuid);
+         shop_sold_item.shop_sold_itemDataTable si = si_ta.GetByItt(idx,ShopManager.type2code("group"),access_manager_.UserGuid);
          
          if(sh_it.Rows.Count!=0 && si.Rows.Count!=0)
          {
@@ -121,7 +115,7 @@ namespace GMATClubTest.Web
          }
          
          
-         foreach(System.Collections.Hashtable i in arr)
+         foreach(Hashtable i in arr)
          {
             if(""!=i["bound"].ToString())
             {
@@ -165,7 +159,7 @@ namespace GMATClubTest.Web
            
             Response.Redirect("descriptionwebform.aspx");
          }
-         catch (System.Exception) { }
+         catch (Exception) { }
       }
 
 
@@ -175,8 +169,8 @@ namespace GMATClubTest.Web
       protected string resourcelist="";
       protected string description = "";
       public TestSet testSet = new GmatClubTest.Data.TestSet();
-      Shop.shop_item.shop_itemDataTable sh_it=new Shop.shop_item.shop_itemDataTable();
-      Shop.shop_itemTableAdapters.shop_itemTableAdapter ta = new Shop.shop_itemTableAdapters.shop_itemTableAdapter();
+      shop_item.shop_itemDataTable sh_it=new shop_item.shop_itemDataTable();
+      shop_itemTableAdapter ta = new shop_itemTableAdapter();
 
       protected void lbPayAgain_Click(object sender, EventArgs e)
       {

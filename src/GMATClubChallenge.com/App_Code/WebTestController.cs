@@ -1,5 +1,4 @@
 using System;
-using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Web;
@@ -9,23 +8,21 @@ using GmatClubTest.BusinessLogic;
 using GmatClubTest.Common;
 using GmatClubTest.Data;
 using GmatClubTest.QuestionRenderer;
-using GMATClubTest.Web;
 
 namespace GMATClubTest.Web
 {
     public class WebTestController
     {
-       
         //Use child class!
         protected Manager manager = null;
         public INavigator navigator;
         //
-        
+
         private bool isPractice = new bool();
-        public  TestSet.TestsRow testRow;
+        public TestSet.TestsRow testRow;
         private QuestionSetSet.QuestionSetsRow questionSet;
-        protected  QuestionAnswerSet questionAnswerSet = new QuestionAnswerSet();
-        protected  QuestionAnswerSet.QuestionsRow question;
+        protected QuestionAnswerSet questionAnswerSet = new QuestionAnswerSet();
+        protected QuestionAnswerSet.QuestionsRow question;
         protected QuestionAnswerSet.AnswersRow[] answersRow;
         private string descriptionTestString;
         protected RadioButtonList answerRadioButtonList;
@@ -34,21 +31,21 @@ namespace GMATClubTest.Web
         protected HyperLink loginStatusHyperLink;
         private ReviewWebForm _reviewWebForm;
         public int activSetNumber = 0;
-        private TestWebForm testWebForm;
+        // private TestWebForm testWebForm;
         private string nextClickScript;
         private string answerConfirmClickScript;
         private Guid answerGUID;
-        protected  Guid questionGUID;
+        protected Guid questionGUID;
         protected Guid passageGUID;
         private Guid[] answerGUIDMas = new Guid[20];
         public Renderer renderer = new Renderer();
         protected ImageSet imageSet;
         protected string mapPath = HttpContext.Current.Request.MapPath(".");
         protected PracticeGeneralWebForm practicelWebForm;
-        protected  int selectedAnswer;
+        protected int selectedAnswer;
         private bool started = false;
-                
-        
+
+
         public WebTestController(TestSet.TestsRow testRow, Manager manager)
         {
             isPractice = testRow.IsPractice;
@@ -57,6 +54,7 @@ namespace GMATClubTest.Web
             navigator = manager.RunTest(testRow);
         }
         
+
         ~WebTestController()
         {
             DeletePicturesFiles();
@@ -64,31 +62,27 @@ namespace GMATClubTest.Web
 
         public void DeletePicturesFiles()
         {
-            int i;
-            try
+            string filePath;
+
+            filePath = mapPath + @"\images\Question&AnswerTempPictures\" + questionGUID + ".gif";
+            if (File.Exists(filePath))
             {
-                File.Delete(mapPath + @"\images\Question&AnswerTempPictures\" + questionGUID.ToString() + ".gif");
+                File.Delete(filePath);
             }
-            catch
+            filePath = mapPath + @"\images\Question&AnswerTempPictures\" + passageGUID + ".gif";
+            if (File.Exists(filePath))
             {
+                File.Delete(filePath);
             }
-            try
+            for (int i = 0; i < answerGUIDMas.Length; i++)
             {
-                File.Delete(mapPath + @"\images\Question&AnswerTempPictures\" + passageGUID.ToString() + ".gif");
-            }
-            catch
-            {
-            }
-            try
-            {
-                for (i = 0; i <= answerGUIDMas.Length; i++)
+                filePath = mapPath + @"\images\Question&AnswerTempPictures\" + answerGUIDMas[i] + ".gif";
+                if (File.Exists(filePath))
                 {
-                    File.Delete(mapPath + @"\images\Question&AnswerTempPictures\" + answerGUIDMas[i].ToString() + ".gif");
+                    File.Delete(filePath);
                 }
             }
-            catch
-            {
-            }
+           
         }
 
         public void PrepareTestDescription(IDescription form)
@@ -101,7 +95,7 @@ namespace GMATClubTest.Web
                                       ? ("")
                                       :
                                   (": " +
-                                   BuisinessObjects.Type.GetName(typeof(BuisinessObjects.Type), testRow.QuestionTypeId).ToString()));
+                                   BuisinessObjects.Type.GetName(typeof (BuisinessObjects.Type), testRow.QuestionTypeId)));
             descriptionTestString += typeCaption + "<p>";
             if (navigator.TotalTime != TimeSpan.MaxValue)
             {
@@ -110,18 +104,16 @@ namespace GMATClubTest.Web
             else
             {
                 descriptionTestString += "Time: " + "unlimited" + "<p>";
-                
             }
-            descriptionTestString += "Number of questions: " + navigator.TotalNumberOfQuestions.ToString() + "<p>";
-            descriptionTestString += testRow.Description.ToString() + "<p>";
+            descriptionTestString += "Number of questions: " + navigator.TotalNumberOfQuestions + "<p>";
+            descriptionTestString += testRow.Description + "<p>";
             form.Caption("Description: " + testRow.Name);
             form.DescriptionString(descriptionTestString);
-
-            
         }
 
         public void PrepareSetDescription(IDescription form)
         {
+            GetActivSet();
             descriptionTestString = "";
             string caption = questionSet.Name;
             descriptionTestString += "<< " + caption + " >>" + "<p>";
@@ -130,7 +122,8 @@ namespace GMATClubTest.Web
                                       ? ("")
                                       :
                                   (": " +
-                                   BuisinessObjects.Type.GetName(typeof(BuisinessObjects.Type), questionSet.QuestionTypeId).ToString()));
+                                   BuisinessObjects.Type.GetName(typeof (BuisinessObjects.Type),
+                                                                 questionSet.QuestionTypeId)));
             descriptionTestString += typeCaption + "<p>";
             if (navigator.TotalTime != TimeSpan.MaxValue)
             {
@@ -139,27 +132,27 @@ namespace GMATClubTest.Web
             else
             {
                 descriptionTestString += "Time: " + "unlimited" + "<p>";
-                
             }
             if (isPractice)
             {
-                descriptionTestString += "Number of questions: " + questionSet.NumberOfQuestionsToPick.ToString() +
+                descriptionTestString += "Number of questions: " + questionSet.NumberOfQuestionsToPick +
                                          "<p>";
             }
             else
             {
                 descriptionTestString += "Number of questions: " +
                                          (questionSet.NumberOfQuestionsInZone1 + questionSet.NumberOfQuestionsInZone2 +
-                                          questionSet.NumberOfQuestionsInZone3).ToString() + "<p>";
+                                          questionSet.NumberOfQuestionsInZone3) + "<p>";
             }
             //descriptionTestString += "Number of questions: " + navigator.TotalNumberOfQuestions.ToString() + "<p>";
-            descriptionTestString += questionSet.Description.ToString() + "<p>";
+            descriptionTestString += questionSet.Description + "<p>";
 
             form.Caption("Description: " + questionSet.Name);
             form.DescriptionString(descriptionTestString);
         }
-        
-       
+
+      
+
 
         protected void PrepareAndRenderAnswers()
         {
@@ -170,7 +163,7 @@ namespace GMATClubTest.Web
                 answerGUID = Guid.NewGuid();
                 answerGUIDMas[i] = answerGUID;
                 imageSet.Answers[i].Save(
-                    mapPath + @"\images\Question&AnswerTempPictures\" + answerGUID.ToString() + ".gif", ImageFormat.Gif);
+                    mapPath + @"\images\Question&AnswerTempPictures\" + answerGUID + ".gif", ImageFormat.Gif);
                 InitAnswerRadioButton(i);
             }
             CheckAnswerBoxOnTransitionOfQuestion();
@@ -181,14 +174,19 @@ namespace GMATClubTest.Web
             answerRadioButtonList.Items.Add(answerNam.ToString());
             answerRadioButtonList.Items[answerNam].Value = answerNam.ToString();
             answerRadioButtonList.Items[answerNam].Text = "<img src=\"images/Question&AnswerTempPictures/" +
-                                                          answerGUID.ToString() + ".gif\" alt=\"\" border=\"0\" />";
+                                                          answerGUID + ".gif\" alt=\"\" border=\"0\" />";
         }
-                
 
-        protected  void GetNextSet()
+
+        protected void GetNextSet()
         {
             questionSet = navigator.GetNextSet();
             //activSetNumber = questionSet.Id;
+        }
+
+        private void GetActivSet()
+        {
+            questionSet = navigator.GetActiveSet();
         }
 
         protected void GetPrevSet()
@@ -204,7 +202,7 @@ namespace GMATClubTest.Web
             answersRow = question.GetAnswersRows();
         }
 
-        protected  void GetPrevQuestion()
+        protected void GetPrevQuestion()
         {
             navigator.GetPreviousQuestion(questionAnswerSet);
             question = questionAnswerSet.Questions[0];
@@ -212,7 +210,7 @@ namespace GMATClubTest.Web
             answersRow = question.GetAnswersRows();
         }
 
-        protected  void GetNextQuestion()
+        protected void GetNextQuestion()
         {
             if (!navigator.HasNextQuestion)
             {
@@ -228,18 +226,16 @@ namespace GMATClubTest.Web
         {
             descriptionWebForm.Response.Redirect("mainwebform.aspx");
         }
-              
-        
+
         public void ReviewWebForm_Init(ReviewWebForm form)
         {
             _reviewWebForm = form;
             form.ErrorLabel.Visible = true;
-            QuestionAnswerSet qas;
             if (_reviewWebForm.Session["IReviewFormController"] == null)
             {
                 _reviewWebForm.Session.Add("IReviewFormController", new ReviewFormController(this));
             }
-            ((IReviewFormController)_reviewWebForm.Session["IReviewFormController"]).Init(_reviewWebForm);
+            ((IReviewFormController) _reviewWebForm.Session["IReviewFormController"]).Init(_reviewWebForm);
         }
 
         public void imageButton_Click(object sender, ImageClickEventArgs e)
@@ -285,7 +281,6 @@ namespace GMATClubTest.Web
                 return;
             }
             navigator.SetActiveQuestion(navigator.QuestionsAnswers[selectedSetNamber].Questions[questionNamber].Id);
-            
         }
 
         private void CheckAnswerBoxOnTransitionOfQuestion()
@@ -293,7 +288,8 @@ namespace GMATClubTest.Web
             int i;
             Question.Status status;
             status = navigator.GetQuestionStatus(question.Id);
-            if (status.status == BuisinessObjects.StatusType.NOT_SEEN || status.status == BuisinessObjects.StatusType.SEEN)
+            if (status.status == BuisinessObjects.StatusType.NOT_SEEN ||
+                status.status == BuisinessObjects.StatusType.SEEN)
             {
                 return;
             }
@@ -308,8 +304,8 @@ namespace GMATClubTest.Web
                 }
             }
         }
-               
-        
+
+
         public void TestWebForm_AnswerConfirm(TestWebForm testWebForm)
         {
             navigator.SetUserAnswer(questionAnswerSet.Answers[testWebForm.AnswerRadioButtonList.SelectedIndex].Id);
@@ -329,19 +325,22 @@ namespace GMATClubTest.Web
 
         private void endTest(TestWebForm form)
         {
-            navigator.CommitResult();
-            form.Session.Add("resultId", navigator.ResultResultDetailSet.Results[0].Id);
-            bool b = true;
-            form.Session.Add("IsEndTest", b);
-            testWebForm.Response.Redirect("resultDetailsWebForm.aspx");
+            end(form);
         }
 
         private void endPractice(PracticeGeneralWebForm form)
         {
+            end(form);
+        }
+
+        private void end(Page page)
+        {
             navigator.CommitResult();
+            page.Session.Add("resultId", navigator.ResultResultDetailSet.Results[0].Id);
+            page.Session["pageSender"] = "ManagePersonal.aspx?panel=results";
             bool b = true;
-            form.Session.Add("IsEndTest", b);
-            form.Response.Redirect("resultsWebForm.aspx");
+            page.Session.Add("IsEndTest", b);
+            page.Response.Redirect("resultDetailsWebForm.aspx");
         }
 
         public void SectionExit(TestWebForm form)
@@ -377,7 +376,6 @@ namespace GMATClubTest.Web
 
         public void TestWebForm_Load(TestWebForm form)
         {
-            testWebForm = form;
             switch (form.status)
             {
                 case "NONE":
@@ -393,7 +391,7 @@ namespace GMATClubTest.Web
                     break;
             }
 
-            TestFormInit(testWebForm);
+            TestFormInit(form);
         }
 
         private void TestFormInit(TestWebForm testWebForm)
@@ -407,19 +405,19 @@ namespace GMATClubTest.Web
             if (question.SubtypeId == (int) BuisinessObjects.Subtype.ReadingComprehensionPassage)
             {
             }
-            if (question.SubtypeId == (int)BuisinessObjects.Subtype.ReadingComprehensionQuestionToPassage)
+            if (question.SubtypeId == (int) BuisinessObjects.Subtype.ReadingComprehensionQuestionToPassage)
             {
                 passageGUID = Guid.NewGuid();
                 imageSet = renderer.Render(question);
                 testWebForm.PassageImage.Visible = true;
                 imageSet.Question.Save(
-                    mapPath + @"\images\Question&AnswerTempPictures\" + questionGUID.ToString() + ".gif",
+                    mapPath + @"\images\Question&AnswerTempPictures\" + questionGUID + ".gif",
                     ImageFormat.Gif);
-                testWebForm.QuestionImage.ImageUrl = @"images/Question&AnswerTempPictures/" + questionGUID.ToString() +
+                testWebForm.QuestionImage.ImageUrl = @"images/Question&AnswerTempPictures/" + questionGUID +
                                                      ".gif";
                 (renderer.RenderPasssageToQuestion(navigator.GetPasssageToQuestion(question.Id))).Save(
-                    mapPath + @"\images\Question&AnswerTempPictures\" + passageGUID.ToString() + ".gif", ImageFormat.Gif);
-                testWebForm.PassageImage.ImageUrl = @"images/Question&AnswerTempPictures/" + passageGUID.ToString() +
+                    mapPath + @"\images\Question&AnswerTempPictures\" + passageGUID + ".gif", ImageFormat.Gif);
+                testWebForm.PassageImage.ImageUrl = @"images/Question&AnswerTempPictures/" + passageGUID +
                                                     ".gif";
                 PrepareAndRenderAnswers();
             }
@@ -427,20 +425,20 @@ namespace GMATClubTest.Web
             {
                 imageSet = renderer.Render(question);
                 imageSet.Question.Save(
-                    mapPath + @"\images\Question&AnswerTempPictures\" + questionGUID.ToString() + ".gif",
+                    mapPath + @"\images\Question&AnswerTempPictures\" + questionGUID + ".gif",
                     ImageFormat.Gif);
-                testWebForm.QuestionImage.ImageUrl = @"images/Question&AnswerTempPictures/" + questionGUID.ToString() +
+                testWebForm.QuestionImage.ImageUrl = @"images/Question&AnswerTempPictures/" + questionGUID +
                                                      ".gif";
                 PrepareAndRenderAnswers();
             }
 
 
             testWebForm.clockHiddenParam += "<INPUT id=\"timehh\" type=\"hidden\" value=\"" +
-                                            navigator.RemainedTime.Hours.ToString() + "\" name=\"timehh\">";
+                                            navigator.RemainedTime.Hours + "\" name=\"timehh\">";
             testWebForm.clockHiddenParam += "<INPUT id=\"timemm\" type=\"hidden\" value=\"" +
-                                            navigator.RemainedTime.Minutes.ToString() + "\" name=\"timemm\">";
+                                            navigator.RemainedTime.Minutes + "\" name=\"timemm\">";
             testWebForm.clockHiddenParam += "<INPUT id=\"timess\" type=\"hidden\" value=\"" +
-                                            navigator.RemainedTime.Seconds.ToString() + "\" name=\"timess\">";
+                                            navigator.RemainedTime.Seconds + "\" name=\"timess\">";
 
             testWebForm.TestNameLabel.Text = "Test: " + testRow.Name;
 
@@ -487,7 +485,7 @@ namespace GMATClubTest.Web
         {
             for (int i = 0; i < questionAnswerSet.Answers.Count; i++)
             {
-                nextClickScript += "if (document.Form1.answerRadioButtonList_" + i.ToString() +
+                nextClickScript += "if (document.Form1.answerRadioButtonList_" + i +
                                    ".checked) {document.Form1.answerConfirmImg.src ='images/answerConfirm.gif'; document.Form1.nextButton.src = 'images/_nextButton.gif'; document.Form1.isAnswerConfirm.value=\"nextClicking\"} ";
                 //answerConfirmClickScript += "if (document.Form1.answerRadioButtonList_" + i.ToString() + ".checked) {document.Form1.isAnswerConfirm.value=\"answerConfirm\";document.Form1.submit(''); "; 
             }
@@ -498,14 +496,15 @@ namespace GMATClubTest.Web
             form.answerConfirmClickScript = answerConfirmClickScript;
         }
 
-       
 
         public void OnDescriptionOk(Page form)
         {
             if (!started)
             {
                 started = true;
-                GetNextSet();
+                PrepareDescription((IDescription)form);
+                return;
+                //GetNextSet();
             }
 
             if (isPractice)
@@ -529,6 +528,5 @@ namespace GMATClubTest.Web
             else
                 PrepareSetDescription(form);
         }
-        
     }
 }

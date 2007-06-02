@@ -87,6 +87,21 @@ namespace GmatClubTest.QuestionRenderer
             return CreateImageFromActiveBuffer();
         }
 
+        public Image Render(string text)
+        {
+            InitBuffer(largeBuffer);
+
+            RenderText(text);
+
+            cursor.Y += 10;
+            activeGraphics.DrawLine(pen, 0, cursor.Y, activeBuffer.Width, cursor.Y);
+            ++cursor.Y;
+
+            Image image = CreateImageFromActiveBuffer();
+
+            return image;
+        }
+
         public ImageSet Render(QuestionAnswerSet.QuestionsRow question)
         {
             ImageSet s = new ImageSet();

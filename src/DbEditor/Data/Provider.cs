@@ -1365,7 +1365,7 @@ namespace GmatClubTest.DbEditor.Data
                                                                sd.PassageQuestions[0].SubtypeId,
                                                                sd.PassageQuestions[0].DifficultyLevelId,
                                                                sd.PassageQuestions[0].Text, null,
-                                                               test.QuestionsEx[j].SetId, 0, 0, 0);
+                                                               test.QuestionsEx[j].SetId, 0, 0, 0, "");
                             test.QuestionsEx[test.QuestionsEx.Count - 1].Id =
                                 test.PassagesToQuestionsEx[i].PassageQuestionId;
                         }
@@ -1476,7 +1476,7 @@ namespace GmatClubTest.DbEditor.Data
                                                                       sd.PassageQuestions[0].SubtypeId,
                                                                       sd.PassageQuestions[0].DifficultyLevelId,
                                                                       sd.PassageQuestions[0].Text, null,
-                                                                      questionSet.QuestionsEx[j].SetId, 0, 0, 0);
+                                                                      questionSet.QuestionsEx[j].SetId, 0, 0, 0, "");
                             questionSet.QuestionsEx[questionSet.QuestionsEx.Count - 1].Id =
                                 questionSet.PassagesToQuestionsEx[i].PassageQuestionId;
                         }
@@ -1883,6 +1883,12 @@ namespace GmatClubTest.DbEditor.Data
                             @"Insert into SetsToQuestions (SetId, QuestionId ,QuestionOrder, QuestionZone) VALUES({0},{1},{2},{3})",
                             value.SetId, iDqr, value.QuestionOrder, value.QuestionZone);
                     c.ExecuteNonQuery();
+                    c.CommandText =
+                        String.Format(
+                     @"Insert into explanation (QuestionId ,explanation ) VALUES({0},{1})",
+                     value.Id, value.explanation);
+                    c.ExecuteNonQuery();
+                  
                 }
                 else
                 {
@@ -1907,8 +1913,13 @@ namespace GmatClubTest.DbEditor.Data
                     questionEditDataAdapter.UpdateCommand.Parameters["Picture"].Value = DBNull.Value;
                 }
                 questionEditDataAdapter.UpdateCommand.ExecuteNonQuery();
+                c.CommandText =
+                     String.Format(
+                  @"update explanations set explanation = '{0}' where QuestionId = {1}",
+                  value.explanation , value.Id);
+                c.ExecuteNonQuery();
             }
-
+       
             answersDataAdapter.Update(dataset.Answers);
         }
 

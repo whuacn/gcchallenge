@@ -18,6 +18,7 @@ namespace GMATClubTest.Web
     /// </summary>
     public partial class Migrated_PracticeGeneralWebForm : PracticeGeneralWebForm
     {
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             ((IPracticeFormController)Session["IPracticeFormController"]).GeneralInit(this);
@@ -26,22 +27,22 @@ namespace GMATClubTest.Web
 
         #region Web Form Designer generated code
 
-        
-        
-        
-       
+
+
+
+
         protected override void OnInit(EventArgs e)
         {
             this.InitializeComponent();
             base.OnInit(e);
         }
 
-      
-        
-        
-        
-        
-       private void InitializeComponent()
+
+
+
+
+
+        private void InitializeComponent()
         {
             this.reviewImageButton.Click += new System.Web.UI.ImageClickEventHandler(this.reviewImageButton_Click);
             this.answerCheckImageButton.Click +=
@@ -50,7 +51,7 @@ namespace GMATClubTest.Web
             this.prewImageButton.Click += new System.Web.UI.ImageClickEventHandler(this.prewImageButton_Click);
             this.nextImageButton.Click += new System.Web.UI.ImageClickEventHandler(this.nextImageButton_Click);
         }
-        
+
         #endregion
 
         protected void nextImageButton_Click(object sender, ImageClickEventArgs e)
@@ -80,7 +81,7 @@ namespace GMATClubTest.Web
 
         protected void helpImageButton_Click(object sender, ImageClickEventArgs e)
         {
-            ((WebTestController) Session["WebTestController"]).showHelp(this);
+            ((WebTestController)Session["WebTestController"]).showHelp(this);
         }
 
         protected void exitImageButton_Click(object sender, ImageClickEventArgs e)
@@ -90,7 +91,7 @@ namespace GMATClubTest.Web
 
         public override Image PassageImage
         {
-            get { return passageImage; }
+            get { return passageImage;}
         }
 
         public override ImageButton ExitImageButton
@@ -108,7 +109,6 @@ namespace GMATClubTest.Web
         {
             get { return helpImageButton; }
         }
-        
 
         public override ImageButton AnswerCheckImageButton
         {
@@ -154,14 +154,22 @@ namespace GMATClubTest.Web
         {
             get { return timeLabel; }
         }
-        
+
         public override HyperLink LoginStatusHyperLink
         {
             get { return loginStatusHyperLink; }
         }
 
-        
+        public override Panel ExplanationPanel
+        {
+            get { return explanationPanel; }
+        }
 
+        public override Image ExplanationImage
+        {
+            get { return explanationImage; }
+        }
+       
         protected void TextBox1_TextChanged(object sender, EventArgs e)
         {
 
@@ -171,9 +179,34 @@ namespace GMATClubTest.Web
         {
             get { return practiceNameLabel; }
         }
+
+        public override ImageButton ShowAnswerImageButton
+        {
+            get { return showAnswerImageButton; }
+        }
+
+        public override ImageButton EplainAnswerImageButton
+        {
+            get { return explainAnswer; }
+        }
+
+        public override HiddenField ReviewFlag
+        {
+            get { return reviewFlag; }
+        }
+
+        public override string IsAnsverConfirm
+        {
+            get { return isAnswerConfirm.Value; }
+        }
+
         protected void flagForReviewImageButton_Click(object sender, ImageClickEventArgs e)
         {
-
+            
+        }
+        protected void explainAnswer_Click(object sender, ImageClickEventArgs e)
+        {
+            ((IPracticeFormController)Session["IPracticeFormController"]).ExplainAnswer(this);
         }
 }
 }

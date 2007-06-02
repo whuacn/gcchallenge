@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using GmatClubTest.Data;
 
 namespace GmatClubTest.BusinessLogic
@@ -18,6 +17,8 @@ namespace GmatClubTest.BusinessLogic
       bool IsActiveSetValid { get; }
       bool HasNextSet { get; }
       bool HasPreviousSet { get; }
+
+      QuestionSetSet.QuestionSetsRow GetActiveSet();
       QuestionSetSet.QuestionSetsRow GetPreviousSet();
       QuestionSetSet.QuestionSetsRow GetNextSet();
 
@@ -37,9 +38,14 @@ namespace GmatClubTest.BusinessLogic
     /// <param name="answerId"></param>
     /// <param name="reviewFlag"></param>
       void SetUserAnswer(int answerId, bool reviewFlag);
-      Dictionary<QuestionIdentity, bool> GetQuestionInfoForReview();
+      ReviewState ReviewState{get;}
+      //Dictionary<QuestionIdentity, bool> GetQuestionInfoForReview();
+
+       string GetExplanation();
 
       void SetReviewState(ReviewState reviewState);
+
+      void SetFirstReviewQuestion();
 
       void CommitResult();
       
@@ -55,5 +61,7 @@ namespace GmatClubTest.BusinessLogic
       QuestionSet.QuestionsRow GetPasssageToQuestion(int questionId);
 
       ResultResultDetailSet ResultResultDetailSet {get;}
+
+     
    }
 }

@@ -34,7 +34,7 @@ namespace GMATClubTest.Web
         public abstract ImageButton ExitImageButton { get; }
         public abstract ImageButton ReviewImageButton { get; }
         public abstract ImageButton HelpImageButton { get; }
-        public abstract ImageButton AnswerCheckImageButton { get; }
+      
         public abstract ImageButton NextImageButton { get; }
         public abstract ImageButton PrewImageButton { get; }
         public abstract Image QuestionImage { get; }
@@ -48,7 +48,19 @@ namespace GMATClubTest.Web
         public abstract Label PracticeNameLabel { get;}
         public abstract HyperLink LoginStatusHyperLink { get; }
 
+        public abstract string IsAnsverConfirm { get; }
+
         public string clockHiddenParam = "";
         public string status = "";
+
+        public abstract Panel ExplanationPanel { get; }
+        public abstract Image ExplanationImage { get; }
+
+        public abstract ImageButton AnswerCheckImageButton { get; }
+        public abstract ImageButton ShowAnswerImageButton { get; }
+        public abstract ImageButton EplainAnswerImageButton { get; }
+
+
+        public abstract HiddenField ReviewFlag { get; }
     }
 }

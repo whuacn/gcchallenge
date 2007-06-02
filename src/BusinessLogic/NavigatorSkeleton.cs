@@ -31,7 +31,8 @@ namespace GmatClubTest.BusinessLogic
         
         //New functionality - store reviewFlag for questions
         //TODO: Need initialize by questions count
-        private Dictionary<QuestionIdentity, bool> flagForReview = new Dictionary<QuestionIdentity, bool>();
+
+       
         protected  ReviewState _reviwState;
 
         public NavigatorSkeleton(TestSet.TestsRow test, Manager manager)
@@ -94,6 +95,8 @@ namespace GmatClubTest.BusinessLogic
 
         public abstract bool HasPreviousSet { get; }
 
+      
+
         public int TotalNumberOfQuestions
         {
             get { return totalQuestions; }
@@ -102,6 +105,13 @@ namespace GmatClubTest.BusinessLogic
         public TimeSpan TotalTime
         {
             get { return totalTime; }
+        }
+
+        public QuestionSetSet.QuestionSetsRow GetActiveSet()
+        {
+            AdjustSetRemainedTime();
+            OnNextSet();
+            return sets.QuestionSets[activeSetIndex];
         }
 
         public QuestionSetSet.QuestionSetsRow GetNextSet()
@@ -113,6 +123,8 @@ namespace GmatClubTest.BusinessLogic
             OnNextSet();
             return sets.QuestionSets[activeSetIndex];
         }
+
+        public abstract Explanations.ExplanationsDataTable GetExplanations();
 
         private void OnNextSet()
         {
@@ -189,26 +201,104 @@ namespace GmatClubTest.BusinessLogic
             _setUserAnswer(answerId);
 
             //New functionality - store review flag
-            if (!flagForReview.ContainsKey(new QuestionIdentity(activeSetIndex, ActiveQuestion.Id)))
+            lock(QuestionInfoForReview.flaged)
             {
-                flagForReview.Add(new QuestionIdentity(activeSetIndex, ActiveQuestion.Id), reviewFlag);
-            }
-            else
-            {
-                flagForReview[new QuestionIdentity(activeSetIndex, ActiveQuestion.Id)] = reviewFlag;
+                QuestionIdentity questionIde =
+                    new QuestionIdentity(sets.QuestionSets[activeSetIndex].Id, ActiveQuestion.Id);
+                if (QuestionInfoForReview.flaged.Contains(questionIde))
+                {
+                    if (!reviewFlag)
+                    {
+                        QuestionInfoForReview.flaged.Remove(questionIde);
+                    }
+                }
+                else
+                {
+                     if (reviewFlag)
+                     {
+                         QuestionInfoForReview.flaged.Add(questionIde);
+                     }
+                }
             }
         }
 
-        public Dictionary<QuestionIdentity, bool> GetQuestionInfoForReview()
+        public ReviewState ReviewState
         {
-            return flagForReview;
+            get { return _reviwState; }
         }
 
-        public void SetReviewState(ReviewState reviewState)
+        public abstract string GetExplanation();
+
+        private QuestionInfoForReview _questionInfoForReview = null;
+
+        public QuestionInfoForReview QuestionInfoForReview
+        {
+            get
+            {
+                if (_questionInfoForReview == null)
+                {
+                    _questionInfoForReview = new QuestionInfoForReview();
+                }
+                return _questionInfoForReview;
+            }
+        }
+
+            public void SetReviewState(ReviewState reviewState)
         {
             _reviwState = reviewState;
+            switch(reviewState)
+            {
+                case ReviewState.ReviewFlagged:
+                    IsReviewMode = true;
+                    break;
+                case ReviewState.ReviewIncorrect:
+                    IsReviewMode = true;
+                    break;
+                case ReviewState.UserReview:
+                    IsReviewMode = true;
+                    break;
+                case ReviewState.none:
+                    IsReviewMode = false;
+                    break;
+                default: IsReviewMode = false;
+                    break;
+            }
         }
 
+        #region INavigator Members
+
+        public void SetFirstReviewQuestion()
+        {
+            switch (ReviewState)
+            {
+                case ReviewState.none:
+                    throw new ApplicationException("Method can used in ReviewMode only.");
+                    break;
+                case ReviewState.ReviewIncorrect:
+                    if (QuestionInfoForReview.flaged.Count > 0)
+                    {
+                        QuestionIdentity qide = QuestionInfoForReview.flaged[0];
+                        SetActiveSet(qide.SetId);
+                        SetActiveQuestion(qide.QuestionId);
+                    }
+                    break;
+                case ReviewState.ReviewFlagged:
+                    if (QuestionInfoForReview.incorrect.Count > 0)
+                    {
+                        QuestionIdentity qide = QuestionInfoForReview.incorrect[0];
+                        SetActiveSet(qide.SetId);
+                        SetActiveQuestion(qide.QuestionId);
+                    }
+                    break;
+                case ReviewState.UserReview:
+                    break;
+                default:
+                    break;
+            }
+            
+        }
+
+        #endregion
 
         private void _setUserAnswer(int answerId)
         {
@@ -235,16 +325,27 @@ namespace GmatClubTest.BusinessLogic
             if (row != null)
             {
                 row.AnswerId = answerId;
+                QuestionIdentity qi = new QuestionIdentity(setRow.QuestionSetId, q.Id);
                 if (isCorrect)
                 {
                     if (((Question.Status)questionStatus[q.Id]).status !=  BuisinessObjects.StatusType.ANSWER_IS_CORRECT)
                         setRow.Score += score;
+                    
+                    QuestionInfoForReview.incorrect.Remove(qi);
+                    
                 }
                 else
                 {
                     if (((Question.Status)questionStatus[q.Id]).status == BuisinessObjects.StatusType.ANSWER_IS_CORRECT)
                         setRow.Score -= scoreForCorrect;
+
+                   if (!QuestionInfoForReview.incorrect.Contains(qi))
+                   {
+                       QuestionInfoForReview.incorrect.Add(qi);
+                   }
                 }
+
+              
             }
             else
             {
@@ -260,7 +361,6 @@ namespace GmatClubTest.BusinessLogic
             ((Question.Status)questionStatus[q.Id]).score = score;
             
         }
-        
 
         protected abstract double CalculateScoreOfActiveQuestion(bool isCorrect);
 
@@ -287,6 +387,7 @@ namespace GmatClubTest.BusinessLogic
                 setRemainedTime[activeSetIndex] = new TimeSpan(0);
         }
 
+      
         public TimeSpan RemainedTime
         {
             get
@@ -297,7 +398,8 @@ namespace GmatClubTest.BusinessLogic
                     else
                         return TimeSpan.MaxValue;
 
-                if (setRemainedTime[activeSetIndex].Ticks == 0 || setRemainedTime[activeSetIndex] == TimeSpan.MaxValue)
+                if (setRemainedTime[activeSetIndex].Ticks == 0 ||
+                    setRemainedTime[activeSetIndex] == TimeSpan.MaxValue)
                     return setRemainedTime[activeSetIndex];
                 TimeSpan r = setRemainedTime[activeSetIndex] - (DateTime.Now - activeSetStartTime);
                 if (r.Ticks <= 0)
@@ -305,7 +407,6 @@ namespace GmatClubTest.BusinessLogic
                     setRemainedTime[activeSetIndex] = new TimeSpan(0);
                     r = setRemainedTime[activeSetIndex];
                 }
-
                 return r;
             }
         }
@@ -361,5 +462,11 @@ namespace GmatClubTest.BusinessLogic
         #region INavigator Members
 
         #endregion
+    }
+
+    internal class QuestionInfoForReview
+    {
+        public List<QuestionIdentity> flaged = new List<QuestionIdentity>();
+        public List<QuestionIdentity> incorrect = new List<QuestionIdentity>();
     }
 }

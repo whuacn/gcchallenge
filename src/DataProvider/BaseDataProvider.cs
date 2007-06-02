@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.Common;
 using GmatClubTest.Data;
+using GmatClubTest.Data.ExplanationsTableAdapters;
 
 namespace GmatClubTest.DataProvider
 {
@@ -72,8 +73,7 @@ namespace GmatClubTest.DataProvider
       {
          throw new InvalidOperationException("The method must be overriden.");
       }
-
-
+       
 
 
       protected virtual DbDataAdapter AdapterUsers
@@ -116,7 +116,7 @@ namespace GmatClubTest.DataProvider
          }
       }
 
-      protected virtual DbDataAdapter AdapterAnswersByQuestionId
+       protected virtual ExplanationsTableAdapter ExplanationsTableAdapter
       {
          get
          {
@@ -125,6 +125,16 @@ namespace GmatClubTest.DataProvider
             }
          }
       }
+
+       protected virtual DbDataAdapter AdapterAnswersByQuestionId
+       {
+           get
+           {
+               {
+                   throw new InvalidOperationException("The method must be overriden.");
+               }
+           }
+       }
 
       protected virtual DbDataAdapter AdapterQuestionSetsByTestId
       {
@@ -346,6 +356,12 @@ namespace GmatClubTest.DataProvider
          p[0].Value = questionSetId;
          p[1].Value = questionZone;
          AdapterAnswersByQuestionSetIdAndZone.Fill(questionsAnswers.Answers);
+      }
+
+      public Explanations.ExplanationsDataTable GetExplanations(int testId)
+      {
+          ExplanationsTableAdapter explanationsTableAdapter = ExplanationsTableAdapter;
+          return explanationsTableAdapter.GetData(testId);
       }
    }
 }

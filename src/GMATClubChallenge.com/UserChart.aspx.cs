@@ -1,25 +1,12 @@
 using System;
-using System.Data;
-using System.Configuration;
-using System.Collections;
-using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Web.UI.HtmlControls;
-using GmatClubTest.BusinessLogic;
-using GmatClubTest.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
+using System.Xml;
 using GMATClubTest.Web;
 using Manco.Chart;
 using Manco.Chart.Data;
-using System.Drawing;
-
-using System.Drawing;
-using System.Xml;
-using System.IO;
-using System.Data.SqlClient;
-
 
 public partial class UserChart : BasePage
 {
@@ -36,18 +23,26 @@ public partial class UserChart : BasePage
       {
          qType=Int32.Parse(Request["t"].ToString());
       }
-      catch (System.Exception )
+      catch (Exception )
       {
       	
       }
-      
+        
 
 
       string sWidth = Request.QueryString["w"];
       string sHeight = Request.QueryString["h"];
+       if(sWidth == null)
+       {
+           sWidth = "10";
+       }
+       if (sHeight == null)
+       {
+           sHeight = "10";
+       }
       Size imageSize = new Size(Int32.Parse(sWidth), Int32.Parse(sHeight));
-
-
+       
+       
       ChartControl control = new ChartControl();
       control.HttpServer = this.Server;
       control.Size = imageSize;
@@ -115,7 +110,7 @@ control.Charts[0].Name="asdsad";
 
 
       MemoryStream imageStream = new MemoryStream();
-      control.Image.Save(imageStream, System.Drawing.Imaging.ImageFormat.Png);
+      control.Image.Save(imageStream, ImageFormat.Png);
 
 
       // return byte array to caller with image type
