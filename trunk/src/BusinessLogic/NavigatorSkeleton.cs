@@ -109,8 +109,9 @@ namespace GmatClubTest.BusinessLogic
 
         public QuestionSetSet.QuestionSetsRow GetActiveSet()
         {
-            AdjustSetRemainedTime();
-            OnNextSet();
+            if (activeSetIndex == -1)
+                GetNextSet();
+            CheckTime();
             return sets.QuestionSets[activeSetIndex];
         }
 
