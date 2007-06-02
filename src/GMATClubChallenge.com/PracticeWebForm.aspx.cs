@@ -47,16 +47,16 @@ namespace GMATClubTest.Web
             this.reviewImageButton.Click += new System.Web.UI.ImageClickEventHandler(this.reviewImageButton_Click);
             this.answerCheckImageButton.Click +=
                 new System.Web.UI.ImageClickEventHandler(this.answerCheckImageButton_Click);
-            this.helpImageButton.Click += new System.Web.UI.ImageClickEventHandler(this.helpImageButton_Click);
-            this.prewImageButton.Click += new System.Web.UI.ImageClickEventHandler(this.prewImageButton_Click);
-            this.nextImageButton.Click += new System.Web.UI.ImageClickEventHandler(this.nextImageButton_Click);
+            //this.helpImageButton.Click += new System.Web.UI.ImageClickEventHandler(this.helpImageButton_Click);
+            //this.prewImageButton.Click += new System.Web.UI.ImageClickEventHandler(this.prewImageButton_Click);
+            //this.nextImageButton.Click += new System.Web.UI.ImageClickEventHandler(this.nextImageButton_Click);
         }
 
         #endregion
 
         protected void nextImageButton_Click(object sender, ImageClickEventArgs e)
         {
-            ((IPracticeFormController)Session["IPracticeFormController"]).NextButtonClick(this);
+            ((IPracticeFormController) Session["IPracticeFormController"]).NextButtonClick(this);
         }
 
         protected void prewImageButton_Click(object sender, ImageClickEventArgs e)
