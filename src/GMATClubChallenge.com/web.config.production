@@ -7,7 +7,10 @@
                 <add key="mathml-rendering-config" value="D:\websites\69.20.75.1\gmatclubchallenge.com\MathML\"/>
                 <add key="AccessManager.Cookie" value="GMAT_ACC_CTX"/>
                 <add key="AccessManager.ByePage" value="Default.aspx"/>
-               <add key="backcolor" value="#006daa"/>
+                <add key="backcolor" value="#006daa"/>
+                <add key="chart.rebuild_rate" value="1"/>
+                <add key="chart.rebuild_url" value="http://localhost:3866/GMATClubChallenge.com/handler.ajx.aspx?handler_name=StatisticCollector::updateResults"/>
+
         </appSettings>
         <system.web>
                 <httpHandlers>

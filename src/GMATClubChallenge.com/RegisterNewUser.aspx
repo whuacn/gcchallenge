@@ -26,7 +26,7 @@
    &nbsp;
    &nbsp;&nbsp;
    
-   <asp:Panel ID="Panel1" runat="server" Height="50px" Width="631px">
+   <asp:Panel ID="Panel1" runat="server" Width="631px">
    
       <asp:GridView ID="propsview" runat="server" AutoGenerateColumns="False" DataKeyNames="idx"
          DataSourceID="props" Caption="Other user info" CaptionAlign="Left">

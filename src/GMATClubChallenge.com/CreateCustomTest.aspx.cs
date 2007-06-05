@@ -11,7 +11,7 @@ using System.Web.UI.HtmlControls;
 
 namespace GMATClubTest.Web
 {
-   public partial class CreateCustomTest : BasePage
+   public partial class CreateCustomTest : GMATClubTest.Web.BasePage
    {
       protected void Page_Load(object sender, EventArgs e)
       {

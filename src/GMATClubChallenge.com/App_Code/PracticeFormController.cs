@@ -241,7 +241,8 @@ public class PracticeFormController : WebTestController , IPracticeFormControlle
     {
         Init(form);
         practicelWebForm.ExplanationPanel.Visible = true;
-        System.Drawing.Image explanatio = renderer.Render(navigator.GetExplanation());
+        string explanation_string=navigator.GetExplanation();
+        System.Drawing.Image explanatio = renderer.RenderAsString(explanation_string);
         Guid explanatioGuid = Guid.NewGuid();
         string pathInWebServer = @"images\Question&AnswerTempPictures\" + explanatioGuid + ".gif";
         string fullPath = mapPath + "\\" + pathInWebServer;

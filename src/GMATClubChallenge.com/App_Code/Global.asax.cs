@@ -8,7 +8,6 @@ using AccessControl;
 using GmatClubTest.BusinessLogic;
 using log4net;
 using log4net.Config;
-using System.IO;
 using System.Net;
 using System.Text;
 //[assembly: log4net.Config.XmlConfigurator(ConfigFileExtension = "log4net", Watch = true)]
@@ -59,8 +58,9 @@ namespace GMATClubTest.Web
                DateTime d = DateTime.Now;
                if(d.Day==nex_dt.Day && d.Hour==nex_dt.Hour && d.Minute==nex_dt.Minute)
                {
-                  nex_dt=nex_dt.AddMinutes(1);
-                  HttpWebRequest  request  = (HttpWebRequest)WebRequest.Create("http://localhost:3866/GMATClubChallenge.com/handler.ajx.aspx?handler_name=StatisticCollector::updateResults");
+                  nex_dt=nex_dt.AddMinutes(Int32.Parse(ConfigurationManager.AppSettings["chart.rebuild_rate"]));
+                  HttpWebRequest  request  = (HttpWebRequest)WebRequest.Create(ConfigurationManager.AppSettings["chart.rebuild_url"]);
+                  
                   HttpWebResponse response = (HttpWebResponse) request.GetResponse();
                   Stream resStream = response.GetResponseStream();
                   byte[]        buf = new byte[8192];

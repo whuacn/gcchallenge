@@ -95,7 +95,6 @@ function myMistakes(code,name)
 </asp:Content>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="content" Runat="Server">
-   &nbsp;
    <asp:HyperLink ID="lMain" runat="server" NavigateUrl="ManagePersonal.aspx?panel=main">[Main]</asp:HyperLink>
    |
    <asp:HyperLink ID="lTests" runat="server" NavigateUrl="ManagePersonal.aspx?panel=tests">[Active tests]</asp:HyperLink>
@@ -105,7 +104,8 @@ function myMistakes(code,name)
    <asp:HyperLink ID="lResults" runat="server" NavigateUrl="ManagePersonal.aspx?panel=results">[Results]</asp:HyperLink>&nbsp;
 
    <asp:Panel ID="pMain" runat="server" Width="100%">
-      <b>Main:</b>
+      
+      <br /><b>Main:</b>
       <table border="1" cellspacing="0" cellpadding="0" width="100%" >
       	<tr>
       		<td width="50%" valign="top">
@@ -246,6 +246,7 @@ function myMistakes(code,name)
    </asp:Panel>
    
    <asp:Panel ID="pTests" runat="server" Width="100%">
+      <br />
       <b>Active tests:</b><asp:GridView ID="gvTests" runat="server" AutoGenerateColumns="False" CellPadding="0" Width="100%">
          <Columns>
             <asp:BoundField DataField="idx" Visible="False"  />
@@ -283,6 +284,7 @@ function myMistakes(code,name)
       &nbsp;&nbsp;
    </asp:Panel>
    <asp:Panel ID="pProfile" runat="server" Visible="False" Width="100%">
+   <br />
       <strong>Profile:</strong>
       <br />
       Login &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;<asp:TextBox ID="login" runat="server" CssClass="itt"
@@ -340,10 +342,10 @@ function myMistakes(code,name)
       
 
    <asp:Panel ID="pResults" runat="server" Visible="False" Width="100%">
-   <table width="100%">
+   <table width="100%" cellpadding="0" cellspacing="0">
    <tr>
    <td valign="top">
-   <table id="Table2" border="0" cellpadding="1" cellspacing="1" width="100%">
+   <table id="Table2" border="0" cellpadding="0" cellspacing="0" width="100%">
       <tr>
          <td >
             <table id="Table6" border="0" cellpadding="1" cellspacing="1">

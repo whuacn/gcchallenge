@@ -8,7 +8,7 @@ using GMATClubTest.Web;
 using Manco.Chart;
 using Manco.Chart.Data;
 
-public partial class UserChart : BasePage
+public partial class UserChart : GMATClubTest.Web.BasePage
 {
    protected void Page_Load(object sender, EventArgs e)
    {
@@ -54,6 +54,8 @@ public partial class UserChart : BasePage
       stream.Close();
 
       control.LoadTheme(xmlChartDocument["Charts"]);
+      
+      control.Charts.ComponentLayout.Titles.TitleList[0].Text="GMAT Club Rating ("+Request.QueryString["name"]+")";
 
 
 
