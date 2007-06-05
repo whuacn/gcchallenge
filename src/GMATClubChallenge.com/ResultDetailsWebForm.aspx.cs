@@ -26,17 +26,20 @@ namespace GMATClubTest.Web
 
                 {
                     GmatClubTest.Data.ResultAndDetailsTableAdapters.ResultsTableAdapter ta = new GmatClubTest.Data.ResultAndDetailsTableAdapters.ResultsTableAdapter();
+                    ta.SqlConnection = connection_;
                     ta.FillById(resultAndDetails.Results, resultId);
                 }
                 
 
                 {
                     GmatClubTest.Data.ResultAndDetailsTableAdapters.ResultsDetailsTableAdapter ta = new GmatClubTest.Data.ResultAndDetailsTableAdapters.ResultsDetailsTableAdapter();
+                    ta.SqlConnection = connection_;
                     ta.FillByResultId(resultAndDetails.ResultsDetails,resultId);
                 }
 
                 {
                     GmatClubTest.Data.ResultAndDetailsTableAdapters.TestsTableAdapter ta = new GmatClubTest.Data.ResultAndDetailsTableAdapters.TestsTableAdapter();
+                    ta.SqlConnection = connection_;
                     ta.FillById(resultAndDetails.Tests, resultAndDetails.Results[0].TestId);
                 }
 
@@ -277,6 +280,7 @@ namespace GMATClubTest.Web
             string base64s=Convert.ToBase64String(encoding.GetBytes(ann_TextBox.Text));
             resultAndDetails.Results[0].annotation=base64s;
             GmatClubTest.Data.ResultAndDetailsTableAdapters.ResultsTableAdapter ta = new GmatClubTest.Data.ResultAndDetailsTableAdapters.ResultsTableAdapter();
+            ta.SqlConnection = connection_;
             ta.Update(resultAndDetails.Results);
         }
 }
