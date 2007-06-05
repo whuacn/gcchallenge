@@ -14,7 +14,7 @@ using System.Data.SqlClient;
 
 using GMATClubTest.Web;
 
-public partial class MistakesTest : BasePage
+public partial class MistakesTest : GMATClubTest.Web.BasePage
 {
    protected void Page_Load(object sender, EventArgs e)
    {

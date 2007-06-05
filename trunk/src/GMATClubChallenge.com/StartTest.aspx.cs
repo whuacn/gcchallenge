@@ -139,7 +139,7 @@ namespace GMATClubTest.Web
       
       private void DoTestById(int id)
       {
-         try
+         //try
          {
             manager_.GetTests(testSet);
             TestSet.TestsRow tr = testSet.Tests.FindById(id);
@@ -159,7 +159,7 @@ namespace GMATClubTest.Web
            
             Response.Redirect("descriptionwebform.aspx");
          }
-         catch (Exception) { }
+         //catch (Exception) { }
       }
 
 

@@ -11,11 +11,12 @@ using System.Web.UI.HtmlControls;
 
 namespace GMATClubTest.Web
 {
-   public partial class CustomTestsForm : BasePage
+   public partial class CustomTestsForm : GMATClubTest.Web.BasePage
    {
       protected void Page_Load(object sender, EventArgs e)
       {
-      
+
+         adm_view.SelectedIndex = -1;
          base.Page_Load(sender,e);
          if(access_manager_.UserMainRole=="admins")
          {
@@ -45,14 +46,14 @@ namespace GMATClubTest.Web
                   custom_tests.SelectCommand += " select * from [custom_tests]  where ( hidden=0 or hidden is null ) and (mistakes=0 or mistakes is null);";   
                }
             }
+            
+            this.DataBind();   
          }
-         if (!IsPostBack) this.DataBind();   
-         
       }
 
       public override void DoLoad(object sender, EventArgs e)
       {
-         
+          adm_view.SelectedIndex = -1; 
       }
       protected void search_Click(object sender, EventArgs e)
       {
@@ -76,6 +77,20 @@ namespace GMATClubTest.Web
       }
       protected int update_idx=-1;
       protected static RatingDrawer rdrawer=new RatingDrawer(true);
+      protected void adm_view_RowDeleting(object sender, GridViewDeleteEventArgs e)
+      {
+          adm_view.SelectedIndex=-1;
+          
+      }
+      protected void custom_tests_Deleted(object sender, SqlDataSourceStatusEventArgs e)
+      {
+         adm_view.SelectedIndex=-1;
+      }
+      
+      protected void adm_view_RowDeleted(object sender, GridViewDeletedEventArgs e)
+      {
+           adm_view.SelectedIndex = -1;
+      }
 }
 }
 /*

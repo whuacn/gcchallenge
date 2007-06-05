@@ -2,7 +2,7 @@ using System;
 
 namespace GMATClubTest.Web
 {
-    public partial class Error : BasePage
+    public partial class Error : GMATClubTest.Web.BasePage
     {
         protected new void Page_Load(object sender, EventArgs e)
         {

@@ -32,7 +32,7 @@ namespace GMATClubTest.Web
          }
          curpanel_idx=getPanelIdx(curpanel);
          switchPanel();
-         ((GMATClubTest.Web.MainLayout)(Master)).setPageHead("Shop manager - " + annotation(curpanel));
+            
 
          if(!IsPostBack)
          {

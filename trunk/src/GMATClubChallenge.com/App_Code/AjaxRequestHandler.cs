@@ -44,7 +44,6 @@ namespace GmatClubTest.Web
             if (null == context.Request.Params["handler_name"])
             {
                throw new System.Exception("Need function name to execute");
-               return;
             }
 
             string function = context.Request.Params["handler_name"];

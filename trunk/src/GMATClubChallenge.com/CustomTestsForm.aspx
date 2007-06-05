@@ -20,7 +20,7 @@
       or tricky - it is your choice! (Note: You need to have access to ALL tests.)<br />
       <br />
       <asp:SqlDataSource ID="custom_tests" runat="server" ConnectionString="<%$ ConnectionStrings:gmatConnectionString %>"
-         SelectCommand="SELECT * from [custom_tests] WHERE (hidden = 0 OR hidden IS NULL) and (mistakes=0 or mistakes is null)" OnUpdating="custom_tests_Updating" UpdateCommand="update customtests set hidden=@hidden,enabled=@enabled where Test_Id=@Id" DeleteCommand="delete from customtests where Test_Id=@Id; delete from questionsets where id in (select questionsetid from TestContents where testid=@Id); delete from tests where Id=@Id;" >
+         SelectCommand="SELECT * from [custom_tests] WHERE (hidden = 0 OR hidden IS NULL) and (mistakes=0 or mistakes is null)" OnUpdating="custom_tests_Updating" UpdateCommand="update customtests set hidden=@hidden,enabled=@enabled where Test_Id=@Id" DeleteCommand="delete from customtests where Test_Id=@Id; delete from questionsets where id in (select questionsetid from TestContents where testid=@Id); delete from tests where Id=@Id;" OnDeleted="custom_tests_Deleted" >
          <UpdateParameters>
             <asp:Parameter Name="hidden" />
             <asp:Parameter Name="enabled" />
@@ -65,7 +65,7 @@
       </asp:GridView>
       
       <asp:GridView Visible="False" ID="adm_view" runat="server" AllowSorting="True" AutoGenerateColumns="False"
-         DataKeyNames="Id" DataSourceID="custom_tests" PageSize="25" Width="100%" OnRowUpdating="adm_view_RowUpdating">
+         DataKeyNames="Id" DataSourceID="custom_tests" PageSize="25" Width="100%" OnRowUpdating="adm_view_RowUpdating" OnRowDeleting="adm_view_RowDeleting" OnRowDeleted="adm_view_RowDeleted">
          <Columns>
             <asp:TemplateField HeaderText="Id" SortExpression="Id" Visible="False">
                <ItemTemplate>
