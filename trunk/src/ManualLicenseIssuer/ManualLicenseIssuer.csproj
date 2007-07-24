@@ -96,11 +96,6 @@
     <Reference Include="System.Xml">
       <Name>System.XML</Name>
     </Reference>
-    <ProjectReference Include="..\License\License.csproj">
-      <Name>License</Name>
-      <Project>{86BFDECC-6782-4163-BEA0-A430AC39806C}</Project>
-      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
-    </ProjectReference>
     <ProjectReference Include="..\UnexpectedExceptionDialog\UnexpectedExceptionDialog.csproj">
       <Name>UnexpectedExceptionDialog</Name>
       <Project>{0B1E203A-568E-4D0D-960E-DF3D42F3D06B}</Project>

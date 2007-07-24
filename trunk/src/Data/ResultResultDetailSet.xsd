@@ -1,66 +1,78 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<xs:schema id="ResultResultDetailSet" targetNamespace="http://tempuri.org/ResultResultDetailSet.xsd"
-	elementFormDefault="qualified" attributeFormDefault="qualified" xmlns="http://tempuri.org/ResultResultDetailSet.xsd"
-	xmlns:mstns="http://tempuri.org/ResultResultDetailSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-	<xs:element name="ResultResultDetailSet" msdata:IsDataSet="true">
-		<xs:complexType>
-			<xs:choice maxOccurs="unbounded">
-				<xs:element name="Results">
-					<xs:complexType>
-						<xs:sequence>
-							<xs:element name="Id" msdata:AutoIncrement="true" type="xs:int" />
-							<xs:element name="UserId" type="xs:int" />
-							<xs:element name="TestId" type="xs:int" />
-							<xs:element name="StartTime" type="xs:dateTime" />
-							<xs:element name="EndTime" type="xs:dateTime" />
-							<xs:element name="Score" type="xs:double" />
-						</xs:sequence>
-					</xs:complexType>
-				</xs:element>
-				<xs:element name="ResultsDetails">
-					<xs:complexType>
-						<xs:sequence>
-							<xs:element name="ResultId" type="xs:int" />
-							<xs:element name="QuestionId" type="xs:int" />
-							<xs:element name="AnswerId" type="xs:int" minOccurs="0" />
-							<xs:element name="QuestionOrder" type="xs:unsignedByte" />
-						</xs:sequence>
-					</xs:complexType>
-				</xs:element>
-				<xs:element name="ResultsDetailsOfSets">
-					<xs:complexType>
-						<xs:sequence>
-							<xs:element name="ResultId" type="xs:int" />
-							<xs:element name="QuestionSetId" type="xs:int" />
-							<xs:element name="Score" type="xs:double" />
-							<xs:element name="QuestionSetOrder" type="xs:unsignedByte" />
-						</xs:sequence>
-					</xs:complexType>
-				</xs:element>
-			</xs:choice>
-		</xs:complexType>
-		<xs:unique name="ResultResultDetailSetKey1" msdata:PrimaryKey="true">
-			<xs:selector xpath=".//mstns:Results" />
-			<xs:field xpath="mstns:Id" />
-		</xs:unique>
-		<xs:unique name="ResultResultDetailSetKey2" msdata:PrimaryKey="true">
-			<xs:selector xpath=".//mstns:ResultsDetails" />
-			<xs:field xpath="mstns:ResultId" />
-			<xs:field xpath="mstns:QuestionId" />
-		</xs:unique>
-		<xs:keyref name="ResultsResultsDetails" refer="ResultResultDetailSetKey1">
-			<xs:selector xpath=".//mstns:ResultsDetails" />
-			<xs:field xpath="mstns:ResultId" />
-		</xs:keyref>
-		<xs:unique name="ResultResultDetailSetKey3" msdata:PrimaryKey="true">
-			<xs:selector xpath=".//mstns:ResultsDetailsOfSets" />
-			<xs:field xpath="mstns:ResultId" />
-			<xs:field xpath="mstns:QuestionSetId" />
-		</xs:unique>
-		<xs:keyref name="ResultsResultsDetailsOfSets" refer="ResultResultDetailSetKey1">
-			<xs:selector xpath=".//mstns:ResultsDetailsOfSets" />
-			<xs:field xpath="mstns:ResultId" />
-		</xs:keyref>
-	</xs:element>
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ResultResultDetailSet" targetNamespace="http://tempuri.org/ResultResultDetailSet.xsd" xmlns:mstns="http://tempuri.org/ResultResultDetailSet.xsd" xmlns="http://tempuri.org/ResultResultDetailSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+        </Connections>
+        <Tables>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ResultResultDetailSet" msdata:IsDataSet="true" msdata:Locale="en-US" msprop:Generator_UserDSName="ResultResultDetailSet" msprop:Generator_DataSetName="ResultResultDetailSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Results" msprop:Generator_UserTableName="Results" msprop:Generator_RowDeletedName="ResultsRowDeleted" msprop:Generator_RowChangedName="ResultsRowChanged" msprop:Generator_RowClassName="ResultsRow" msprop:Generator_RowChangingName="ResultsRowChanging" msprop:Generator_RowEvArgName="ResultsRowChangeEvent" msprop:Generator_RowEvHandlerName="ResultsRowChangeEventHandler" msprop:Generator_TableClassName="ResultsDataTable" msprop:Generator_TableVarName="tableResults" msprop:Generator_RowDeletingName="ResultsRowDeleting" msprop:Generator_TablePropName="Results">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msdata:AutoIncrement="true" msprop:Generator_UserColumnName="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" type="xs:int" />
+              <xs:element name="UserId" msprop:Generator_UserColumnName="UserId" msprop:Generator_ColumnVarNameInTable="columnUserId" msprop:Generator_ColumnPropNameInRow="UserId" msprop:Generator_ColumnPropNameInTable="UserIdColumn" type="xs:int" />
+              <xs:element name="TestId" msprop:Generator_UserColumnName="TestId" msprop:Generator_ColumnVarNameInTable="columnTestId" msprop:Generator_ColumnPropNameInRow="TestId" msprop:Generator_ColumnPropNameInTable="TestIdColumn" type="xs:int" />
+              <xs:element name="StartTime" msprop:Generator_UserColumnName="StartTime" msprop:Generator_ColumnVarNameInTable="columnStartTime" msprop:Generator_ColumnPropNameInRow="StartTime" msprop:Generator_ColumnPropNameInTable="StartTimeColumn" type="xs:dateTime" />
+              <xs:element name="EndTime" msprop:Generator_UserColumnName="EndTime" msprop:Generator_ColumnVarNameInTable="columnEndTime" msprop:Generator_ColumnPropNameInRow="EndTime" msprop:Generator_ColumnPropNameInTable="EndTimeColumn" type="xs:dateTime" />
+              <xs:element name="Score" msprop:Generator_UserColumnName="Score" msprop:Generator_ColumnVarNameInTable="columnScore" msprop:Generator_ColumnPropNameInRow="Score" msprop:Generator_ColumnPropNameInTable="ScoreColumn" type="xs:double" />
+              <xs:element name="annotation" msprop:Generator_UserColumnName="annotation" msprop:Generator_ColumnPropNameInRow="annotation" msprop:Generator_ColumnVarNameInTable="columnannotation" msprop:Generator_ColumnPropNameInTable="annotationColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ResultsDetails" msprop:Generator_UserTableName="ResultsDetails" msprop:Generator_RowDeletedName="ResultsDetailsRowDeleted" msprop:Generator_RowChangedName="ResultsDetailsRowChanged" msprop:Generator_RowClassName="ResultsDetailsRow" msprop:Generator_RowChangingName="ResultsDetailsRowChanging" msprop:Generator_RowEvArgName="ResultsDetailsRowChangeEvent" msprop:Generator_RowEvHandlerName="ResultsDetailsRowChangeEventHandler" msprop:Generator_TableClassName="ResultsDetailsDataTable" msprop:Generator_TableVarName="tableResultsDetails" msprop:Generator_RowDeletingName="ResultsDetailsRowDeleting" msprop:Generator_TablePropName="ResultsDetails">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ResultId" msprop:Generator_UserColumnName="ResultId" msprop:Generator_ColumnVarNameInTable="columnResultId" msprop:Generator_ColumnPropNameInRow="ResultId" msprop:Generator_ColumnPropNameInTable="ResultIdColumn" type="xs:int" />
+              <xs:element name="QuestionId" msprop:Generator_UserColumnName="QuestionId" msprop:Generator_ColumnVarNameInTable="columnQuestionId" msprop:Generator_ColumnPropNameInRow="QuestionId" msprop:Generator_ColumnPropNameInTable="QuestionIdColumn" type="xs:int" />
+              <xs:element name="AnswerId" msprop:Generator_UserColumnName="AnswerId" msprop:Generator_ColumnVarNameInTable="columnAnswerId" msprop:Generator_ColumnPropNameInRow="AnswerId" msprop:Generator_ColumnPropNameInTable="AnswerIdColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="QuestionOrder" msprop:Generator_UserColumnName="QuestionOrder" msprop:Generator_ColumnVarNameInTable="columnQuestionOrder" msprop:Generator_ColumnPropNameInRow="QuestionOrder" msprop:Generator_ColumnPropNameInTable="QuestionOrderColumn" type="xs:unsignedByte" />
+              <xs:element name="StartTime" msprop:Generator_UserColumnName="StartTime" msprop:Generator_ColumnVarNameInTable="columnStartTime" msprop:Generator_ColumnPropNameInRow="StartTime" msprop:Generator_ColumnPropNameInTable="StartTimeColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="EndTime" msprop:Generator_UserColumnName="EndTime" msprop:Generator_ColumnVarNameInTable="columnEndTime" msprop:Generator_ColumnPropNameInRow="EndTime" msprop:Generator_ColumnPropNameInTable="EndTimeColumn" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ResultsDetailsOfSets" msprop:Generator_UserTableName="ResultsDetailsOfSets" msprop:Generator_RowDeletedName="ResultsDetailsOfSetsRowDeleted" msprop:Generator_RowChangedName="ResultsDetailsOfSetsRowChanged" msprop:Generator_RowClassName="ResultsDetailsOfSetsRow" msprop:Generator_RowChangingName="ResultsDetailsOfSetsRowChanging" msprop:Generator_RowEvArgName="ResultsDetailsOfSetsRowChangeEvent" msprop:Generator_RowEvHandlerName="ResultsDetailsOfSetsRowChangeEventHandler" msprop:Generator_TableClassName="ResultsDetailsOfSetsDataTable" msprop:Generator_TableVarName="tableResultsDetailsOfSets" msprop:Generator_RowDeletingName="ResultsDetailsOfSetsRowDeleting" msprop:Generator_TablePropName="ResultsDetailsOfSets">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ResultId" msprop:Generator_UserColumnName="ResultId" msprop:Generator_ColumnVarNameInTable="columnResultId" msprop:Generator_ColumnPropNameInRow="ResultId" msprop:Generator_ColumnPropNameInTable="ResultIdColumn" type="xs:int" />
+              <xs:element name="QuestionSetId" msprop:Generator_UserColumnName="QuestionSetId" msprop:Generator_ColumnVarNameInTable="columnQuestionSetId" msprop:Generator_ColumnPropNameInRow="QuestionSetId" msprop:Generator_ColumnPropNameInTable="QuestionSetIdColumn" type="xs:int" />
+              <xs:element name="Score" msprop:Generator_UserColumnName="Score" msprop:Generator_ColumnVarNameInTable="columnScore" msprop:Generator_ColumnPropNameInRow="Score" msprop:Generator_ColumnPropNameInTable="ScoreColumn" type="xs:double" />
+              <xs:element name="QuestionSetOrder" msprop:Generator_UserColumnName="QuestionSetOrder" msprop:Generator_ColumnVarNameInTable="columnQuestionSetOrder" msprop:Generator_ColumnPropNameInRow="QuestionSetOrder" msprop:Generator_ColumnPropNameInTable="QuestionSetOrderColumn" type="xs:unsignedByte" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="ResultResultDetailSetKey1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Results" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="ResultResultDetailSetKey2" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:ResultsDetails" />
+      <xs:field xpath="mstns:ResultId" />
+      <xs:field xpath="mstns:QuestionId" />
+    </xs:unique>
+    <xs:unique name="ResultResultDetailSetKey3" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:ResultsDetailsOfSets" />
+      <xs:field xpath="mstns:ResultId" />
+      <xs:field xpath="mstns:QuestionSetId" />
+    </xs:unique>
+    <xs:keyref name="ResultsResultsDetailsOfSets" refer="ResultResultDetailSetKey1" msprop:rel_Generator_UserRelationName="ResultsResultsDetailsOfSets" msprop:rel_Generator_RelationVarName="relationResultsResultsDetailsOfSets" msprop:rel_Generator_UserChildTable="ResultsDetailsOfSets" msprop:rel_Generator_UserParentTable="Results" msprop:rel_Generator_ParentPropName="ResultsRow" msprop:rel_Generator_ChildPropName="GetResultsDetailsOfSetsRows">
+      <xs:selector xpath=".//mstns:ResultsDetailsOfSets" />
+      <xs:field xpath="mstns:ResultId" />
+    </xs:keyref>
+    <xs:keyref name="ResultsResultsDetails" refer="ResultResultDetailSetKey1" msprop:rel_Generator_UserRelationName="ResultsResultsDetails" msprop:rel_Generator_RelationVarName="relationResultsResultsDetails" msprop:rel_Generator_UserChildTable="ResultsDetails" msprop:rel_Generator_UserParentTable="Results" msprop:rel_Generator_ParentPropName="ResultsRow" msprop:rel_Generator_ChildPropName="GetResultsDetailsRows">
+      <xs:selector xpath=".//mstns:ResultsDetails" />
+      <xs:field xpath="mstns:ResultId" />
+    </xs:keyref>
+  </xs:element>
 </xs:schema>

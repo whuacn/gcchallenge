@@ -87,7 +87,8 @@ namespace GmatClubTest.QuestionRenderer
             return CreateImageFromActiveBuffer();
         }
 
-        public Image Render(string text)
+        //  не смогло перегрузиьт лень разбираться
+        public Image RenderAsString(string text)
         {
             InitBuffer(largeBuffer);
 
