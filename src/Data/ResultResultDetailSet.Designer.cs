@@ -238,6 +238,7 @@ namespace GmatClubTest.Data {
             this.DataSetName = "ResultResultDetailSet";
             this.Prefix = "";
             this.Namespace = "http://tempuri.org/ResultResultDetailSet.xsd";
+            this.Locale = new System.Globalization.CultureInfo("en-US");
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             this.tableResults = new ResultsDataTable();
@@ -329,6 +330,8 @@ namespace GmatClubTest.Data {
             
             private System.Data.DataColumn columnScore;
             
+            private System.Data.DataColumn columnannotation;
+            
             [System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public ResultsDataTable() {
                 this.TableName = "Results";
@@ -402,6 +405,13 @@ namespace GmatClubTest.Data {
             }
             
             [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public System.Data.DataColumn annotationColumn {
+                get {
+                    return this.columnannotation;
+                }
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -430,7 +440,7 @@ namespace GmatClubTest.Data {
             }
             
             [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ResultsRow AddResultsRow(int UserId, int TestId, System.DateTime StartTime, System.DateTime EndTime, double Score) {
+            public ResultsRow AddResultsRow(int UserId, int TestId, System.DateTime StartTime, System.DateTime EndTime, double Score, string annotation) {
                 ResultsRow rowResultsRow = ((ResultsRow)(this.NewRow()));
                 rowResultsRow.ItemArray = new object[] {
                         null,
@@ -438,7 +448,8 @@ namespace GmatClubTest.Data {
                         TestId,
                         StartTime,
                         EndTime,
-                        Score};
+                        Score,
+                        annotation};
                 this.Rows.Add(rowResultsRow);
                 return rowResultsRow;
             }
@@ -474,6 +485,7 @@ namespace GmatClubTest.Data {
                 this.columnStartTime = base.Columns["StartTime"];
                 this.columnEndTime = base.Columns["EndTime"];
                 this.columnScore = base.Columns["Score"];
+                this.columnannotation = base.Columns["annotation"];
             }
             
             [System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -490,6 +502,8 @@ namespace GmatClubTest.Data {
                 base.Columns.Add(this.columnEndTime);
                 this.columnScore = new System.Data.DataColumn("Score", typeof(double), null, System.Data.MappingType.Element);
                 base.Columns.Add(this.columnScore);
+                this.columnannotation = new System.Data.DataColumn("annotation", typeof(string), null, System.Data.MappingType.Element);
+                base.Columns.Add(this.columnannotation);
                 this.Constraints.Add(new System.Data.UniqueConstraint("ResultResultDetailSetKey1", new System.Data.DataColumn[] {
                                 this.columnId}, true));
                 this.columnId.AutoIncrement = true;
@@ -597,6 +611,10 @@ namespace GmatClubTest.Data {
             
             private System.Data.DataColumn columnQuestionOrder;
             
+            private System.Data.DataColumn columnStartTime;
+            
+            private System.Data.DataColumn columnEndTime;
+            
             [System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public ResultsDetailsDataTable() {
                 this.TableName = "ResultsDetails";
@@ -656,6 +674,20 @@ namespace GmatClubTest.Data {
             }
             
             [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public System.Data.DataColumn StartTimeColumn {
+                get {
+                    return this.columnStartTime;
+                }
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public System.Data.DataColumn EndTimeColumn {
+                get {
+                    return this.columnEndTime;
+                }
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -684,13 +716,15 @@ namespace GmatClubTest.Data {
             }
             
             [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ResultsDetailsRow AddResultsDetailsRow(ResultsRow parentResultsRowByResultsResultsDetails, int QuestionId, int AnswerId, byte QuestionOrder) {
+            public ResultsDetailsRow AddResultsDetailsRow(ResultsRow parentResultsRowByResultsResultsDetails, int QuestionId, int AnswerId, byte QuestionOrder, System.DateTime StartTime, System.DateTime EndTime) {
                 ResultsDetailsRow rowResultsDetailsRow = ((ResultsDetailsRow)(this.NewRow()));
                 rowResultsDetailsRow.ItemArray = new object[] {
                         parentResultsRowByResultsResultsDetails[0],
                         QuestionId,
                         AnswerId,
-                        QuestionOrder};
+                        QuestionOrder,
+                        StartTime,
+                        EndTime};
                 this.Rows.Add(rowResultsDetailsRow);
                 return rowResultsDetailsRow;
             }
@@ -725,6 +759,8 @@ namespace GmatClubTest.Data {
                 this.columnQuestionId = base.Columns["QuestionId"];
                 this.columnAnswerId = base.Columns["AnswerId"];
                 this.columnQuestionOrder = base.Columns["QuestionOrder"];
+                this.columnStartTime = base.Columns["StartTime"];
+                this.columnEndTime = base.Columns["EndTime"];
             }
             
             [System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -737,6 +773,10 @@ namespace GmatClubTest.Data {
                 base.Columns.Add(this.columnAnswerId);
                 this.columnQuestionOrder = new System.Data.DataColumn("QuestionOrder", typeof(byte), null, System.Data.MappingType.Element);
                 base.Columns.Add(this.columnQuestionOrder);
+                this.columnStartTime = new System.Data.DataColumn("StartTime", typeof(System.DateTime), null, System.Data.MappingType.Element);
+                base.Columns.Add(this.columnStartTime);
+                this.columnEndTime = new System.Data.DataColumn("EndTime", typeof(System.DateTime), null, System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEndTime);
                 this.Constraints.Add(new System.Data.UniqueConstraint("ResultResultDetailSetKey2", new System.Data.DataColumn[] {
                                 this.columnResultId,
                                 this.columnQuestionId}, true));
@@ -1143,13 +1183,38 @@ namespace GmatClubTest.Data {
             }
             
             [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ResultsDetailsRow[] GetResultsDetailsRows() {
-                return ((ResultsDetailsRow[])(base.GetChildRows(this.Table.ChildRelations["ResultsResultsDetails"])));
+            public string annotation {
+                get {
+                    try {
+                        return ((string)(this[this.tableResults.annotationColumn]));
+                    }
+                    catch (System.InvalidCastException e) {
+                        throw new System.Data.StrongTypingException("The value for column \'annotation\' in table \'Results\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableResults.annotationColumn] = value;
+                }
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsannotationNull() {
+                return this.IsNull(this.tableResults.annotationColumn);
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetannotationNull() {
+                this[this.tableResults.annotationColumn] = System.Convert.DBNull;
             }
             
             [System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public ResultsDetailsOfSetsRow[] GetResultsDetailsOfSetsRows() {
                 return ((ResultsDetailsOfSetsRow[])(base.GetChildRows(this.Table.ChildRelations["ResultsResultsDetailsOfSets"])));
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public ResultsDetailsRow[] GetResultsDetailsRows() {
+                return ((ResultsDetailsRow[])(base.GetChildRows(this.Table.ChildRelations["ResultsResultsDetails"])));
             }
         }
         
@@ -1210,6 +1275,36 @@ namespace GmatClubTest.Data {
             }
             
             [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public System.DateTime StartTime {
+                get {
+                    try {
+                        return ((System.DateTime)(this[this.tableResultsDetails.StartTimeColumn]));
+                    }
+                    catch (System.InvalidCastException e) {
+                        throw new System.Data.StrongTypingException("The value for column \'StartTime\' in table \'ResultsDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableResultsDetails.StartTimeColumn] = value;
+                }
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public System.DateTime EndTime {
+                get {
+                    try {
+                        return ((System.DateTime)(this[this.tableResultsDetails.EndTimeColumn]));
+                    }
+                    catch (System.InvalidCastException e) {
+                        throw new System.Data.StrongTypingException("The value for column \'EndTime\' in table \'ResultsDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableResultsDetails.EndTimeColumn] = value;
+                }
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public ResultsRow ResultsRow {
                 get {
                     return ((ResultsRow)(this.GetParentRow(this.Table.ParentRelations["ResultsResultsDetails"])));
@@ -1227,6 +1322,26 @@ namespace GmatClubTest.Data {
             [System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public void SetAnswerIdNull() {
                 this[this.tableResultsDetails.AnswerIdColumn] = System.Convert.DBNull;
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsStartTimeNull() {
+                return this.IsNull(this.tableResultsDetails.StartTimeColumn);
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetStartTimeNull() {
+                this[this.tableResultsDetails.StartTimeColumn] = System.Convert.DBNull;
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsEndTimeNull() {
+                return this.IsNull(this.tableResultsDetails.EndTimeColumn);
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetEndTimeNull() {
+                this[this.tableResultsDetails.EndTimeColumn] = System.Convert.DBNull;
             }
         }
         

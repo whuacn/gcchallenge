@@ -150,6 +150,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Explanations.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ResultAndDetails.cs">
+      <DependentUpon>ResultAndDetails.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ResultAndDetails.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResultAndDetails.xsd</DependentUpon>
+    </Compile>
     <Compile Include="TestSet.cs">
       <DependentUpon>TestSet.xsd</DependentUpon>
     </Compile>
@@ -157,14 +165,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TestSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="TestSet_.cs">
-      <DependentUpon>TestSet_.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="TestSet_.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TestSet_.xsd</DependentUpon>
     </Compile>
     <Compile Include="PassageToQuestionSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -257,6 +257,17 @@
     <None Include="Explanations.xss">
       <DependentUpon>Explanations.xsd</DependentUpon>
     </None>
+    <None Include="ResultAndDetails.xsc">
+      <DependentUpon>ResultAndDetails.xsd</DependentUpon>
+    </None>
+    <None Include="ResultAndDetails.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ResultAndDetails.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ResultAndDetails.xss">
+      <DependentUpon>ResultAndDetails.xsd</DependentUpon>
+    </None>
     <None Include="TestSet.xsc">
       <DependentUpon>TestSet.xsd</DependentUpon>
     </None>
@@ -267,17 +278,6 @@
     </None>
     <None Include="TestSet.xss">
       <DependentUpon>TestSet.xsd</DependentUpon>
-    </None>
-    <None Include="TestSet_.xsc">
-      <DependentUpon>TestSet_.xsd</DependentUpon>
-    </None>
-    <None Include="TestSet_.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>TestSet_.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="TestSet_.xss">
-      <DependentUpon>TestSet_.xsd</DependentUpon>
     </None>
     <None Include="PassageToQuestionSet.xsc">
       <DependentUpon>PassageToQuestionSet.xsd</DependentUpon>

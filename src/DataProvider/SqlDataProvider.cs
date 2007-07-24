@@ -742,7 +742,9 @@ namespace GmatClubTest.DataProvider
                         new System.Data.Common.DataColumnMapping("ResultId", "ResultId"),
                         new System.Data.Common.DataColumnMapping("QuestionId", "QuestionId"),
                         new System.Data.Common.DataColumnMapping("AnswerId", "AnswerId"),
-                        new System.Data.Common.DataColumnMapping("QuestionOrder", "QuestionOrder")})});
+                        new System.Data.Common.DataColumnMapping("QuestionOrder", "QuestionOrder"),
+                        new System.Data.Common.DataColumnMapping("StartTime", "StartTime"),
+                        new System.Data.Common.DataColumnMapping("EndTime", "EndTime")})});
            this.adapterResultsDetailsByResultId.UpdateCommand = this.sqlUpdateCommand7;
            // 
            // sqlDeleteCommand7
@@ -763,11 +765,13 @@ namespace GmatClubTest.DataProvider
             new System.Data.SqlClient.SqlParameter("@ResultId", System.Data.SqlDbType.Int, 4, "ResultId"),
             new System.Data.SqlClient.SqlParameter("@QuestionId", System.Data.SqlDbType.Int, 4, "QuestionId"),
             new System.Data.SqlClient.SqlParameter("@AnswerId", System.Data.SqlDbType.Int, 4, "AnswerId"),
-            new System.Data.SqlClient.SqlParameter("@QuestionOrder", System.Data.SqlDbType.TinyInt, 1, "QuestionOrder")});
+            new System.Data.SqlClient.SqlParameter("@QuestionOrder", System.Data.SqlDbType.TinyInt, 1, "QuestionOrder"),
+            new System.Data.SqlClient.SqlParameter("@StartTime", System.Data.SqlDbType.DateTime,8,"StartTime"),
+            new System.Data.SqlClient.SqlParameter("@EndTime", System.Data.SqlDbType.DateTime,8,"EndTime")});
            // 
            // sqlSelectCommand1
            // 
-           this.sqlSelectCommand1.CommandText = "SELECT ResultId, QuestionId, AnswerId, QuestionOrder FROM ResultsDetails WHERE (R" +
+           this.sqlSelectCommand1.CommandText = "SELECT ResultId, QuestionId, AnswerId, QuestionOrder, StartTime, EndTime FROM ResultsDetails WHERE (R" +
                "esultId = @ResultId)";
            this.sqlSelectCommand1.Connection = this.sqlConnection;
            this.sqlSelectCommand1.Parameters.AddRange(new System.Data.SqlClient.SqlParameter[] {
@@ -782,10 +786,14 @@ namespace GmatClubTest.DataProvider
             new System.Data.SqlClient.SqlParameter("@QuestionId", System.Data.SqlDbType.Int, 4, "QuestionId"),
             new System.Data.SqlClient.SqlParameter("@AnswerId", System.Data.SqlDbType.Int, 4, "AnswerId"),
             new System.Data.SqlClient.SqlParameter("@QuestionOrder", System.Data.SqlDbType.TinyInt, 1, "QuestionOrder"),
+            new System.Data.SqlClient.SqlParameter("@StartTime", System.Data.SqlDbType.DateTime, 8, "StartTime"),
+            new System.Data.SqlClient.SqlParameter("@EndTime", System.Data.SqlDbType.DateTime, 8, "EndTime"),
             new System.Data.SqlClient.SqlParameter("@Original_QuestionId", System.Data.SqlDbType.Int, 4, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "QuestionId", System.Data.DataRowVersion.Original, null),
             new System.Data.SqlClient.SqlParameter("@Original_ResultId", System.Data.SqlDbType.Int, 4, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "ResultId", System.Data.DataRowVersion.Original, null),
             new System.Data.SqlClient.SqlParameter("@Original_AnswerId", System.Data.SqlDbType.Int, 4, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "AnswerId", System.Data.DataRowVersion.Original, null),
-            new System.Data.SqlClient.SqlParameter("@Original_QuestionOrder", System.Data.SqlDbType.TinyInt, 1, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "QuestionOrder", System.Data.DataRowVersion.Original, null)});
+            new System.Data.SqlClient.SqlParameter("@Original_QuestionOrder", System.Data.SqlDbType.TinyInt, 1, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "QuestionOrder", System.Data.DataRowVersion.Original, null),
+            new System.Data.SqlClient.SqlParameter("@Original_StartTime", System.Data.SqlDbType.DateTime, 8, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "StartTime", System.Data.DataRowVersion.Original, null),
+            new System.Data.SqlClient.SqlParameter("@Original_EndTime", System.Data.SqlDbType.DateTime, 8, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "EndTime", System.Data.DataRowVersion.Original, null)});
            // 
            // adapterQuestionSetsByTestId
            // 

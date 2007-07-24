@@ -15,19 +15,7 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_181397D34E795EA97FFE3A48605F095E"
-        "OwnerKey" = "8:_660F9411C2584F5BB98CD73B3C9F2DA4"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_42C74290698F461BBED048F87B331785"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_660F9411C2584F5BB98CD73B3C9F2DA4"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -39,50 +27,14 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_9119B5364698BBF6CCE945E2AF0555FD"
-        "OwnerKey" = "8:_660F9411C2584F5BB98CD73B3C9F2DA4"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_A24401097E6A41C99B47C497FB663413"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_CF15DCD051F60086D5525DC1CCE1B295"
-        "OwnerKey" = "8:_660F9411C2584F5BB98CD73B3C9F2DA4"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_E935B4EE847C44F2BF0DCDA700034D29"
         "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_660F9411C2584F5BB98CD73B3C9F2DA4"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_181397D34E795EA97FFE3A48605F095E"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_CF15DCD051F60086D5525DC1CCE1B295"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_9119B5364698BBF6CCE945E2AF0555FD"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -176,37 +128,6 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_181397D34E795EA97FFE3A48605F095E"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:UnexpectedExceptionDialog, Version=1.0.2410.18411, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_181397D34E795EA97FFE3A48605F095E"
-                    {
-                    "Name" = "8:UnexpectedExceptionDialog.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:UnexpectedExceptionDialog.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_AAEE52B46397476CA980BCA715548FC5"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_42C74290698F461BBED048F87B331785"
             {
             "SourcePath" = "8:..\\..\\Data\\Keys\\DefaultGmatClubKeyPair.gck"
@@ -247,37 +168,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9119B5364698BBF6CCE945E2AF0555FD"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:MagicLibrary, Version=1.7.4.0, Culture=neutral, PublicKeyToken=3a6eb82f876a49bc"
-                "ScatterAssemblies"
-                {
-                    "_9119B5364698BBF6CCE945E2AF0555FD"
-                    {
-                    "Name" = "8:MagicLibrary.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:MagicLibrary.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_AAEE52B46397476CA980BCA715548FC5"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A24401097E6A41C99B47C497FB663413"
             {
             "SourcePath" = "8:..\\..\\Data\\Keys\\DefaultGmatClubPublicKey.gck"
@@ -296,37 +186,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_CF15DCD051F60086D5525DC1CCE1B295"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:License, Version=1.0.2410.18410, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_CF15DCD051F60086D5525DC1CCE1B295"
-                    {
-                    "Name" = "8:License.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:License.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_AAEE52B46397476CA980BCA715548FC5"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E935B4EE847C44F2BF0DCDA700034D29"
@@ -362,7 +221,6 @@
             "IconIndex" = "3:0"
                 "Command"
                 {
-                "Command" = "8:_660F9411C2584F5BB98CD73B3C9F2DA4"
                 }
                 "Verbs"
                 {
@@ -381,11 +239,10 @@
             "Description" = "8:GMAT Club License"
             "Extensions" = "8:gcl"
             "MIME" = "8:"
-            "Icon" = "8:_660F9411C2584F5BB98CD73B3C9F2DA4"
+            "Icon" = "8:"
             "IconIndex" = "3:32512"
                 "Command"
                 {
-                "Command" = "8:_660F9411C2584F5BB98CD73B3C9F2DA4"
                 }
                 "Verbs"
                 {
@@ -478,7 +335,7 @@
         "Keywords" = "8:GMAT Club test license"
         "ARPCOMMENTS" = "8:GMAT Club Test - Manual License Issuer"
         "ARPURLINFOABOUT" = "8:http://www.gmatclub.com/"
-        "ARPPRODUCTICON" = "8:_660F9411C2584F5BB98CD73B3C9F2DA4"
+        "ARPPRODUCTICON" = "8:"
         "ARPIconIndex" = "3:32512"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
@@ -533,10 +390,10 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:32512"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_660F9411C2584F5BB98CD73B3C9F2DA4"
+            "Target" = "8:"
             "Folder" = "8:_EB1A45A59E26473E90907C73676C839E"
             "WorkingFolder" = "8:_AAEE52B46397476CA980BCA715548FC5"
-            "Icon" = "8:_660F9411C2584F5BB98CD73B3C9F2DA4"
+            "Icon" = "8:"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_D7E49F802BF84019A0727BC184CC068E"
@@ -547,10 +404,10 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:32512"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_660F9411C2584F5BB98CD73B3C9F2DA4"
+            "Target" = "8:"
             "Folder" = "8:_DE9FEBC40E5649EDBC178A9E9D10B30A"
             "WorkingFolder" = "8:_AAEE52B46397476CA980BCA715548FC5"
-            "Icon" = "8:_660F9411C2584F5BB98CD73B3C9F2DA4"
+            "Icon" = "8:"
             "Feature" = "8:"
             }
         }
@@ -952,34 +809,9 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_660F9411C2584F5BB98CD73B3C9F2DA4"
-            {
-            "SourcePath" = "8:..\\ManualLicenseIssuer\\obj\\Release\\ManualLicenseIssuer.exe"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_AAEE52B46397476CA980BCA715548FC5"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:"
-            "OutputGroupCanonicalName" = "8:Built"
-            "OutputProjectGuid" = "8:{9FBE68DA-75AC-4CE8-B88F-1321B687BA44}"
-            "ShowKeyOutput" = "11:TRUE"
-                "ExcludeFilters"
-                {
-                }
-            }
+        }
+        "VJSharpPlugin"
+        {
         }
     }
 }

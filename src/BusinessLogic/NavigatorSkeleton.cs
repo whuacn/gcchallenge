@@ -20,6 +20,8 @@ namespace GmatClubTest.BusinessLogic
         protected int totalQuestions = 0;
         protected TimeSpan totalTime;
         protected DateTime activeSetStartTime = DateTime.MinValue;
+        protected DateTime questionStartTime = DateTime.MinValue;
+        
         protected TimeSpan[] setRemainedTime;
 
         //questionId -> Question.Status
@@ -43,7 +45,7 @@ namespace GmatClubTest.BusinessLogic
             manager.DataProvider.GetQuestionSetsByTestId(test.Id, sets);
             setRemainedTime = new TimeSpan[sets.QuestionSets.Count];
 
-            resultRow = result.Results.AddResultsRow(manager.UserId, test.Id, DateTime.Now, DateTime.MaxValue, 0);
+            resultRow = result.Results.AddResultsRow(manager.UserId, test.Id, DateTime.Now, DateTime.MaxValue, 0,"");
 
             int i = 0;
             foreach (QuestionSetSet.QuestionSetsRow row in sets.QuestionSets)
@@ -139,6 +141,7 @@ namespace GmatClubTest.BusinessLogic
         {
             if (!HasRandomQuestionAccess) throw new InvalidOperationException("SetActiveQuestion is not supported");
             CheckTime();
+            questionStartTime=DateTime.Now;
             DoSetActiveQuestion(questionId);
             if (!questionStatus.Contains(questionId))
                 questionStatus[questionId] = new Question.Status();
@@ -350,8 +353,15 @@ namespace GmatClubTest.BusinessLogic
             }
             else
             {
-                result.ResultsDetails.AddResultsDetailsRow(resultRow, q.Id, answerId,
-                                                               (byte)(ActiveQuestionIndex + 1));
+                result.ResultsDetails.AddResultsDetailsRow(
+                                                           resultRow, 
+                                                           q.Id,
+                                                           answerId,
+                                                           (byte)(ActiveQuestionIndex + 1),
+                                                           questionStartTime,
+                                                           DateTime.Now);
+                                                           
+                questionStartTime=DateTime.Now;
                 setRow.Score += score;
             }
 

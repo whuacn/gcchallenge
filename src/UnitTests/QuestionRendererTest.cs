@@ -25,7 +25,7 @@ namespace GmatClubTest.UnitTests
         public void Init()
         {
             manager = Manager.CreareManagerUseSql(SystemInformation.ComputerName, "re2085", "sys1157");
-            UserSet u = new UserSet();
+            /*UserSet u = new UserSet();*/
             manager.CreateUser("UnitTestUser" + random.Next().ToString(), random.Next().ToString(), "UnitTestUserName",
                                u);
             manager.UserId = u.Users[0].Id;
